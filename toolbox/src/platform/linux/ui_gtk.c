@@ -4,6 +4,7 @@
 #include "../../core/tab.h"
 #include "../../core/terminal_session.h"
 #include "../../core/workspace.h"
+#include "../../tools/toolkit_index.h"
 #include "../../ui/workbench.h"
 #include "terminal_vte.h"
 
@@ -240,11 +241,160 @@ static void on_notebook_switch_page(GtkNotebook *notebook, GtkWidget *page, guin
     }
 }
 
+enum {
+    TOOLKIT_COL_ICON,
+    TOOLKIT_COL_NAME,
+    TOOLKIT_COL_PATH,
+    TOOLKIT_COL_IS_DIR,
+    TOOLKIT_COL_LOADED,
+    TOOLKIT_COL_COUNT
+};
+
+/* Appends entry as a row under parent (NULL for the root). Directories get
+ * a single placeholder child so their expander arrow shows immediately;
+ * the placeholder is replaced with real children lazily in
+ * on_toolkit_row_expanded, once the row is actually expanded. */
+static void add_toolkit_tree_entry(GtkTreeStore *store, GtkTreeIter *parent, const ToolkitEntry *entry) {
+    GtkTreeIter iter;
+    gtk_tree_store_append(store, &iter, parent);
+    gtk_tree_store_set(store, &iter,
+        TOOLKIT_COL_ICON, entry->is_dir ? "folder" : "text-x-generic",
+        TOOLKIT_COL_NAME, entry->name,
+        TOOLKIT_COL_PATH, entry->path,
+        TOOLKIT_COL_IS_DIR, entry->is_dir,
+        TOOLKIT_COL_LOADED, FALSE,
+        -1);
+
+    if (entry->is_dir) {
+        GtkTreeIter placeholder;
+        gtk_tree_store_append(store, &placeholder, &iter);
+        gtk_tree_store_set(store, &placeholder, TOOLKIT_COL_NAME, "", -1);
+    }
+}
+
+/* Clears and rebuilds the root level of store from the current
+ * toolkit_index state. Called at sidebar construction and again by the
+ * refresh button; any expanded subfolders collapse back to unloaded. */
+static void populate_toolkit_tree(GtkTreeStore *store) {
+    gtk_tree_store_clear(store);
+    int count = toolkit_index_count();
+    for (int i = 0; i < count; i++) {
+        add_toolkit_tree_entry(store, NULL, toolkit_index_get(i));
+    }
+}
+
+/* Lazily scans a directory row's contents the first time it's expanded,
+ * replacing its placeholder child with the real (still non-recursive -
+ * only this one level) listing. Re-expanding after a collapse reuses what
+ * was already loaded rather than re-scanning. */
+static void on_toolkit_row_expanded(GtkTreeView *tree_view, GtkTreeIter *iter, GtkTreePath *tree_path, gpointer user_data) {
+    (void)tree_path;
+    (void)user_data;
+    GtkTreeStore *store = GTK_TREE_STORE(gtk_tree_view_get_model(tree_view));
+
+    gboolean loaded = FALSE;
+    gtk_tree_model_get(GTK_TREE_MODEL(store), iter, TOOLKIT_COL_LOADED, &loaded, -1);
+    if (loaded) {
+        return;
+    }
+
+    char *dir_path = NULL;
+    gtk_tree_model_get(GTK_TREE_MODEL(store), iter, TOOLKIT_COL_PATH, &dir_path, -1);
+
+    /* Keep the placeholder in place while appending the real children -
+     * GtkTreeView auto-collapses a row that transitions through having
+     * zero children, so removing it before adding the replacements would
+     * silently undo the expansion that's currently in progress. */
+    GtkTreeIter placeholder;
+    gboolean has_placeholder = gtk_tree_model_iter_children(GTK_TREE_MODEL(store), &placeholder, iter);
+
+    if (dir_path) {
+        ToolkitEntry entries[TOOLKIT_INDEX_MAX_ENTRIES];
+        int n = toolkit_scan_directory(dir_path, entries, TOOLKIT_INDEX_MAX_ENTRIES);
+        for (int i = 0; i < n; i++) {
+            add_toolkit_tree_entry(store, iter, &entries[i]);
+            free(entries[i].name);
+            free(entries[i].path);
+        }
+    }
+    g_free(dir_path);
+
+    if (has_placeholder) {
+        gtk_tree_store_remove(store, &placeholder);
+    }
+
+    gtk_tree_store_set(store, iter, TOOLKIT_COL_LOADED, TRUE, -1);
+}
+
+static void on_toolkit_refresh_clicked(GtkButton *button, gpointer user_data) {
+    (void)button;
+    GtkTreeStore *store = GTK_TREE_STORE(user_data);
+    toolkit_index_rescan();
+    populate_toolkit_tree(store);
+}
+
+/* Double-click (or Enter) on a directory row toggles it, in addition to
+ * the expander arrow GtkTreeView already handles on a single click. */
+static void on_toolkit_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column, gpointer user_data) {
+    (void)column;
+    (void)user_data;
+    if (gtk_tree_view_row_expanded(tree_view, path)) {
+        gtk_tree_view_collapse_row(tree_view, path);
+    } else {
+        gtk_tree_view_expand_row(tree_view, path, FALSE);
+    }
+}
+
 static GtkWidget *build_sidebar(void) {
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_size_request(box, 160, -1);
+    gtk_widget_set_size_request(box, 200, -1);
     gtk_container_set_border_width(GTK_CONTAINER(box), 8);
-    gtk_box_pack_start(GTK_BOX(box), gtk_label_new("Sidebar"), FALSE, FALSE, 0);
+
+    GtkWidget *header = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
+    GtkWidget *title = gtk_label_new("Toolkit");
+    gtk_label_set_xalign(GTK_LABEL(title), 0.0);
+    GtkWidget *refresh_button = gtk_button_new_with_label("\xE2\x86\xBB"); /* refresh: ↻ */
+    gtk_button_set_relief(GTK_BUTTON(refresh_button), GTK_RELIEF_NONE);
+    gtk_box_pack_start(GTK_BOX(header), title, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(header), refresh_button, FALSE, FALSE, 0);
+
+    GtkTreeStore *store = gtk_tree_store_new(TOOLKIT_COL_COUNT,
+        G_TYPE_STRING,  /* icon name */
+        G_TYPE_STRING,  /* display name */
+        G_TYPE_STRING,  /* full path */
+        G_TYPE_BOOLEAN, /* is_dir */
+        G_TYPE_BOOLEAN  /* loaded */
+    );
+    populate_toolkit_tree(store);
+
+    GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    g_object_unref(store); /* the tree view holds its own reference */
+    gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tree_view), FALSE);
+
+    GtkTreeViewColumn *column = gtk_tree_view_column_new();
+    GtkCellRenderer *icon_renderer = gtk_cell_renderer_pixbuf_new();
+    g_object_set(icon_renderer, "stock-size", GTK_ICON_SIZE_MENU, NULL);
+    gtk_tree_view_column_pack_start(column, icon_renderer, FALSE);
+    gtk_tree_view_column_add_attribute(column, icon_renderer, "icon-name", TOOLKIT_COL_ICON);
+
+    GtkCellRenderer *text_renderer = gtk_cell_renderer_text_new();
+    gtk_tree_view_column_pack_start(column, text_renderer, TRUE);
+    gtk_tree_view_column_add_attribute(column, text_renderer, "text", TOOLKIT_COL_NAME);
+
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view), column);
+    g_signal_connect(tree_view, "row-expanded", G_CALLBACK(on_toolkit_row_expanded), NULL);
+    g_signal_connect(tree_view, "row-activated", G_CALLBACK(on_toolkit_row_activated), NULL);
+
+    GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_container_add(GTK_CONTAINER(scroller), tree_view);
+
+    g_signal_connect(refresh_button, "clicked", G_CALLBACK(on_toolkit_refresh_clicked), store);
+
+    gtk_box_pack_start(GTK_BOX(box), header, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(box), gtk_separator_new(GTK_ORIENTATION_HORIZONTAL), FALSE, FALSE, 4);
+    gtk_box_pack_start(GTK_BOX(box), scroller, TRUE, TRUE, 0);
+
     return box;
 }
 

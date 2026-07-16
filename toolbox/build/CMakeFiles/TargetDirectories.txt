@@ -1,0 +1,15 @@
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/toolbox_core.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/toolbox.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/edit_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/rebuild_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/lifecycle_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/layout_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/tabs_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/multi_terminal_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_session_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/toolkit_index_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

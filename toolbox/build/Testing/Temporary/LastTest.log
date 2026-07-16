@@ -1,0 +1,123 @@
+Start testing: Jul 16 22:21 UTC
+----------------------------------------------------------
+1/7 Testing: lifecycle_smoke
+1/7 Test: lifecycle_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/lifecycle_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"lifecycle_smoke" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+lifecycle_smoke: iteration 0 ok
+lifecycle_smoke: iteration 1 ok
+lifecycle_smoke: iteration 2 ok
+lifecycle_smoke: iteration 3 ok
+lifecycle_smoke: iteration 4 ok
+lifecycle_smoke: 5 iterations completed cleanly
+<end of output>
+Test time =   0.80 sec
+----------------------------------------------------------
+Test Passed.
+"lifecycle_smoke" end time: Jul 16 22:21 UTC
+"lifecycle_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/7 Testing: layout_smoke
+2/7 Test: layout_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/layout_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"layout_smoke" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+layout_smoke: iteration 0 ok
+layout_smoke: iteration 1 ok
+layout_smoke: iteration 2 ok
+layout_smoke: 3 iterations completed cleanly
+<end of output>
+Test time =   0.65 sec
+----------------------------------------------------------
+Test Passed.
+"layout_smoke" end time: Jul 16 22:21 UTC
+"layout_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/7 Testing: tabs_smoke
+3/7 Test: tabs_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/tabs_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"tabs_smoke" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+tabs_smoke: create/select/rename/close all verified
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"tabs_smoke" end time: Jul 16 22:21 UTC
+"tabs_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/7 Testing: terminal_smoke
+4/7 Test: terminal_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"terminal_smoke" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+terminal_smoke: shell spawn, echo round-trip, and live resize all verified
+<end of output>
+Test time =   1.04 sec
+----------------------------------------------------------
+Test Passed.
+"terminal_smoke" end time: Jul 16 22:21 UTC
+"terminal_smoke" time elapsed: 00:00:01
+----------------------------------------------------------
+
+5/7 Testing: multi_terminal_smoke
+5/7 Test: multi_terminal_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/multi_terminal_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"multi_terminal_smoke" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+multi_terminal_smoke: independent tabs, selective close, and shell-exit handling all verified
+<end of output>
+Test time =   2.67 sec
+----------------------------------------------------------
+Test Passed.
+"multi_terminal_smoke" end time: Jul 16 22:21 UTC
+"multi_terminal_smoke" time elapsed: 00:00:02
+----------------------------------------------------------
+
+6/7 Testing: terminal_session_test
+6/7 Test: terminal_session_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_session_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"terminal_session_test" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+terminal_session_test: session identity verified independent of any GTK widget
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"terminal_session_test" end time: Jul 16 22:21 UTC
+"terminal_session_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/7 Testing: toolkit_index_test
+7/7 Test: toolkit_index_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/toolkit_index_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"toolkit_index_test" start time: Jul 16 22:21 UTC
+Output:
+----------------------------------------------------------
+toolkit_index_test: non-recursive single-level scan verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"toolkit_index_test" end time: Jul 16 22:21 UTC
+"toolkit_index_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 16 22:21 UTC

@@ -17,7 +17,10 @@ toolbox/
 │   ├── db/                  # SQLite persistence
 │   ├── tools/                # Tool registry / plugin points
 │   └── platform/linux/      # GTK + VTE platform backend
-└── tests/
+├── tests/
+└── toolkit/                  # Auto-created next to the built binary; its
+                               # top-level contents (not subfolders) are
+                               # indexed at startup and shown in the sidebar
 ```
 
 ## Building

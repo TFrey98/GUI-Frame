@@ -16,6 +16,9 @@ target_link_libraries(multi_terminal_smoke PRIVATE toolbox_core)
 add_executable(terminal_session_test terminal_session_test.c)
 target_link_libraries(terminal_session_test PRIVATE toolbox_core)
 
+add_executable(toolkit_index_test toolkit_index_test.c)
+target_link_libraries(toolkit_index_test PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -33,3 +36,6 @@ set_tests_properties(multi_terminal_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME terminal_session_test COMMAND terminal_session_test)
 set_tests_properties(terminal_session_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME toolkit_index_test COMMAND toolkit_index_test)
+set_tests_properties(toolkit_index_test PROPERTIES TIMEOUT 10)

@@ -1,0 +1,8 @@
+lifecycle_smoke 4 0.200675
+layout_smoke 4 0.161794
+tabs_smoke 4 0.0706553
+terminal_smoke 4 0.258751
+multi_terminal_smoke 4 0.668517
+terminal_session_test 4 0.000856914
+toolkit_index_test 4 0.000742824
+---

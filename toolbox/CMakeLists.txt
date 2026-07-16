@@ -22,6 +22,7 @@ add_library(toolbox_core STATIC
     src/ui/workbench.c
     src/db/database.c
     src/tools/tool_registry.c
+    src/tools/toolkit_index.c
     src/platform/linux/ui_gtk.c
     src/platform/linux/terminal_vte.c
 )
@@ -54,6 +55,11 @@ target_link_libraries(toolbox_core PUBLIC
 
 add_executable(toolbox src/main.c)
 target_link_libraries(toolbox PRIVATE toolbox_core)
+
+add_custom_command(TARGET toolbox POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:toolbox>/toolkit"
+    COMMENT "Ensuring toolkit/ exists next to the toolbox executable"
+)
 
 enable_testing()
 add_subdirectory(tests)

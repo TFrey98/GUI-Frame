@@ -5,6 +5,7 @@
 #include "../core/workspace.h"
 #include "../db/database.h"
 #include "../tools/tool_registry.h"
+#include "../tools/toolkit_index.h"
 #include "../ui/workbench.h"
 
 struct App {
@@ -22,6 +23,7 @@ App *app_create(int argc, char **argv) {
     app->db_open = (database_open("toolbox.db") == 0);
 
     tool_registry_init();
+    toolkit_index_init();
     app->workspace = workspace_create();
     app->workbench = workbench_create(app->workspace);
 
@@ -41,6 +43,7 @@ void app_destroy(App *app) {
     app->workbench = NULL;
 
     tool_registry_shutdown();
+    toolkit_index_shutdown();
 
     workspace_destroy(app->workspace);
     app->workspace = NULL;
