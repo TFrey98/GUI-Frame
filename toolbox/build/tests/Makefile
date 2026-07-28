@@ -224,6 +224,308 @@ toolkit_index_test/fast:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_index_test.dir/build.make tests/CMakeFiles/toolkit_index_test.dir/build
 .PHONY : toolkit_index_test/fast
 
+# Convenience name for target.
+tests/CMakeFiles/event_queue_stress_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/event_queue_stress_test.dir/rule
+.PHONY : tests/CMakeFiles/event_queue_stress_test.dir/rule
+
+# Convenience name for target.
+event_queue_stress_test: tests/CMakeFiles/event_queue_stress_test.dir/rule
+.PHONY : event_queue_stress_test
+
+# fast build rule for target.
+event_queue_stress_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/build
+.PHONY : event_queue_stress_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/byte_buffer_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/byte_buffer_test.dir/rule
+.PHONY : tests/CMakeFiles/byte_buffer_test.dir/rule
+
+# Convenience name for target.
+byte_buffer_test: tests/CMakeFiles/byte_buffer_test.dir/rule
+.PHONY : byte_buffer_test
+
+# fast build rule for target.
+byte_buffer_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/byte_buffer_test.dir/build.make tests/CMakeFiles/byte_buffer_test.dir/build
+.PHONY : byte_buffer_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/object_registry_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_registry_test.dir/rule
+.PHONY : tests/CMakeFiles/object_registry_test.dir/rule
+
+# Convenience name for target.
+object_registry_test: tests/CMakeFiles/object_registry_test.dir/rule
+.PHONY : object_registry_test
+
+# fast build rule for target.
+object_registry_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/build
+.PHONY : object_registry_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/object_predicates_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_predicates_test.dir/rule
+.PHONY : tests/CMakeFiles/object_predicates_test.dir/rule
+
+# Convenience name for target.
+object_predicates_test: tests/CMakeFiles/object_predicates_test.dir/rule
+.PHONY : object_predicates_test
+
+# fast build rule for target.
+object_predicates_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/build
+.PHONY : object_predicates_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/listener_config_validate_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_config_validate_test.dir/rule
+.PHONY : tests/CMakeFiles/listener_config_validate_test.dir/rule
+
+# Convenience name for target.
+listener_config_validate_test: tests/CMakeFiles/listener_config_validate_test.dir/rule
+.PHONY : listener_config_validate_test
+
+# fast build rule for target.
+listener_config_validate_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/build
+.PHONY : listener_config_validate_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/listener_manager_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_manager_test.dir/rule
+.PHONY : tests/CMakeFiles/listener_manager_test.dir/rule
+
+# Convenience name for target.
+listener_manager_test: tests/CMakeFiles/listener_manager_test.dir/rule
+.PHONY : listener_manager_test
+
+# fast build rule for target.
+listener_manager_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/build
+.PHONY : listener_manager_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/reverse_tcp_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/reverse_tcp_test.dir/rule
+.PHONY : tests/CMakeFiles/reverse_tcp_test.dir/rule
+
+# Convenience name for target.
+reverse_tcp_test: tests/CMakeFiles/reverse_tcp_test.dir/rule
+.PHONY : reverse_tcp_test
+
+# fast build rule for target.
+reverse_tcp_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/build
+.PHONY : reverse_tcp_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/connection_io_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/connection_io_test.dir/rule
+.PHONY : tests/CMakeFiles/connection_io_test.dir/rule
+
+# Convenience name for target.
+connection_io_test: tests/CMakeFiles/connection_io_test.dir/rule
+.PHONY : connection_io_test
+
+# fast build rule for target.
+connection_io_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_io_test.dir/build.make tests/CMakeFiles/connection_io_test.dir/build
+.PHONY : connection_io_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/new_listener_dialog_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/new_listener_dialog_smoke.dir/rule
+.PHONY : tests/CMakeFiles/new_listener_dialog_smoke.dir/rule
+
+# Convenience name for target.
+new_listener_dialog_smoke: tests/CMakeFiles/new_listener_dialog_smoke.dir/rule
+.PHONY : new_listener_dialog_smoke
+
+# fast build rule for target.
+new_listener_dialog_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/build
+.PHONY : new_listener_dialog_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/listener_console_tab_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_console_tab_smoke.dir/rule
+.PHONY : tests/CMakeFiles/listener_console_tab_smoke.dir/rule
+
+# Convenience name for target.
+listener_console_tab_smoke: tests/CMakeFiles/listener_console_tab_smoke.dir/rule
+.PHONY : listener_console_tab_smoke
+
+# fast build rule for target.
+listener_console_tab_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/build
+.PHONY : listener_console_tab_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/object_panel_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_panel_smoke.dir/rule
+.PHONY : tests/CMakeFiles/object_panel_smoke.dir/rule
+
+# Convenience name for target.
+object_panel_smoke: tests/CMakeFiles/object_panel_smoke.dir/rule
+.PHONY : object_panel_smoke
+
+# fast build rule for target.
+object_panel_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/build
+.PHONY : object_panel_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/connection_terminal_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/connection_terminal_smoke.dir/rule
+.PHONY : tests/CMakeFiles/connection_terminal_smoke.dir/rule
+
+# Convenience name for target.
+connection_terminal_smoke: tests/CMakeFiles/connection_terminal_smoke.dir/rule
+.PHONY : connection_terminal_smoke
+
+# fast build rule for target.
+connection_terminal_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/build
+.PHONY : connection_terminal_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/context_menu_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/context_menu_smoke.dir/rule
+.PHONY : tests/CMakeFiles/context_menu_smoke.dir/rule
+
+# Convenience name for target.
+context_menu_smoke: tests/CMakeFiles/context_menu_smoke.dir/rule
+.PHONY : context_menu_smoke
+
+# fast build rule for target.
+context_menu_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/build
+.PHONY : context_menu_smoke/fast
+
+byte_buffer_test.o: byte_buffer_test.c.o
+.PHONY : byte_buffer_test.o
+
+# target to build an object file
+byte_buffer_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/byte_buffer_test.dir/build.make tests/CMakeFiles/byte_buffer_test.dir/byte_buffer_test.c.o
+.PHONY : byte_buffer_test.c.o
+
+byte_buffer_test.i: byte_buffer_test.c.i
+.PHONY : byte_buffer_test.i
+
+# target to preprocess a source file
+byte_buffer_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/byte_buffer_test.dir/build.make tests/CMakeFiles/byte_buffer_test.dir/byte_buffer_test.c.i
+.PHONY : byte_buffer_test.c.i
+
+byte_buffer_test.s: byte_buffer_test.c.s
+.PHONY : byte_buffer_test.s
+
+# target to generate assembly for a file
+byte_buffer_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/byte_buffer_test.dir/build.make tests/CMakeFiles/byte_buffer_test.dir/byte_buffer_test.c.s
+.PHONY : byte_buffer_test.c.s
+
+connection_io_test.o: connection_io_test.c.o
+.PHONY : connection_io_test.o
+
+# target to build an object file
+connection_io_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_io_test.dir/build.make tests/CMakeFiles/connection_io_test.dir/connection_io_test.c.o
+.PHONY : connection_io_test.c.o
+
+connection_io_test.i: connection_io_test.c.i
+.PHONY : connection_io_test.i
+
+# target to preprocess a source file
+connection_io_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_io_test.dir/build.make tests/CMakeFiles/connection_io_test.dir/connection_io_test.c.i
+.PHONY : connection_io_test.c.i
+
+connection_io_test.s: connection_io_test.c.s
+.PHONY : connection_io_test.s
+
+# target to generate assembly for a file
+connection_io_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_io_test.dir/build.make tests/CMakeFiles/connection_io_test.dir/connection_io_test.c.s
+.PHONY : connection_io_test.c.s
+
+connection_terminal_smoke.o: connection_terminal_smoke.c.o
+.PHONY : connection_terminal_smoke.o
+
+# target to build an object file
+connection_terminal_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o
+.PHONY : connection_terminal_smoke.c.o
+
+connection_terminal_smoke.i: connection_terminal_smoke.c.i
+.PHONY : connection_terminal_smoke.i
+
+# target to preprocess a source file
+connection_terminal_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.i
+.PHONY : connection_terminal_smoke.c.i
+
+connection_terminal_smoke.s: connection_terminal_smoke.c.s
+.PHONY : connection_terminal_smoke.s
+
+# target to generate assembly for a file
+connection_terminal_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.s
+.PHONY : connection_terminal_smoke.c.s
+
+context_menu_smoke.o: context_menu_smoke.c.o
+.PHONY : context_menu_smoke.o
+
+# target to build an object file
+context_menu_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/context_menu_smoke.c.o
+.PHONY : context_menu_smoke.c.o
+
+context_menu_smoke.i: context_menu_smoke.c.i
+.PHONY : context_menu_smoke.i
+
+# target to preprocess a source file
+context_menu_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/context_menu_smoke.c.i
+.PHONY : context_menu_smoke.c.i
+
+context_menu_smoke.s: context_menu_smoke.c.s
+.PHONY : context_menu_smoke.s
+
+# target to generate assembly for a file
+context_menu_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/context_menu_smoke.c.s
+.PHONY : context_menu_smoke.c.s
+
+event_queue_stress_test.o: event_queue_stress_test.c.o
+.PHONY : event_queue_stress_test.o
+
+# target to build an object file
+event_queue_stress_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.o
+.PHONY : event_queue_stress_test.c.o
+
+event_queue_stress_test.i: event_queue_stress_test.c.i
+.PHONY : event_queue_stress_test.i
+
+# target to preprocess a source file
+event_queue_stress_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.i
+.PHONY : event_queue_stress_test.c.i
+
+event_queue_stress_test.s: event_queue_stress_test.c.s
+.PHONY : event_queue_stress_test.s
+
+# target to generate assembly for a file
+event_queue_stress_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.s
+.PHONY : event_queue_stress_test.c.s
+
 layout_smoke.o: layout_smoke.c.o
 .PHONY : layout_smoke.o
 
@@ -272,6 +574,78 @@ lifecycle_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/lifecycle_smoke.dir/build.make tests/CMakeFiles/lifecycle_smoke.dir/lifecycle_smoke.c.s
 .PHONY : lifecycle_smoke.c.s
 
+listener_config_validate_test.o: listener_config_validate_test.c.o
+.PHONY : listener_config_validate_test.o
+
+# target to build an object file
+listener_config_validate_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/listener_config_validate_test.c.o
+.PHONY : listener_config_validate_test.c.o
+
+listener_config_validate_test.i: listener_config_validate_test.c.i
+.PHONY : listener_config_validate_test.i
+
+# target to preprocess a source file
+listener_config_validate_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/listener_config_validate_test.c.i
+.PHONY : listener_config_validate_test.c.i
+
+listener_config_validate_test.s: listener_config_validate_test.c.s
+.PHONY : listener_config_validate_test.s
+
+# target to generate assembly for a file
+listener_config_validate_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/listener_config_validate_test.c.s
+.PHONY : listener_config_validate_test.c.s
+
+listener_console_tab_smoke.o: listener_console_tab_smoke.c.o
+.PHONY : listener_console_tab_smoke.o
+
+# target to build an object file
+listener_console_tab_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/listener_console_tab_smoke.c.o
+.PHONY : listener_console_tab_smoke.c.o
+
+listener_console_tab_smoke.i: listener_console_tab_smoke.c.i
+.PHONY : listener_console_tab_smoke.i
+
+# target to preprocess a source file
+listener_console_tab_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/listener_console_tab_smoke.c.i
+.PHONY : listener_console_tab_smoke.c.i
+
+listener_console_tab_smoke.s: listener_console_tab_smoke.c.s
+.PHONY : listener_console_tab_smoke.s
+
+# target to generate assembly for a file
+listener_console_tab_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/listener_console_tab_smoke.c.s
+.PHONY : listener_console_tab_smoke.c.s
+
+listener_manager_test.o: listener_manager_test.c.o
+.PHONY : listener_manager_test.o
+
+# target to build an object file
+listener_manager_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/listener_manager_test.c.o
+.PHONY : listener_manager_test.c.o
+
+listener_manager_test.i: listener_manager_test.c.i
+.PHONY : listener_manager_test.i
+
+# target to preprocess a source file
+listener_manager_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/listener_manager_test.c.i
+.PHONY : listener_manager_test.c.i
+
+listener_manager_test.s: listener_manager_test.c.s
+.PHONY : listener_manager_test.s
+
+# target to generate assembly for a file
+listener_manager_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/listener_manager_test.c.s
+.PHONY : listener_manager_test.c.s
+
 multi_terminal_smoke.o: multi_terminal_smoke.c.o
 .PHONY : multi_terminal_smoke.o
 
@@ -295,6 +669,126 @@ multi_terminal_smoke.s: multi_terminal_smoke.c.s
 multi_terminal_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/multi_terminal_smoke.dir/build.make tests/CMakeFiles/multi_terminal_smoke.dir/multi_terminal_smoke.c.s
 .PHONY : multi_terminal_smoke.c.s
+
+new_listener_dialog_smoke.o: new_listener_dialog_smoke.c.o
+.PHONY : new_listener_dialog_smoke.o
+
+# target to build an object file
+new_listener_dialog_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/new_listener_dialog_smoke.c.o
+.PHONY : new_listener_dialog_smoke.c.o
+
+new_listener_dialog_smoke.i: new_listener_dialog_smoke.c.i
+.PHONY : new_listener_dialog_smoke.i
+
+# target to preprocess a source file
+new_listener_dialog_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/new_listener_dialog_smoke.c.i
+.PHONY : new_listener_dialog_smoke.c.i
+
+new_listener_dialog_smoke.s: new_listener_dialog_smoke.c.s
+.PHONY : new_listener_dialog_smoke.s
+
+# target to generate assembly for a file
+new_listener_dialog_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/new_listener_dialog_smoke.c.s
+.PHONY : new_listener_dialog_smoke.c.s
+
+object_panel_smoke.o: object_panel_smoke.c.o
+.PHONY : object_panel_smoke.o
+
+# target to build an object file
+object_panel_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/object_panel_smoke.c.o
+.PHONY : object_panel_smoke.c.o
+
+object_panel_smoke.i: object_panel_smoke.c.i
+.PHONY : object_panel_smoke.i
+
+# target to preprocess a source file
+object_panel_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/object_panel_smoke.c.i
+.PHONY : object_panel_smoke.c.i
+
+object_panel_smoke.s: object_panel_smoke.c.s
+.PHONY : object_panel_smoke.s
+
+# target to generate assembly for a file
+object_panel_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/object_panel_smoke.c.s
+.PHONY : object_panel_smoke.c.s
+
+object_predicates_test.o: object_predicates_test.c.o
+.PHONY : object_predicates_test.o
+
+# target to build an object file
+object_predicates_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/object_predicates_test.c.o
+.PHONY : object_predicates_test.c.o
+
+object_predicates_test.i: object_predicates_test.c.i
+.PHONY : object_predicates_test.i
+
+# target to preprocess a source file
+object_predicates_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/object_predicates_test.c.i
+.PHONY : object_predicates_test.c.i
+
+object_predicates_test.s: object_predicates_test.c.s
+.PHONY : object_predicates_test.s
+
+# target to generate assembly for a file
+object_predicates_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/object_predicates_test.c.s
+.PHONY : object_predicates_test.c.s
+
+object_registry_test.o: object_registry_test.c.o
+.PHONY : object_registry_test.o
+
+# target to build an object file
+object_registry_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/object_registry_test.c.o
+.PHONY : object_registry_test.c.o
+
+object_registry_test.i: object_registry_test.c.i
+.PHONY : object_registry_test.i
+
+# target to preprocess a source file
+object_registry_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/object_registry_test.c.i
+.PHONY : object_registry_test.c.i
+
+object_registry_test.s: object_registry_test.c.s
+.PHONY : object_registry_test.s
+
+# target to generate assembly for a file
+object_registry_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/object_registry_test.c.s
+.PHONY : object_registry_test.c.s
+
+reverse_tcp_test.o: reverse_tcp_test.c.o
+.PHONY : reverse_tcp_test.o
+
+# target to build an object file
+reverse_tcp_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/reverse_tcp_test.c.o
+.PHONY : reverse_tcp_test.c.o
+
+reverse_tcp_test.i: reverse_tcp_test.c.i
+.PHONY : reverse_tcp_test.i
+
+# target to preprocess a source file
+reverse_tcp_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/reverse_tcp_test.c.i
+.PHONY : reverse_tcp_test.c.i
+
+reverse_tcp_test.s: reverse_tcp_test.c.s
+.PHONY : reverse_tcp_test.s
+
+# target to generate assembly for a file
+reverse_tcp_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/reverse_tcp_test.c.s
+.PHONY : reverse_tcp_test.c.s
 
 tabs_smoke.o: tabs_smoke.c.o
 .PHONY : tabs_smoke.o
@@ -401,22 +895,74 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... byte_buffer_test"
+	@echo "... connection_io_test"
+	@echo "... connection_terminal_smoke"
+	@echo "... context_menu_smoke"
+	@echo "... event_queue_stress_test"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
+	@echo "... listener_config_validate_test"
+	@echo "... listener_console_tab_smoke"
+	@echo "... listener_manager_test"
 	@echo "... multi_terminal_smoke"
+	@echo "... new_listener_dialog_smoke"
+	@echo "... object_panel_smoke"
+	@echo "... object_predicates_test"
+	@echo "... object_registry_test"
+	@echo "... reverse_tcp_test"
 	@echo "... tabs_smoke"
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
 	@echo "... toolkit_index_test"
+	@echo "... byte_buffer_test.o"
+	@echo "... byte_buffer_test.i"
+	@echo "... byte_buffer_test.s"
+	@echo "... connection_io_test.o"
+	@echo "... connection_io_test.i"
+	@echo "... connection_io_test.s"
+	@echo "... connection_terminal_smoke.o"
+	@echo "... connection_terminal_smoke.i"
+	@echo "... connection_terminal_smoke.s"
+	@echo "... context_menu_smoke.o"
+	@echo "... context_menu_smoke.i"
+	@echo "... context_menu_smoke.s"
+	@echo "... event_queue_stress_test.o"
+	@echo "... event_queue_stress_test.i"
+	@echo "... event_queue_stress_test.s"
 	@echo "... layout_smoke.o"
 	@echo "... layout_smoke.i"
 	@echo "... layout_smoke.s"
 	@echo "... lifecycle_smoke.o"
 	@echo "... lifecycle_smoke.i"
 	@echo "... lifecycle_smoke.s"
+	@echo "... listener_config_validate_test.o"
+	@echo "... listener_config_validate_test.i"
+	@echo "... listener_config_validate_test.s"
+	@echo "... listener_console_tab_smoke.o"
+	@echo "... listener_console_tab_smoke.i"
+	@echo "... listener_console_tab_smoke.s"
+	@echo "... listener_manager_test.o"
+	@echo "... listener_manager_test.i"
+	@echo "... listener_manager_test.s"
 	@echo "... multi_terminal_smoke.o"
 	@echo "... multi_terminal_smoke.i"
 	@echo "... multi_terminal_smoke.s"
+	@echo "... new_listener_dialog_smoke.o"
+	@echo "... new_listener_dialog_smoke.i"
+	@echo "... new_listener_dialog_smoke.s"
+	@echo "... object_panel_smoke.o"
+	@echo "... object_panel_smoke.i"
+	@echo "... object_panel_smoke.s"
+	@echo "... object_predicates_test.o"
+	@echo "... object_predicates_test.i"
+	@echo "... object_predicates_test.s"
+	@echo "... object_registry_test.o"
+	@echo "... object_registry_test.i"
+	@echo "... object_registry_test.s"
+	@echo "... reverse_tcp_test.o"
+	@echo "... reverse_tcp_test.i"
+	@echo "... reverse_tcp_test.s"
 	@echo "... tabs_smoke.o"
 	@echo "... tabs_smoke.i"
 	@echo "... tabs_smoke.s"

@@ -18,19 +18,36 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/stdlib.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_system.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/connection_manager.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/event_queue.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_event.h \
+ /usr/include/time.h /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/object_registry.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/managed_object.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/connection.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/terminal_history.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_manager.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/include/x86_64-linux-gnu/sys/types.h \
- /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/timer_t.h /usr/include/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
  /usr/include/x86_64-linux-gnu/sys/select.h \
@@ -38,7 +55,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \

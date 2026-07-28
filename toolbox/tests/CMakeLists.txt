@@ -19,6 +19,45 @@ target_link_libraries(terminal_session_test PRIVATE toolbox_core)
 add_executable(toolkit_index_test toolkit_index_test.c)
 target_link_libraries(toolkit_index_test PRIVATE toolbox_core)
 
+add_executable(event_queue_stress_test event_queue_stress_test.c)
+target_link_libraries(event_queue_stress_test PRIVATE toolbox_core)
+
+add_executable(byte_buffer_test byte_buffer_test.c)
+target_link_libraries(byte_buffer_test PRIVATE toolbox_core)
+
+add_executable(object_registry_test object_registry_test.c)
+target_link_libraries(object_registry_test PRIVATE toolbox_core)
+
+add_executable(object_predicates_test object_predicates_test.c)
+target_link_libraries(object_predicates_test PRIVATE toolbox_core)
+
+add_executable(listener_config_validate_test listener_config_validate_test.c)
+target_link_libraries(listener_config_validate_test PRIVATE toolbox_core)
+
+add_executable(listener_manager_test listener_manager_test.c)
+target_link_libraries(listener_manager_test PRIVATE toolbox_core)
+
+add_executable(reverse_tcp_test reverse_tcp_test.c)
+target_link_libraries(reverse_tcp_test PRIVATE toolbox_core)
+
+add_executable(connection_io_test connection_io_test.c)
+target_link_libraries(connection_io_test PRIVATE toolbox_core)
+
+add_executable(new_listener_dialog_smoke new_listener_dialog_smoke.c)
+target_link_libraries(new_listener_dialog_smoke PRIVATE toolbox_core)
+
+add_executable(listener_console_tab_smoke listener_console_tab_smoke.c)
+target_link_libraries(listener_console_tab_smoke PRIVATE toolbox_core)
+
+add_executable(object_panel_smoke object_panel_smoke.c)
+target_link_libraries(object_panel_smoke PRIVATE toolbox_core)
+
+add_executable(connection_terminal_smoke connection_terminal_smoke.c)
+target_link_libraries(connection_terminal_smoke PRIVATE toolbox_core)
+
+add_executable(context_menu_smoke context_menu_smoke.c)
+target_link_libraries(context_menu_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -39,3 +78,42 @@ set_tests_properties(terminal_session_test PROPERTIES TIMEOUT 10)
 
 add_test(NAME toolkit_index_test COMMAND toolkit_index_test)
 set_tests_properties(toolkit_index_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME event_queue_stress_test COMMAND event_queue_stress_test)
+set_tests_properties(event_queue_stress_test PROPERTIES TIMEOUT 30)
+
+add_test(NAME byte_buffer_test COMMAND byte_buffer_test)
+set_tests_properties(byte_buffer_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME object_registry_test COMMAND object_registry_test)
+set_tests_properties(object_registry_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME object_predicates_test COMMAND object_predicates_test)
+set_tests_properties(object_predicates_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME listener_config_validate_test COMMAND listener_config_validate_test)
+set_tests_properties(listener_config_validate_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME listener_manager_test COMMAND listener_manager_test)
+set_tests_properties(listener_manager_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME reverse_tcp_test COMMAND reverse_tcp_test)
+set_tests_properties(reverse_tcp_test PROPERTIES TIMEOUT 30)
+
+add_test(NAME connection_io_test COMMAND connection_io_test)
+set_tests_properties(connection_io_test PROPERTIES TIMEOUT 30)
+
+add_test(NAME new_listener_dialog_smoke COMMAND new_listener_dialog_smoke)
+set_tests_properties(new_listener_dialog_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME listener_console_tab_smoke COMMAND listener_console_tab_smoke)
+set_tests_properties(listener_console_tab_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME object_panel_smoke COMMAND object_panel_smoke)
+set_tests_properties(object_panel_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME connection_terminal_smoke COMMAND connection_terminal_smoke)
+set_tests_properties(connection_terminal_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME context_menu_smoke COMMAND context_menu_smoke)
+set_tests_properties(context_menu_smoke PROPERTIES TIMEOUT 30)

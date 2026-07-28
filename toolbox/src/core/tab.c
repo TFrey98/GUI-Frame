@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* Monotonic counter, not thread-safe - fine as long as tabs are only ever
+ * created from the single GTK main-loop thread. */
 static uint64_t g_next_tab_id = 1;
 
 Tab *tab_create(TabType type, const char *title) {

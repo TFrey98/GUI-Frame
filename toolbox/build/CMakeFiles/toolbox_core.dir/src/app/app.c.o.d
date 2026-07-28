@@ -2,7 +2,11 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.c \
  /usr/include/stdc-predef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.h \
- /usr/include/stdlib.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_system.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection_manager.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/event_queue.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_event.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -11,22 +15,37 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/time.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+ /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/object_registry.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/managed_object.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/include/x86_64-linux-gnu/sys/types.h \
- /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h \
- /usr/include/x86_64-linux-gnu/bits/time64.h \
- /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-intn.h /usr/include/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
- /usr/include/x86_64-linux-gnu/bits/endianness.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
  /usr/include/x86_64-linux-gnu/sys/select.h \
@@ -34,7 +53,6 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -44,11 +62,9 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../core/workspace.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../core/tab.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../db/database.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../tools/tool_registry.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../tools/toolkit_index.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/workbench.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../core/workspace.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../core/workspace.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../listeners/listener_system.h

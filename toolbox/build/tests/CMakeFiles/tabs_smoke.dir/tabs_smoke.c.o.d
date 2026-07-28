@@ -716,4 +716,15 @@ tests/CMakeFiles/tabs_smoke.dir/tabs_smoke.c.o: \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
  /usr/include/gtk-3.0/gtk/gtk-autocleanups.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_system.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection_manager.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/event_queue.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_event.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/object_registry.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/managed_object.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/tests/test_gtk_utils.h

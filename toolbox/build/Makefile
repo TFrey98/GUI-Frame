@@ -243,6 +243,175 @@ toolkit_index_test/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_index_test.dir/build.make tests/CMakeFiles/toolkit_index_test.dir/build
 .PHONY : toolkit_index_test/fast
 
+#=============================================================================
+# Target rules for targets named event_queue_stress_test
+
+# Build rule for target.
+event_queue_stress_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 event_queue_stress_test
+.PHONY : event_queue_stress_test
+
+# fast build rule for target.
+event_queue_stress_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/build
+.PHONY : event_queue_stress_test/fast
+
+#=============================================================================
+# Target rules for targets named byte_buffer_test
+
+# Build rule for target.
+byte_buffer_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 byte_buffer_test
+.PHONY : byte_buffer_test
+
+# fast build rule for target.
+byte_buffer_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/byte_buffer_test.dir/build.make tests/CMakeFiles/byte_buffer_test.dir/build
+.PHONY : byte_buffer_test/fast
+
+#=============================================================================
+# Target rules for targets named object_registry_test
+
+# Build rule for target.
+object_registry_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 object_registry_test
+.PHONY : object_registry_test
+
+# fast build rule for target.
+object_registry_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/build
+.PHONY : object_registry_test/fast
+
+#=============================================================================
+# Target rules for targets named object_predicates_test
+
+# Build rule for target.
+object_predicates_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 object_predicates_test
+.PHONY : object_predicates_test
+
+# fast build rule for target.
+object_predicates_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/build
+.PHONY : object_predicates_test/fast
+
+#=============================================================================
+# Target rules for targets named listener_config_validate_test
+
+# Build rule for target.
+listener_config_validate_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener_config_validate_test
+.PHONY : listener_config_validate_test
+
+# fast build rule for target.
+listener_config_validate_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/build
+.PHONY : listener_config_validate_test/fast
+
+#=============================================================================
+# Target rules for targets named listener_manager_test
+
+# Build rule for target.
+listener_manager_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener_manager_test
+.PHONY : listener_manager_test
+
+# fast build rule for target.
+listener_manager_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/build
+.PHONY : listener_manager_test/fast
+
+#=============================================================================
+# Target rules for targets named reverse_tcp_test
+
+# Build rule for target.
+reverse_tcp_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 reverse_tcp_test
+.PHONY : reverse_tcp_test
+
+# fast build rule for target.
+reverse_tcp_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/build
+.PHONY : reverse_tcp_test/fast
+
+#=============================================================================
+# Target rules for targets named connection_io_test
+
+# Build rule for target.
+connection_io_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 connection_io_test
+.PHONY : connection_io_test
+
+# fast build rule for target.
+connection_io_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_io_test.dir/build.make tests/CMakeFiles/connection_io_test.dir/build
+.PHONY : connection_io_test/fast
+
+#=============================================================================
+# Target rules for targets named new_listener_dialog_smoke
+
+# Build rule for target.
+new_listener_dialog_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 new_listener_dialog_smoke
+.PHONY : new_listener_dialog_smoke
+
+# fast build rule for target.
+new_listener_dialog_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/build
+.PHONY : new_listener_dialog_smoke/fast
+
+#=============================================================================
+# Target rules for targets named listener_console_tab_smoke
+
+# Build rule for target.
+listener_console_tab_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener_console_tab_smoke
+.PHONY : listener_console_tab_smoke
+
+# fast build rule for target.
+listener_console_tab_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/build
+.PHONY : listener_console_tab_smoke/fast
+
+#=============================================================================
+# Target rules for targets named object_panel_smoke
+
+# Build rule for target.
+object_panel_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 object_panel_smoke
+.PHONY : object_panel_smoke
+
+# fast build rule for target.
+object_panel_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/build
+.PHONY : object_panel_smoke/fast
+
+#=============================================================================
+# Target rules for targets named connection_terminal_smoke
+
+# Build rule for target.
+connection_terminal_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 connection_terminal_smoke
+.PHONY : connection_terminal_smoke
+
+# fast build rule for target.
+connection_terminal_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/build
+.PHONY : connection_terminal_smoke/fast
+
+#=============================================================================
+# Target rules for targets named context_menu_smoke
+
+# Build rule for target.
+context_menu_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 context_menu_smoke
+.PHONY : context_menu_smoke
+
+# fast build rule for target.
+context_menu_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/build
+.PHONY : context_menu_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -362,6 +531,270 @@ src/db/database.s: src/db/database.c.s
 src/db/database.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/db/database.c.s
 .PHONY : src/db/database.c.s
+
+src/listeners/byte_buffer.o: src/listeners/byte_buffer.c.o
+.PHONY : src/listeners/byte_buffer.o
+
+# target to build an object file
+src/listeners/byte_buffer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o
+.PHONY : src/listeners/byte_buffer.c.o
+
+src/listeners/byte_buffer.i: src/listeners/byte_buffer.c.i
+.PHONY : src/listeners/byte_buffer.i
+
+# target to preprocess a source file
+src/listeners/byte_buffer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.i
+.PHONY : src/listeners/byte_buffer.c.i
+
+src/listeners/byte_buffer.s: src/listeners/byte_buffer.c.s
+.PHONY : src/listeners/byte_buffer.s
+
+# target to generate assembly for a file
+src/listeners/byte_buffer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.s
+.PHONY : src/listeners/byte_buffer.c.s
+
+src/listeners/connection_manager.o: src/listeners/connection_manager.c.o
+.PHONY : src/listeners/connection_manager.o
+
+# target to build an object file
+src/listeners/connection_manager.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o
+.PHONY : src/listeners/connection_manager.c.o
+
+src/listeners/connection_manager.i: src/listeners/connection_manager.c.i
+.PHONY : src/listeners/connection_manager.i
+
+# target to preprocess a source file
+src/listeners/connection_manager.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.i
+.PHONY : src/listeners/connection_manager.c.i
+
+src/listeners/connection_manager.s: src/listeners/connection_manager.c.s
+.PHONY : src/listeners/connection_manager.s
+
+# target to generate assembly for a file
+src/listeners/connection_manager.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.s
+.PHONY : src/listeners/connection_manager.c.s
+
+src/listeners/connection_worker.o: src/listeners/connection_worker.c.o
+.PHONY : src/listeners/connection_worker.o
+
+# target to build an object file
+src/listeners/connection_worker.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o
+.PHONY : src/listeners/connection_worker.c.o
+
+src/listeners/connection_worker.i: src/listeners/connection_worker.c.i
+.PHONY : src/listeners/connection_worker.i
+
+# target to preprocess a source file
+src/listeners/connection_worker.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.i
+.PHONY : src/listeners/connection_worker.c.i
+
+src/listeners/connection_worker.s: src/listeners/connection_worker.c.s
+.PHONY : src/listeners/connection_worker.s
+
+# target to generate assembly for a file
+src/listeners/connection_worker.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.s
+.PHONY : src/listeners/connection_worker.c.s
+
+src/listeners/event_queue.o: src/listeners/event_queue.c.o
+.PHONY : src/listeners/event_queue.o
+
+# target to build an object file
+src/listeners/event_queue.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o
+.PHONY : src/listeners/event_queue.c.o
+
+src/listeners/event_queue.i: src/listeners/event_queue.c.i
+.PHONY : src/listeners/event_queue.i
+
+# target to preprocess a source file
+src/listeners/event_queue.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.i
+.PHONY : src/listeners/event_queue.c.i
+
+src/listeners/event_queue.s: src/listeners/event_queue.c.s
+.PHONY : src/listeners/event_queue.s
+
+# target to generate assembly for a file
+src/listeners/event_queue.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.s
+.PHONY : src/listeners/event_queue.c.s
+
+src/listeners/listener_manager.o: src/listeners/listener_manager.c.o
+.PHONY : src/listeners/listener_manager.o
+
+# target to build an object file
+src/listeners/listener_manager.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o
+.PHONY : src/listeners/listener_manager.c.o
+
+src/listeners/listener_manager.i: src/listeners/listener_manager.c.i
+.PHONY : src/listeners/listener_manager.i
+
+# target to preprocess a source file
+src/listeners/listener_manager.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.i
+.PHONY : src/listeners/listener_manager.c.i
+
+src/listeners/listener_manager.s: src/listeners/listener_manager.c.s
+.PHONY : src/listeners/listener_manager.s
+
+# target to generate assembly for a file
+src/listeners/listener_manager.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.s
+.PHONY : src/listeners/listener_manager.c.s
+
+src/listeners/listener_system.o: src/listeners/listener_system.c.o
+.PHONY : src/listeners/listener_system.o
+
+# target to build an object file
+src/listeners/listener_system.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o
+.PHONY : src/listeners/listener_system.c.o
+
+src/listeners/listener_system.i: src/listeners/listener_system.c.i
+.PHONY : src/listeners/listener_system.i
+
+# target to preprocess a source file
+src/listeners/listener_system.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.i
+.PHONY : src/listeners/listener_system.c.i
+
+src/listeners/listener_system.s: src/listeners/listener_system.c.s
+.PHONY : src/listeners/listener_system.s
+
+# target to generate assembly for a file
+src/listeners/listener_system.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.s
+.PHONY : src/listeners/listener_system.c.s
+
+src/listeners/managed_object.o: src/listeners/managed_object.c.o
+.PHONY : src/listeners/managed_object.o
+
+# target to build an object file
+src/listeners/managed_object.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o
+.PHONY : src/listeners/managed_object.c.o
+
+src/listeners/managed_object.i: src/listeners/managed_object.c.i
+.PHONY : src/listeners/managed_object.i
+
+# target to preprocess a source file
+src/listeners/managed_object.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.i
+.PHONY : src/listeners/managed_object.c.i
+
+src/listeners/managed_object.s: src/listeners/managed_object.c.s
+.PHONY : src/listeners/managed_object.s
+
+# target to generate assembly for a file
+src/listeners/managed_object.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.s
+.PHONY : src/listeners/managed_object.c.s
+
+src/listeners/object_predicates.o: src/listeners/object_predicates.c.o
+.PHONY : src/listeners/object_predicates.o
+
+# target to build an object file
+src/listeners/object_predicates.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o
+.PHONY : src/listeners/object_predicates.c.o
+
+src/listeners/object_predicates.i: src/listeners/object_predicates.c.i
+.PHONY : src/listeners/object_predicates.i
+
+# target to preprocess a source file
+src/listeners/object_predicates.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.i
+.PHONY : src/listeners/object_predicates.c.i
+
+src/listeners/object_predicates.s: src/listeners/object_predicates.c.s
+.PHONY : src/listeners/object_predicates.s
+
+# target to generate assembly for a file
+src/listeners/object_predicates.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.s
+.PHONY : src/listeners/object_predicates.c.s
+
+src/listeners/object_registry.o: src/listeners/object_registry.c.o
+.PHONY : src/listeners/object_registry.o
+
+# target to build an object file
+src/listeners/object_registry.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o
+.PHONY : src/listeners/object_registry.c.o
+
+src/listeners/object_registry.i: src/listeners/object_registry.c.i
+.PHONY : src/listeners/object_registry.i
+
+# target to preprocess a source file
+src/listeners/object_registry.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.i
+.PHONY : src/listeners/object_registry.c.i
+
+src/listeners/object_registry.s: src/listeners/object_registry.c.s
+.PHONY : src/listeners/object_registry.s
+
+# target to generate assembly for a file
+src/listeners/object_registry.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.s
+.PHONY : src/listeners/object_registry.c.s
+
+src/listeners/tcp_worker.o: src/listeners/tcp_worker.c.o
+.PHONY : src/listeners/tcp_worker.o
+
+# target to build an object file
+src/listeners/tcp_worker.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o
+.PHONY : src/listeners/tcp_worker.c.o
+
+src/listeners/tcp_worker.i: src/listeners/tcp_worker.c.i
+.PHONY : src/listeners/tcp_worker.i
+
+# target to preprocess a source file
+src/listeners/tcp_worker.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.i
+.PHONY : src/listeners/tcp_worker.c.i
+
+src/listeners/tcp_worker.s: src/listeners/tcp_worker.c.s
+.PHONY : src/listeners/tcp_worker.s
+
+# target to generate assembly for a file
+src/listeners/tcp_worker.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.s
+.PHONY : src/listeners/tcp_worker.c.s
+
+src/listeners/terminal_history.o: src/listeners/terminal_history.c.o
+.PHONY : src/listeners/terminal_history.o
+
+# target to build an object file
+src/listeners/terminal_history.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o
+.PHONY : src/listeners/terminal_history.c.o
+
+src/listeners/terminal_history.i: src/listeners/terminal_history.c.i
+.PHONY : src/listeners/terminal_history.i
+
+# target to preprocess a source file
+src/listeners/terminal_history.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.i
+.PHONY : src/listeners/terminal_history.c.i
+
+src/listeners/terminal_history.s: src/listeners/terminal_history.c.s
+.PHONY : src/listeners/terminal_history.s
+
+# target to generate assembly for a file
+src/listeners/terminal_history.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.s
+.PHONY : src/listeners/terminal_history.c.s
 
 src/main.o: src/main.c.o
 .PHONY : src/main.o
@@ -516,9 +949,22 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... byte_buffer_test"
+	@echo "... connection_io_test"
+	@echo "... connection_terminal_smoke"
+	@echo "... context_menu_smoke"
+	@echo "... event_queue_stress_test"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
+	@echo "... listener_config_validate_test"
+	@echo "... listener_console_tab_smoke"
+	@echo "... listener_manager_test"
 	@echo "... multi_terminal_smoke"
+	@echo "... new_listener_dialog_smoke"
+	@echo "... object_panel_smoke"
+	@echo "... object_predicates_test"
+	@echo "... object_registry_test"
+	@echo "... reverse_tcp_test"
 	@echo "... tabs_smoke"
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
@@ -540,6 +986,39 @@ help:
 	@echo "... src/db/database.o"
 	@echo "... src/db/database.i"
 	@echo "... src/db/database.s"
+	@echo "... src/listeners/byte_buffer.o"
+	@echo "... src/listeners/byte_buffer.i"
+	@echo "... src/listeners/byte_buffer.s"
+	@echo "... src/listeners/connection_manager.o"
+	@echo "... src/listeners/connection_manager.i"
+	@echo "... src/listeners/connection_manager.s"
+	@echo "... src/listeners/connection_worker.o"
+	@echo "... src/listeners/connection_worker.i"
+	@echo "... src/listeners/connection_worker.s"
+	@echo "... src/listeners/event_queue.o"
+	@echo "... src/listeners/event_queue.i"
+	@echo "... src/listeners/event_queue.s"
+	@echo "... src/listeners/listener_manager.o"
+	@echo "... src/listeners/listener_manager.i"
+	@echo "... src/listeners/listener_manager.s"
+	@echo "... src/listeners/listener_system.o"
+	@echo "... src/listeners/listener_system.i"
+	@echo "... src/listeners/listener_system.s"
+	@echo "... src/listeners/managed_object.o"
+	@echo "... src/listeners/managed_object.i"
+	@echo "... src/listeners/managed_object.s"
+	@echo "... src/listeners/object_predicates.o"
+	@echo "... src/listeners/object_predicates.i"
+	@echo "... src/listeners/object_predicates.s"
+	@echo "... src/listeners/object_registry.o"
+	@echo "... src/listeners/object_registry.i"
+	@echo "... src/listeners/object_registry.s"
+	@echo "... src/listeners/tcp_worker.o"
+	@echo "... src/listeners/tcp_worker.i"
+	@echo "... src/listeners/tcp_worker.s"
+	@echo "... src/listeners/terminal_history.o"
+	@echo "... src/listeners/terminal_history.i"
+	@echo "... src/listeners/terminal_history.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

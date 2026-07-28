@@ -4,6 +4,8 @@
 #include <string.h>
 #include <unistd.h>
 
+/* Monotonic counter, not thread-safe - fine as long as sessions are only
+ * ever created from the single GTK main-loop thread. */
 static uint64_t g_next_session_id = 1;
 
 static char *detect_shell_path(void) {

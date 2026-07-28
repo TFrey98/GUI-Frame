@@ -4,7 +4,12 @@
 CMakeFiles/toolbox_core.dir/src/app/app.c.o: ../src/app/app.c \
   /usr/include/stdc-predef.h \
   ../src/app/app.h \
-  /usr/include/stdlib.h \
+  ../src/listeners/listener_system.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
   /usr/include/features.h \
   /usr/include/features-time64.h \
@@ -14,23 +19,40 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: ../src/app/app.c \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/time64.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
@@ -38,7 +60,6 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: ../src/app/app.c \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -49,15 +70,12 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: ../src/app/app.c \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   ../src/core/workspace.h \
   ../src/core/tab.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
-  /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   ../src/db/database.h \
   ../src/tools/tool_registry.h \
   ../src/tools/toolkit_index.h \
   ../src/ui/workbench.h \
-  ../src/core/workspace.h
+  ../src/core/workspace.h \
+  ../src/listeners/listener_system.h
 
 CMakeFiles/toolbox_core.dir/src/core/tab.c.o: ../src/core/tab.c \
   /usr/include/stdc-predef.h \
@@ -234,6 +252,803 @@ CMakeFiles/toolbox_core.dir/src/db/database.c.o: ../src/db/database.c \
   /usr/include/sqlite3.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o: ../src/listeners/byte_buffer.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/byte_buffer.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/pthread.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/strings.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: ../src/listeners/connection_manager.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+  ../src/listeners/connection_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h \
+  ../src/listeners/byte_buffer.h \
+  ../src/listeners/object_predicates.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: ../src/listeners/connection_worker.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/connection_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  ../src/listeners/byte_buffer.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+  /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+  /usr/include/x86_64-linux-gnu/bits/stat.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+  /usr/include/poll.h \
+  /usr/include/x86_64-linux-gnu/sys/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o: ../src/listeners/event_queue.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: ../src/listeners/listener_manager.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/x86_64-linux-gnu/sys/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+  /usr/include/x86_64-linux-gnu/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/x86_64-linux-gnu/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  ../src/listeners/object_predicates.h \
+  ../src/listeners/tcp_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o: ../src/listeners/listener_system.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/listener_system.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o: ../src/listeners/managed_object.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o: ../src/listeners/object_predicates.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/object_predicates.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o: ../src/listeners/object_registry.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o: ../src/listeners/tcp_worker.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/tcp_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/time.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/x86_64-linux-gnu/sys/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+  /usr/include/x86_64-linux-gnu/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/x86_64-linux-gnu/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/poll.h \
+  /usr/include/x86_64-linux-gnu/sys/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o: ../src/listeners/terminal_history.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/terminal_history.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  /usr/include/strings.h
 
 CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o: ../src/platform/linux/terminal_vte.c \
   /usr/include/stdc-predef.h \
@@ -1808,9 +2623,22 @@ CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o: ../src/platform/linux
   ../src/core/terminal_session.h \
   ../src/core/workspace.h \
   ../src/core/tab.h \
+  ../src/listeners/listener_system.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  ../src/listeners/object_predicates.h \
   ../src/tools/toolkit_index.h \
   ../src/ui/workbench.h \
   ../src/core/workspace.h \
+  ../src/listeners/listener_system.h \
   ../src/platform/linux/terminal_vte.h \
   ../src/terminal/terminal.h \
   ../src/core/terminal_session.h
@@ -1933,20 +2761,38 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/include/stdlib.h \
+  ../src/listeners/listener_system.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/include/time.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
   /usr/include/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/endian.h \
-  /usr/include/x86_64-linux-gnu/bits/endianness.h \
   /usr/include/x86_64-linux-gnu/bits/byteswap.h \
   /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
@@ -1954,7 +2800,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
   /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
@@ -1975,8 +2820,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 ../src/terminal/terminal.h:
 
-/usr/include/vte-2.91/vte/vtedeprecated.h:
-
 /usr/include/vte-2.91/vte/vteversion.h:
 
 /usr/include/vte-2.91/vte/vtetypebuiltins-gtk3.h:
@@ -1992,8 +2835,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkvbox.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvbbox.h:
 
@@ -2049,8 +2890,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkswitch.h:
 
-/usr/include/gtk-3.0/gtk/gtkstatusbar.h:
-
 /usr/include/gtk-3.0/gtk/gtkstackswitcher.h:
 
 /usr/include/gtk-3.0/gtk/gtkspinner.h:
@@ -2099,8 +2938,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkpopovermenu.h:
 
-/usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
-
 /usr/include/gtk-3.0/gtk/gtkpaned.h:
 
 /usr/include/gtk-3.0/gtk/gtkpagesetup.h:
@@ -2131,10 +2968,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkinvisible.h:
 
-/usr/include/gtk-3.0/gtk/gtkrange.h:
-
-/usr/include/gtk-3.0/gtk/gtkinfobar.h:
-
 /usr/include/gtk-3.0/gtk/gtkimmulticontext.h:
 
 /usr/include/gtk-3.0/gtk/gtkimcontextinfo.h:
@@ -2154,8 +2987,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkgestureswipe.h:
 
 /usr/include/gtk-3.0/gtk/gtkgesturestylus.h:
-
-/usr/include/gtk-3.0/gtk/gtkgesturerotate.h:
 
 /usr/include/gtk-3.0/gtk/gtkgesturepan.h:
 
@@ -2189,8 +3020,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkeventbox.h:
 
-/usr/include/gtk-3.0/gtk/gtkdrawingarea.h:
-
 /usr/include/gtk-3.0/gtk/gtkdragsource.h:
 
 /usr/include/gtk-3.0/gtk/gtkdragdest.h:
@@ -2215,8 +3044,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtktogglebutton.h:
 
-/usr/include/gtk-3.0/gtk/gtkcheckbutton.h:
-
 /usr/include/gtk-3.0/gtk/gtkcellview.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkrecentaction.h:
@@ -2228,8 +3055,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkcellrenderertext.h:
 
 /usr/include/gtk-3.0/gtk/gtkcelllayout.h:
-
-/usr/include/gtk-3.0/gtk/gtkcellareabox.h:
 
 /usr/include/gtk-3.0/gtk/gtkbutton.h:
 
@@ -2293,111 +3118,93 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkactionbar.h:
 
-/usr/include/gtk-3.0/gtk/gtkactionable.h:
+/usr/include/gtk-3.0/gtk/gtkmenushell.h:
 
-/usr/include/glib-2.0/gio/goutputstream.h:
+/usr/include/gtk-3.0/gtk/gtkmenu.h:
 
-/usr/include/pango-1.0/pango/pango-matrix.h:
+/usr/include/gtk-3.0/gtk/gtksizerequest.h:
 
-/usr/include/glib-2.0/gio/gfilteroutputstream.h:
+/usr/include/gtk-3.0/gtk/gtkaccellabel.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+/usr/include/gtk-3.0/gtk/gtkcontainer.h:
 
-/usr/include/glib-2.0/gio/gbufferedoutputstream.h:
+/usr/include/atk-1.0/atk/atkwindow.h:
 
-/usr/include/gtk-3.0/gtk/gtklevelbar.h:
+/usr/include/atk-1.0/atk/atkvalue.h:
 
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+/usr/include/atk-1.0/atk/atktable.h:
 
-/usr/include/glib-2.0/gio/gbufferedinputstream.h:
+/usr/include/atk-1.0/atk/atkstateset.h:
 
-/usr/include/gtk-3.0/gtk/gtkimcontextsimple.h:
+/usr/include/gtk-3.0/gtk/gtkmenutoolbutton.h:
 
-/usr/include/glib-2.0/gio/ginitable.h:
+/usr/include/atk-1.0/atk/atkselection.h:
 
-/usr/include/gtk-3.0/gtk/gtkicontheme.h:
+/usr/include/atk-1.0/atk/atkrelation.h:
 
-/usr/include/glib-2.0/gio/gasyncinitable.h:
+/usr/include/atk-1.0/atk/atkrange.h:
 
-/usr/include/glib-2.0/glib/gerror.h:
+/usr/include/atk-1.0/atk/atkobjectfactory.h:
 
-/usr/include/gtk-3.0/gtk/gtkappchooserdialog.h:
+/usr/include/gtk-3.0/gtk/gtkfilechooser.h:
 
-/usr/include/glib-2.0/gio/gaction.h:
+/usr/include/atk-1.0/atk/atknoopobjectfactory.h:
 
-/usr/include/gtk-3.0/gtk/gtkorientable.h:
+/usr/include/atk-1.0/atk/atknoopobject.h:
 
-/usr/include/glib-2.0/gobject/gvaluetypes.h:
+/usr/include/atk-1.0/atk/atkimage.h:
 
-/usr/include/glib-2.0/glib/gmacros.h:
+/usr/include/atk-1.0/atk/atkhypertext.h:
 
-/usr/include/glib-2.0/gobject/gtypemodule.h:
+/usr/include/atk-1.0/atk/atkhyperlink.h:
 
-/usr/include/glib-2.0/gobject/genums.h:
+/usr/include/atk-1.0/atk/atkdocument.h:
 
-/usr/include/glib-2.0/gio/gbytesicon.h:
+/usr/include/atk-1.0/atk/atkrelationtype.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h:
 
-/usr/include/glib-2.0/gobject/gboxed.h:
+/usr/include/atk-1.0/atk/atkobject.h:
 
-/usr/include/harfbuzz/hb-shape.h:
+/usr/include/gtk-3.0/gtk/gtkbuilder.h:
 
-/usr/include/glib-2.0/gobject/gclosure.h:
+/usr/include/atk-1.0/atk/atk.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+/usr/include/atk-1.0/atk/atkeditabletext.h:
 
-/usr/include/pango-1.0/pango/pango-font.h:
+/usr/include/gtk-3.0/gtk/gtktypes.h:
 
-/usr/include/glib-2.0/gobject/gbinding.h:
+/usr/include/gtk-3.0/gtk/gtktestutils.h:
+
+/usr/include/gtk-3.0/gtk/gtkaccelgroup.h:
+
+/usr/include/gtk-3.0/gtk/gtkwidget.h:
+
+/usr/include/gtk-3.0/gtk/gtkapplication.h:
+
+/usr/include/gtk-3.0/gtk/gtkdialog.h:
+
+/usr/include/gtk-3.0/gtk/gtkaboutdialog.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
+
+/usr/include/gtk-3.0/gdk/gdk-autocleanup.h:
+
+/usr/include/gtk-3.0/gtk/gtkmodules.h:
+
+/usr/include/gtk-3.0/gdk/gdkvisual.h:
+
+/usr/include/gtk-3.0/gdk/gdkthreads.h:
 
 /usr/include/gtk-3.0/gtk/gtkshortcutlabel.h:
 
 /usr/include/gtk-3.0/gdk/gdktestutils.h:
 
-/usr/include/glib-2.0/gio/gio.h:
-
-/usr/include/glib-2.0/gio/gmount.h:
-
-/usr/include/pango-1.0/pango/pangocairo.h:
-
-/usr/include/time.h:
-
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/gtk-3.0/gtk/gtkspinbutton.h:
-
-/usr/include/glib-2.0/glib/gversionmacros.h:
-
-/usr/include/glib-2.0/gio/gappinfo.h:
-
-/usr/include/glib-2.0/gio/gsocketlistener.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
-
-/usr/include/asm-generic/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/sched.h:
-
-/usr/include/sched.h:
-
-/usr/include/glib-2.0/glib/deprecated/gcompletion.h:
-
-/usr/include/glib-2.0/gio/gactiongroup.h:
-
-/usr/include/gtk-3.0/gtk/gtkcellrendererspin.h:
-
-/usr/include/glib-2.0/glib/guuid.h:
-
-/usr/include/glib-2.0/glib/guri.h:
-
-/usr/include/glib-2.0/glib/grefstring.h:
-
-/usr/include/glib-2.0/gobject/glib-enumtypes.h:
-
-/usr/include/glib-2.0/glib/gtrashstack.h:
-
 /usr/include/glib-2.0/glib/gstrvbuilder.h:
+
+/usr/include/atk-1.0/atk/atkaction.h:
+
+/usr/include/glib-2.0/gio/gloadableicon.h:
 
 /usr/include/glib-2.0/glib/gstringchunk.h:
 
@@ -2415,57 +3222,31 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/glib/gscanner.h:
 
+/usr/include/gtk-3.0/gtk/gtkgesturerotate.h:
+
+/usr/include/netinet/in.h:
+
 /usr/include/glib-2.0/glib/gqsort.h:
 
 /usr/include/glib-2.0/gio/gzlibdecompressor.h:
-
-/usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
-
-/usr/include/glib-2.0/glib/gpattern.h:
-
-/usr/include/glib-2.0/glib/gstrfuncs.h:
-
-/usr/include/harfbuzz/hb.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkhandlebox.h:
 
 /usr/include/glib-2.0/glib/goption.h:
 
-/usr/include/atk-1.0/atk/atkobjectfactory.h:
-
-/usr/include/pango-1.0/pango/pango-engine.h:
-
 /usr/include/glib-2.0/glib/gvarianttype.h:
 
-/usr/include/gtk-3.0/gdk/gdk.h:
-
-/usr/include/glib-2.0/glib/gmarkup.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
-
-/usr/include/gtk-3.0/gtk/gtkcheckmenuitem.h:
-
-/usr/include/glib-2.0/glib/gtimer.h:
 
 /usr/include/glib-2.0/glib/gslist.h:
 
 /usr/include/glib-2.0/glib/gmain.h:
-
-/usr/include/glib-2.0/gobject/glib-types.h:
-
-/usr/include/glib-2.0/glib/gmappedfile.h:
-
-/usr/include/glib-2.0/glib/gfileutils.h:
 
 /usr/include/glib-2.0/glib/gmem.h:
 
 /usr/include/gtk-3.0/gtk/gtktextmark.h:
 
 /usr/include/glib-2.0/gio/gremoteactiongroup.h:
-
-/usr/include/gtk-3.0/gtk/gtkcellareacontext.h:
-
-/usr/include/glib-2.0/glib/giochannel.h:
 
 /usr/include/glib-2.0/glib/ghook.h:
 
@@ -2481,23 +3262,13 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/glib/gprimes.h:
 
-/usr/include/harfbuzz/hb-shape-plan.h:
+/usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
 
-/usr/include/pango-1.0/pango/pango-enum-types.h:
-
-/usr/include/harfbuzz/hb-font.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h:
 
 /usr/include/glib-2.0/glib/gnode.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/atk-1.0/atk/atkrelation.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/gtk-3.0/gtk/gtkseparatormenuitem.h:
-
-/usr/include/glib-2.0/glib/gasyncqueue.h:
 
 /usr/include/glib-2.0/glib/genviron.h:
 
@@ -2505,9 +3276,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/x86_64-linux-gnu/bits/dirent_ext.h:
 
-/usr/include/glib-2.0/glib/gversion.h:
+/usr/include/gtk-3.0/gtk/gtkbin.h:
 
-/usr/include/atk-1.0/atk/atkwindow.h:
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
 
 /usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h:
 
@@ -2521,99 +3292,89 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/pango-1.0/pango/pango-gravity.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h:
+../src/listeners/terminal_history.c:
 
-/usr/include/glib-2.0/gio/gioenums.h:
+/usr/include/vte-2.91/vte/vtedeprecated.h:
 
-/usr/include/glib-2.0/gio/ginputstream.h:
-
-/usr/include/glib-2.0/glib/deprecated/grel.h:
-
-/usr/include/glib-2.0/glib/gdataset.h:
+../src/listeners/object_registry.h:
 
 /usr/include/glib-2.0/glib/gconvert.h:
 
 /usr/include/glib-2.0/glib/gchecksum.h:
 
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/glib-2.0/glib/gcharset.h:
-
-/usr/include/glib-2.0/glib/deprecated/gthread.h:
-
 /usr/include/gtk-3.0/gtk/gtktoolpalette.h:
 
 /usr/include/glib-2.0/glib/gbookmarkfile.h:
 
-/usr/include/linux/errno.h:
+/usr/include/glib-2.0/glib/gdatetime.h:
 
-/usr/include/glib-2.0/gobject/gsourceclosure.h:
+/usr/include/gtk-3.0/gdk/gdkcairo.h:
 
-/usr/include/gtk-3.0/gtk/gtkgesturelongpress.h:
-
-/usr/include/pango-1.0/pango/pango-attributes.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
-
-../src/ui/workbench.h:
-
-/usr/include/glib-2.0/gio/gmenumodel.h:
-
-/usr/include/gtk-3.0/gdk/gdkframetimings.h:
-
-/usr/include/glib-2.0/glib/gmessages.h:
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 ../src/tools/toolkit_index.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigthread.h:
-
 /usr/include/glib-2.0/gobject/gvaluearray.h:
 
-/usr/include/gtk-3.0/gtk/gtktreemodel.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
 
-/usr/include/glib-2.0/glib/gunicode.h:
+/usr/include/gtk-3.0/gtk/gtkgesturesingle.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+/usr/include/atk-1.0/atk/atkhyperlinkimpl.h:
 
-/usr/include/pango-1.0/pango/pango-version-macros.h:
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h:
+/usr/include/glib-2.0/gio/giostream.h:
 
-/usr/include/glib-2.0/glib-object.h:
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
 
-/usr/include/gtk-3.0/gtk/gtkmodules.h:
+/usr/include/glib-2.0/gio/gfilteroutputstream.h:
 
-/usr/include/gtk-3.0/gdk/gdkvisual.h:
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkhpaned.h:
 
-/usr/include/glib-2.0/gio/gactiongroupexporter.h:
+/usr/include/gtk-3.0/gtk/gtkstacksidebar.h:
 
-../src/tools/toolkit_index.c:
+/usr/include/glib-2.0/glib/ghostutils.h:
 
-/usr/include/glib-2.0/gio/gsocketconnection.h:
+/usr/include/glib-2.0/gio/gdebugcontroller.h:
 
-../src/core/terminal_session.c:
+/usr/include/pango-1.0/pango/pango-context.h:
 
-/usr/include/glib-2.0/glib/ghash.h:
+/usr/include/gtk-3.0/gtk/gtkaccelmap.h:
 
-/usr/include/limits.h:
+/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
 
-/usr/include/glib-2.0/gio/gfilterinputstream.h:
+/usr/include/glib-2.0/glib/gstrfuncs.h:
 
-/usr/include/gtk-3.0/gdk/gdkconfig.h:
+/usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
 
-/usr/include/glib-2.0/gio/gdbusobjectproxy.h:
+/usr/include/glib-2.0/glib/gpattern.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkhbbox.h:
+/usr/include/gtk-3.0/gtk/gtkrange.h:
 
-/usr/include/glib-2.0/glib/grcbox.h:
+/usr/include/gtk-3.0/gtk/gtkinfobar.h:
 
-/usr/include/glib-2.0/glib/gbytes.h:
+../src/listeners/object_registry.c:
+
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+../src/listeners/terminal_history.h:
+
+/usr/include/gtk-3.0/gtk/gtkeventcontrollerscroll.h:
+
+/usr/include/glib-2.0/glib/gstring.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/gtk-3.0/gtk/gtkradiotoolbutton.h:
+
+/usr/include/gtk-3.0/gdk/gdkcursor.h:
 
 /usr/include/glib-2.0/glib/gthread.h:
 
@@ -2621,65 +3382,251 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h:
 
-/usr/include/glib-2.0/gio/giotypes.h:
+/usr/include/gtk-3.0/gtk/gtkspinbutton.h:
 
-/usr/include/x86_64-linux-gnu/asm/errno.h:
+/usr/include/glib-2.0/glib/gversionmacros.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/glib-2.0/glib/ghash.h:
+
+/usr/include/limits.h:
+
+/usr/include/harfbuzz/hb-draw.h:
+
+/usr/include/glib-2.0/glib/gtypes.h:
+
+/usr/include/glib-2.0/glib/galloca.h:
+
+/usr/include/glib-2.0/glib.h:
+
+/usr/include/gtk-3.0/gtk/gtkfixed.h:
+
+/usr/include/pango-1.0/pango/pango.h:
+
+/usr/include/glib-2.0/glib/gquark.h:
+
+/usr/include/gtk-3.0/gtk/gtkstatusbar.h:
+
+../src/listeners/tcp_worker.c:
+
+/usr/include/glib-2.0/gio/gcharsetconverter.h:
+
+/usr/include/glib-2.0/glib/gdataset.h:
+
+../src/listeners/object_predicates.c:
+
+../src/listeners/byte_buffer.c:
+
+../src/listeners/managed_object.c:
+
+../src/listeners/listener_system.c:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
+
+../src/listeners/tcp_worker.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/strings.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/gtk-3.0/gtk/gtkcellareabox.h:
+
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
+
+/usr/include/gtk-3.0/gtk/gtkcellareacontext.h:
+
+/usr/include/glib-2.0/glib/giochannel.h:
+
+/usr/include/stdio.h:
+
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+/usr/include/glib-2.0/glib/gerror.h:
+
+/usr/include/glib-2.0/glib/gmarkup.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/gtk-3.0/gtk/gtkactionable.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/cairo/cairo-deprecated.h:
+
+/usr/include/gtk-3.0/gtk/gtklevelbar.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/glib-2.0/gio/gbufferedoutputstream.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/gtk-3.0/gdk/gdk.h:
+
+../src/listeners/byte_buffer.h:
+
+/usr/include/gtk-3.0/gtk/gtkshortcutssection.h:
+
+/usr/include/glib-2.0/glib/gslice.h:
+
+/usr/include/glib-2.0/gio/gdbusinterfaceskeleton.h:
+
+/usr/include/glib-2.0/glib/grefstring.h:
+
+/usr/include/glib-2.0/glib/guri.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+
+/usr/include/glib-2.0/gobject/gclosure.h:
+
+/usr/include/pango-1.0/pango/pango-font.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkhscale.h:
+
+/usr/include/endian.h:
+
+/usr/include/gtk-3.0/gtk/gtkborder.h:
+
+/usr/include/stdint.h:
+
+/usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
+
+/usr/include/gtk-3.0/gdk/gdkframetimings.h:
+
+/usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/glib-2.0/gio/gnetworkservice.h:
+
+/usr/include/gtk-3.0/gtk/gtkcellrendererspin.h:
+
+/usr/include/glib-2.0/glib/guuid.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/atk-1.0/atk/atkstate.h:
+
+/usr/include/glib-2.0/gio/gdbuserror.h:
+
+/usr/include/poll.h:
 
 /usr/include/gtk-3.0/gtk/gtklockbutton.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/glib-2.0/glib/gspawn.h:
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
-/usr/include/gtk-3.0/gtk/gtk.h:
+/usr/include/features-time64.h:
 
-../src/platform/linux/terminal_vte.c:
+/usr/include/atk-1.0/atk/atkgobjectaccessible.h:
 
-/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+../src/core/tab.c:
 
-/usr/include/gtk-3.0/gtk/gtkpapersize.h:
+/usr/include/glib-2.0/glib/garray.h:
 
-/usr/include/glib-2.0/gio/gzlibcompressor.h:
+/usr/include/glib-2.0/gio/gtlsclientconnection.h:
 
-/usr/include/glib-2.0/glib/deprecated/gcache.h:
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/gtk-3.0/gtk/gtktreesortable.h:
 
-../src/core/tab.h:
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
-/usr/include/glib-2.0/glib/gshell.h:
+/usr/include/pango-1.0/pango/pango-language.h:
 
-/usr/include/glib-2.0/gobject/gvalue.h:
-
-/usr/include/glib-2.0/gio/gasyncresult.h:
-
-/usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/include/glib-2.0/gobject/gbindinggroup.h:
-
-/usr/include/x86_64-linux-gnu/bits/endian.h:
-
-/usr/include/gtk-3.0/gtk/gtkstyleprovider.h:
-
-/usr/include/glib-2.0/gio/gconverterinputstream.h:
-
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
-/usr/include/atk-1.0/atk/atkhypertext.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
-
-/usr/include/signal.h:
-
-/usr/include/strings.h:
-
-/usr/include/gtk-3.0/gtk/gtktypes.h:
-
-/usr/include/atk-1.0/atk/atkeditabletext.h:
+/usr/include/gtk-3.0/gdk/gdkdevice.h:
 
 /usr/include/features.h:
+
+/usr/include/atk-1.0/atk/atkmisc.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
+
+/usr/include/gtk-3.0/gtk/gtkseparatormenuitem.h:
+
+/usr/include/glib-2.0/glib/gasyncqueue.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/glib-2.0/gio/gbytesicon.h:
+
+../src/listeners/listener_event.h:
+
+/usr/include/gtk-3.0/gtk/gtkradiomenuitem.h:
+
+/usr/include/glib-2.0/glib/grefcount.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/glib-2.0/gio/gdtlsserverconnection.h:
+
+/usr/include/atk-1.0/atk/atktext.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/harfbuzz/hb.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/gtk-3.0/gtk/gtkdrawingarea.h:
+
+../src/listeners/connection.h:
+
+/usr/include/glib-2.0/gio/gsocketclient.h:
+
+/usr/include/gtk-3.0/gtk/gtkrender.h:
+
+/usr/include/pango-1.0/pango/pango-fontset-simple.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+
+../src/listeners/connection_worker.h:
+
+/usr/include/gtk-3.0/gtk/gtkliststore.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/glib-2.0/glib/gmessages.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/glib-2.0/gio/gdtlsconnection.h:
+
+/usr/include/gtk-3.0/gdk/gdkglcontext.h:
+
+/usr/include/sqlite3.h:
+
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:
+
+../src/listeners/event_queue.c:
 
 ../src/app/app.c:
 
@@ -2699,59 +3646,139 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gmemorymonitor.h:
 
-/usr/include/glib-2.0/glib/gtypes.h:
+/usr/include/gtk-3.0/gdk/gdkpixbuf.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
-/usr/include/glib-2.0/gio/gtlsclientconnection.h:
+/usr/include/glib-2.0/gio/gseekable.h:
 
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkrc.h:
 
-/usr/include/gtk-3.0/gtk/gtktreesortable.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h:
 
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+/usr/include/glib-2.0/gio/gsocketservice.h:
 
-/usr/include/pango-1.0/pango/pango-language.h:
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/gtk-3.0/gdk/gdkdevice.h:
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
-/usr/include/asm-generic/errno-base.h:
+/usr/include/gtk-3.0/gtk/gtkgesturezoom.h:
 
-/usr/include/features-time64.h:
+/usr/include/gtk-3.0/gtk/gtkenums.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+/usr/include/glib-2.0/gio/gfileenumerator.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+/usr/include/glib-2.0/glib/gmacros.h:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+/usr/include/gtk-3.0/gtk/gtkorientable.h:
 
-/usr/include/atk-1.0/atk/atkstate.h:
+/usr/include/glib-2.0/gobject/gvaluetypes.h:
 
-/usr/include/glib-2.0/gio/gdbuserror.h:
+../src/listeners/connection_manager.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h:
+/usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
-/usr/include/dirent.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/glib-2.0/glib/gregex.h:
+/usr/include/gtk-3.0/gtk/gtktreemodel.h:
 
-../src/core/tab.c:
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
 
-/usr/include/atk-1.0/atk/atkgobjectaccessible.h:
+/usr/include/glib-2.0/glib/gunicode.h:
 
-/usr/include/glib-2.0/glib/gtestutils.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
 
-/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:
+/usr/include/glib-2.0/glib/gatomic.h:
 
-/usr/include/harfbuzz/hb-draw.h:
+/usr/include/gtk-3.0/gtk/gtkshortcutsgroup.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
+/usr/include/gtk-3.0/gtk/gtknativedialog.h:
 
-/usr/include/gtk-3.0/gdk/gdk-autocleanup.h:
+/usr/include/cairo/cairo.h:
 
-/usr/include/x86_64-linux-gnu/bits/stat.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkvbox.h:
+
+/usr/include/linux/stddef.h:
+
+/usr/include/glib-2.0/gio/gsimpleiostream.h:
+
+../src/ui/workbench.h:
+
+/usr/include/glib-2.0/gio/gmenumodel.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
+/usr/include/glib-2.0/glib/gtimezone.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+../src/app/app.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/asm-generic/errno.h:
+
+../src/platform/linux/terminal_vte.c:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
+
+/usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/gtk-3.0/gtk/gtkpapersize.h:
+
+/usr/include/glib-2.0/gio/gzlibcompressor.h:
+
+../src/listeners/connection_worker.c:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h:
+
+/usr/include/glib-2.0/gio/gconverteroutputstream.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+
+/usr/include/glib-2.0/gio/gactiongroupexporter.h:
+
+/usr/include/gtk-3.0/gtk/gtkcheckbutton.h:
+
+/usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
+
+/usr/include/glib-2.0/gio/gpowerprofilemonitor.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+../src/listeners/listener_manager.h:
+
+/usr/include/atk-1.0/atk/atkversion.h:
+
+/usr/include/glib-2.0/glib/glib-autocleanups.h:
+
+../src/core/tab.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+../src/core/terminal_session.c:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/gtk-3.0/gdk/gdkmain.h:
 
 /usr/include/gtk-3.0/gtk/gtkcellrendererspinner.h:
+
+/usr/include/x86_64-linux-gnu/bits/stat.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
@@ -2761,93 +3788,47 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gthreadedsocketservice.h:
 
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+/usr/include/glib-2.0/gio/gdbusobjectskeleton.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
+../src/listeners/connection_manager.c:
 
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+/usr/include/glib-2.0/gio/gmemoryinputstream.h:
 
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+/usr/include/glib-2.0/gio/gpollableoutputstream.h:
 
-/usr/include/gtk-3.0/gdk/gdkmain.h:
+/usr/include/glib-2.0/gio/gpropertyaction.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkhscale.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkhbbox.h:
 
-/usr/include/endian.h:
+/usr/include/glib-2.0/glib/grcbox.h:
 
-/usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-../src/app/app.h:
-
-/usr/include/atk-1.0/atk/atkversion.h:
-
-/usr/include/glib-2.0/glib/glib-autocleanups.h:
-
-/usr/include/glib-2.0/glib/gtimezone.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/glib-2.0/gio/gdtlsconnection.h:
-
-/usr/include/x86_64-linux-gnu/bits/typesizes.h:
-
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-/usr/include/gtk-3.0/gtk/gtkbin.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
-
-/usr/include/glib-2.0/gio/giostream.h:
+/usr/include/glib-2.0/glib/gbytes.h:
 
 /usr/include/gtk-3.0/gtk/gtktextattributes.h:
 
 /usr/include/glib-2.0/glib/gkeyfile.h:
 
-/usr/include/gtk-3.0/gtk/gtkfilechooser.h:
-
-/usr/include/atk-1.0/atk/atknoopobjectfactory.h:
-
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
-/usr/include/gtk-3.0/gdk/gdkversionmacros.h:
+/usr/include/dirent.h:
 
-/usr/include/glib-2.0/gobject/gmarshal.h:
+/usr/include/glib-2.0/glib/gregex.h:
 
-/usr/include/glib-2.0/glib/gbase64.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h:
 
-/usr/include/glib-2.0/glib/deprecated/gmain.h:
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
+
+/usr/include/glib-2.0/gio/gpermission.h:
 
 ../src/core/terminal_session.h:
 
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+/usr/include/x86_64-linux-gnu/asm/errno.h:
 
-/usr/include/gtk-3.0/gtk/gtkbuilder.h:
-
-/usr/include/atk-1.0/atk/atk.h:
-
-/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
-
-/usr/include/gtk-3.0/gtk/gtkaccelmap.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
-
-/usr/include/stdint.h:
-
-/usr/include/gtk-3.0/gtk/gtkborder.h:
-
-/usr/include/gtk-3.0/gtk/gtkmenutoolbutton.h:
-
-/usr/include/atk-1.0/atk/atkselection.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/glib-2.0/gio/gnetworkservice.h:
+../src/listeners/listener.h:
 
 /usr/include/unistd.h:
 
@@ -2863,23 +3844,33 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gfilemonitor.h:
 
-/usr/include/glib-2.0/gio/gapplicationcommandline.h:
+../src/listeners/listener_manager.c:
 
-/usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
+/usr/include/gtk-3.0/gtk/gtkimcontext.h:
 
-/usr/include/glib-2.0/gobject/gtype.h:
+/usr/include/pango-1.0/pango/pango-fontset.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
+/usr/include/x86_64-linux-gnu/bits/endian.h:
+
+/usr/include/glib-2.0/gobject/gbindinggroup.h:
+
+/usr/include/gtk-3.0/gtk/gtkstyleprovider.h:
+
+/usr/include/glib-2.0/gio/gconverterinputstream.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/atk-1.0/atk/atk-enum-types.h:
 
 /usr/include/glib-2.0/gio/gsrvtarget.h:
+
+/usr/include/glib-2.0/gio/gdbusconnection.h:
+
+../src/db/database.c:
 
 /usr/include/glib-2.0/gio/gsocketaddress.h:
 
@@ -2889,101 +3880,49 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h:
 
-/usr/include/gtk-3.0/gtk/gtkradiomenuitem.h:
+/usr/include/sched.h:
 
-/usr/include/glib-2.0/glib/grefcount.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
-/usr/include/glib-2.0/glib.h:
+/usr/include/x86_64-linux-gnu/sys/types.h:
 
-/usr/include/gtk-3.0/gtk/gtktextchild.h:
+/usr/include/asm-generic/socket.h:
 
-/usr/include/glib-2.0/gobject/gobject.h:
+../src/listeners/object_predicates.h:
 
-/usr/include/glib-2.0/glib/ggettext.h:
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+/usr/include/glib-2.0/gio/ginetaddress.h:
 
-/usr/include/gtk-3.0/gtk/gtkfixed.h:
+/usr/include/gtk-3.0/gtk/gtkfilechooserbutton.h:
 
-/usr/include/pango-1.0/pango/pango.h:
+/usr/include/errno.h:
 
-/usr/include/glib-2.0/glib/galloca.h:
+/usr/include/glib-2.0/glib/gcharset.h:
 
-/usr/include/x86_64-linux-gnu/bits/wchar.h:
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
-/usr/include/gtk-3.0/gtk/gtkshortcutssection.h:
+/usr/include/linux/errno.h:
 
-/usr/include/glib-2.0/glib/gslice.h:
+/usr/include/glib-2.0/gobject/gsourceclosure.h:
 
-/usr/include/glib-2.0/gio/gdbusinterfaceskeleton.h:
+/usr/include/gtk-3.0/gtk/gtkgesturelongpress.h:
 
-/usr/include/glib-2.0/glib/garray.h:
+/usr/include/pango-1.0/pango/pango-attributes.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+/usr/include/asm-generic/errno-base.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
+/usr/include/glib-2.0/glib/gshell.h:
 
-/usr/include/glib-2.0/glib/gtree.h:
+/usr/include/glib-2.0/gobject/gvalue.h:
 
-/usr/include/gtk-3.0/gdk/gdkpixbuf.h:
+/usr/include/signal.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
 
-/usr/include/glib-2.0/gio/gseekable.h:
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkrc.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkcolorsel.h:
-
-/usr/include/glib-2.0/gio/gsocketservice.h:
-
-/usr/include/gtk-3.0/gtk/gtkwidget.h:
-
-/usr/include/gtk-3.0/gtk/gtkscalebutton.h:
-
-/usr/include/glib-2.0/gobject/gtypeplugin.h:
-
-/usr/include/glib-2.0/gio/gcancellable.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn.h:
-
-/usr/include/sqlite3.h:
-
-/usr/include/gtk-3.0/gdk/gdkglcontext.h:
-
-/usr/include/gtk-3.0/gtk/gtkliststore.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/glib-2.0/glib/gatomic.h:
-
-/usr/include/gtk-3.0/gtk/gtkshortcutsgroup.h:
-
-/usr/include/gtk-3.0/gtk/gtknativedialog.h:
-
-/usr/include/cairo/cairo.h:
-
-/usr/include/x86_64-linux-gnu/bits/setjmp.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/glib-2.0/gio/gpowerprofilemonitor.h:
-
-/usr/include/glib-2.0/glib/gquark.h:
-
-/usr/include/gtk-3.0/gtk/gtkeventcontrollerscroll.h:
-
-/usr/include/glib-2.0/glib/gstring.h:
-
-/usr/include/gtk-3.0/gtk/gtkdialog.h:
-
-/usr/include/gtk-3.0/gtk/gtkradiotoolbutton.h:
-
-/usr/include/gtk-3.0/gdk/gdkcursor.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
@@ -2993,63 +3932,185 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gvolume.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+/usr/include/fcntl.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h:
-
-/usr/include/glib-2.0/glib/gdatetime.h:
-
-/usr/include/gtk-3.0/gdk/gdkcairo.h:
-
-/usr/include/gtk-3.0/gtk/gtkfilechooserbutton.h:
-
-/usr/include/errno.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
-
-/usr/include/glib-2.0/gio/ginetaddress.h:
+/usr/include/x86_64-linux-gnu/sys/poll.h:
 
 /usr/include/glib-2.0/gio/gsimpleactiongroup.h:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+/usr/include/x86_64-linux-gnu/bits/poll.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+/usr/include/gtk-3.0/gtk/gtkcheckmenuitem.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkhpaned.h:
+/usr/include/glib-2.0/glib/gtimer.h:
 
-/usr/include/gtk-3.0/gtk/gtkstacksidebar.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
 
-/usr/include/glib-2.0/glib/ghostutils.h:
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
-/usr/include/glib-2.0/gio/gdebugcontroller.h:
+../src/listeners/listener_system.h:
 
-/usr/include/pango-1.0/pango/pango-context.h:
+/usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:
+
+/usr/include/glib-2.0/glib/gtestutils.h:
+
+/usr/include/glib-2.0/glib/gtrashstack.h:
+
+/usr/include/glib-2.0/glib/gtree.h:
+
+/usr/include/glib-2.0/glib/gversion.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h:
+
+/usr/include/pango-1.0/pango/pango-version-macros.h:
+
+/usr/include/atk-1.0/atk/atkstreamablecontent.h:
+
+/usr/include/glib-2.0/glib/deprecated/gallocator.h:
+
+/usr/include/glib-2.0/gio/gactiongroup.h:
+
+/usr/include/glib-2.0/glib/deprecated/gcache.h:
+
+/usr/include/glib-2.0/glib/deprecated/gcompletion.h:
+
+/usr/include/glib-2.0/glib/gbase64.h:
+
+/usr/include/glib-2.0/glib/deprecated/gmain.h:
+
+/usr/include/glib-2.0/glib/deprecated/gthread.h:
+
+/usr/include/glib-2.0/glib/gspawn.h:
+
+/usr/include/gtk-3.0/gtk/gtk.h:
+
+/usr/include/gtk-3.0/gdk/gdkversionmacros.h:
+
+/usr/include/glib-2.0/gobject/gmarshal.h:
+
+/usr/include/glib-2.0/gio/gio.h:
+
+/usr/include/glib-2.0/gio/gmount.h:
+
+/usr/include/pango-1.0/pango/pangocairo.h:
+
+/usr/include/glib-2.0/gio/giotypes.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkstyle.h:
+
+/usr/include/glib-2.0/gio/gioenums.h:
+
+/usr/include/glib-2.0/glib-object.h:
+
+/usr/include/glib-2.0/gobject/gbinding.h:
+
+/usr/include/gtk-3.0/gtk/gtktextchild.h:
+
+/usr/include/glib-2.0/glib/ggettext.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/glib-2.0/gobject/gobject.h:
+
+/usr/include/pango-1.0/pango/pango-engine.h:
+
+/usr/include/glib-2.0/gobject/gtype.h:
+
+/usr/include/glib-2.0/gobject/gboxed.h:
+
+/usr/include/harfbuzz/hb-shape.h:
+
+/usr/include/pango-1.0/pango/pango-enum-types.h:
+
+/usr/include/harfbuzz/hb-font.h:
+
+/usr/include/harfbuzz/hb-shape-plan.h:
+
+/usr/include/glib-2.0/glib/gmappedfile.h:
+
+/usr/include/glib-2.0/glib/gfileutils.h:
+
+/usr/include/glib-2.0/gobject/glib-types.h:
+
+/usr/include/glib-2.0/gobject/genums.h:
+
+/usr/include/glib-2.0/gobject/glib-enumtypes.h:
+
+../src/tools/toolkit_index.c:
+
+/usr/include/glib-2.0/gio/gsocketconnection.h:
+
+/usr/include/glib-2.0/gobject/gtypemodule.h:
+
+/usr/include/gtk-3.0/gtk/gtkscalebutton.h:
+
+/usr/include/glib-2.0/gobject/gtypeplugin.h:
+
+/usr/include/gtk-3.0/gtk/gtkappchooserdialog.h:
+
+/usr/include/glib-2.0/gio/gaction.h:
+
+/usr/include/gtk-3.0/gtk/gtkmountoperation.h:
+
+/usr/include/pango-1.0/pango/pango-types.h:
+
+/usr/include/glib-2.0/gio/gactionmap.h:
+
+/usr/include/glib-2.0/gio/gappinfo.h:
+
+/usr/include/glib-2.0/gio/gsocketlistener.h:
+
+/usr/include/glib-2.0/gio/gapplicationcommandline.h:
+
+/usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
+
+/usr/include/gtk-3.0/gtk/gtkicontheme.h:
+
+/usr/include/glib-2.0/gio/gasyncinitable.h:
+
+/usr/include/gtk-3.0/gtk/gtkimcontextsimple.h:
+
+/usr/include/glib-2.0/gio/ginitable.h:
+
+/usr/include/x86_64-linux-gnu/bits/select.h:
+
+/usr/include/glib-2.0/gio/gasyncresult.h:
+
+/usr/include/glib-2.0/gio/gbufferedinputstream.h:
+
+/usr/include/glib-2.0/gio/gfilterinputstream.h:
+
+/usr/include/gtk-3.0/gdk/gdkconfig.h:
+
+/usr/include/glib-2.0/gio/gdbusobjectproxy.h:
+
+/usr/include/glib-2.0/glib/deprecated/grel.h:
+
+/usr/include/glib-2.0/gio/ginputstream.h:
+
+/usr/include/glib-2.0/gio/goutputstream.h:
+
+/usr/include/pango-1.0/pango/pango-matrix.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn.h:
+
+/usr/include/glib-2.0/gio/gcancellable.h:
 
 /usr/include/gtk-3.0/gtk/gtkcalendar.h:
 
-/usr/include/glib-2.0/gio/gtcpwrapperconnection.h:
-
 /usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
-/usr/include/glib-2.0/gio/gpermission.h:
+/usr/include/arpa/inet.h:
 
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
-
-/usr/include/atk-1.0/atk/atkdocument.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/x86_64-linux-gnu/bits/signal_ext.h:
-
-/usr/include/glib-2.0/gio/gcharsetconverter.h:
+/usr/include/glib-2.0/gio/gtcpwrapperconnection.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
 
 /usr/include/glib-2.0/gio/gconverter.h:
 
-/usr/include/glib-2.0/gobject/gobject-autocleanups.h:
-
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
+
+/usr/include/glib-2.0/gobject/gobject-autocleanups.h:
 
 /usr/include/glib-2.0/gio/gcontenttype.h:
 
@@ -3060,6 +4121,10 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/cairo/cairo-features.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h:
+
+/usr/include/atk-1.0/atk/atkrelationset.h:
+
+/usr/include/glib-2.0/gio/gdatagrambased.h:
 
 /usr/include/glib-2.0/gio/gdataoutputstream.h:
 
@@ -3073,19 +4138,21 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gdbusauthobserver.h:
 
-../src/db/database.c:
-
-/usr/include/glib-2.0/gio/gdbusconnection.h:
-
-/usr/include/glib-2.0/gio/gdtlsserverconnection.h:
+/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/gio/gnetworkaddress.h:
-
-/usr/include/glib-2.0/glib/gutils.h:
 
 /usr/include/glib-2.0/gio/gdbusinterface.h:
 
 /usr/include/glib-2.0/gio/gdbusintrospection.h:
+
+/usr/include/atk-1.0/atk/atkplug.h:
+
+/usr/include/glib-2.0/gio/gdbusnameowning.h:
+
+/usr/include/glib-2.0/gio/gdbusmenumodel.h:
+
+../src/listeners/managed_object.h:
 
 /usr/include/glib-2.0/gio/gdbusmessage.h:
 
@@ -3101,29 +4168,25 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gdbusmethodinvocation.h:
 
-/usr/include/atk-1.0/atk/atkplug.h:
-
-/usr/include/glib-2.0/gio/gdbusmenumodel.h:
-
-/usr/include/glib-2.0/gio/gdbusnameowning.h:
+/usr/include/asm-generic/bitsperlong.h:
 
 /usr/include/glib-2.0/gio/gdbusobject.h:
 
 /usr/include/gtk-3.0/gtk/gtkframe.h:
 
+../src/listeners/event_queue.h:
+
 /usr/include/glib-2.0/gio/gdbusobjectmanager.h:
+
+/usr/include/gtk-3.0/gtk/gtkappchooserwidget.h:
+
+/usr/include/atk-1.0/atk/atksocket.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h:
 
 /usr/include/glib-2.0/gio/gdbusobjectmanagerclient.h:
 
 /usr/include/glib-2.0/gio/gdbusobjectmanagerserver.h:
-
-/usr/include/glib-2.0/gio/gdbusobjectskeleton.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
-/usr/include/glib-2.0/gio/gconverteroutputstream.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/glib-2.0/gio/gdbusproxy.h:
 
@@ -3149,6 +4212,8 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gdtlsclientconnection.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
+
 /usr/include/glib-2.0/gio/gemblemedicon.h:
 
 /usr/include/glib-2.0/gio/gicon.h:
@@ -3163,10 +4228,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gfileinputstream.h:
 
-/usr/include/stdc-predef.h:
-
-/usr/include/atk-1.0/atk/atktext.h:
-
 /usr/include/glib-2.0/gio/gtlsfiledatabase.h:
 
 /usr/include/glib-2.0/gio/gfileiostream.h:
@@ -3174,6 +4235,10 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/glib/gbacktrace.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h:
+
+/usr/include/atk-1.0/atk/atkcomponent.h:
+
+/usr/include/glib-2.0/gio/gioerror.h:
 
 /usr/include/glib-2.0/gio/gtestdbus.h:
 
@@ -3237,12 +4302,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gtlsdatabase.h:
 
-/usr/include/glib-2.0/gio/gmemoryinputstream.h:
-
-/usr/include/glib-2.0/gio/gpollableoutputstream.h:
-
-/usr/include/glib-2.0/gio/gpropertyaction.h:
-
 /usr/include/glib-2.0/glib/gbitlock.h:
 
 /usr/include/glib-2.0/gio/gproxy.h:
@@ -3263,11 +4322,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gdk/gdkdisplaymanager.h:
 
-/usr/include/atk-1.0/atk/atknoopobject.h:
+/usr/include/atk-1.0/atk/atktablecell.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/atk-1.0/atk/atktablecell.h:
 
 /usr/include/glib-2.0/gio/gsettings.h:
 
@@ -3277,15 +4334,7 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gsimpleasyncresult.h:
 
-/usr/include/glib-2.0/gio/gsimpleiostream.h:
-
 /usr/include/glib-2.0/gio/gsocket.h:
-
-/usr/include/glib-2.0/gio/gsocketclient.h:
-
-/usr/include/gtk-3.0/gtk/gtkrender.h:
-
-/usr/include/pango-1.0/pango/pango-fontset-simple.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h:
 
@@ -3300,8 +4349,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gio/gtask.h:
 
 /usr/include/glib-2.0/gio/gtcpconnection.h:
-
-/usr/include/atk-1.0/atk/atkrange.h:
 
 /usr/include/glib-2.0/gio/gthemedicon.h:
 
@@ -3318,12 +4365,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/glib-2.0/gio/gtlsserverconnection.h:
-
-/usr/include/gtk-3.0/gtk/gtkgesturesingle.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/atk-1.0/atk/atkhyperlinkimpl.h:
 
 /usr/include/gtk-3.0/gdk/gdktypes.h:
 
@@ -3357,17 +4398,13 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkheaderbar.h:
 
+/usr/include/x86_64-linux-gnu/asm/posix_types.h:
+
 /usr/include/harfbuzz/hb-deprecated.h:
 
 /usr/include/harfbuzz/hb-map.h:
 
 /usr/include/harfbuzz/hb-version.h:
-
-/usr/include/gtk-3.0/gtk/gtkmountoperation.h:
-
-/usr/include/glib-2.0/gio/gactionmap.h:
-
-/usr/include/pango-1.0/pango/pango-types.h:
 
 /usr/include/pango-1.0/pango/pango-bidi-type.h:
 
@@ -3387,10 +4424,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/pango-1.0/pango/pango-fontmap.h:
 
-/usr/include/gtk-3.0/gtk/gtkimcontext.h:
-
-/usr/include/pango-1.0/pango/pango-fontset.h:
-
 /usr/include/pango-1.0/pango/pango-glyph.h:
 
 /usr/include/glib-2.0/gobject/gparam.h:
@@ -3403,27 +4436,19 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/pango-1.0/pango/pango-renderer.h:
 
-/usr/include/stdio.h:
+/usr/include/gtk-3.0/gtk/gtkbox.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+/usr/include/gtk-3.0/gtk/gtklabel.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/cairo/cairo-deprecated.h:
+/usr/include/cairo/cairo-version.h:
 
 /usr/include/gtk-3.0/gdk/gdkscreen.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h:
 
-../src/core/workspace.h:
-
 ../src/db/database.h:
+
+../src/core/workspace.h:
 
 /usr/include/gtk-3.0/gdk/gdkpango.h:
 
@@ -3446,10 +4471,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gobject/gsignal.h:
 
 /usr/include/gtk-3.0/gdk/gdkseat.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/atk-1.0/atk/atkmisc.h:
 
 /usr/include/gtk-3.0/gtk/gtkeventcontrollerkey.h:
 
@@ -3475,15 +4496,7 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-macros.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h:
-
-/usr/include/gtk-3.0/gtk/gtktestutils.h:
-
-/usr/include/gtk-3.0/gtk/gtkaccelgroup.h:
-
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h:
-
-/usr/include/gtk-3.0/gtk/gtkmenushell.h:
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
 
@@ -3491,11 +4504,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h:
 
-/usr/include/atk-1.0/atk/atkstateset.h:
-
 /usr/include/gtk-3.0/gdk/gdkdevicepad.h:
 
-/usr/include/gtk-3.0/gtk/gtkaboutdialog.h:
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /usr/include/glib-2.0/glib/glib-typeof.h:
 
@@ -3508,63 +4519,3 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gio/ginetaddressmask.h:
 
 /usr/include/gtk-3.0/gdk/gdkselection.h:
-
-/usr/include/gtk-3.0/gdk/gdkthreads.h:
-
-/usr/include/gtk-3.0/gtk/gtkapplication.h:
-
-/usr/include/gtk-3.0/gtk/gtkgesturezoom.h:
-
-/usr/include/glib-2.0/gio/gfileenumerator.h:
-
-/usr/include/gtk-3.0/gtk/gtkenums.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkvpaned.h:
-
-/usr/include/atk-1.0/atk/atkobject.h:
-
-/usr/include/atk-1.0/atk/atkrelationtype.h:
-
-/usr/include/glib-2.0/gio/gloadableicon.h:
-
-/usr/include/atk-1.0/atk/atkaction.h:
-
-/usr/include/glib-2.0/gio/gioerror.h:
-
-/usr/include/atk-1.0/atk/atkcomponent.h:
-
-/usr/include/atk-1.0/atk/atkhyperlink.h:
-
-/usr/include/atk-1.0/atk/atkimage.h:
-
-/usr/include/glib-2.0/gio/gdatagrambased.h:
-
-/usr/include/atk-1.0/atk/atkrelationset.h:
-
-/usr/include/gtk-3.0/gtk/gtkappchooserwidget.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h:
-
-/usr/include/atk-1.0/atk/atksocket.h:
-
-/usr/include/glib-2.0/glib/deprecated/gallocator.h:
-
-/usr/include/atk-1.0/atk/atkstreamablecontent.h:
-
-/usr/include/atk-1.0/atk/atktable.h:
-
-/usr/include/atk-1.0/atk/atkvalue.h:
-
-/usr/include/gtk-3.0/gtk/gtkcontainer.h:
-
-/usr/include/gtk-3.0/gtk/gtksizerequest.h:
-
-/usr/include/gtk-3.0/gtk/gtkaccellabel.h:
-
-/usr/include/gtk-3.0/gtk/gtkbox.h:
-
-/usr/include/cairo/cairo-version.h:
-
-/usr/include/gtk-3.0/gtk/gtklabel.h:
-
-/usr/include/gtk-3.0/gtk/gtkmenu.h:

@@ -4,6 +4,10 @@
 
 #define TOOL_REGISTRY_MAX_TOOLS 128
 
+/* Registry stores borrowed pointers only - registered ToolDescriptors are
+ * expected to be static/long-lived data owned by whoever calls
+ * tool_registry_register; shutdown just clears the count, it never frees
+ * the descriptors themselves. */
 static const ToolDescriptor *g_tools[TOOL_REGISTRY_MAX_TOOLS];
 static int g_tool_count = 0;
 

@@ -181,10 +181,164 @@ CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/tools/toolkit_index.c" -o CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.s
 
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o: ../src/listeners/event_queue.c
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/event_queue.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/event_queue.c" > CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/event_queue.c" -o CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o: ../src/listeners/byte_buffer.c
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/byte_buffer.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/byte_buffer.c" > CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/byte_buffer.c" -o CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o: ../src/listeners/managed_object.c
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/managed_object.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/managed_object.c" > CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/managed_object.c" -o CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o: ../src/listeners/object_predicates.c
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_predicates.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_predicates.c" > CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_predicates.c" -o CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o: ../src/listeners/object_registry.c
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_registry.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_registry.c" > CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_registry.c" -o CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: ../src/listeners/listener_manager.c
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_manager.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_manager.c" > CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_manager.c" -o CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o: ../src/listeners/tcp_worker.c
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/tcp_worker.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/tcp_worker.c" > CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/tcp_worker.c" -o CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o: ../src/listeners/terminal_history.c
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/terminal_history.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/terminal_history.c" > CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/terminal_history.c" -o CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: ../src/listeners/connection_worker.c
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_worker.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_worker.c" > CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_worker.c" -o CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: ../src/listeners/connection_manager.c
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.c" > CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.c" -o CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.s
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o: CMakeFiles/toolbox_core.dir/flags.make
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o: ../src/listeners/listener_system.c
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o -MF CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o.d -o CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_system.c"
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_system.c" > CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.i
+
+CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_system.c" -o CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.s
+
 CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o: CMakeFiles/toolbox_core.dir/flags.make
 CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o: ../src/platform/linux/ui_gtk.c
 CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building C object CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o -MF CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o.d -o CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/platform/linux/ui_gtk.c"
 
 CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.i: cmake_force
@@ -198,7 +352,7 @@ CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.s: cmake_force
 CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o: CMakeFiles/toolbox_core.dir/flags.make
 CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o: ../src/platform/linux/terminal_vte.c
 CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o: CMakeFiles/toolbox_core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building C object CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o -MF CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o.d -o CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o -c "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/platform/linux/terminal_vte.c"
 
 CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.i: cmake_force
@@ -219,6 +373,17 @@ toolbox_core_OBJECTS = \
 "CMakeFiles/toolbox_core.dir/src/db/database.c.o" \
 "CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o" \
 "CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o" \
+"CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o" \
 "CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o" \
 "CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o"
 
@@ -233,11 +398,22 @@ libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/db/database.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/object_predicates.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o
+libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/build.make
 libtoolbox_core.a: CMakeFiles/toolbox_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking C static library libtoolbox_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Linking C static library libtoolbox_core.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/toolbox_core.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/toolbox_core.dir/link.txt --verbose=$(VERBOSE)
 

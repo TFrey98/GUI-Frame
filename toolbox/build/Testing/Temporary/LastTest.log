@@ -1,10 +1,10 @@
-Start testing: Jul 16 22:21 UTC
+Start testing: Jul 28 21:41 UTC
 ----------------------------------------------------------
-1/7 Testing: lifecycle_smoke
-1/7 Test: lifecycle_smoke
+1/20 Testing: lifecycle_smoke
+1/20 Test: lifecycle_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/lifecycle_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"lifecycle_smoke" start time: Jul 16 22:21 UTC
+"lifecycle_smoke" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 lifecycle_smoke: iteration 0 ok
@@ -14,18 +14,18 @@ lifecycle_smoke: iteration 3 ok
 lifecycle_smoke: iteration 4 ok
 lifecycle_smoke: 5 iterations completed cleanly
 <end of output>
-Test time =   0.80 sec
+Test time =   0.85 sec
 ----------------------------------------------------------
 Test Passed.
-"lifecycle_smoke" end time: Jul 16 22:21 UTC
+"lifecycle_smoke" end time: Jul 28 21:41 UTC
 "lifecycle_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/7 Testing: layout_smoke
-2/7 Test: layout_smoke
+2/20 Testing: layout_smoke
+2/20 Test: layout_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/layout_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"layout_smoke" start time: Jul 16 22:21 UTC
+"layout_smoke" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 layout_smoke: iteration 0 ok
@@ -33,34 +33,34 @@ layout_smoke: iteration 1 ok
 layout_smoke: iteration 2 ok
 layout_smoke: 3 iterations completed cleanly
 <end of output>
-Test time =   0.65 sec
+Test time =   0.70 sec
 ----------------------------------------------------------
 Test Passed.
-"layout_smoke" end time: Jul 16 22:21 UTC
+"layout_smoke" end time: Jul 28 21:41 UTC
 "layout_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/7 Testing: tabs_smoke
-3/7 Test: tabs_smoke
+3/20 Testing: tabs_smoke
+3/20 Test: tabs_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/tabs_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"tabs_smoke" start time: Jul 16 22:21 UTC
+"tabs_smoke" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 tabs_smoke: create/select/rename/close all verified
 <end of output>
-Test time =   0.28 sec
+Test time =   0.26 sec
 ----------------------------------------------------------
 Test Passed.
-"tabs_smoke" end time: Jul 16 22:21 UTC
+"tabs_smoke" end time: Jul 28 21:41 UTC
 "tabs_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/7 Testing: terminal_smoke
-4/7 Test: terminal_smoke
+4/20 Testing: terminal_smoke
+4/20 Test: terminal_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_smoke" start time: Jul 16 22:21 UTC
+"terminal_smoke" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 terminal_smoke: shell spawn, echo round-trip, and live resize all verified
@@ -68,31 +68,31 @@ terminal_smoke: shell spawn, echo round-trip, and live resize all verified
 Test time =   1.04 sec
 ----------------------------------------------------------
 Test Passed.
-"terminal_smoke" end time: Jul 16 22:21 UTC
+"terminal_smoke" end time: Jul 28 21:41 UTC
 "terminal_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-5/7 Testing: multi_terminal_smoke
-5/7 Test: multi_terminal_smoke
+5/20 Testing: multi_terminal_smoke
+5/20 Test: multi_terminal_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/multi_terminal_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"multi_terminal_smoke" start time: Jul 16 22:21 UTC
+"multi_terminal_smoke" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 multi_terminal_smoke: independent tabs, selective close, and shell-exit handling all verified
 <end of output>
-Test time =   2.67 sec
+Test time =   2.69 sec
 ----------------------------------------------------------
 Test Passed.
-"multi_terminal_smoke" end time: Jul 16 22:21 UTC
+"multi_terminal_smoke" end time: Jul 28 21:41 UTC
 "multi_terminal_smoke" time elapsed: 00:00:02
 ----------------------------------------------------------
 
-6/7 Testing: terminal_session_test
-6/7 Test: terminal_session_test
+6/20 Testing: terminal_session_test
+6/20 Test: terminal_session_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_session_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_session_test" start time: Jul 16 22:21 UTC
+"terminal_session_test" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 terminal_session_test: session identity verified independent of any GTK widget
@@ -100,15 +100,15 @@ terminal_session_test: session identity verified independent of any GTK widget
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"terminal_session_test" end time: Jul 16 22:21 UTC
+"terminal_session_test" end time: Jul 28 21:41 UTC
 "terminal_session_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/7 Testing: toolkit_index_test
-7/7 Test: toolkit_index_test
+7/20 Testing: toolkit_index_test
+7/20 Test: toolkit_index_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/toolkit_index_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"toolkit_index_test" start time: Jul 16 22:21 UTC
+"toolkit_index_test" start time: Jul 28 21:41 UTC
 Output:
 ----------------------------------------------------------
 toolkit_index_test: non-recursive single-level scan verified
@@ -116,8 +116,228 @@ toolkit_index_test: non-recursive single-level scan verified
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"toolkit_index_test" end time: Jul 16 22:21 UTC
+"toolkit_index_test" end time: Jul 28 21:41 UTC
 "toolkit_index_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jul 16 22:21 UTC
+8/20 Testing: event_queue_stress_test
+8/20 Test: event_queue_stress_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/event_queue_stress_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"event_queue_stress_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+event_queue_stress_test: 8000 events from 8 producers verified complete and in order
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"event_queue_stress_test" end time: Jul 28 21:41 UTC
+"event_queue_stress_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/20 Testing: byte_buffer_test
+9/20 Test: byte_buffer_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/byte_buffer_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"byte_buffer_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+byte_buffer_test: interleaved append/consume/peek/discard round-tripped byte-for-byte, including under concurrent access
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"byte_buffer_test" end time: Jul 28 21:41 UTC
+"byte_buffer_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/20 Testing: object_registry_test
+10/20 Test: object_registry_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_registry_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"object_registry_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+object_registry_test: id allocation, queries, and non-cascading removal verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"object_registry_test" end time: Jul 28 21:41 UTC
+"object_registry_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/20 Testing: object_predicates_test
+11/20 Test: object_predicates_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_predicates_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"object_predicates_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+object_predicates_test: full Listener/Connection state matrix verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"object_predicates_test" end time: Jul 28 21:41 UTC
+"object_predicates_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/20 Testing: listener_config_validate_test
+12/20 Test: listener_config_validate_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_config_validate_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"listener_config_validate_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+listener_config_validate_test: field-level and uniqueness validation verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"listener_config_validate_test" end time: Jul 28 21:41 UTC
+"listener_config_validate_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/20 Testing: listener_manager_test
+13/20 Test: listener_manager_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_manager_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"listener_manager_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+listener_manager_test: full state machine transitions and events verified
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"listener_manager_test" end time: Jul 28 21:41 UTC
+"listener_manager_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/20 Testing: reverse_tcp_test
+14/20 Test: reverse_tcp_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/reverse_tcp_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"reverse_tcp_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+reverse_tcp_test: real accept/connect, port-conflict failure, and clean stop all verified
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"reverse_tcp_test" end time: Jul 28 21:41 UTC
+"reverse_tcp_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/20 Testing: connection_io_test
+15/20 Test: connection_io_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/connection_io_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"connection_io_test" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+connection_io_test: bidirectional data and disconnect-from-either-end both verified
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"connection_io_test" end time: Jul 28 21:41 UTC
+"connection_io_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/20 Testing: new_listener_dialog_smoke
+16/20 Test: new_listener_dialog_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/new_listener_dialog_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"new_listener_dialog_smoke" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+new_listener_dialog_smoke: modal defaults, inline validation, and successful creation all verified
+<end of output>
+Test time =   0.43 sec
+----------------------------------------------------------
+Test Passed.
+"new_listener_dialog_smoke" end time: Jul 28 21:41 UTC
+"new_listener_dialog_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/20 Testing: listener_console_tab_smoke
+17/20 Test: listener_console_tab_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_console_tab_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"listener_console_tab_smoke" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+listener_console_tab_smoke: tab auto-open, Stop/Restart, and close-leaves-it-running all verified
+<end of output>
+Test time =   0.55 sec
+----------------------------------------------------------
+Test Passed.
+"listener_console_tab_smoke" end time: Jul 28 21:41 UTC
+"listener_console_tab_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/20 Testing: object_panel_smoke
+18/20 Test: object_panel_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_panel_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"object_panel_smoke" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+object_panel_smoke: listener row, live connection row, and disconnect-but-retain all verified
+<end of output>
+Test time =   0.59 sec
+----------------------------------------------------------
+Test Passed.
+"object_panel_smoke" end time: Jul 28 21:41 UTC
+"object_panel_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/20 Testing: connection_terminal_smoke
+19/20 Test: connection_terminal_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/connection_terminal_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"connection_terminal_smoke" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+connection_terminal_smoke: detach-on-close, reopen-and-resume, single-writer, and disconnected-read-only all verified
+<end of output>
+Test time =   0.77 sec
+----------------------------------------------------------
+Test Passed.
+"connection_terminal_smoke" end time: Jul 28 21:41 UTC
+"connection_terminal_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/20 Testing: context_menu_smoke
+20/20 Test: context_menu_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/context_menu_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"context_menu_smoke" start time: Jul 28 21:41 UTC
+Output:
+----------------------------------------------------------
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:39.969: no trigger event for menu popup
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:40.070: no trigger event for menu popup
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:40.086: no trigger event for menu popup
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:40.409: no trigger event for menu popup
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:40.509: no trigger event for menu popup
+
+(context_menu_smoke:139011): Gtk-WARNING **: 21:41:40.520: no trigger event for menu popup
+context_menu_smoke: menu sensitivities, guarded remove, and close-running-tab confirmation all verified
+<end of output>
+Test time =   1.19 sec
+----------------------------------------------------------
+Test Passed.
+"context_menu_smoke" end time: Jul 28 21:41 UTC
+"context_menu_smoke" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Jul 28 21:41 UTC

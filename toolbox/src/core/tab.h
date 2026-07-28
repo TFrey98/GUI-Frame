@@ -6,7 +6,9 @@
 typedef enum TabType {
     TAB_TYPE_TERMINAL,
     TAB_TYPE_REPORT,
-    TAB_TYPE_SCRIPT
+    TAB_TYPE_SCRIPT,
+    TAB_TYPE_LISTENER,
+    TAB_TYPE_CONNECTION_TERMINAL
 } TabType;
 
 /*

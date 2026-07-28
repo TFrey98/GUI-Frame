@@ -7,6 +7,9 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+/* Single global root-level index, sized to TOOLKIT_INDEX_MAX_ENTRIES - the
+ * sidebar only ever needs one; per-directory scans (toolkit_scan_directory)
+ * write into caller-provided buffers instead of this global state. */
 static ToolkitEntry g_entries[TOOLKIT_INDEX_MAX_ENTRIES];
 static int g_entry_count = 0;
 static char *g_toolkit_dir = NULL;
@@ -21,6 +24,8 @@ static void free_entries(void) {
     g_entry_count = 0;
 }
 
+/* Directories sort before files (matches most file-tree UIs), then
+ * alphabetically within each group. */
 static int compare_entries(const void *a, const void *b) {
     const ToolkitEntry *ea = a;
     const ToolkitEntry *eb = b;

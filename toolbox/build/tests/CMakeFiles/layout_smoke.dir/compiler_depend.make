@@ -779,10 +779,33 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
   /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
   /usr/include/gtk-3.0/gtk/gtk-autocleanups.h \
   ../src/app/app.h \
+  ../src/listeners/listener_system.h \
+  ../src/listeners/connection_manager.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  ../src/listeners/object_registry.h \
+  ../src/listeners/managed_object.h \
+  ../src/listeners/connection.h \
+  ../src/listeners/terminal_history.h \
+  ../src/listeners/listener.h \
+  ../src/listeners/listener_manager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../tests/test_gtk_utils.h
 
 
 ../tests/test_gtk_utils.h:
+
+../src/listeners/listener.h:
+
+../src/listeners/terminal_history.h:
+
+../src/listeners/object_registry.h:
+
+../src/listeners/listener_event.h:
+
+../src/listeners/connection_manager.h:
+
+../src/listeners/listener_system.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h:
 
@@ -984,6 +1007,8 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
 
 /usr/include/gtk-3.0/gtk/gtkeventbox.h:
 
+../src/listeners/connection.h:
+
 /usr/include/gtk-3.0/gtk/gtkdrawingarea.h:
 
 /usr/include/gtk-3.0/gtk/gtkdragsource.h:
@@ -1067,6 +1092,8 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
 /usr/include/gtk-3.0/gtk/gtkselection.h:
 
 /usr/include/gtk-3.0/gtk/gtkdnd.h:
+
+../src/listeners/managed_object.h:
 
 /usr/include/glib-2.0/gio/gdbusmessage.h:
 
@@ -1566,6 +1593,8 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
+
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/gtk-3.0/gtk/gtkpapersize.h:
@@ -1597,6 +1626,8 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
 /usr/include/glib-2.0/gio/gnetworkaddress.h:
 
 /usr/include/glib-2.0/glib/garray.h:
+
+../src/listeners/listener_manager.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
@@ -1839,6 +1870,8 @@ tests/CMakeFiles/layout_smoke.dir/layout_smoke.c.o: ../tests/layout_smoke.c \
 /usr/include/glib-2.0/gio/gdbusnameowning.h:
 
 /usr/include/glib-2.0/gio/gdbusobject.h:
+
+../src/listeners/event_queue.h:
 
 /usr/include/gtk-3.0/gtk/gtkframe.h:
 

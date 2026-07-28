@@ -719,9 +719,22 @@ CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../core/terminal_session.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../core/workspace.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../core/tab.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/listener_system.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/connection_manager.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/event_queue.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/listener_event.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/object_registry.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/managed_object.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/connection.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/terminal_history.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/listener.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/listener_manager.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../listeners/object_predicates.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../tools/toolkit_index.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../ui/workbench.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../ui/../core/workspace.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../ui/../listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/terminal_vte.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../terminal/terminal.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/platform/linux/../../terminal/../core/terminal_session.h
