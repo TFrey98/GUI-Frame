@@ -33,6 +33,8 @@ static void free_object_contents(ManagedObject *obj) {
         free(obj->listener.config.callback_host);
         free(obj->listener.config.cert_path);
         free(obj->listener.config.key_path);
+        free(obj->listener.config.url_path);
+        free(obj->listener.config.host_header);
         free(obj->listener.runtime.last_error);
     } else {
         free(obj->connection.remote_host);
@@ -81,7 +83,7 @@ uint64_t object_registry_add_listener(ObjectRegistry *registry, ListenerConfig c
 }
 
 uint64_t object_registry_add_connection(ObjectRegistry *registry, uint64_t listener_id, const char *remote_host,
-                                         uint16_t remote_port, int socket_fd) {
+                                         uint16_t remote_port, int socket_fd, void *tls) {
     if (registry->count >= OBJECT_REGISTRY_MAX_OBJECTS) {
         return 0;
     }
@@ -95,6 +97,7 @@ uint64_t object_registry_add_connection(ObjectRegistry *registry, uint64_t liste
     obj->connection.remote_port = remote_port;
     obj->connection.connected_at = time(NULL);
     obj->connection.socket_fd = socket_fd;
+    obj->connection.tls = tls;
     obj->connection.history = terminal_history_create();
 
     registry->objects[registry->count++] = obj;

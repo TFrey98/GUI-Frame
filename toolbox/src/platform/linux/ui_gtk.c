@@ -67,6 +67,16 @@ static const char *listener_state_name(ListenerState state) {
     return "?";
 }
 
+/* Shared by the listener console tab's subtitle. */
+static const char *listener_type_label(ListenerType type) {
+    switch (type) {
+        case LISTENER_TYPE_REVERSE_TCP: return "TCP";
+        case LISTENER_TYPE_HTTP: return "HTTP";
+        case LISTENER_TYPE_HTTPS: return "HTTPS";
+    }
+    return "?";
+}
+
 /* Shared by the bottom object panel. */
 static const char *connection_state_name(ConnectionState state) {
     switch (state) {
@@ -278,10 +288,10 @@ static void refresh_listener_page(GtkBackend *backend, GtkWidget *page, uint64_t
     }
 
     char endpoint_text[160];
-    /* narrow form: "TCP • host:port" - always the callback endpoint
-     * (never bind_address, which may be a 0.0.0.0 wildcard). */
-    snprintf(endpoint_text, sizeof(endpoint_text), "TCP \xE2\x80\xA2 %s:%u", listener->config.callback_host,
-             listener->config.port);
+    /* narrow form: "<TCP|HTTP> • host:port" - always the callback
+     * endpoint (never bind_address, which may be a 0.0.0.0 wildcard). */
+    snprintf(endpoint_text, sizeof(endpoint_text), "%s \xE2\x80\xA2 %s:%u",
+             listener_type_label(listener->config.type), listener->config.callback_host, listener->config.port);
     gtk_label_set_text(GTK_LABEL(endpoint_label), endpoint_text);
 
     char state_text[224];
@@ -1450,9 +1460,18 @@ static GtkWidget *build_bottom_panel(GtkBackend *backend) {
 typedef struct ListenerDialogState {
     GtkBackend *backend;
     GtkWidget *name_entry, *name_error;
+    GtkWidget *type_combo; /* index 0 = Reverse TCP, 1 = HTTP, 2 = HTTPS */
     GtkWidget *bind_address_entry, *bind_address_error;
     GtkWidget *port_entry, *port_error;
     GtkWidget *callback_host_entry, *callback_host_error;
+    /* HTTP or HTTPS only - all four hidden otherwise, including the row
+     * labels (add_form_row's own label isn't otherwise reachable to
+     * toggle). */
+    GtkWidget *url_path_label, *url_path_entry, *url_path_error;
+    GtkWidget *host_header_label, *host_header_entry, *host_header_error;
+    /* HTTPS only - same hidden-unless-relevant treatment. */
+    GtkWidget *cert_path_label, *cert_path_entry, *cert_path_error;
+    GtkWidget *key_path_label, *key_path_entry, *key_path_error;
     GtkWidget *general_error; /* ENDPOINT and any other whole-config error */
     gboolean callback_host_dirty;    /* true once the user has typed into it directly */
     gboolean updating_callback_host; /* guards the auto-follow's own programmatic set
@@ -1482,6 +1501,29 @@ static void on_callback_host_changed(GtkEditable *editable, gpointer user_data) 
     }
 }
 
+/* URL Path/Host Header apply to HTTP or HTTPS; Certificate/Key Path
+ * apply to HTTPS only - shown only when relevant to the selected type,
+ * the "conditional field sets per type" Phase 6 deferred since there
+ * was nothing to switch between yet. */
+static void on_listener_type_changed(GtkComboBox *combo, gpointer user_data) {
+    ListenerDialogState *state = user_data;
+    gint active = gtk_combo_box_get_active(combo);
+    gboolean is_http_family = active == 1 || active == 2;
+    gboolean is_https = active == 2;
+    gtk_widget_set_visible(state->url_path_label, is_http_family);
+    gtk_widget_set_visible(state->url_path_entry, is_http_family);
+    gtk_widget_set_visible(state->url_path_error, is_http_family);
+    gtk_widget_set_visible(state->host_header_label, is_http_family);
+    gtk_widget_set_visible(state->host_header_entry, is_http_family);
+    gtk_widget_set_visible(state->host_header_error, is_http_family);
+    gtk_widget_set_visible(state->cert_path_label, is_https);
+    gtk_widget_set_visible(state->cert_path_entry, is_https);
+    gtk_widget_set_visible(state->cert_path_error, is_https);
+    gtk_widget_set_visible(state->key_path_label, is_https);
+    gtk_widget_set_visible(state->key_path_entry, is_https);
+    gtk_widget_set_visible(state->key_path_error, is_https);
+}
+
 /* Non-numeric or out-of-range text both become 0, which
  * listener_config_validate() already flags as "Port must be between 1
  * and 65535" - no separate UI-side numeric check needed. */
@@ -1503,11 +1545,14 @@ static GtkWidget *error_label_for_field(ListenerDialogState *state, ListenerConf
         case LISTENER_CONFIG_FIELD_BIND_ADDRESS: return state->bind_address_error;
         case LISTENER_CONFIG_FIELD_PORT: return state->port_error;
         case LISTENER_CONFIG_FIELD_CALLBACK_HOST: return state->callback_host_error;
+        case LISTENER_CONFIG_FIELD_URL_PATH: return state->url_path_error;
+        case LISTENER_CONFIG_FIELD_HOST_HEADER: return state->host_header_error;
+        case LISTENER_CONFIG_FIELD_CERT_PATH: return state->cert_path_error;
+        case LISTENER_CONFIG_FIELD_KEY_PATH: return state->key_path_error;
         default:
-            /* TYPE/ENDPOINT/CERT_PATH/KEY_PATH: no dedicated widget in this
-             * reverse-TCP-only dialog (TYPE never fires here since it's
-             * always REVERSE_TCP; CERT_PATH/KEY_PATH never fire since
-             * HTTPS isn't reachable from this form). */
+            /* TYPE/ENDPOINT: no dedicated widget in this dialog - TYPE
+             * never fires since the combo only ever offers types
+             * validate() accepts. */
             return state->general_error;
     }
 }
@@ -1517,6 +1562,10 @@ static void clear_dialog_errors(ListenerDialogState *state) {
     gtk_label_set_text(GTK_LABEL(state->bind_address_error), "");
     gtk_label_set_text(GTK_LABEL(state->port_error), "");
     gtk_label_set_text(GTK_LABEL(state->callback_host_error), "");
+    gtk_label_set_text(GTK_LABEL(state->url_path_error), "");
+    gtk_label_set_text(GTK_LABEL(state->host_header_error), "");
+    gtk_label_set_text(GTK_LABEL(state->cert_path_error), "");
+    gtk_label_set_text(GTK_LABEL(state->key_path_error), "");
     gtk_label_set_text(GTK_LABEL(state->general_error), "");
 }
 
@@ -1533,12 +1582,24 @@ static void on_listener_dialog_response(GtkDialog *dialog, gint response_id, gpo
     state->submitting = TRUE;
     clear_dialog_errors(state);
 
+    gint active = gtk_combo_box_get_active(GTK_COMBO_BOX(state->type_combo));
+    gboolean is_http_family = active == 1 || active == 2;
+    gboolean is_https = active == 2;
+
     ListenerConfig config = {0};
     config.name = strdup(gtk_entry_get_text(GTK_ENTRY(state->name_entry)));
-    config.type = LISTENER_TYPE_REVERSE_TCP;
+    config.type = is_https ? LISTENER_TYPE_HTTPS : (is_http_family ? LISTENER_TYPE_HTTP : LISTENER_TYPE_REVERSE_TCP);
     config.bind_address = strdup(gtk_entry_get_text(GTK_ENTRY(state->bind_address_entry)));
     config.port = parse_port(gtk_entry_get_text(GTK_ENTRY(state->port_entry)));
     config.callback_host = strdup(gtk_entry_get_text(GTK_ENTRY(state->callback_host_entry)));
+    if (is_http_family) {
+        config.url_path = strdup(gtk_entry_get_text(GTK_ENTRY(state->url_path_entry)));
+        config.host_header = strdup(gtk_entry_get_text(GTK_ENTRY(state->host_header_entry)));
+    }
+    if (is_https) {
+        config.cert_path = strdup(gtk_entry_get_text(GTK_ENTRY(state->cert_path_entry)));
+        config.key_path = strdup(gtk_entry_get_text(GTK_ENTRY(state->key_path_entry)));
+    }
 
     ObjectRegistry *registry = state->backend->listener_system->registry;
     ListenerConfigValidation validation;
@@ -1550,6 +1611,10 @@ static void on_listener_dialog_response(GtkDialog *dialog, gint response_id, gpo
         free(config.name);
         free(config.bind_address);
         free(config.callback_host);
+        free(config.url_path);
+        free(config.host_header);
+        free(config.cert_path);
+        free(config.key_path);
         state->submitting = FALSE;
         return; /* leave the dialog open so the user can fix it */
     }
@@ -1563,6 +1628,10 @@ static void on_listener_dialog_response(GtkDialog *dialog, gint response_id, gpo
         free(config.name);
         free(config.bind_address);
         free(config.callback_host);
+        free(config.url_path);
+        free(config.host_header);
+        free(config.cert_path);
+        free(config.key_path);
         state->submitting = FALSE;
         return;
     }
@@ -1572,12 +1641,16 @@ static void on_listener_dialog_response(GtkDialog *dialog, gint response_id, gpo
     gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-static void add_form_row(GtkGrid *grid, int row, const char *label_text, GtkWidget *entry) {
+/* Returns the row's label widget - only URL Path/Host Header currently
+ * need it (to hide the label along with its field for non-HTTP types);
+ * every other call site just discards it. */
+static GtkWidget *add_form_row(GtkGrid *grid, int row, const char *label_text, GtkWidget *entry) {
     GtkWidget *label = gtk_label_new(label_text);
     gtk_label_set_xalign(GTK_LABEL(label), 0.0);
     gtk_grid_attach(grid, label, 0, row, 1, 1);
     gtk_grid_attach(grid, entry, 1, row, 1, 1);
     gtk_widget_set_hexpand(entry, TRUE);
+    return label;
 }
 
 static GtkWidget *add_error_row(GtkGrid *grid, int row) {
@@ -1609,13 +1682,12 @@ static void open_new_listener_dialog(GtkBackend *backend, GtkWindow *parent) {
     add_form_row(GTK_GRID(grid), row++, "Name", state->name_entry);
     state->name_error = add_error_row(GTK_GRID(grid), row++);
 
-    GtkWidget *type_label = gtk_label_new("Type");
-    gtk_label_set_xalign(GTK_LABEL(type_label), 0.0);
-    GtkWidget *type_value = gtk_label_new("Reverse TCP");
-    gtk_label_set_xalign(GTK_LABEL(type_value), 0.0);
-    gtk_grid_attach(GTK_GRID(grid), type_label, 0, row, 1, 1);
-    gtk_grid_attach(GTK_GRID(grid), type_value, 1, row, 1, 1);
-    row++;
+    state->type_combo = gtk_combo_box_text_new();
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(state->type_combo), "Reverse TCP");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(state->type_combo), "HTTP");
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(state->type_combo), "HTTPS");
+    gtk_combo_box_set_active(GTK_COMBO_BOX(state->type_combo), 0);
+    add_form_row(GTK_GRID(grid), row++, "Type", state->type_combo);
 
     state->bind_address_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(state->bind_address_entry), "0.0.0.0");
@@ -1634,6 +1706,23 @@ static void open_new_listener_dialog(GtkBackend *backend, GtkWindow *parent) {
     add_form_row(GTK_GRID(grid), row++, "Callback Host", state->callback_host_entry);
     state->callback_host_error = add_error_row(GTK_GRID(grid), row++);
 
+    state->url_path_entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(state->url_path_entry), "/");
+    state->url_path_label = add_form_row(GTK_GRID(grid), row++, "URL Path", state->url_path_entry);
+    state->url_path_error = add_error_row(GTK_GRID(grid), row++);
+
+    state->host_header_entry = gtk_entry_new();
+    state->host_header_label = add_form_row(GTK_GRID(grid), row++, "Host Header", state->host_header_entry);
+    state->host_header_error = add_error_row(GTK_GRID(grid), row++);
+
+    state->cert_path_entry = gtk_entry_new();
+    state->cert_path_label = add_form_row(GTK_GRID(grid), row++, "Certificate Path", state->cert_path_entry);
+    state->cert_path_error = add_error_row(GTK_GRID(grid), row++);
+
+    state->key_path_entry = gtk_entry_new();
+    state->key_path_label = add_form_row(GTK_GRID(grid), row++, "Private Key Path", state->key_path_entry);
+    state->key_path_error = add_error_row(GTK_GRID(grid), row++);
+
     state->general_error = gtk_label_new("");
     gtk_label_set_xalign(GTK_LABEL(state->general_error), 0.0);
     gtk_grid_attach(GTK_GRID(grid), state->general_error, 0, row, 2, 1);
@@ -1642,21 +1731,32 @@ static void open_new_listener_dialog(GtkBackend *backend, GtkWindow *parent) {
      * populating the defaults doesn't itself trigger the auto-follow. */
     g_signal_connect(state->bind_address_entry, "changed", G_CALLBACK(on_bind_address_changed), state);
     g_signal_connect(state->callback_host_entry, "changed", G_CALLBACK(on_callback_host_changed), state);
+    g_signal_connect(state->type_combo, "changed", G_CALLBACK(on_listener_type_changed), state);
     g_signal_connect(dialog, "response", G_CALLBACK(on_listener_dialog_response), state);
 
     g_object_set_data(G_OBJECT(state->name_entry), "toolbox-listener-name-entry", state->name_entry);
     g_object_set_data(G_OBJECT(state->name_error), "toolbox-listener-name-error", state->name_error);
+    g_object_set_data(G_OBJECT(state->type_combo), "toolbox-listener-type-combo", state->type_combo);
     g_object_set_data(G_OBJECT(state->bind_address_entry), "toolbox-listener-bind-address-entry",
                        state->bind_address_entry);
     g_object_set_data(G_OBJECT(state->port_entry), "toolbox-listener-port-entry", state->port_entry);
     g_object_set_data(G_OBJECT(state->callback_host_entry), "toolbox-listener-callback-host-entry",
                        state->callback_host_entry);
+    g_object_set_data(G_OBJECT(state->url_path_entry), "toolbox-listener-url-path-entry", state->url_path_entry);
+    g_object_set_data(G_OBJECT(state->host_header_entry), "toolbox-listener-host-header-entry",
+                       state->host_header_entry);
+    g_object_set_data(G_OBJECT(state->cert_path_entry), "toolbox-listener-cert-path-entry", state->cert_path_entry);
+    g_object_set_data(G_OBJECT(state->key_path_entry), "toolbox-listener-key-path-entry", state->key_path_entry);
     g_object_set_data(G_OBJECT(dialog), "toolbox-new-listener-dialog", dialog);
     /* Frees state automatically when the dialog is destroyed - same
      * ownership pattern TabLabelData uses on its event_box above. */
     g_object_set_data_full(G_OBJECT(dialog), "toolbox-listener-dialog-state", state, g_free);
 
     gtk_widget_show_all(dialog);
+    /* show_all() above forces every child visible, including the
+     * HTTP-only rows - re-sync them to the combo's actual (default
+     * Reverse TCP) selection now that showing is done. */
+    on_listener_type_changed(GTK_COMBO_BOX(state->type_combo), state);
 }
 
 static void on_new_listener_clicked(GtkButton *button, gpointer user_data) {
@@ -1671,6 +1771,15 @@ static void on_new_listener_clicked(GtkButton *button, gpointer user_data) {
  * managers, exactly like every headless test since Phase 3. */
 static gboolean on_tick(gpointer user_data) {
     GtkBackend *backend = user_data;
+    /* Window already torn down (see on_window_destroy) - nothing left to
+     * update. Every downstream function here (has_listener_tab,
+     * refresh_all_listener_tabs, refresh_all_connection_terminal_pages,
+     * refresh_object_panel, ...) dereferences backend->notebook or
+     * backend->object_panel_store unconditionally, so this one guard
+     * covers all of them instead of each needing its own. */
+    if (!backend->notebook) {
+        return G_SOURCE_CONTINUE;
+    }
 
     ListenerEvent events[32];
     int n = listener_system_pump(backend->listener_system, events, 32);
@@ -1772,14 +1881,18 @@ static GtkWidget *build_workbench_layout(GtkBackend *backend) {
 }
 
 /* gtk_window_close()/destroy can free the window's children (including
- * status_label) before the main loop actually notices the last window
- * is gone and returns from g_application_run - the 100ms tick can fire
- * in that gap. Null the pointer out here so on_tick's guard skips it
- * instead of touching freed memory. */
+ * status_label, notebook, and everything the notebook owns) before the
+ * main loop actually notices the last window is gone and returns from
+ * g_application_run - the 100ms tick can fire in that gap. Null every
+ * such pointer out here so on_tick's own guard (see there) can bail out
+ * before touching freed memory, instead of relying on each individual
+ * refresh function to separately guard against it. */
 static void on_window_destroy(GtkWidget *window, gpointer user_data) {
     (void)window;
     GtkBackend *backend = user_data;
     backend->status_label = NULL;
+    backend->notebook = NULL;
+    backend->object_panel_store = NULL;
 }
 
 static void on_activate(GtkApplication *gtk_app, gpointer user_data) {

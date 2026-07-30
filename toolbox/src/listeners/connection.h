@@ -25,6 +25,11 @@ typedef struct Connection {
     uint16_t remote_port;
     time_t connected_at;
     int socket_fd; /* the accepted connection socket; -1 if none (e.g. in tests that never opened a real one) */
+    void *tls;     /* NULL for a plain (reverse-TCP/HTTP) connection; an SSL* for an HTTPS
+                     * one, opaque here so this header never needs to know OpenSSL exists.
+                     * A pass-through only - connection_worker.c (the sole owner while a
+                     * worker thread is doing I/O with it) frees it, never this registry;
+                     * see connection_worker.c's own comment for why. */
     TerminalHistory *history; /* everything received; retained even after DISCONNECTED */
 } Connection;
 

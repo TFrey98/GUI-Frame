@@ -1,5 +1,6 @@
 #include "connection_manager.h"
 
+#include <openssl/ssl.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -115,8 +116,12 @@ int connection_manager_start_worker(ConnectionManager *manager, uint64_t connect
         return -1;
     }
     int socket_fd = connection->socket_fd;
+    void *tls = connection->tls;
 
     if (manager->worker_count >= CONNECTION_MANAGER_MAX_WORKERS) {
+        if (tls) {
+            SSL_free((SSL *)tls);
+        }
         close(socket_fd);
         connection_manager_handle_closed(manager, connection_id);
         push_connection_closed(manager, connection_id);
@@ -124,8 +129,12 @@ int connection_manager_start_worker(ConnectionManager *manager, uint64_t connect
     }
 
     ConnectionWorker worker;
-    if (connection_worker_start(&worker, manager->events, connection_id, socket_fd) != 0) {
-        close(socket_fd); /* ownership was never transferred since start failed */
+    if (connection_worker_start(&worker, manager->events, connection_id, socket_fd, tls) != 0) {
+        /* ownership was never transferred since start failed */
+        if (tls) {
+            SSL_free((SSL *)tls);
+        }
+        close(socket_fd);
         connection_manager_handle_closed(manager, connection_id);
         push_connection_closed(manager, connection_id);
         return -1;

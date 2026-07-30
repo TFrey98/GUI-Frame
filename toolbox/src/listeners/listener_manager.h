@@ -18,6 +18,8 @@ typedef enum ListenerConfigField {
     LISTENER_CONFIG_FIELD_CALLBACK_HOST,
     LISTENER_CONFIG_FIELD_CERT_PATH,
     LISTENER_CONFIG_FIELD_KEY_PATH,
+    LISTENER_CONFIG_FIELD_URL_PATH,
+    LISTENER_CONFIG_FIELD_HOST_HEADER,
     LISTENER_CONFIG_FIELD_ENDPOINT, /* whole-config uniqueness, not one input field */
 } ListenerConfigField;
 

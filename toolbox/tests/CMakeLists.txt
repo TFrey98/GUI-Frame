@@ -58,6 +58,12 @@ target_link_libraries(connection_terminal_smoke PRIVATE toolbox_core)
 add_executable(context_menu_smoke context_menu_smoke.c)
 target_link_libraries(context_menu_smoke PRIVATE toolbox_core)
 
+add_executable(http_listener_smoke http_listener_smoke.c)
+target_link_libraries(http_listener_smoke PRIVATE toolbox_core)
+
+add_executable(https_listener_smoke https_listener_smoke.c)
+target_link_libraries(https_listener_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -117,3 +123,9 @@ set_tests_properties(connection_terminal_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME context_menu_smoke COMMAND context_menu_smoke)
 set_tests_properties(context_menu_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME http_listener_smoke COMMAND http_listener_smoke)
+set_tests_properties(http_listener_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME https_listener_smoke COMMAND https_listener_smoke)
+set_tests_properties(https_listener_smoke PROPERTIES TIMEOUT 30)

@@ -84,7 +84,7 @@ CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/strings.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/object_predicates.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/http_worker.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/tcp_worker.h \
  /usr/include/pthread.h /usr/include/sched.h \
  /usr/include/x86_64-linux-gnu/bits/sched.h \
@@ -93,4 +93,6 @@ CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: \
  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
- /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h
+ /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/https_worker.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/object_predicates.h

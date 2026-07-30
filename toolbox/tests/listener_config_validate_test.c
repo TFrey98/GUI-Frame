@@ -31,6 +31,8 @@ static void free_config(ListenerConfig *config) {
     free(config->callback_host);
     free(config->cert_path);
     free(config->key_path);
+    free(config->url_path);
+    free(config->host_header);
 }
 
 static bool has_field(const ListenerConfigValidation *validation, ListenerConfigField field) {
@@ -60,7 +62,10 @@ int main(void) {
     }
 
     {
-        ListenerConfig config = make_config("", LISTENER_TYPE_HTTP, "not-an-ip", 0, "0.0.0.0", NULL, NULL);
+        /* All three real ListenerTypes are valid as of the HTTPS
+         * provider phase - an out-of-range value stands in for
+         * "unsupported type" to still exercise that check. */
+        ListenerConfig config = make_config("", (ListenerType)99, "not-an-ip", 0, "0.0.0.0", NULL, NULL);
         ListenerConfigValidation validation;
         bool ok = listener_config_validate(registry, &config, &validation);
         if (ok) {
@@ -92,6 +97,46 @@ int main(void) {
         }
         if (!has_field(&validation, LISTENER_CONFIG_FIELD_KEY_PATH)) {
             fprintf(stderr, "listener_config_validate_test: expected missing key_path to be flagged\n");
+            status = 1;
+        }
+        free_config(&config);
+    }
+
+    {
+        /* url_path/host_header aren't in make_config()'s signature (only
+         * cert_path/key_path are, from when HTTPS validation was built
+         * ahead of the provider itself) - set directly. */
+        ListenerConfig config = make_config("Http", LISTENER_TYPE_HTTP, "0.0.0.0", 8080, "203.0.113.1", NULL, NULL);
+        ListenerConfigValidation validation;
+        listener_config_validate(registry, &config, &validation);
+        if (!has_field(&validation, LISTENER_CONFIG_FIELD_URL_PATH)) {
+            fprintf(stderr, "listener_config_validate_test: expected missing url_path to be flagged\n");
+            status = 1;
+        }
+        free_config(&config);
+    }
+
+    {
+        ListenerConfig config = make_config("Http2", LISTENER_TYPE_HTTP, "0.0.0.0", 8081, "203.0.113.1", NULL, NULL);
+        config.url_path = strdup("no-leading-slash");
+        ListenerConfigValidation validation;
+        listener_config_validate(registry, &config, &validation);
+        if (!has_field(&validation, LISTENER_CONFIG_FIELD_URL_PATH)) {
+            fprintf(stderr, "listener_config_validate_test: expected a url_path without a leading / to be flagged\n");
+            status = 1;
+        }
+        free_config(&config);
+    }
+
+    {
+        /* host_header left blank (unset) - optional, should not be flagged. */
+        ListenerConfig config = make_config("Http3", LISTENER_TYPE_HTTP, "0.0.0.0", 8082, "203.0.113.1", NULL, NULL);
+        config.url_path = strdup("/checkin");
+        ListenerConfigValidation validation;
+        bool ok = listener_config_validate(registry, &config, &validation);
+        if (!ok) {
+            fprintf(stderr,
+                    "listener_config_validate_test: expected a valid HTTP config with a blank host_header to pass\n");
             status = 1;
         }
         free_config(&config);

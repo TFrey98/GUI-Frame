@@ -17,6 +17,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.c" "CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_worker.c" "CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/event_queue.c" "CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/http_worker.c" "CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/https_worker.c" "CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_manager.c" "CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_system.c" "CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/managed_object.c" "CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o.d"

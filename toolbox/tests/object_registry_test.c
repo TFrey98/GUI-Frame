@@ -46,9 +46,9 @@ int main(void) {
         status = 1;
     }
 
-    uint64_t conn_a1 = object_registry_add_connection(registry, listener_a, "198.51.100.10", 51000, -1);
-    uint64_t conn_a2 = object_registry_add_connection(registry, listener_a, "198.51.100.11", 51001, -1);
-    uint64_t conn_b1 = object_registry_add_connection(registry, listener_b, "198.51.100.12", 51002, -1);
+    uint64_t conn_a1 = object_registry_add_connection(registry, listener_a, "198.51.100.10", 51000, -1, NULL);
+    uint64_t conn_a2 = object_registry_add_connection(registry, listener_a, "198.51.100.11", 51001, -1, NULL);
+    uint64_t conn_b1 = object_registry_add_connection(registry, listener_b, "198.51.100.12", 51002, -1, NULL);
 
     if (conn_a1 == 0 || conn_a2 == 0 || conn_b1 == 0 || conn_a1 == listener_a || conn_a1 == listener_b ||
         conn_a1 == listener_c) {

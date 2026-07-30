@@ -35,6 +35,10 @@ typedef struct ListenerEvent {
      * the field). */
     char remote_host[64];
     uint16_t remote_port;
+    void *tls; /* CONNECTION_OPENED only - NULL unless the accepting listener was
+                * HTTPS, in which case this is the handshake-completed SSL* crossing
+                * from the listener's worker thread to the GUI thread's event
+                * processing, opaque here for the same reason connection.h's is. */
 } ListenerEvent;
 
 #endif /* TOOLBOX_LISTENER_EVENT_H */

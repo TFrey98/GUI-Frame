@@ -2,6 +2,7 @@
 
 #include <errno.h>
 #include <fcntl.h>
+#include <openssl/ssl.h>
 #include <poll.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -12,16 +13,85 @@
 /* Heap-allocated, handed to the worker thread and freed by that same
  * thread right before it returns. outgoing/incoming/stop_requested are
  * borrowed - owned by the caller's ConnectionWorker (which outlives
- * this thread), not by this struct. */
+ * this thread), not by this struct. tls, like socket_fd, IS owned by
+ * this struct/thread - see connection_worker.h's comment. */
 typedef struct WorkerArgs {
     EventQueue *events;
     uint64_t connection_id;
     int socket_fd;
+    void *tls; /* NULL for a plain connection; an SSL* for an HTTPS one */
     int wake_pipe_read_fd;
     ByteBuffer *outgoing;
     ByteBuffer *incoming;
     atomic_bool *stop_requested;
 } WorkerArgs;
+
+/* Unifies the plain-socket EAGAIN/EWOULDBLOCK case with TLS's
+ * SSL_ERROR_WANT_READ/WANT_WRITE - both mean "not ready yet, not an
+ * error, not EOF, just try again once poll() says so." socket_fd is
+ * blocking (never switched to O_NONBLOCK anywhere in this project), so
+ * a plain read() only reaches this function after poll() already said
+ * POLLIN, meaning it won't actually block; WANT_READ/WANT_WRITE on the
+ * TLS side is likewise expected to be rare on a blocking fd but is
+ * still handled correctly rather than assumed away, since a TLS
+ * record can legitimately need more bytes than happened to arrive in
+ * one read. Returns bytes read (>0) on success; 0 with *would_block
+ * left false on real EOF/error (caller should treat the connection as
+ * done); 0 with *would_block set to true if the call should just be
+ * retried next time this fd is ready. */
+static ssize_t socket_read(int fd, void *tls, void *buf, size_t len, bool *would_block) {
+    *would_block = false;
+    if (tls) {
+        SSL *ssl = tls;
+        int n = SSL_read(ssl, buf, (int)len);
+        if (n > 0) {
+            return n;
+        }
+        int err = SSL_get_error(ssl, n);
+        if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
+            *would_block = true;
+        }
+        return 0;
+    }
+    ssize_t n = read(fd, buf, len);
+    if (n > 0) {
+        return n;
+    }
+    if (n < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
+        *would_block = true;
+    }
+    return 0;
+}
+
+/* TLS/plain-socket twin of socket_read() for the write path. Returns
+ * bytes written (>0) on success; 0 with *would_block set to true if
+ * the call should be retried next time this fd is write-ready; -1 on a
+ * real error. */
+static ssize_t socket_write(int fd, void *tls, const void *buf, size_t len, bool *would_block) {
+    *would_block = false;
+    if (tls) {
+        SSL *ssl = tls;
+        int n = SSL_write(ssl, buf, (int)len);
+        if (n > 0) {
+            return n;
+        }
+        int err = SSL_get_error(ssl, n);
+        if (err == SSL_ERROR_WANT_READ || err == SSL_ERROR_WANT_WRITE) {
+            *would_block = true;
+            return 0;
+        }
+        return -1;
+    }
+    ssize_t n = write(fd, buf, len);
+    if (n < 0) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            *would_block = true;
+            return 0;
+        }
+        return -1;
+    }
+    return n;
+}
 
 static void *connection_worker_main(void *arg) {
     WorkerArgs *args = arg;
@@ -66,11 +136,12 @@ static void *connection_worker_main(void *arg) {
         }
 
         if (fds[0].revents & POLLIN) {
-            ssize_t n = read(args->socket_fd, read_buf, sizeof(read_buf));
+            bool would_block = false;
+            ssize_t n = socket_read(args->socket_fd, args->tls, read_buf, sizeof(read_buf), &would_block);
             if (n > 0) {
                 byte_buffer_append(args->incoming, read_buf, (size_t)n);
-            } else {
-                break; /* n == 0: EOF; n < 0: error - either way, the connection is done */
+            } else if (!would_block) {
+                break; /* real EOF or error - either way, the connection is done */
             }
         }
 
@@ -80,11 +151,10 @@ static void *connection_worker_main(void *arg) {
              * drops the un-sent remainder. */
             size_t n = byte_buffer_peek(args->outgoing, write_buf, sizeof(write_buf));
             if (n > 0) {
-                ssize_t written = write(args->socket_fd, write_buf, n);
+                bool would_block = false;
+                ssize_t written = socket_write(args->socket_fd, args->tls, write_buf, n, &would_block);
                 if (written < 0) {
-                    if (errno != EAGAIN && errno != EWOULDBLOCK) {
-                        break;
-                    }
+                    break; /* real error */
                 } else if (written > 0) {
                     byte_buffer_discard(args->outgoing, (size_t)written);
                 }
@@ -92,6 +162,9 @@ static void *connection_worker_main(void *arg) {
         }
     }
 
+    if (args->tls) {
+        SSL_free((SSL *)args->tls);
+    }
     close(args->socket_fd);
     close(args->wake_pipe_read_fd);
 
@@ -104,7 +177,8 @@ static void *connection_worker_main(void *arg) {
     return NULL;
 }
 
-int connection_worker_start(ConnectionWorker *out, EventQueue *events, uint64_t connection_id, int socket_fd) {
+int connection_worker_start(ConnectionWorker *out, EventQueue *events, uint64_t connection_id, int socket_fd,
+                             void *tls) {
     int pipe_fds[2];
     if (pipe(pipe_fds) != 0) {
         return -1;
@@ -125,6 +199,7 @@ int connection_worker_start(ConnectionWorker *out, EventQueue *events, uint64_t 
     args->events = events;
     args->connection_id = connection_id;
     args->socket_fd = socket_fd;
+    args->tls = tls;
     args->wake_pipe_read_fd = pipe_fds[0];
     args->outgoing = outgoing;
     args->incoming = incoming;

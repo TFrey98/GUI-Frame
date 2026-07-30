@@ -25,16 +25,21 @@ typedef struct ConnectionWorker {
 } ConnectionWorker;
 
 /* Spawns the worker thread immediately, taking ownership of socket_fd
- * (the worker closes it on exit). Pushes LISTENER_EVENT_CONNECTION_CLOSED
- * for connection_id once the connection ends, for any reason (remote
- * EOF, a local error, or being told to stop).
+ * (the worker closes it on exit) and of tls (NULL for a plain
+ * connection; an already handshake-completed SSL* for an HTTPS one -
+ * the worker SSL_free()s it on exit, alongside closing socket_fd; see
+ * connection.h's comment on Connection.tls for the full ownership
+ * story). Pushes LISTENER_EVENT_CONNECTION_CLOSED for connection_id
+ * once the connection ends, for any reason (remote EOF, a local error,
+ * or being told to stop).
  *
  * Returns 0 on success (out is filled in), -1 if the thread/pipe
  * couldn't even be created (out is left untouched - the caller should
  * synthesize its own CONNECTION_CLOSED, since no thread exists to
- * report one; socket_fd is NOT closed in this failure case, since
- * ownership was never actually transferred). */
-int connection_worker_start(ConnectionWorker *out, EventQueue *events, uint64_t connection_id, int socket_fd);
+ * report one; socket_fd/tls are NOT closed/freed in this failure case,
+ * since ownership was never actually transferred). */
+int connection_worker_start(ConnectionWorker *out, EventQueue *events, uint64_t connection_id, int socket_fd,
+                             void *tls);
 
 /* Wakes the worker's poll() without requesting a stop - call after
  * appending new data to worker->outgoing. */

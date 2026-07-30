@@ -13,6 +13,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED gtk+-3.0)
 pkg_check_modules(VTE REQUIRED vte-2.91)
 pkg_check_modules(SQLITE3 REQUIRED sqlite3)
+pkg_check_modules(OPENSSL REQUIRED openssl)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -33,6 +34,8 @@ add_library(toolbox_core STATIC
     src/listeners/object_registry.c
     src/listeners/listener_manager.c
     src/listeners/tcp_worker.c
+    src/listeners/http_worker.c
+    src/listeners/https_worker.c
     src/listeners/terminal_history.c
     src/listeners/connection_worker.c
     src/listeners/connection_manager.c
@@ -53,6 +56,7 @@ target_include_directories(toolbox_core PUBLIC
     ${GTK_INCLUDE_DIRS}
     ${VTE_INCLUDE_DIRS}
     ${SQLITE3_INCLUDE_DIRS}
+    ${OPENSSL_INCLUDE_DIRS}
 )
 
 target_compile_options(toolbox_core PUBLIC
@@ -66,6 +70,7 @@ target_link_libraries(toolbox_core PUBLIC
     ${GTK_LIBRARIES}
     ${VTE_LIBRARIES}
     ${SQLITE3_LIBRARIES}
+    ${OPENSSL_LIBRARIES}
     Threads::Threads
 )
 

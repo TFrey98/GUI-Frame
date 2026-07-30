@@ -358,6 +358,15 @@ CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: ../src/listene
   ../src/listeners/connection.h \
   ../src/listeners/terminal_history.h \
   ../src/listeners/listener.h \
+  /usr/include/openssl/ssl.h \
+  /usr/include/openssl/macros.h \
+  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+  /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/e_os2.h \
+  /usr/include/inttypes.h \
+  /usr/include/openssl/comp.h \
+  /usr/include/openssl/crypto.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -380,6 +389,94 @@ CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: ../src/listene
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/openssl/safestack.h \
+  /usr/include/openssl/stack.h \
+  /usr/include/openssl/types.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/openssl/cryptoerr.h \
+  /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/cryptoerr_legacy.h \
+  /usr/include/openssl/core.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/openssl/comperr.h \
+  /usr/include/openssl/bio.h \
+  /usr/include/openssl/bioerr.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/evp.h \
+  /usr/include/openssl/core_dispatch.h \
+  /usr/include/openssl/evperr.h \
+  /usr/include/openssl/params.h \
+  /usr/include/openssl/bn.h \
+  /usr/include/openssl/bnerr.h \
+  /usr/include/openssl/objects.h \
+  /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h \
+  /usr/include/openssl/asn1err.h \
+  /usr/include/openssl/objectserr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/hmac.h \
+  /usr/include/openssl/async.h \
+  /usr/include/openssl/asyncerr.h \
+  /usr/include/openssl/ct.h \
+  /usr/include/openssl/cterr.h \
+  /usr/include/openssl/sslerr.h \
+  /usr/include/openssl/sslerr_legacy.h \
+  /usr/include/openssl/prov_ssl.h \
+  /usr/include/openssl/ssl2.h \
+  /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h \
+  /usr/include/openssl/srtp.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -388,15 +485,6 @@ CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o: ../src/listene
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   ../src/listeners/connection_worker.h \
-  /usr/include/pthread.h \
-  /usr/include/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/sched.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
-  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
-  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
-  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
-  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
   /usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h \
   ../src/listeners/byte_buffer.h \
   ../src/listeners/object_predicates.h \
@@ -467,10 +555,15 @@ CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: ../src/listener
   /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
-  /usr/include/poll.h \
-  /usr/include/x86_64-linux-gnu/sys/poll.h \
-  /usr/include/x86_64-linux-gnu/bits/poll.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/openssl/ssl.h \
+  /usr/include/openssl/macros.h \
+  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+  /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/e_os2.h \
+  /usr/include/inttypes.h \
+  /usr/include/openssl/comp.h \
+  /usr/include/openssl/crypto.h \
   /usr/include/stdlib.h \
   /usr/include/x86_64-linux-gnu/bits/waitflags.h \
   /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
@@ -486,6 +579,89 @@ CMakeFiles/toolbox_core.dir/src/listeners/connection_worker.c.o: ../src/listener
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/openssl/safestack.h \
+  /usr/include/openssl/stack.h \
+  /usr/include/openssl/types.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/openssl/cryptoerr.h \
+  /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/cryptoerr_legacy.h \
+  /usr/include/openssl/core.h \
+  /usr/include/openssl/comperr.h \
+  /usr/include/openssl/bio.h \
+  /usr/include/openssl/bioerr.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/evp.h \
+  /usr/include/openssl/core_dispatch.h \
+  /usr/include/openssl/evperr.h \
+  /usr/include/openssl/params.h \
+  /usr/include/openssl/bn.h \
+  /usr/include/openssl/bnerr.h \
+  /usr/include/openssl/objects.h \
+  /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h \
+  /usr/include/openssl/asn1err.h \
+  /usr/include/openssl/objectserr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/hmac.h \
+  /usr/include/openssl/async.h \
+  /usr/include/openssl/asyncerr.h \
+  /usr/include/openssl/ct.h \
+  /usr/include/openssl/cterr.h \
+  /usr/include/openssl/sslerr.h \
+  /usr/include/openssl/sslerr_legacy.h \
+  /usr/include/openssl/prov_ssl.h \
+  /usr/include/openssl/ssl2.h \
+  /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h \
+  /usr/include/openssl/srtp.h \
+  /usr/include/poll.h \
+  /usr/include/x86_64-linux-gnu/sys/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -560,6 +736,319 @@ CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.o: ../src/listeners/even
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.o: ../src/listeners/http_worker.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/http_worker.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/tcp_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/x86_64-linux-gnu/sys/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+  /usr/include/x86_64-linux-gnu/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/x86_64-linux-gnu/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/ctype.h \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/poll.h \
+  /usr/include/x86_64-linux-gnu/sys/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+
+CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.o: ../src/listeners/https_worker.c \
+  /usr/include/stdc-predef.h \
+  ../src/listeners/https_worker.h \
+  ../src/listeners/event_queue.h \
+  ../src/listeners/listener_event.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h \
+  /usr/include/stdint.h \
+  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/features.h \
+  /usr/include/features-time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+  /usr/include/x86_64-linux-gnu/bits/timesize.h \
+  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+  /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+  /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+  /usr/include/x86_64-linux-gnu/bits/time64.h \
+  /usr/include/x86_64-linux-gnu/bits/wchar.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/time.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+  /usr/include/x86_64-linux-gnu/bits/time.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
+  /usr/include/x86_64-linux-gnu/bits/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/endianness.h \
+  /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/timer_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
+  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+  ../src/listeners/tcp_worker.h \
+  /usr/include/pthread.h \
+  /usr/include/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/sched.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/cpu-set.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
+  /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h \
+  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
+  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
+  /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/x86_64-linux-gnu/sys/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/endian.h \
+  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
+  /usr/include/x86_64-linux-gnu/bits/uintn-identity.h \
+  /usr/include/x86_64-linux-gnu/sys/select.h \
+  /usr/include/x86_64-linux-gnu/bits/select.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
+  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+  /usr/include/x86_64-linux-gnu/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/x86_64-linux-gnu/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/ctype.h \
+  /usr/include/errno.h \
+  /usr/include/x86_64-linux-gnu/bits/errno.h \
+  /usr/include/linux/errno.h \
+  /usr/include/x86_64-linux-gnu/asm/errno.h \
+  /usr/include/asm-generic/errno.h \
+  /usr/include/asm-generic/errno-base.h \
+  /usr/include/openssl/ssl.h \
+  /usr/include/openssl/macros.h \
+  /usr/include/x86_64-linux-gnu/openssl/opensslconf.h \
+  /usr/include/x86_64-linux-gnu/openssl/configuration.h \
+  /usr/include/openssl/opensslv.h \
+  /usr/include/openssl/e_os2.h \
+  /usr/include/inttypes.h \
+  /usr/include/openssl/comp.h \
+  /usr/include/openssl/crypto.h \
+  /usr/include/stdlib.h \
+  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+  /usr/include/alloca.h \
+  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/include/stdio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+  /usr/include/openssl/safestack.h \
+  /usr/include/openssl/stack.h \
+  /usr/include/openssl/types.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
+  /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/openssl/cryptoerr.h \
+  /usr/include/openssl/symhacks.h \
+  /usr/include/openssl/cryptoerr_legacy.h \
+  /usr/include/openssl/core.h \
+  /usr/include/openssl/comperr.h \
+  /usr/include/openssl/bio.h \
+  /usr/include/openssl/bioerr.h \
+  /usr/include/openssl/x509.h \
+  /usr/include/openssl/buffer.h \
+  /usr/include/openssl/buffererr.h \
+  /usr/include/openssl/evp.h \
+  /usr/include/openssl/core_dispatch.h \
+  /usr/include/openssl/evperr.h \
+  /usr/include/openssl/params.h \
+  /usr/include/openssl/bn.h \
+  /usr/include/openssl/bnerr.h \
+  /usr/include/openssl/objects.h \
+  /usr/include/openssl/obj_mac.h \
+  /usr/include/openssl/asn1.h \
+  /usr/include/openssl/asn1err.h \
+  /usr/include/openssl/objectserr.h \
+  /usr/include/openssl/ec.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/openssl/ecerr.h \
+  /usr/include/openssl/rsa.h \
+  /usr/include/openssl/rsaerr.h \
+  /usr/include/openssl/dsa.h \
+  /usr/include/openssl/dh.h \
+  /usr/include/openssl/dherr.h \
+  /usr/include/openssl/dsaerr.h \
+  /usr/include/openssl/sha.h \
+  /usr/include/openssl/x509err.h \
+  /usr/include/openssl/x509_vfy.h \
+  /usr/include/openssl/lhash.h \
+  /usr/include/openssl/pkcs7.h \
+  /usr/include/openssl/pkcs7err.h \
+  /usr/include/openssl/ocsp.h \
+  /usr/include/openssl/http.h \
+  /usr/include/openssl/conf.h \
+  /usr/include/openssl/conferr.h \
+  /usr/include/openssl/conftypes.h \
+  /usr/include/openssl/x509v3.h \
+  /usr/include/openssl/x509v3err.h \
+  /usr/include/openssl/ocsperr.h \
+  /usr/include/openssl/pem.h \
+  /usr/include/openssl/pemerr.h \
+  /usr/include/openssl/hmac.h \
+  /usr/include/openssl/async.h \
+  /usr/include/openssl/asyncerr.h \
+  /usr/include/openssl/ct.h \
+  /usr/include/openssl/cterr.h \
+  /usr/include/openssl/sslerr.h \
+  /usr/include/openssl/sslerr_legacy.h \
+  /usr/include/openssl/prov_ssl.h \
+  /usr/include/openssl/ssl2.h \
+  /usr/include/openssl/ssl3.h \
+  /usr/include/openssl/tls1.h \
+  /usr/include/openssl/dtls1.h \
+  /usr/include/openssl/srtp.h \
+  /usr/include/poll.h \
+  /usr/include/x86_64-linux-gnu/sys/poll.h \
+  /usr/include/x86_64-linux-gnu/bits/poll.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/include/unistd.h \
+  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+  /usr/include/x86_64-linux-gnu/bits/environments.h \
+  /usr/include/x86_64-linux-gnu/bits/confname.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
 
 CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: ../src/listeners/listener_manager.c \
   /usr/include/stdc-predef.h \
@@ -656,7 +1145,7 @@ CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: ../src/listeners
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/string.h \
   /usr/include/strings.h \
-  ../src/listeners/object_predicates.h \
+  ../src/listeners/http_worker.h \
   ../src/listeners/tcp_worker.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
@@ -666,7 +1155,9 @@ CMakeFiles/toolbox_core.dir/src/listeners/listener_manager.c.o: ../src/listeners
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
-  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h
+  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
+  ../src/listeners/https_worker.h \
+  ../src/listeners/object_predicates.h
 
 CMakeFiles/toolbox_core.dir/src/listeners/listener_system.c.o: ../src/listeners/listener_system.c \
   /usr/include/stdc-predef.h \
@@ -2820,8 +3311,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 ../src/terminal/terminal.h:
 
-/usr/include/vte-2.91/vte/vteversion.h:
-
 /usr/include/vte-2.91/vte/vtetypebuiltins-gtk3.h:
 
 /usr/include/vte-2.91/vte/vteregex.h:
@@ -2856,8 +3345,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkfontsel.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkcolorseldialog.h:
-
 /usr/include/gtk-3.0/gtk/deprecated/gtkalignment.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkactiongroup.h:
@@ -2888,8 +3375,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtktexttagtable.h:
 
-/usr/include/gtk-3.0/gtk/gtkswitch.h:
-
 /usr/include/gtk-3.0/gtk/gtkstackswitcher.h:
 
 /usr/include/gtk-3.0/gtk/gtkspinner.h:
@@ -2902,15 +3387,11 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkseparator.h:
 
-/usr/include/gtk-3.0/gtk/gtksearchentry.h:
-
 /usr/include/gtk-3.0/gtk/gtksearchbar.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkaction.h:
 
 /usr/include/gtk-3.0/gtk/gtkscrolledwindow.h:
-
-/usr/include/gtk-3.0/gtk/gtkscrollbar.h:
 
 /usr/include/gtk-3.0/gtk/gtkrevealer.h:
 
@@ -2933,10 +3414,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkprintoperation.h:
 
 /usr/include/gtk-3.0/gtk/gtkprintcontext.h:
-
-/usr/include/gtk-3.0/gtk/gtkprintoperationpreview.h:
-
-/usr/include/gtk-3.0/gtk/gtkpopovermenu.h:
 
 /usr/include/gtk-3.0/gtk/gtkpaned.h:
 
@@ -2961,8 +3438,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkmenubar.h:
 
 /usr/include/gtk-3.0/gtk/gtkmain.h:
-
-/usr/include/gtk-3.0/gtk/gtklinkbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtklayout.h:
 
@@ -3026,8 +3501,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkdebug.h:
 
-/usr/include/gtk-3.0/gtk/gtkcomboboxtext.h:
-
 /usr/include/gtk-3.0/gtk/gtkcolorutils.h:
 
 /usr/include/gtk-3.0/gtk/gtkcolorchooserdialog.h:
@@ -3035,10 +3508,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkfilefilter.h:
 
 /usr/include/gtk-3.0/gtk/gtkcolorchooser.h:
-
-/usr/include/gtk-3.0/gtk/gtkfilechooserwidget.h:
-
-/usr/include/gtk-3.0/gtk/gtkcolorbutton.h:
 
 /usr/include/gtk-3.0/gtk/gtkmenuitem.h:
 
@@ -3073,8 +3542,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkassistant.h:
 
 /usr/include/gtk-3.0/gtk/gtkaspectframe.h:
-
-/usr/include/gtk-3.0/gtk/gtkshortcutswindow.h:
 
 /usr/include/gtk-3.0/gtk/gtkapplicationwindow.h:
 
@@ -3119,8 +3586,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/gtk-3.0/gtk/gtkactionbar.h:
 
 /usr/include/gtk-3.0/gtk/gtkmenushell.h:
-
-/usr/include/gtk-3.0/gtk/gtkmenu.h:
 
 /usr/include/gtk-3.0/gtk/gtksizerequest.h:
 
@@ -3186,10 +3651,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkaboutdialog.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
-
-/usr/include/gtk-3.0/gdk/gdk-autocleanup.h:
-
 /usr/include/gtk-3.0/gtk/gtkmodules.h:
 
 /usr/include/gtk-3.0/gdk/gdkvisual.h:
@@ -3200,199 +3661,147 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gdk/gdktestutils.h:
 
-/usr/include/glib-2.0/glib/gstrvbuilder.h:
-
-/usr/include/atk-1.0/atk/atkaction.h:
-
-/usr/include/glib-2.0/gio/gloadableicon.h:
-
-/usr/include/glib-2.0/glib/gstringchunk.h:
-
-/usr/include/glib-2.0/gio/glistmodel.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/glib-2.0/glib/gsequence.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h:
-
-/usr/include/pthread.h:
-
-/usr/include/gtk-3.0/gtk/gtkpopover.h:
-
-/usr/include/glib-2.0/glib/gscanner.h:
-
-/usr/include/gtk-3.0/gtk/gtkgesturerotate.h:
-
-/usr/include/netinet/in.h:
-
-/usr/include/glib-2.0/glib/gqsort.h:
-
-/usr/include/glib-2.0/gio/gzlibdecompressor.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkhandlebox.h:
-
-/usr/include/glib-2.0/glib/goption.h:
-
-/usr/include/glib-2.0/glib/gvarianttype.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
-
-/usr/include/glib-2.0/glib/gslist.h:
-
-/usr/include/glib-2.0/glib/gmain.h:
-
-/usr/include/glib-2.0/glib/gmem.h:
-
-/usr/include/gtk-3.0/gtk/gtktextmark.h:
-
-/usr/include/glib-2.0/gio/gremoteactiongroup.h:
-
-/usr/include/glib-2.0/glib/ghook.h:
-
-/usr/include/glib-2.0/gio/gsettingsschema.h:
-
-/usr/include/gtk-3.0/gtk/gtkcssprovider.h:
-
-/usr/include/glib-2.0/glib/ghmac.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
-
-/usr/include/glib-2.0/gio/gio-autocleanups.h:
-
-/usr/include/glib-2.0/glib/gprimes.h:
-
-/usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h:
-
-/usr/include/glib-2.0/glib/gnode.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/glib-2.0/glib/genviron.h:
-
-/usr/include/gtk-3.0/gtk/gtkcsssection.h:
-
-/usr/include/x86_64-linux-gnu/bits/dirent_ext.h:
-
-/usr/include/gtk-3.0/gtk/gtkbin.h:
-
-/usr/include/x86_64-linux-gnu/bits/local_lim.h:
-
-/usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h:
-
-/usr/include/x86_64-linux-gnu/bits/dirent.h:
-
-/usr/include/vte-2.91/vte/vtetypebuiltins.h:
-
-/usr/include/vte-2.91/vte/vte.h:
-
-/usr/include/glib-2.0/glib/grand.h:
-
-/usr/include/pango-1.0/pango/pango-gravity.h:
-
-../src/listeners/terminal_history.c:
-
-/usr/include/vte-2.91/vte/vtedeprecated.h:
-
-../src/listeners/object_registry.h:
-
-/usr/include/glib-2.0/glib/gconvert.h:
-
-/usr/include/glib-2.0/glib/gchecksum.h:
-
-/usr/include/gtk-3.0/gtk/gtktoolpalette.h:
-
-/usr/include/glib-2.0/glib/gbookmarkfile.h:
-
-/usr/include/glib-2.0/glib/gdatetime.h:
-
-/usr/include/gtk-3.0/gdk/gdkcairo.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigthread.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
-
-../src/tools/toolkit_index.h:
-
-/usr/include/glib-2.0/gobject/gvaluearray.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
-
-/usr/include/gtk-3.0/gtk/gtkgesturesingle.h:
-
-/usr/include/atk-1.0/atk/atkhyperlinkimpl.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
-
-/usr/include/glib-2.0/gio/giostream.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
-
-/usr/include/glib-2.0/gio/gfilteroutputstream.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkhpaned.h:
-
-/usr/include/gtk-3.0/gtk/gtkstacksidebar.h:
-
-/usr/include/glib-2.0/glib/ghostutils.h:
-
-/usr/include/glib-2.0/gio/gdebugcontroller.h:
-
-/usr/include/pango-1.0/pango/pango-context.h:
-
-/usr/include/gtk-3.0/gtk/gtkaccelmap.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
-
-/usr/include/glib-2.0/glib/gstrfuncs.h:
-
-/usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
-
-/usr/include/glib-2.0/glib/gpattern.h:
-
-/usr/include/gtk-3.0/gtk/gtkrange.h:
-
-/usr/include/gtk-3.0/gtk/gtkinfobar.h:
-
-../src/listeners/object_registry.c:
-
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
-../src/listeners/terminal_history.h:
-
-/usr/include/gtk-3.0/gtk/gtkeventcontrollerscroll.h:
-
-/usr/include/glib-2.0/glib/gstring.h:
-
-/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+/usr/include/gtk-3.0/gdk/gdkdevicepad.h:
 
 /usr/include/gtk-3.0/gtk/gtkradiotoolbutton.h:
 
 /usr/include/gtk-3.0/gdk/gdkcursor.h:
 
-/usr/include/glib-2.0/glib/gthread.h:
+/usr/include/pango-1.0/pango/pangocairo.h:
 
-/usr/include/gtk-3.0/gtk/gtktoolitem.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h:
 
-/usr/include/gtk-3.0/gtk/gtkspinbutton.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h:
 
-/usr/include/glib-2.0/glib/gversionmacros.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h:
 
-/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h:
 
-/usr/include/glib-2.0/glib/ghash.h:
+/usr/include/gtk-3.0/gtk/gtkappchooserwidget.h:
 
-/usr/include/limits.h:
+/usr/include/atk-1.0/atk/atksocket.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h:
+
+/usr/include/gtk-3.0/gtk/gtksizegroup.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-macros.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h:
+
+/usr/include/gtk-3.0/gtk/gtklistbox.h:
+
+/usr/include/gtk-3.0/gdk/gdkrgba.h:
+
+/usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
+
+/usr/include/gtk-3.0/gdk/gdkcairo.h:
+
+/usr/include/gtk-3.0/gdk/gdkrectangle.h:
+
+/usr/include/gtk-3.0/gdk/gdkmonitor.h:
+
+/usr/include/gtk-3.0/gdk/gdkframetimings.h:
+
+/usr/include/gtk-3.0/gtk/gtktextbufferrichtext.h:
+
+/usr/include/gtk-3.0/gdk/gdkframeclock.h:
+
+/usr/include/gtk-3.0/gtk/gtkeventcontrollerkey.h:
+
+/usr/include/gtk-3.0/gdk/gdkwindow.h:
+
+/usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
+
+/usr/include/gtk-3.0/gdk/gdkdevicetool.h:
+
+/usr/include/gtk-3.0/gdk/gdkdevice.h:
+
+/usr/include/gtk-3.0/gdk/gdkevents.h:
+
+/usr/include/gtk-3.0/gtk/gtktextbuffer.h:
+
+/usr/include/gtk-3.0/gtk/gtkcolorchooserwidget.h:
+
+/usr/include/gtk-3.0/gdk/gdkdisplay.h:
+
+/usr/include/gtk-3.0/gdk/gdkscreen.h:
+
+/usr/include/cairo/cairo-deprecated.h:
+
+/usr/include/gtk-3.0/gtk/gtkadjustment.h:
+
+/usr/include/cairo/cairo-features.h:
+
+/usr/include/gtk-3.0/gtk/gtkbox.h:
+
+/usr/include/gtk-3.0/gtk/gtklabel.h:
+
+/usr/include/cairo/cairo-version.h:
+
+/usr/include/gtk-3.0/gtk/gtkshortcutsgroup.h:
+
+/usr/include/gtk-3.0/gtk/gtknativedialog.h:
+
+/usr/include/cairo/cairo.h:
+
+/usr/include/pango-1.0/pango/pango-renderer.h:
+
+/usr/include/pango-1.0/pango/pango-markup.h:
+
+/usr/include/pango-1.0/pango/pango-tabs.h:
+
+/usr/include/gtk-3.0/gtk/gtkrender.h:
+
+/usr/include/pango-1.0/pango/pango-fontset-simple.h:
+
+/usr/include/pango-1.0/pango/pango-glyph.h:
+
+/usr/include/gtk-3.0/gtk/gtkimcontext.h:
+
+/usr/include/pango-1.0/pango/pango-fontset.h:
+
+/usr/include/pango-1.0/pango/pango-context.h:
+
+/usr/include/gtk-3.0/gtk/gtkscale.h:
+
+/usr/include/pango-1.0/pango/pango-item.h:
+
+/usr/include/pango-1.0/pango/pango-break.h:
+
+/usr/include/vte-2.91/vte/vteterminal.h:
+
+/usr/include/pango-1.0/pango/pango-color.h:
+
+/usr/include/pango-1.0/pango/pango-direction.h:
+
+/usr/include/pango-1.0/pango/pango-bidi-type.h:
+
+/usr/include/pango-1.0/pango/pango-language.h:
+
+/usr/include/pango-1.0/pango/pango-script.h:
+
+/usr/include/pango-1.0/pango/pango-matrix.h:
+
+/usr/include/pango-1.0/pango/pango-gravity.h:
+
+/usr/include/harfbuzz/hb-version.h:
+
+/usr/include/harfbuzz/hb-shape.h:
+
+/usr/include/harfbuzz/hb-map.h:
 
 /usr/include/harfbuzz/hb-draw.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h:
+
+/usr/include/glib-2.0/glib/gbacktrace.h:
+
+../src/listeners/terminal_history.h:
+
+/usr/include/glib-2.0/glib/gthread.h:
 
 /usr/include/glib-2.0/glib/gtypes.h:
 
@@ -3400,11 +3809,23 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/glib.h:
 
-/usr/include/gtk-3.0/gtk/gtkfixed.h:
+/usr/include/vte-2.91/vte/vtetypebuiltins.h:
 
-/usr/include/pango-1.0/pango/pango.h:
+/usr/include/vte-2.91/vte/vte.h:
+
+/usr/include/gtk-3.0/gtk/gtkrecentchoosermenu.h:
+
+/usr/include/x86_64-linux-gnu/bits/dirent.h:
 
 /usr/include/glib-2.0/glib/gquark.h:
+
+/usr/include/openssl/comp.h:
+
+../src/listeners/terminal_history.c:
+
+/usr/include/vte-2.91/vte/vtedeprecated.h:
+
+../src/listeners/object_registry.h:
 
 /usr/include/gtk-3.0/gtk/gtkstatusbar.h:
 
@@ -3418,49 +3839,221 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 ../src/listeners/byte_buffer.c:
 
-../src/listeners/managed_object.c:
-
 ../src/listeners/listener_system.c:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
+../src/listeners/listener_manager.c:
 
-../src/listeners/tcp_worker.h:
+/usr/include/ctype.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+/usr/include/x86_64-linux-gnu/bits/in.h:
 
-/usr/include/strings.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
 /usr/include/gtk-3.0/gtk/gtkcellareabox.h:
 
 /usr/include/x86_64-linux-gnu/asm/sockios.h:
 
-/usr/include/gtk-3.0/gtk/gtkcellareacontext.h:
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
-/usr/include/glib-2.0/glib/giochannel.h:
+/usr/include/gtk-3.0/gtk/gtkheaderbar.h:
 
-/usr/include/stdio.h:
+/usr/include/harfbuzz/hb-deprecated.h:
 
-/usr/include/x86_64-linux-gnu/bits/in.h:
-
-/usr/include/glib-2.0/glib/gerror.h:
-
-/usr/include/glib-2.0/glib/gmarkup.h:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+/usr/include/x86_64-linux-gnu/asm/posix_types.h:
 
 /usr/include/gtk-3.0/gtk/gtkactionable.h:
 
 /usr/include/linux/posix_types.h:
 
-/usr/include/cairo/cairo-deprecated.h:
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/gtk-3.0/gtk/gtkeventcontrollerscroll.h:
+
+/usr/include/glib-2.0/glib/gstring.h:
+
+/usr/include/openssl/asyncerr.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkmisc.h:
+
+../src/listeners/tcp_worker.h:
+
+../src/listeners/event_queue.c:
+
+/usr/include/gtk-3.0/gtk/gtkcheckmenuitem.h:
+
+/usr/include/glib-2.0/glib/gtimer.h:
+
+/usr/include/openssl/ssl3.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/glib-2.0/gio/gbytesicon.h:
+
+/usr/include/asm-generic/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+
+../src/listeners/connection_worker.h:
+
+/usr/include/gtk-3.0/gtk/gtklinkbutton.h:
+
+../src/listeners/http_worker.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/glib-2.0/gio/gdtlsserverconnection.h:
+
+/usr/include/glib-2.0/glib/gversion.h:
+
+/usr/include/gtk-3.0/gtk/gtkscrollbar.h:
+
+/usr/include/openssl/asn1.h:
+
+../src/listeners/object_predicates.h:
+
+/usr/include/openssl/prov_ssl.h:
+
+/usr/include/glib-2.0/glib/gslist.h:
+
+/usr/include/openssl/sslerr.h:
+
+/usr/include/openssl/async.h:
+
+/usr/include/openssl/hmac.h:
+
+/usr/include/gtk-3.0/gtk/gtkmenu.h:
+
+/usr/include/openssl/ocsperr.h:
+
+/usr/include/openssl/x509v3err.h:
+
+/usr/include/vte-2.91/vte/vteversion.h:
+
+/usr/include/openssl/objectserr.h:
+
+/usr/include/pango-1.0/pango/pango-engine.h:
+
+/usr/include/openssl/x509.h:
+
+/usr/include/openssl/http.h:
+
+/usr/include/gtk-3.0/gtk/gtkscalebutton.h:
+
+/usr/include/glib-2.0/gobject/gtypeplugin.h:
+
+/usr/include/openssl/conftypes.h:
+
+/usr/include/glib-2.0/gio/gdbusobjectmanagerserver.h:
+
+/usr/include/gtk-3.0/gtk/gtkfilechooserwidget.h:
+
+/usr/include/gtk-3.0/gtk/gtkcolorbutton.h:
+
+/usr/include/openssl/pkcs7.h:
+
+/usr/include/openssl/sha.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/gtk-3.0/gtk/gtkcssprovider.h:
+
+/usr/include/glib-2.0/glib/ghmac.h:
+
+/usr/include/glib-2.0/gio/gio-autocleanups.h:
+
+/usr/include/glib-2.0/glib/garray.h:
+
+/usr/include/gtk-3.0/gdk/gdkkeys.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/gtk-3.0/gtk/gtkfilechooserbutton.h:
+
+/usr/include/errno.h:
+
+/usr/include/openssl/ocsp.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/glib-2.0/gio/gdtlsconnection.h:
+
+/usr/include/openssl/dh.h:
+
+/usr/include/gtk-3.0/gtk/gtktoolitem.h:
+
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-transform.h:
+
+/usr/include/openssl/rsaerr.h:
+
+/usr/include/gtk-3.0/gtk/gtkspinbutton.h:
+
+/usr/include/glib-2.0/glib/gversionmacros.h:
+
+/usr/include/x86_64-linux-gnu/bits/cpu-set.h:
+
+/usr/include/openssl/ecerr.h:
+
+/usr/include/gtk-3.0/gtk/gtkshortcutswindow.h:
+
+/usr/include/openssl/ec.h:
+
+/usr/include/gtk-3.0/gtk/gtkswitch.h:
+
+/usr/include/openssl/asn1err.h:
+
+/usr/include/gtk-3.0/gtk/gtkaccelmap.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/glib-2.0/gio/gnativesocketaddress.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkuimanager.h:
+
+/usr/include/gtk-3.0/gdk/gdk-autocleanup.h:
+
+/usr/include/openssl/rsa.h:
+
+../src/listeners/connection_manager.h:
+
+/usr/include/openssl/bn.h:
+
+/usr/include/openssl/pkcs7err.h:
+
+/usr/include/gtk-3.0/gdk/gdkdrawingcontext.h:
+
+/usr/include/alloca.h:
+
+/usr/include/openssl/evperr.h:
+
+../src/listeners/listener_system.h:
+
+/usr/include/openssl/buffererr.h:
+
+/usr/include/openssl/buffer.h:
+
+/usr/include/openssl/lhash.h:
+
+/usr/include/openssl/bioerr.h:
+
+/usr/include/openssl/bio.h:
+
+../src/listeners/managed_object.c:
+
+/usr/include/openssl/symhacks.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/gtk-3.0/gtk/gtklockbutton.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/poll.h:
 
 /usr/include/gtk-3.0/gtk/gtklevelbar.h:
 
@@ -3468,49 +4061,87 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gbufferedoutputstream.h:
 
+/usr/include/glib-2.0/glib/genviron.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+../src/core/tab.h:
+
+/usr/include/gtk-3.0/gtk/gtksearchentry.h:
+
+/usr/include/openssl/cryptoerr_legacy.h:
+
+/usr/include/openssl/tls1.h:
+
+/usr/include/x86_64-linux-gnu/bits/time.h:
+
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
-/usr/include/gtk-3.0/gdk/gdk.h:
+/usr/include/gtk-3.0/gtk/gtkrange.h:
 
-../src/listeners/byte_buffer.h:
+/usr/include/gtk-3.0/gtk/gtkinfobar.h:
 
-/usr/include/gtk-3.0/gtk/gtkshortcutssection.h:
+../src/listeners/object_registry.c:
 
-/usr/include/glib-2.0/glib/gslice.h:
+/usr/include/gtk-3.0/gtk/gtk-autocleanups.h:
 
-/usr/include/glib-2.0/gio/gdbusinterfaceskeleton.h:
+/usr/include/glib-2.0/glib/gpattern.h:
 
-/usr/include/glib-2.0/glib/grefstring.h:
+/usr/include/openssl/objects.h:
 
-/usr/include/glib-2.0/glib/guri.h:
+/usr/include/glib-2.0/glib/gstrfuncs.h:
+
+/usr/include/x86_64-linux-gnu/sys/socket.h:
+
+/usr/include/harfbuzz/hb.h:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
+
+/usr/include/gtk-3.0/gtk/gtkdrawingarea.h:
+
+../src/listeners/connection.h:
+
+/usr/include/glib-2.0/gio/gsocketclient.h:
+
+/usr/include/gtk-3.0/gtk/gtkgesturesingle.h:
+
+/usr/include/atk-1.0/atk/atkhyperlinkimpl.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
+
+/usr/include/glib-2.0/gio/giostream.h:
+
+/usr/include/openssl/x509err.h:
+
+/usr/include/gtk-3.0/gdk/gdkdisplaymanager.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+/usr/include/openssl/ct.h:
 
-/usr/include/glib-2.0/gobject/gclosure.h:
+/usr/include/stdio.h:
 
-/usr/include/pango-1.0/pango/pango-font.h:
+/usr/include/openssl/ssl2.h:
 
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+/usr/include/atk-1.0/atk/atkcomponent.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkhscale.h:
+/usr/include/glib-2.0/gio/gioerror.h:
 
-/usr/include/endian.h:
+/usr/include/glib-2.0/gio/gtestdbus.h:
 
-/usr/include/gtk-3.0/gtk/gtkborder.h:
-
-/usr/include/stdint.h:
-
-/usr/include/gtk-3.0/gdk/gdkdevicemanager.h:
+../src/listeners/https_worker.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h:
-
-/usr/include/gtk-3.0/gdk/gdkframetimings.h:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -3524,17 +4155,19 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/glib/guuid.h:
 
+/usr/include/asm-generic/errno-base.h:
+
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/atk-1.0/atk/atkstate.h:
 
 /usr/include/glib-2.0/gio/gdbuserror.h:
 
-/usr/include/poll.h:
+/usr/include/openssl/safestack.h:
 
-/usr/include/gtk-3.0/gtk/gtklockbutton.h:
+/usr/include/inttypes.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+/usr/include/glib-2.0/gio/gtlsbackend.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
@@ -3544,21 +4177,39 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 ../src/core/tab.c:
 
-/usr/include/glib-2.0/glib/garray.h:
+/usr/include/linux/errno.h:
 
-/usr/include/glib-2.0/gio/gtlsclientconnection.h:
+/usr/include/glib-2.0/gobject/gsourceclosure.h:
 
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
+/usr/include/gtk-3.0/gtk/gtkgesturelongpress.h:
+
+/usr/include/pango-1.0/pango/pango-attributes.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/openssl/core.h:
+
+/usr/include/gtk-3.0/gtk/gtkprintoperationpreview.h:
+
+/usr/include/gtk-3.0/gtk/gtkpopovermenu.h:
+
+/usr/include/openssl/comperr.h:
+
+/usr/include/glib-2.0/gio/gsimpleaction.h:
+
+/usr/include/glib-2.0/gio/gsimpleasyncresult.h:
 
 /usr/include/gtk-3.0/gtk/gtktreesortable.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
-/usr/include/pango-1.0/pango/pango-language.h:
-
-/usr/include/gtk-3.0/gdk/gdkdevice.h:
-
 /usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
+
+/usr/include/openssl/dherr.h:
+
+/usr/include/glib-2.0/gobject/gboxed.h:
 
 /usr/include/atk-1.0/atk/atkmisc.h:
 
@@ -3566,59 +4217,25 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
-/usr/include/gtk-3.0/gtk/gtkseparatormenuitem.h:
+/usr/include/gtk-3.0/gtk/gtkfixed.h:
 
-/usr/include/glib-2.0/glib/gasyncqueue.h:
+/usr/include/pango-1.0/pango/pango.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
-
-/usr/include/glib-2.0/gio/gbytesicon.h:
+../src/listeners/http_worker.c:
 
 ../src/listeners/listener_event.h:
 
-/usr/include/gtk-3.0/gtk/gtkradiomenuitem.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
 
-/usr/include/glib-2.0/glib/grefcount.h:
+/usr/include/asm-generic/sockios.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
+/usr/include/glib-2.0/glib/gmarkup.h:
 
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/glib-2.0/gio/gdtlsserverconnection.h:
-
-/usr/include/atk-1.0/atk/atktext.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/harfbuzz/hb.h:
-
-/usr/include/x86_64-linux-gnu/sys/socket.h:
-
-/usr/include/gtk-3.0/gtk/gtkdrawingarea.h:
-
-../src/listeners/connection.h:
-
-/usr/include/glib-2.0/gio/gsocketclient.h:
-
-/usr/include/gtk-3.0/gtk/gtkrender.h:
-
-/usr/include/pango-1.0/pango/pango-fontset-simple.h:
-
-/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
-
-../src/listeners/connection_worker.h:
+/usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/gtk-3.0/gtk/gtkliststore.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-/usr/include/glib-2.0/glib/gmessages.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/glib-2.0/gio/gdtlsconnection.h:
 
 /usr/include/gtk-3.0/gdk/gdkglcontext.h:
 
@@ -3626,25 +4243,29 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-../src/listeners/event_queue.c:
-
 ../src/app/app.c:
 
 /usr/include/gtk-3.0/gtk/gtkscrollable.h:
 
 /usr/include/glib-2.0/gio/gsocketcontrolmessage.h:
 
-/usr/include/glib-2.0/glib/glist.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h:
 
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+/usr/include/gtk-3.0/gdk/gdkpango.h:
 
-/usr/include/glib-2.0/glib/gdate.h:
+/usr/include/gtk-3.0/gdk/gdkkeysyms.h:
 
-/usr/include/glib-2.0/gio/gdatainputstream.h:
+../src/core/workspace.h:
+
+/usr/include/openssl/types.h:
+
+../src/db/database.h:
 
 /usr/include/gtk-3.0/gdk/gdkapplaunchcontext.h:
 
 /usr/include/glib-2.0/gio/gmemorymonitor.h:
+
+/usr/include/pango-1.0/pango/pango-features.h:
 
 /usr/include/gtk-3.0/gdk/gdkpixbuf.h:
 
@@ -3660,6 +4281,8 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
+/usr/include/openssl/opensslv.h:
+
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
 
 /usr/include/gtk-3.0/gtk/gtkgesturezoom.h:
@@ -3674,27 +4297,21 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gobject/gvaluetypes.h:
 
-../src/listeners/connection_manager.h:
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/usr/include/x86_64-linux-gnu/bits/signal_ext.h:
+/usr/include/gtk-3.0/gtk/gtkshortcutssection.h:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
+/usr/include/glib-2.0/gio/gdbusinterfaceskeleton.h:
 
-/usr/include/gtk-3.0/gtk/gtktreemodel.h:
+/usr/include/glib-2.0/glib/gslice.h:
 
-/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
-/usr/include/glib-2.0/glib/gunicode.h:
+/usr/include/pango-1.0/pango/pango-version-macros.h:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h:
 
 /usr/include/glib-2.0/glib/gatomic.h:
-
-/usr/include/gtk-3.0/gtk/gtkshortcutsgroup.h:
-
-/usr/include/gtk-3.0/gtk/gtknativedialog.h:
-
-/usr/include/cairo/cairo.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvbox.h:
 
@@ -3706,19 +4323,21 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gmenumodel.h:
 
-/usr/include/x86_64-linux-gnu/bits/time.h:
+/usr/include/glib-2.0/gio/gdbusactiongroup.h:
 
-/usr/include/glib-2.0/glib/gtimezone.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkhscale.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+/usr/include/endian.h:
 
-../src/app/app.h:
+/usr/include/gtk-3.0/gtk/gtkborder.h:
 
-/usr/include/x86_64-linux-gnu/bits/sched.h:
+/usr/include/openssl/evp.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
+/usr/include/stdint.h:
 
-/usr/include/asm-generic/errno.h:
+../src/listeners/connection_worker.c:
+
+/usr/include/openssl/dsa.h:
 
 ../src/platform/linux/terminal_vte.c:
 
@@ -3728,21 +4347,53 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtkpapersize.h:
 
+/usr/include/openssl/dsaerr.h:
+
 /usr/include/glib-2.0/gio/gzlibcompressor.h:
 
-../src/listeners/connection_worker.c:
+/usr/include/gtk-3.0/gtk/gtkgesturerotate.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h:
+/usr/include/netinet/in.h:
 
-/usr/include/glib-2.0/gio/gconverteroutputstream.h:
+/usr/include/gtk-3.0/gtk/gtkpopover.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+/usr/include/glib-2.0/glib/gscanner.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
+
+/usr/include/openssl/x509v3.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/openssl/params.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/glib-2.0/glib/glist.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+../src/app/app.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/openssl/cterr.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkcolorseldialog.h:
+
+/usr/include/openssl/bnerr.h:
 
 /usr/include/x86_64-linux-gnu/bits/signum-arch.h:
 
 /usr/include/glib-2.0/gio/gactiongroupexporter.h:
+
+/usr/include/gtk-3.0/gdk/gdkenumtypes.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
+
+/usr/include/glib-2.0/glib/glib-typeof.h:
 
 /usr/include/gtk-3.0/gtk/gtkcheckbutton.h:
 
@@ -3754,6 +4405,12 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gpowerprofilemonitor.h:
 
+/usr/include/glib-2.0/gio/gtlsserverconnection.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/usr/include/openssl/conferr.h:
+
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
@@ -3764,17 +4421,33 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/glib/glib-autocleanups.h:
 
-../src/core/tab.h:
+/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
+/usr/include/pango-1.0/pango/pango-utils.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+../src/listeners/https_worker.c:
+
+/usr/include/glib-2.0/glib/gtree.h:
+
+/usr/include/glib-2.0/glib/ghash.h:
+
+/usr/include/limits.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/x86_64-linux-gnu/sys/poll.h:
+
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/glib-2.0/gio/gpollableutils.h:
+
+/usr/include/gtk-3.0/gtk/gtkgrid.h:
+
+/usr/include/glib-2.0/gio/gvolume.h:
 
 ../src/core/terminal_session.c:
 
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/gtk-3.0/gdk/gdkmain.h:
+/usr/include/glib-2.0/glib/gerror.h:
 
 /usr/include/gtk-3.0/gtk/gtkcellrendererspinner.h:
 
@@ -3788,45 +4461,51 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gthreadedsocketservice.h:
 
-/usr/include/glib-2.0/gio/gdbusobjectskeleton.h:
-
-../src/listeners/connection_manager.c:
-
 /usr/include/glib-2.0/gio/gmemoryinputstream.h:
 
 /usr/include/glib-2.0/gio/gpollableoutputstream.h:
 
 /usr/include/glib-2.0/gio/gpropertyaction.h:
 
-/usr/include/gtk-3.0/gtk/deprecated/gtkhbbox.h:
+../src/listeners/connection_manager.c:
 
-/usr/include/glib-2.0/glib/grcbox.h:
+/usr/include/glib-2.0/gio/gdbusobjectskeleton.h:
 
-/usr/include/glib-2.0/glib/gbytes.h:
+/usr/include/gtk-3.0/gtk/gtkplacessidebar.h:
 
-/usr/include/gtk-3.0/gtk/gtktextattributes.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h:
 
-/usr/include/glib-2.0/glib/gkeyfile.h:
+/usr/include/glib-2.0/glib/gprimes.h:
+
+/usr/include/pango-1.0/pango/pango-enum-types.h:
+
+/usr/include/harfbuzz/hb-shape-plan.h:
+
+/usr/include/harfbuzz/hb-font.h:
+
+/usr/include/gtk-3.0/gdk/gdkmain.h:
+
+/usr/include/openssl/sslerr_legacy.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/glib-2.0/gio/gfilteroutputstream.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
-/usr/include/dirent.h:
+/usr/include/strings.h:
 
-/usr/include/glib-2.0/glib/gregex.h:
+/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h:
-
-/usr/include/x86_64-linux-gnu/sys/ucontext.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
-
-/usr/include/glib-2.0/gio/gpermission.h:
+/usr/include/signal.h:
 
 ../src/core/terminal_session.h:
 
-/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+/usr/include/atk-1.0/atk/atktext.h:
 
-/usr/include/x86_64-linux-gnu/asm/errno.h:
+/usr/include/stdc-predef.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
 ../src/listeners/listener.h:
 
@@ -3834,25 +4513,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 ../src/core/workspace.c:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
-
 /usr/include/vte-2.91/vte/vtepty.h:
 
 /usr/include/x86_64-linux-gnu/bits/confname.h:
-
-/usr/include/glib-2.0/glib/gdir.h:
-
-/usr/include/glib-2.0/gio/gfilemonitor.h:
-
-../src/listeners/listener_manager.c:
-
-/usr/include/gtk-3.0/gtk/gtkimcontext.h:
-
-/usr/include/pango-1.0/pango/pango-fontset.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
@@ -3880,89 +4543,249 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h:
 
-/usr/include/sched.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+/usr/include/gtk-3.0/gtk/deprecated/gtkactivatable.h:
+
+/usr/include/pthread.h:
+
+/usr/include/glib-2.0/glib/gsequence.h:
+
+/usr/include/sched.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
 /usr/include/asm-generic/socket.h:
 
-../src/listeners/object_predicates.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
+
+/usr/include/gtk-3.0/gtk/gtkseparatormenuitem.h:
+
+/usr/include/glib-2.0/glib/gasyncqueue.h:
+
+/usr/include/openssl/pemerr.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/signal_ext.h:
+
+/usr/include/gtk-3.0/gtk/gtkcomboboxtext.h:
+
+/usr/include/x86_64-linux-gnu/openssl/opensslconf.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtktoggleaction.h:
+
+/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/openssl/crypto.h:
+
+/usr/include/glib-2.0/glib/gconvert.h:
+
+/usr/include/openssl/dtls1.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/glib-2.0/glib/gnode.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
+
+../src/tools/toolkit_index.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/include/glib-2.0/gobject/gvaluearray.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/openssl/pem.h:
+
+/usr/include/gtk-3.0/gtk/gtkbin.h:
+
+/usr/include/x86_64-linux-gnu/bits/local_lim.h:
+
+/usr/include/gtk-3.0/gtk/gtkcsssection.h:
+
+/usr/include/x86_64-linux-gnu/bits/dirent_ext.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+
+/usr/include/openssl/ssl.h:
+
+/usr/include/glib-2.0/gobject/gclosure.h:
+
+/usr/include/pango-1.0/pango/pango-font.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
 
 /usr/include/glib-2.0/gio/ginetaddress.h:
 
-/usr/include/gtk-3.0/gtk/gtkfilechooserbutton.h:
+/usr/include/x86_64-linux-gnu/bits/poll.h:
 
-/usr/include/errno.h:
+/usr/include/glib-2.0/gio/gsimpleactiongroup.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/glib-2.0/gio/gconverteroutputstream.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
+
+/usr/include/openssl/srtp.h:
+
+/usr/include/glib-2.0/gio/gpermission.h:
+
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/glib-2.0/glib/gvarianttype.h:
+
+../src/listeners/byte_buffer.h:
+
+/usr/include/gtk-3.0/gdk/gdk.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkhandlebox.h:
+
+/usr/include/glib-2.0/glib/goption.h:
+
+/usr/include/gtk-3.0/gtk/gtktoolpalette.h:
+
+/usr/include/glib-2.0/glib/gbookmarkfile.h:
+
+/usr/include/glib-2.0/glib/gdatetime.h:
+
+/usr/include/glib-2.0/glib/gtimezone.h:
+
+/usr/include/glib-2.0/glib/gbytes.h:
 
 /usr/include/glib-2.0/glib/gcharset.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+/usr/include/glib-2.0/glib/gchecksum.h:
 
-/usr/include/linux/errno.h:
+/usr/include/glib-2.0/glib/gdate.h:
 
-/usr/include/glib-2.0/gobject/gsourceclosure.h:
+/usr/include/glib-2.0/gio/gdatainputstream.h:
 
-/usr/include/gtk-3.0/gtk/gtkgesturelongpress.h:
+/usr/include/glib-2.0/gio/gfilemonitor.h:
 
-/usr/include/pango-1.0/pango/pango-attributes.h:
+/usr/include/openssl/stack.h:
 
-/usr/include/asm-generic/errno-base.h:
+/usr/include/glib-2.0/glib/gdir.h:
+
+/usr/include/glib-2.0/glib/gregex.h:
+
+/usr/include/dirent.h:
+
+/usr/include/glib-2.0/glib/gmappedfile.h:
+
+/usr/include/glib-2.0/gobject/glib-types.h:
+
+/usr/include/glib-2.0/glib/gfileutils.h:
+
+/usr/include/glib-2.0/glib/gmem.h:
+
+/usr/include/glib-2.0/glib/gmain.h:
+
+/usr/include/gtk-3.0/gtk/gtktextmark.h:
+
+/usr/include/glib-2.0/gio/gremoteactiongroup.h:
+
+/usr/include/glib-2.0/glib/ghook.h:
+
+/usr/include/glib-2.0/gio/gsettingsschema.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkhpaned.h:
+
+/usr/include/gtk-3.0/gtk/gtkstacksidebar.h:
+
+/usr/include/glib-2.0/gio/gdebugcontroller.h:
+
+/usr/include/glib-2.0/glib/ghostutils.h:
+
+/usr/include/gtk-3.0/gtk/gtkcellareacontext.h:
+
+/usr/include/openssl/cryptoerr.h:
+
+/usr/include/glib-2.0/glib/giochannel.h:
+
+/usr/include/gtk-3.0/gtk/gtktreemodel.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/glib-2.0/glib/gunicode.h:
+
+/usr/include/gtk-3.0/gtk/gtktextattributes.h:
+
+/usr/include/glib-2.0/glib/gkeyfile.h:
+
+/usr/include/glib-2.0/glib/gmessages.h:
+
+/usr/include/glib-2.0/glib/gqsort.h:
+
+/usr/include/glib-2.0/gio/gzlibdecompressor.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+
+/usr/include/harfbuzz/hb-set.h:
+
+/usr/include/glib-2.0/glib/gqueue.h:
+
+/usr/include/glib-2.0/glib/grand.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/glib-2.0/gio/gtlsclientconnection.h:
+
+/usr/include/gtk-3.0/gtk/deprecated/gtkhbbox.h:
+
+/usr/include/glib-2.0/glib/grcbox.h:
+
+/usr/include/gtk-3.0/gtk/gtkradiomenuitem.h:
+
+/usr/include/glib-2.0/glib/grefcount.h:
+
+/usr/include/openssl/x509_vfy.h:
+
+/usr/include/glib-2.0/glib/grefstring.h:
+
+/usr/include/glib-2.0/glib/guri.h:
 
 /usr/include/glib-2.0/glib/gshell.h:
 
 /usr/include/glib-2.0/gobject/gvalue.h:
 
-/usr/include/signal.h:
+/usr/include/glib-2.0/glib/gstringchunk.h:
 
-/usr/include/x86_64-linux-gnu/bits/struct_stat.h:
+/usr/include/glib-2.0/gio/glistmodel.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+/usr/include/glib-2.0/glib/gstrvbuilder.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf.h:
+/usr/include/atk-1.0/atk/atkaction.h:
 
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/glib-2.0/gio/gpollableutils.h:
-
-/usr/include/gtk-3.0/gtk/gtkgrid.h:
-
-/usr/include/glib-2.0/gio/gvolume.h:
-
-/usr/include/fcntl.h:
-
-/usr/include/x86_64-linux-gnu/sys/poll.h:
-
-/usr/include/glib-2.0/gio/gsimpleactiongroup.h:
-
-/usr/include/x86_64-linux-gnu/bits/poll.h:
-
-/usr/include/gtk-3.0/gtk/gtkcheckmenuitem.h:
-
-/usr/include/glib-2.0/glib/gtimer.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtktable.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-../src/listeners/listener_system.h:
+/usr/include/glib-2.0/gio/gloadableicon.h:
 
 /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h:
 
 /usr/include/glib-2.0/glib/gtestutils.h:
 
+/usr/include/gtk-3.0/gtk/gtkflowbox.h:
+
+/usr/include/gtk-3.0/gdk/gdkdnd.h:
+
+/usr/include/glib-2.0/glib/gpoll.h:
+
+/usr/include/glib-2.0/glib/gthreadpool.h:
+
 /usr/include/glib-2.0/glib/gtrashstack.h:
-
-/usr/include/glib-2.0/glib/gtree.h:
-
-/usr/include/glib-2.0/glib/gversion.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h:
-
-/usr/include/pango-1.0/pango/pango-version-macros.h:
 
 /usr/include/atk-1.0/atk/atkstreamablecontent.h:
 
@@ -3984,6 +4807,8 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtk.h:
 
+/usr/include/openssl/obj_mac.h:
+
 /usr/include/gtk-3.0/gdk/gdkversionmacros.h:
 
 /usr/include/glib-2.0/gobject/gmarshal.h:
@@ -3991,8 +4816,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gio/gio.h:
 
 /usr/include/glib-2.0/gio/gmount.h:
-
-/usr/include/pango-1.0/pango/pangocairo.h:
 
 /usr/include/glib-2.0/gio/giotypes.h:
 
@@ -4006,45 +4829,39 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/gtk-3.0/gtk/gtktextchild.h:
 
-/usr/include/glib-2.0/glib/ggettext.h:
-
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/glib-2.0/glib/ggettext.h:
 
 /usr/include/glib-2.0/gobject/gobject.h:
 
-/usr/include/pango-1.0/pango/pango-engine.h:
-
 /usr/include/glib-2.0/gobject/gtype.h:
 
-/usr/include/glib-2.0/gobject/gboxed.h:
+/usr/include/pango-1.0/pango/pango-glyph-item.h:
 
-/usr/include/harfbuzz/hb-shape.h:
+/usr/include/glib-2.0/gobject/gparam.h:
 
-/usr/include/pango-1.0/pango/pango-enum-types.h:
+/usr/include/gtk-3.0/gtk/gtkcellrenderertoggle.h:
 
-/usr/include/harfbuzz/hb-font.h:
+/usr/include/gtk-3.0/gdk/gdkseat.h:
 
-/usr/include/harfbuzz/hb-shape-plan.h:
-
-/usr/include/glib-2.0/glib/gmappedfile.h:
-
-/usr/include/glib-2.0/glib/gfileutils.h:
-
-/usr/include/glib-2.0/gobject/glib-types.h:
+/usr/include/glib-2.0/gobject/gsignal.h:
 
 /usr/include/glib-2.0/gobject/genums.h:
 
 /usr/include/glib-2.0/gobject/glib-enumtypes.h:
 
+/usr/include/gtk-3.0/gdk/gdkproperty.h:
+
+/usr/include/glib-2.0/gio/gemblem.h:
+
 ../src/tools/toolkit_index.c:
 
 /usr/include/glib-2.0/gio/gsocketconnection.h:
 
+/usr/include/openssl/macros.h:
+
 /usr/include/glib-2.0/gobject/gtypemodule.h:
-
-/usr/include/gtk-3.0/gtk/gtkscalebutton.h:
-
-/usr/include/glib-2.0/gobject/gtypeplugin.h:
 
 /usr/include/gtk-3.0/gtk/gtkappchooserdialog.h:
 
@@ -4061,8 +4878,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gio/gsocketlistener.h:
 
 /usr/include/glib-2.0/gio/gapplicationcommandline.h:
-
-/usr/include/gtk-3.0/gdk/deprecated/gdkcolor.h:
 
 /usr/include/gtk-3.0/gtk/gtkicontheme.h:
 
@@ -4090,17 +4905,15 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/goutputstream.h:
 
-/usr/include/pango-1.0/pango/pango-matrix.h:
-
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
 /usr/include/glib-2.0/gio/gcancellable.h:
 
 /usr/include/gtk-3.0/gtk/gtkcalendar.h:
 
-/usr/include/x86_64-linux-gnu/bits/sigaction.h:
-
 /usr/include/arpa/inet.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
 
 /usr/include/glib-2.0/gio/gtcpwrapperconnection.h:
 
@@ -4116,19 +4929,11 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gfile.h:
 
-/usr/include/gtk-3.0/gtk/gtkadjustment.h:
-
-/usr/include/cairo/cairo-features.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-simple-anim.h:
-
 /usr/include/atk-1.0/atk/atkrelationset.h:
 
 /usr/include/glib-2.0/gio/gdatagrambased.h:
 
 /usr/include/glib-2.0/gio/gdataoutputstream.h:
-
-/usr/include/glib-2.0/gio/gdbusactiongroup.h:
 
 /usr/include/glib-2.0/gio/gdbusaddress.h:
 
@@ -4149,6 +4954,8 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/atk-1.0/atk/atkplug.h:
 
 /usr/include/glib-2.0/gio/gdbusnameowning.h:
+
+/usr/include/openssl/e_os2.h:
 
 /usr/include/glib-2.0/gio/gdbusmenumodel.h:
 
@@ -4178,17 +4985,15 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gdbusobjectmanager.h:
 
-/usr/include/gtk-3.0/gtk/gtkappchooserwidget.h:
-
-/usr/include/atk-1.0/atk/atksocket.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-features.h:
-
 /usr/include/glib-2.0/gio/gdbusobjectmanagerclient.h:
 
-/usr/include/glib-2.0/gio/gdbusobjectmanagerserver.h:
-
 /usr/include/glib-2.0/gio/gdbusproxy.h:
+
+/usr/include/harfbuzz/hb-common.h:
+
+/usr/include/glib-2.0/gobject/gparamspecs.h:
+
+/usr/include/glib-2.0/gio/gdbusserver.h:
 
 /usr/include/glib-2.0/gio/gdbusutils.h:
 
@@ -4204,9 +5009,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gtlsconnection.h:
 
-/usr/include/glib-2.0/gio/gapplication.h:
-
 /usr/include/pango-1.0/pango/pango-layout.h:
+
+/usr/include/glib-2.0/gio/gapplication.h:
 
 /usr/include/glib-2.0/gio/gdrive.h:
 
@@ -4232,25 +5037,21 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gfileiostream.h:
 
-/usr/include/glib-2.0/glib/gbacktrace.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-core.h:
-
-/usr/include/atk-1.0/atk/atkcomponent.h:
-
-/usr/include/glib-2.0/gio/gioerror.h:
-
-/usr/include/glib-2.0/gio/gtestdbus.h:
-
 /usr/include/glib-2.0/glib/gvariant.h:
 
 /usr/include/glib-2.0/gio/gfilenamecompleter.h:
 
 /usr/include/glib-2.0/gio/gfileoutputstream.h:
 
+/usr/include/gtk-3.0/gdk/gdkselection.h:
+
+/usr/include/glib-2.0/gio/ginetaddressmask.h:
+
 /usr/include/glib-2.0/gio/gsubprocesslauncher.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtknumerableicon.h:
+
+/usr/include/openssl/core_dispatch.h:
 
 /usr/include/glib-2.0/gio/ginetsocketaddress.h:
 
@@ -4270,21 +5071,17 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gmemoryoutputstream.h:
 
-/usr/include/gtk-3.0/gtk/gtkflowbox.h:
-
-/usr/include/glib-2.0/glib/gpoll.h:
-
-/usr/include/glib-2.0/glib/gthreadpool.h:
-
-/usr/include/gtk-3.0/gdk/gdkdnd.h:
-
 /usr/include/gtk-3.0/gtk/gtkaccessible.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
 /usr/include/glib-2.0/gio/gmenu.h:
 
-/usr/include/glib-2.0/gio/gnativesocketaddress.h:
+/usr/include/gtk-3.0/gtk/gtkrecentchooser.h:
+
+/usr/include/pango-1.0/pango/pango-fontmap.h:
+
+/usr/include/glib-2.0/gio/gmountoperation.h:
 
 /usr/include/stdlib.h:
 
@@ -4293,8 +5090,6 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/glib-2.0/gio/gnetworkmonitor.h:
 
 /usr/include/glib-2.0/gio/gvolumemonitor.h:
-
-/usr/include/pango-1.0/pango/pango-script.h:
 
 /usr/include/glib-2.0/gio/gnotification.h:
 
@@ -4316,27 +5111,17 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gresource.h:
 
-/usr/include/pango-1.0/pango/pango-direction.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
-
-/usr/include/gtk-3.0/gdk/gdkdisplaymanager.h:
-
 /usr/include/atk-1.0/atk/atktablecell.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/glib-2.0/gio/gsettings.h:
 
-/usr/include/gtk-3.0/gdk/gdkevents.h:
-
-/usr/include/glib-2.0/gio/gsimpleaction.h:
-
-/usr/include/glib-2.0/gio/gsimpleasyncresult.h:
-
 /usr/include/glib-2.0/gio/gsocket.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkimagemenuitem.h:
+
+/usr/include/x86_64-linux-gnu/openssl/configuration.h:
 
 /usr/include/glib-2.0/gio/gsocketconnectable.h:
 
@@ -4350,9 +5135,9 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gtcpconnection.h:
 
-/usr/include/glib-2.0/gio/gthemedicon.h:
+/usr/include/openssl/conf.h:
 
-/usr/include/glib-2.0/gio/gtlsbackend.h:
+/usr/include/glib-2.0/gio/gthemedicon.h:
 
 /usr/include/glib-2.0/gio/gcredentials.h:
 
@@ -4360,27 +5145,13 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 
 /usr/include/glib-2.0/gio/gtlspassword.h:
 
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-animation.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/usr/include/glib-2.0/gio/gtlsserverconnection.h:
-
 /usr/include/gtk-3.0/gdk/gdktypes.h:
 
 /usr/include/gtk-3.0/gtk/gtkwindow.h:
 
 /usr/include/pango-1.0/pango/pango-coverage.h:
 
-/usr/include/pango-1.0/pango/pango-features.h:
-
 /usr/include/harfbuzz/hb-blob.h:
-
-/usr/include/glib-2.0/gobject/gparamspecs.h:
-
-/usr/include/glib-2.0/gio/gdbusserver.h:
-
-/usr/include/harfbuzz/hb-common.h:
 
 /usr/include/gtk-3.0/gtk/gtkstylecontext.h:
 
@@ -4389,133 +5160,3 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: ../src/ui/workbench.c \
 /usr/include/harfbuzz/hb-unicode.h:
 
 /usr/include/harfbuzz/hb-face.h:
-
-/usr/include/glib-2.0/glib/gqueue.h:
-
-/usr/include/x86_64-linux-gnu/bits/sigstack.h:
-
-/usr/include/harfbuzz/hb-set.h:
-
-/usr/include/gtk-3.0/gtk/gtkheaderbar.h:
-
-/usr/include/x86_64-linux-gnu/asm/posix_types.h:
-
-/usr/include/harfbuzz/hb-deprecated.h:
-
-/usr/include/harfbuzz/hb-map.h:
-
-/usr/include/harfbuzz/hb-version.h:
-
-/usr/include/pango-1.0/pango/pango-bidi-type.h:
-
-/usr/include/vte-2.91/vte/vteterminal.h:
-
-/usr/include/pango-1.0/pango/pango-color.h:
-
-/usr/include/pango-1.0/pango/pango-break.h:
-
-/usr/include/gtk-3.0/gtk/gtkscale.h:
-
-/usr/include/pango-1.0/pango/pango-item.h:
-
-/usr/include/gtk-3.0/gtk/gtkrecentchooser.h:
-
-/usr/include/glib-2.0/gio/gmountoperation.h:
-
-/usr/include/pango-1.0/pango/pango-fontmap.h:
-
-/usr/include/pango-1.0/pango/pango-glyph.h:
-
-/usr/include/glib-2.0/gobject/gparam.h:
-
-/usr/include/pango-1.0/pango/pango-glyph-item.h:
-
-/usr/include/pango-1.0/pango/pango-tabs.h:
-
-/usr/include/pango-1.0/pango/pango-markup.h:
-
-/usr/include/pango-1.0/pango/pango-renderer.h:
-
-/usr/include/gtk-3.0/gtk/gtkbox.h:
-
-/usr/include/gtk-3.0/gtk/gtklabel.h:
-
-/usr/include/cairo/cairo-version.h:
-
-/usr/include/gtk-3.0/gdk/gdkscreen.h:
-
-/usr/include/gtk-3.0/gtk/deprecated/gtkvscale.h:
-
-../src/db/database.h:
-
-../src/core/workspace.h:
-
-/usr/include/gtk-3.0/gdk/gdkpango.h:
-
-/usr/include/gtk-3.0/gdk/gdkkeysyms.h:
-
-/usr/include/gtk-3.0/gtk/gtktextbuffer.h:
-
-/usr/include/gtk-3.0/gtk/gtkcolorchooserwidget.h:
-
-/usr/include/gtk-3.0/gdk/gdkdisplay.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/gtk-3.0/gdk/gdkkeys.h:
-
-/usr/include/gtk-3.0/gdk/gdkdevicetool.h:
-
-/usr/include/gtk-3.0/gtk/gtkcellrenderertoggle.h:
-
-/usr/include/glib-2.0/gobject/gsignal.h:
-
-/usr/include/gtk-3.0/gdk/gdkseat.h:
-
-/usr/include/gtk-3.0/gtk/gtkeventcontrollerkey.h:
-
-/usr/include/gtk-3.0/gdk/gdkwindow.h:
-
-/usr/include/alloca.h:
-
-/usr/include/gtk-3.0/gdk/gdkdrawingcontext.h:
-
-/usr/include/gtk-3.0/gtk/gtktextbufferrichtext.h:
-
-/usr/include/gtk-3.0/gdk/gdkframeclock.h:
-
-/usr/include/gtk-3.0/gdk/gdkmonitor.h:
-
-/usr/include/gtk-3.0/gdk/gdkrectangle.h:
-
-/usr/include/gtk-3.0/gtk/gtklistbox.h:
-
-/usr/include/gtk-3.0/gdk/gdkrgba.h:
-
-/usr/include/gtk-3.0/gtk/gtksizegroup.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-macros.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
-
-/usr/include/pango-1.0/pango/pango-utils.h:
-
-/usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h:
-
-/usr/include/gtk-3.0/gdk/gdkdevicepad.h:
-
-/usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
-
-/usr/include/glib-2.0/glib/glib-typeof.h:
-
-/usr/include/gtk-3.0/gdk/gdkenumtypes.h:
-
-/usr/include/glib-2.0/gio/gemblem.h:
-
-/usr/include/gtk-3.0/gdk/gdkproperty.h:
-
-/usr/include/glib-2.0/gio/ginetaddressmask.h:
-
-/usr/include/gtk-3.0/gdk/gdkselection.h:

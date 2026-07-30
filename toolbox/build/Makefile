@@ -412,6 +412,32 @@ context_menu_smoke/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/build
 .PHONY : context_menu_smoke/fast
 
+#=============================================================================
+# Target rules for targets named http_listener_smoke
+
+# Build rule for target.
+http_listener_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 http_listener_smoke
+.PHONY : http_listener_smoke
+
+# fast build rule for target.
+http_listener_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/build
+.PHONY : http_listener_smoke/fast
+
+#=============================================================================
+# Target rules for targets named https_listener_smoke
+
+# Build rule for target.
+https_listener_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 https_listener_smoke
+.PHONY : https_listener_smoke
+
+# fast build rule for target.
+https_listener_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/build
+.PHONY : https_listener_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -627,6 +653,54 @@ src/listeners/event_queue.s: src/listeners/event_queue.c.s
 src/listeners/event_queue.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/event_queue.c.s
 .PHONY : src/listeners/event_queue.c.s
+
+src/listeners/http_worker.o: src/listeners/http_worker.c.o
+.PHONY : src/listeners/http_worker.o
+
+# target to build an object file
+src/listeners/http_worker.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.o
+.PHONY : src/listeners/http_worker.c.o
+
+src/listeners/http_worker.i: src/listeners/http_worker.c.i
+.PHONY : src/listeners/http_worker.i
+
+# target to preprocess a source file
+src/listeners/http_worker.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.i
+.PHONY : src/listeners/http_worker.c.i
+
+src/listeners/http_worker.s: src/listeners/http_worker.c.s
+.PHONY : src/listeners/http_worker.s
+
+# target to generate assembly for a file
+src/listeners/http_worker.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/http_worker.c.s
+.PHONY : src/listeners/http_worker.c.s
+
+src/listeners/https_worker.o: src/listeners/https_worker.c.o
+.PHONY : src/listeners/https_worker.o
+
+# target to build an object file
+src/listeners/https_worker.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.o
+.PHONY : src/listeners/https_worker.c.o
+
+src/listeners/https_worker.i: src/listeners/https_worker.c.i
+.PHONY : src/listeners/https_worker.i
+
+# target to preprocess a source file
+src/listeners/https_worker.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.i
+.PHONY : src/listeners/https_worker.c.i
+
+src/listeners/https_worker.s: src/listeners/https_worker.c.s
+.PHONY : src/listeners/https_worker.s
+
+# target to generate assembly for a file
+src/listeners/https_worker.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/listeners/https_worker.c.s
+.PHONY : src/listeners/https_worker.c.s
 
 src/listeners/listener_manager.o: src/listeners/listener_manager.c.o
 .PHONY : src/listeners/listener_manager.o
@@ -954,6 +1028,8 @@ help:
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
 	@echo "... event_queue_stress_test"
+	@echo "... http_listener_smoke"
+	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
 	@echo "... listener_config_validate_test"
@@ -998,6 +1074,12 @@ help:
 	@echo "... src/listeners/event_queue.o"
 	@echo "... src/listeners/event_queue.i"
 	@echo "... src/listeners/event_queue.s"
+	@echo "... src/listeners/http_worker.o"
+	@echo "... src/listeners/http_worker.i"
+	@echo "... src/listeners/http_worker.s"
+	@echo "... src/listeners/https_worker.o"
+	@echo "... src/listeners/https_worker.i"
+	@echo "... src/listeners/https_worker.s"
 	@echo "... src/listeners/listener_manager.o"
 	@echo "... src/listeners/listener_manager.i"
 	@echo "... src/listeners/listener_manager.s"

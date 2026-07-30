@@ -34,6 +34,11 @@ typedef struct ListenerConfig {
                            * should call back to; never 0.0.0.0/:: */
     char *cert_path;      /* required when type == LISTENER_TYPE_HTTPS */
     char *key_path;       /* required when type == LISTENER_TYPE_HTTPS */
+    char *url_path;       /* required when type == LISTENER_TYPE_HTTP(S) - an inbound
+                            * request's path must match exactly before it becomes a
+                            * Connection */
+    char *host_header;    /* optional when type == LISTENER_TYPE_HTTP(S) - if set, an
+                            * inbound request's Host header must also match exactly */
 } ListenerConfig;
 
 typedef struct ListenerRuntime {

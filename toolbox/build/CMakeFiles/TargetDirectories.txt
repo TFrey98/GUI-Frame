@@ -23,6 +23,8 @@
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/object_panel_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/connection_terminal_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/context_menu_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/http_listener_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/https_listener_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

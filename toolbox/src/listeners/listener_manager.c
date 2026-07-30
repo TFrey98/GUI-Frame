@@ -6,6 +6,8 @@
 #include <string.h>
 #include <time.h>
 
+#include "http_worker.h"
+#include "https_worker.h"
 #include "object_predicates.h"
 #include "tcp_worker.h"
 
@@ -26,9 +28,8 @@ bool listener_config_validate(const ObjectRegistry *registry, const ListenerConf
         add_error(out, LISTENER_CONFIG_FIELD_NAME, "Name is required");
     }
 
-    /* Only reverse TCP is implemented so far; HTTP/HTTPS are rejected
-     * here until the phases that add those providers. */
-    if (config->type != LISTENER_TYPE_REVERSE_TCP) {
+    if (config->type != LISTENER_TYPE_REVERSE_TCP && config->type != LISTENER_TYPE_HTTP &&
+        config->type != LISTENER_TYPE_HTTPS) {
         add_error(out, LISTENER_CONFIG_FIELD_TYPE, "Unsupported listener type");
     }
 
@@ -61,6 +62,16 @@ bool listener_config_validate(const ObjectRegistry *registry, const ListenerConf
         }
         if (!config->key_path || !*config->key_path) {
             add_error(out, LISTENER_CONFIG_FIELD_KEY_PATH, "Private key path is required for HTTPS");
+        }
+    }
+
+    if (config->type == LISTENER_TYPE_HTTP || config->type == LISTENER_TYPE_HTTPS) {
+        /* host_header is deliberately unchecked when empty - that means
+         * "don't validate the Host header at all," not an error. */
+        if (!config->url_path || !*config->url_path) {
+            add_error(out, LISTENER_CONFIG_FIELD_URL_PATH, "URL path is required");
+        } else if (config->url_path[0] != '/') {
+            add_error(out, LISTENER_CONFIG_FIELD_URL_PATH, "URL path must start with /");
         }
     }
 
@@ -211,8 +222,13 @@ int listener_manager_start_async(ListenerManager *manager, uint64_t id) {
         return -1;
     }
     const Listener *listener = object_registry_get_listener(manager->registry, id);
+    ListenerType type = listener->config.type;
     const char *bind_address = listener->config.bind_address;
     uint16_t port = listener->config.port;
+    const char *url_path = listener->config.url_path;
+    const char *host_header = listener->config.host_header;
+    const char *cert_path = listener->config.cert_path;
+    const char *key_path = listener->config.key_path;
 
     ListenerRuntime *runtime = object_registry_get_listener_runtime_mut(manager->registry, id);
     runtime->state = LISTENER_STATE_STARTING;
@@ -224,8 +240,21 @@ int listener_manager_start_async(ListenerManager *manager, uint64_t id) {
         return 0;
     }
 
+    /* Same manager interface, new backend: only which worker gets
+     * spawned differs by type - everything from here on (state
+     * machine, events, Stop/Restart/Remove) is identical regardless. */
     TcpWorker worker;
-    if (tcp_worker_start(&worker, manager->events, id, bind_address, port) != 0) {
+    int start_result;
+    if (type == LISTENER_TYPE_HTTPS) {
+        start_result = https_worker_start(&worker, manager->events, id, bind_address, port, url_path, host_header,
+                                           cert_path, key_path);
+    } else if (type == LISTENER_TYPE_HTTP) {
+        start_result =
+            http_worker_start(&worker, manager->events, id, bind_address, port, url_path, host_header);
+    } else {
+        start_result = tcp_worker_start(&worker, manager->events, id, bind_address, port);
+    }
+    if (start_result != 0) {
         listener_manager_report_start_result(manager, id, false, "failed to start worker thread");
         return 0;
     }
@@ -381,7 +410,7 @@ int listener_manager_process_events(ListenerManager *manager, ListenerEvent *out
                  * event type. */
                 event.sequence =
                     object_registry_add_connection(manager->registry, event.object_id, event.remote_host,
-                                                    event.remote_port, event.socket_fd);
+                                                    event.remote_port, event.socket_fd, event.tls);
                 break;
             default:
                 break; /* CREATED/STARTING/STOPPING/TEST already applied synchronously - nothing to do */

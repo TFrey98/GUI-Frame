@@ -30,9 +30,12 @@ uint64_t object_registry_add_listener(ObjectRegistry *registry, ListenerConfig c
  * connected_at set to now. remote_host is copied. socket_fd is taken
  * as-is (pass -1 if there's no real socket, e.g. in a test); it is
  * closed automatically when the Connection is removed/the registry is
- * destroyed. Returns the new id, or 0 if the registry is full. */
+ * destroyed. tls is stored as-is (pass NULL for a non-TLS connection) -
+ * unlike socket_fd, this registry never frees it; see connection.h's
+ * comment on Connection.tls for why. Returns the new id, or 0 if the
+ * registry is full. */
 uint64_t object_registry_add_connection(ObjectRegistry *registry, uint64_t listener_id,
-                                         const char *remote_host, uint16_t remote_port, int socket_fd);
+                                         const char *remote_host, uint16_t remote_port, int socket_fd, void *tls);
 
 /* Unconditional removal: frees the object's owned strings (and closes a
  * Connection's socket_fd, if >= 0) and drops it from the registry,

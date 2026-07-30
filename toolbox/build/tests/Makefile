@@ -406,6 +406,34 @@ context_menu_smoke/fast:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/build
 .PHONY : context_menu_smoke/fast
 
+# Convenience name for target.
+tests/CMakeFiles/http_listener_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/http_listener_smoke.dir/rule
+.PHONY : tests/CMakeFiles/http_listener_smoke.dir/rule
+
+# Convenience name for target.
+http_listener_smoke: tests/CMakeFiles/http_listener_smoke.dir/rule
+.PHONY : http_listener_smoke
+
+# fast build rule for target.
+http_listener_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/build
+.PHONY : http_listener_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/https_listener_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/https_listener_smoke.dir/rule
+.PHONY : tests/CMakeFiles/https_listener_smoke.dir/rule
+
+# Convenience name for target.
+https_listener_smoke: tests/CMakeFiles/https_listener_smoke.dir/rule
+.PHONY : https_listener_smoke
+
+# fast build rule for target.
+https_listener_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/build
+.PHONY : https_listener_smoke/fast
+
 byte_buffer_test.o: byte_buffer_test.c.o
 .PHONY : byte_buffer_test.o
 
@@ -525,6 +553,54 @@ event_queue_stress_test.s: event_queue_stress_test.c.s
 event_queue_stress_test.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.s
 .PHONY : event_queue_stress_test.c.s
+
+http_listener_smoke.o: http_listener_smoke.c.o
+.PHONY : http_listener_smoke.o
+
+# target to build an object file
+http_listener_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.o
+.PHONY : http_listener_smoke.c.o
+
+http_listener_smoke.i: http_listener_smoke.c.i
+.PHONY : http_listener_smoke.i
+
+# target to preprocess a source file
+http_listener_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.i
+.PHONY : http_listener_smoke.c.i
+
+http_listener_smoke.s: http_listener_smoke.c.s
+.PHONY : http_listener_smoke.s
+
+# target to generate assembly for a file
+http_listener_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.s
+.PHONY : http_listener_smoke.c.s
+
+https_listener_smoke.o: https_listener_smoke.c.o
+.PHONY : https_listener_smoke.o
+
+# target to build an object file
+https_listener_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/https_listener_smoke.c.o
+.PHONY : https_listener_smoke.c.o
+
+https_listener_smoke.i: https_listener_smoke.c.i
+.PHONY : https_listener_smoke.i
+
+# target to preprocess a source file
+https_listener_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/https_listener_smoke.c.i
+.PHONY : https_listener_smoke.c.i
+
+https_listener_smoke.s: https_listener_smoke.c.s
+.PHONY : https_listener_smoke.s
+
+# target to generate assembly for a file
+https_listener_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/https_listener_smoke.c.s
+.PHONY : https_listener_smoke.c.s
 
 layout_smoke.o: layout_smoke.c.o
 .PHONY : layout_smoke.o
@@ -900,6 +976,8 @@ help:
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
 	@echo "... event_queue_stress_test"
+	@echo "... http_listener_smoke"
+	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
 	@echo "... listener_config_validate_test"
@@ -930,6 +1008,12 @@ help:
 	@echo "... event_queue_stress_test.o"
 	@echo "... event_queue_stress_test.i"
 	@echo "... event_queue_stress_test.s"
+	@echo "... http_listener_smoke.o"
+	@echo "... http_listener_smoke.i"
+	@echo "... http_listener_smoke.s"
+	@echo "... https_listener_smoke.o"
+	@echo "... https_listener_smoke.i"
+	@echo "... https_listener_smoke.s"
 	@echo "... layout_smoke.o"
 	@echo "... layout_smoke.i"
 	@echo "... layout_smoke.s"
