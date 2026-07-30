@@ -64,6 +64,39 @@ target_link_libraries(http_listener_smoke PRIVATE toolbox_core)
 add_executable(https_listener_smoke https_listener_smoke.c)
 target_link_libraries(https_listener_smoke PRIVATE toolbox_core)
 
+add_executable(workspace_root_test workspace_root_test.c)
+target_link_libraries(workspace_root_test PRIVATE toolbox_core)
+
+add_executable(file_tree_test file_tree_test.c)
+target_link_libraries(file_tree_test PRIVATE toolbox_core)
+
+add_executable(explorer_sidebar_smoke explorer_sidebar_smoke.c)
+target_link_libraries(explorer_sidebar_smoke PRIVATE toolbox_core)
+
+add_executable(file_operations_test file_operations_test.c)
+target_link_libraries(file_operations_test PRIVATE toolbox_core)
+
+add_executable(explorer_operations_smoke explorer_operations_smoke.c)
+target_link_libraries(explorer_operations_smoke PRIVATE toolbox_core)
+
+add_executable(file_classify_test file_classify_test.c)
+target_link_libraries(file_classify_test PRIVATE toolbox_core)
+
+add_executable(editor_document_test editor_document_test.c)
+target_link_libraries(editor_document_test PRIVATE toolbox_core)
+
+add_executable(explorer_editor_smoke explorer_editor_smoke.c)
+target_link_libraries(explorer_editor_smoke PRIVATE toolbox_core)
+
+add_executable(editor_document_save_test editor_document_save_test.c)
+target_link_libraries(editor_document_save_test PRIVATE toolbox_core)
+
+add_executable(editor_save_smoke editor_save_smoke.c)
+target_link_libraries(editor_save_smoke PRIVATE toolbox_core)
+
+add_executable(editor_close_confirmation_smoke editor_close_confirmation_smoke.c)
+target_link_libraries(editor_close_confirmation_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -129,3 +162,36 @@ set_tests_properties(http_listener_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME https_listener_smoke COMMAND https_listener_smoke)
 set_tests_properties(https_listener_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME workspace_root_test COMMAND workspace_root_test)
+set_tests_properties(workspace_root_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME file_tree_test COMMAND file_tree_test)
+set_tests_properties(file_tree_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME explorer_sidebar_smoke COMMAND explorer_sidebar_smoke)
+set_tests_properties(explorer_sidebar_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME file_operations_test COMMAND file_operations_test)
+set_tests_properties(file_operations_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME explorer_operations_smoke COMMAND explorer_operations_smoke)
+set_tests_properties(explorer_operations_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME file_classify_test COMMAND file_classify_test)
+set_tests_properties(file_classify_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME editor_document_test COMMAND editor_document_test)
+set_tests_properties(editor_document_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME explorer_editor_smoke COMMAND explorer_editor_smoke)
+set_tests_properties(explorer_editor_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME editor_document_save_test COMMAND editor_document_save_test)
+set_tests_properties(editor_document_save_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME editor_save_smoke COMMAND editor_save_smoke)
+set_tests_properties(editor_save_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME editor_close_confirmation_smoke COMMAND editor_close_confirmation_smoke)
+set_tests_properties(editor_close_confirmation_smoke PROPERTIES TIMEOUT 30)

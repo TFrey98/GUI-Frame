@@ -780,6 +780,8 @@ tests/CMakeFiles/tabs_smoke.dir/tabs_smoke.c.o
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h
  /usr/include/gtk-3.0/gtk/gtk-autocleanups.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/app/app.h
+ /home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/workspace_root.h
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_system.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/event_queue.h
@@ -790,6 +792,5 @@ tests/CMakeFiles/tabs_smoke.dir/tabs_smoke.c.o
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/terminal_history.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/listener_manager.h
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
  /home/taylor.frey/Desktop/GUI Frame/toolbox/tests/test_gtk_utils.h
 

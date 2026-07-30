@@ -799,6 +799,8 @@ tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o: ..
   /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
   /usr/include/gtk-3.0/gtk/gtk-autocleanups.h \
   ../src/app/app.h \
+  ../src/files/workspace_root.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../src/listeners/listener_system.h \
   ../src/listeners/connection_manager.h \
   ../src/listeners/event_queue.h \
@@ -809,7 +811,6 @@ tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o: ..
   ../src/listeners/terminal_history.h \
   ../src/listeners/listener.h \
   ../src/listeners/listener_manager.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../src/core/tab.h \
   ../tests/test_gtk_utils.h
 
@@ -829,6 +830,8 @@ tests/CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o: ..
 ../src/listeners/connection_manager.h:
 
 ../src/listeners/listener_system.h:
+
+../src/files/workspace_root.h:
 
 /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h:
 

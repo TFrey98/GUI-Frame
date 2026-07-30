@@ -15,6 +15,7 @@ struct App {
     Workspace *workspace;
     ListenerSystem *listener_system;
     Workbench *workbench;
+    WorkspaceRoot file_workspace_root;
     int db_open;
 };
 
@@ -22,6 +23,15 @@ App *app_create(int argc, char **argv) {
     App *app = calloc(1, sizeof(App));
     app->argc = argc;
     app->argv = argv;
+
+    /* Unlike db_open below, a failure here is fatal: every later
+     * filesystem-subsystem phase assumes a valid, already-resolved
+     * workspace root exists. */
+    if (!workspace_root_init(&app->file_workspace_root)) {
+        free(app);
+        return NULL;
+    }
+
     /* A failed open just means app->db_open stays false; the rest of the
      * app is expected to run fine with persistence unavailable, so this
      * isn't treated as a fatal error. */
@@ -33,7 +43,7 @@ App *app_create(int argc, char **argv) {
     toolkit_index_init();
     app->workspace = workspace_create();
     app->listener_system = listener_system_create();
-    app->workbench = workbench_create(app->workspace, app->listener_system);
+    app->workbench = workbench_create(app->workspace, app->listener_system, &app->file_workspace_root);
 
     return app;
 }
@@ -44,6 +54,10 @@ int app_run(App *app) {
 
 ListenerSystem *app_get_listener_system(const App *app) {
     return app->listener_system;
+}
+
+const WorkspaceRoot *app_get_file_workspace_root(const App *app) {
+    return &app->file_workspace_root;
 }
 
 void app_destroy(App *app) {

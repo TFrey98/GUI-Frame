@@ -790,6 +790,8 @@ tests/CMakeFiles/terminal_smoke.dir/terminal_smoke.c.o: ../tests/terminal_smoke.
   /usr/include/vte-2.91/vte/vteversion.h \
   /usr/include/vte-2.91/vte/vtedeprecated.h \
   ../src/app/app.h \
+  ../src/files/workspace_root.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../src/listeners/listener_system.h \
   ../src/listeners/connection_manager.h \
   ../src/listeners/event_queue.h \
@@ -800,7 +802,6 @@ tests/CMakeFiles/terminal_smoke.dir/terminal_smoke.c.o: ../tests/terminal_smoke.
   ../src/listeners/terminal_history.h \
   ../src/listeners/listener.h \
   ../src/listeners/listener_manager.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../tests/test_gtk_utils.h
 
 
@@ -815,6 +816,8 @@ tests/CMakeFiles/terminal_smoke.dir/terminal_smoke.c.o: ../tests/terminal_smoke.
 ../src/listeners/connection_manager.h:
 
 ../src/listeners/listener_system.h:
+
+../src/files/workspace_root.h:
 
 ../src/listeners/object_registry.h:
 

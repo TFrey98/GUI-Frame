@@ -2,6 +2,9 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.c \
  /usr/include/stdc-predef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/event_queue.h \
@@ -21,7 +24,6 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/time.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -40,8 +42,7 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
@@ -67,4 +68,6 @@ CMakeFiles/toolbox_core.dir/src/app/app.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../tools/toolkit_index.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/workbench.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../core/workspace.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../listeners/listener_system.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../files/workspace_root.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/../listeners/listener_system.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../ui/ui_platform.h

@@ -20,6 +20,11 @@ find_package(Threads REQUIRED)
 
 add_library(toolbox_core STATIC
     src/app/app.c
+    src/files/workspace_root.c
+    src/files/file_tree.c
+    src/files/file_operations.c
+    src/files/file_classify.c
+    src/files/editor_document.c
     src/core/workspace.c
     src/core/tab.c
     src/core/terminal_session.c
@@ -40,13 +45,22 @@ add_library(toolbox_core STATIC
     src/listeners/connection_worker.c
     src/listeners/connection_manager.c
     src/listeners/listener_system.c
-    src/platform/linux/ui_gtk.c
-    src/platform/linux/terminal_vte.c
+    src/ui/gtk/ui_gtk.c
+    src/ui/gtk/ui_gtk_window.c
+    src/ui/gtk/ui_gtk_tabs.c
+    src/ui/gtk/ui_gtk_terminal.c
+    src/ui/gtk/ui_gtk_file_tree.c
+    src/ui/gtk/ui_gtk_object_list.c
+    src/ui/gtk/ui_gtk_dialogs.c
+    src/ui/gtk/ui_gtk_menus.c
+    src/ui/gtk/ui_gtk_editor.c
+    src/ui/gtk/terminal_vte.c
 )
 
 target_include_directories(toolbox_core PUBLIC
     src
     src/app
+    src/files
     src/core
     src/ui
     src/terminal
@@ -80,6 +94,11 @@ target_link_libraries(toolbox PRIVATE toolbox_core)
 add_custom_command(TARGET toolbox POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:toolbox>/toolkit"
     COMMENT "Ensuring toolkit/ exists next to the toolbox executable"
+)
+
+add_custom_command(TARGET toolbox POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:toolbox>/files"
+    COMMENT "Ensuring files/ (the file workspace root) exists next to the toolbox executable"
 )
 
 enable_testing()

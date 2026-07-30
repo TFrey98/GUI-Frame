@@ -19,12 +19,14 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/event_queue.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_event.h \
- /usr/include/time.h /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
- /usr/include/x86_64-linux-gnu/bits/time.h \
+ /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
@@ -42,8 +44,8 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/terminal_history.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_manager.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h /usr/include/stdlib.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/ui_platform.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \

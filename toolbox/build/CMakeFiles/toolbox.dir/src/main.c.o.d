@@ -2,6 +2,9 @@ CMakeFiles/toolbox.dir/src/main.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/main.c \
  /usr/include/stdc-predef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/event_queue.h \
@@ -21,7 +24,6 @@ CMakeFiles/toolbox.dir/src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h /usr/include/time.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -39,5 +41,4 @@ CMakeFiles/toolbox.dir/src/main.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h

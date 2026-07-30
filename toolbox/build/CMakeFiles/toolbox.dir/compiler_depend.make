@@ -4,6 +4,9 @@
 CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
   /usr/include/stdc-predef.h \
   ../src/app/app.h \
+  ../src/files/workspace_root.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   ../src/listeners/listener_system.h \
   ../src/listeners/connection_manager.h \
   ../src/listeners/event_queue.h \
@@ -26,7 +29,6 @@ CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
   /usr/include/time.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
   /usr/include/x86_64-linux-gnu/bits/time.h \
   /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -44,11 +46,8 @@ CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
   ../src/listeners/connection.h \
   ../src/listeners/terminal_history.h \
   ../src/listeners/listener.h \
-  ../src/listeners/listener_manager.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
+  ../src/listeners/listener_manager.h
 
-
-/usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
 
 ../src/listeners/listener.h:
 
@@ -62,15 +61,27 @@ CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
-/usr/include/features.h:
-
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h:
+
+../src/listeners/event_queue.h:
+
+../src/listeners/connection_manager.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+../src/listeners/managed_object.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+../src/listeners/listener_system.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
@@ -88,17 +99,13 @@ CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
-../src/listeners/event_queue.h:
+../src/files/workspace_root.h:
 
-../src/listeners/connection_manager.h:
+/usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
 
-../src/listeners/managed_object.h:
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
-
-../src/listeners/listener_system.h:
+../src/app/app.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -108,32 +115,28 @@ CMakeFiles/toolbox.dir/src/main.c.o: ../src/main.c \
 
 ../src/main.c:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/features.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h:
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
 /usr/include/time.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
-
-/usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-../src/app/app.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:

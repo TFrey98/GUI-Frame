@@ -438,6 +438,149 @@ https_listener_smoke/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/build
 .PHONY : https_listener_smoke/fast
 
+#=============================================================================
+# Target rules for targets named workspace_root_test
+
+# Build rule for target.
+workspace_root_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 workspace_root_test
+.PHONY : workspace_root_test
+
+# fast build rule for target.
+workspace_root_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/workspace_root_test.dir/build.make tests/CMakeFiles/workspace_root_test.dir/build
+.PHONY : workspace_root_test/fast
+
+#=============================================================================
+# Target rules for targets named file_tree_test
+
+# Build rule for target.
+file_tree_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_tree_test
+.PHONY : file_tree_test
+
+# fast build rule for target.
+file_tree_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/build
+.PHONY : file_tree_test/fast
+
+#=============================================================================
+# Target rules for targets named explorer_sidebar_smoke
+
+# Build rule for target.
+explorer_sidebar_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 explorer_sidebar_smoke
+.PHONY : explorer_sidebar_smoke
+
+# fast build rule for target.
+explorer_sidebar_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/build
+.PHONY : explorer_sidebar_smoke/fast
+
+#=============================================================================
+# Target rules for targets named file_operations_test
+
+# Build rule for target.
+file_operations_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_operations_test
+.PHONY : file_operations_test
+
+# fast build rule for target.
+file_operations_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/build
+.PHONY : file_operations_test/fast
+
+#=============================================================================
+# Target rules for targets named explorer_operations_smoke
+
+# Build rule for target.
+explorer_operations_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 explorer_operations_smoke
+.PHONY : explorer_operations_smoke
+
+# fast build rule for target.
+explorer_operations_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/build
+.PHONY : explorer_operations_smoke/fast
+
+#=============================================================================
+# Target rules for targets named file_classify_test
+
+# Build rule for target.
+file_classify_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_classify_test
+.PHONY : file_classify_test
+
+# fast build rule for target.
+file_classify_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/build
+.PHONY : file_classify_test/fast
+
+#=============================================================================
+# Target rules for targets named editor_document_test
+
+# Build rule for target.
+editor_document_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 editor_document_test
+.PHONY : editor_document_test
+
+# fast build rule for target.
+editor_document_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/build
+.PHONY : editor_document_test/fast
+
+#=============================================================================
+# Target rules for targets named explorer_editor_smoke
+
+# Build rule for target.
+explorer_editor_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 explorer_editor_smoke
+.PHONY : explorer_editor_smoke
+
+# fast build rule for target.
+explorer_editor_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/build
+.PHONY : explorer_editor_smoke/fast
+
+#=============================================================================
+# Target rules for targets named editor_document_save_test
+
+# Build rule for target.
+editor_document_save_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 editor_document_save_test
+.PHONY : editor_document_save_test
+
+# fast build rule for target.
+editor_document_save_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/build
+.PHONY : editor_document_save_test/fast
+
+#=============================================================================
+# Target rules for targets named editor_save_smoke
+
+# Build rule for target.
+editor_save_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 editor_save_smoke
+.PHONY : editor_save_smoke
+
+# fast build rule for target.
+editor_save_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/build
+.PHONY : editor_save_smoke/fast
+
+#=============================================================================
+# Target rules for targets named editor_close_confirmation_smoke
+
+# Build rule for target.
+editor_close_confirmation_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 editor_close_confirmation_smoke
+.PHONY : editor_close_confirmation_smoke
+
+# fast build rule for target.
+editor_close_confirmation_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/build
+.PHONY : editor_close_confirmation_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -557,6 +700,126 @@ src/db/database.s: src/db/database.c.s
 src/db/database.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/db/database.c.s
 .PHONY : src/db/database.c.s
+
+src/files/editor_document.o: src/files/editor_document.c.o
+.PHONY : src/files/editor_document.o
+
+# target to build an object file
+src/files/editor_document.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/editor_document.c.o
+.PHONY : src/files/editor_document.c.o
+
+src/files/editor_document.i: src/files/editor_document.c.i
+.PHONY : src/files/editor_document.i
+
+# target to preprocess a source file
+src/files/editor_document.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/editor_document.c.i
+.PHONY : src/files/editor_document.c.i
+
+src/files/editor_document.s: src/files/editor_document.c.s
+.PHONY : src/files/editor_document.s
+
+# target to generate assembly for a file
+src/files/editor_document.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/editor_document.c.s
+.PHONY : src/files/editor_document.c.s
+
+src/files/file_classify.o: src/files/file_classify.c.o
+.PHONY : src/files/file_classify.o
+
+# target to build an object file
+src/files/file_classify.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_classify.c.o
+.PHONY : src/files/file_classify.c.o
+
+src/files/file_classify.i: src/files/file_classify.c.i
+.PHONY : src/files/file_classify.i
+
+# target to preprocess a source file
+src/files/file_classify.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_classify.c.i
+.PHONY : src/files/file_classify.c.i
+
+src/files/file_classify.s: src/files/file_classify.c.s
+.PHONY : src/files/file_classify.s
+
+# target to generate assembly for a file
+src/files/file_classify.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_classify.c.s
+.PHONY : src/files/file_classify.c.s
+
+src/files/file_operations.o: src/files/file_operations.c.o
+.PHONY : src/files/file_operations.o
+
+# target to build an object file
+src/files/file_operations.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_operations.c.o
+.PHONY : src/files/file_operations.c.o
+
+src/files/file_operations.i: src/files/file_operations.c.i
+.PHONY : src/files/file_operations.i
+
+# target to preprocess a source file
+src/files/file_operations.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_operations.c.i
+.PHONY : src/files/file_operations.c.i
+
+src/files/file_operations.s: src/files/file_operations.c.s
+.PHONY : src/files/file_operations.s
+
+# target to generate assembly for a file
+src/files/file_operations.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_operations.c.s
+.PHONY : src/files/file_operations.c.s
+
+src/files/file_tree.o: src/files/file_tree.c.o
+.PHONY : src/files/file_tree.o
+
+# target to build an object file
+src/files/file_tree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_tree.c.o
+.PHONY : src/files/file_tree.c.o
+
+src/files/file_tree.i: src/files/file_tree.c.i
+.PHONY : src/files/file_tree.i
+
+# target to preprocess a source file
+src/files/file_tree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_tree.c.i
+.PHONY : src/files/file_tree.c.i
+
+src/files/file_tree.s: src/files/file_tree.c.s
+.PHONY : src/files/file_tree.s
+
+# target to generate assembly for a file
+src/files/file_tree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_tree.c.s
+.PHONY : src/files/file_tree.c.s
+
+src/files/workspace_root.o: src/files/workspace_root.c.o
+.PHONY : src/files/workspace_root.o
+
+# target to build an object file
+src/files/workspace_root.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/workspace_root.c.o
+.PHONY : src/files/workspace_root.c.o
+
+src/files/workspace_root.i: src/files/workspace_root.c.i
+.PHONY : src/files/workspace_root.i
+
+# target to preprocess a source file
+src/files/workspace_root.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/workspace_root.c.i
+.PHONY : src/files/workspace_root.c.i
+
+src/files/workspace_root.s: src/files/workspace_root.c.s
+.PHONY : src/files/workspace_root.s
+
+# target to generate assembly for a file
+src/files/workspace_root.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/workspace_root.c.s
+.PHONY : src/files/workspace_root.c.s
 
 src/listeners/byte_buffer.o: src/listeners/byte_buffer.c.o
 .PHONY : src/listeners/byte_buffer.o
@@ -894,54 +1157,6 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox.dir/build.make CMakeFiles/toolbox.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/platform/linux/terminal_vte.o: src/platform/linux/terminal_vte.c.o
-.PHONY : src/platform/linux/terminal_vte.o
-
-# target to build an object file
-src/platform/linux/terminal_vte.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.o
-.PHONY : src/platform/linux/terminal_vte.c.o
-
-src/platform/linux/terminal_vte.i: src/platform/linux/terminal_vte.c.i
-.PHONY : src/platform/linux/terminal_vte.i
-
-# target to preprocess a source file
-src/platform/linux/terminal_vte.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.i
-.PHONY : src/platform/linux/terminal_vte.c.i
-
-src/platform/linux/terminal_vte.s: src/platform/linux/terminal_vte.c.s
-.PHONY : src/platform/linux/terminal_vte.s
-
-# target to generate assembly for a file
-src/platform/linux/terminal_vte.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/terminal_vte.c.s
-.PHONY : src/platform/linux/terminal_vte.c.s
-
-src/platform/linux/ui_gtk.o: src/platform/linux/ui_gtk.c.o
-.PHONY : src/platform/linux/ui_gtk.o
-
-# target to build an object file
-src/platform/linux/ui_gtk.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.o
-.PHONY : src/platform/linux/ui_gtk.c.o
-
-src/platform/linux/ui_gtk.i: src/platform/linux/ui_gtk.c.i
-.PHONY : src/platform/linux/ui_gtk.i
-
-# target to preprocess a source file
-src/platform/linux/ui_gtk.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.i
-.PHONY : src/platform/linux/ui_gtk.c.i
-
-src/platform/linux/ui_gtk.s: src/platform/linux/ui_gtk.c.s
-.PHONY : src/platform/linux/ui_gtk.s
-
-# target to generate assembly for a file
-src/platform/linux/ui_gtk.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/platform/linux/ui_gtk.c.s
-.PHONY : src/platform/linux/ui_gtk.c.s
-
 src/tools/tool_registry.o: src/tools/tool_registry.c.o
 .PHONY : src/tools/tool_registry.o
 
@@ -990,6 +1205,246 @@ src/tools/toolkit_index.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.s
 .PHONY : src/tools/toolkit_index.c.s
 
+src/ui/gtk/terminal_vte.o: src/ui/gtk/terminal_vte.c.o
+.PHONY : src/ui/gtk/terminal_vte.o
+
+# target to build an object file
+src/ui/gtk/terminal_vte.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o
+.PHONY : src/ui/gtk/terminal_vte.c.o
+
+src/ui/gtk/terminal_vte.i: src/ui/gtk/terminal_vte.c.i
+.PHONY : src/ui/gtk/terminal_vte.i
+
+# target to preprocess a source file
+src/ui/gtk/terminal_vte.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.i
+.PHONY : src/ui/gtk/terminal_vte.c.i
+
+src/ui/gtk/terminal_vte.s: src/ui/gtk/terminal_vte.c.s
+.PHONY : src/ui/gtk/terminal_vte.s
+
+# target to generate assembly for a file
+src/ui/gtk/terminal_vte.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.s
+.PHONY : src/ui/gtk/terminal_vte.c.s
+
+src/ui/gtk/ui_gtk.o: src/ui/gtk/ui_gtk.c.o
+.PHONY : src/ui/gtk/ui_gtk.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o
+.PHONY : src/ui/gtk/ui_gtk.c.o
+
+src/ui/gtk/ui_gtk.i: src/ui/gtk/ui_gtk.c.i
+.PHONY : src/ui/gtk/ui_gtk.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.i
+.PHONY : src/ui/gtk/ui_gtk.c.i
+
+src/ui/gtk/ui_gtk.s: src/ui/gtk/ui_gtk.c.s
+.PHONY : src/ui/gtk/ui_gtk.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.s
+.PHONY : src/ui/gtk/ui_gtk.c.s
+
+src/ui/gtk/ui_gtk_dialogs.o: src/ui/gtk/ui_gtk_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_dialogs.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_dialogs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_dialogs.c.o
+
+src/ui/gtk/ui_gtk_dialogs.i: src/ui/gtk/ui_gtk_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_dialogs.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_dialogs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_dialogs.c.i
+
+src/ui/gtk/ui_gtk_dialogs.s: src/ui/gtk/ui_gtk_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_dialogs.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_dialogs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_dialogs.c.s
+
+src/ui/gtk/ui_gtk_editor.o: src/ui/gtk/ui_gtk_editor.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_editor.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor.c.o
+
+src/ui/gtk/ui_gtk_editor.i: src/ui/gtk/ui_gtk_editor.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_editor.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor.c.i
+
+src/ui/gtk/ui_gtk_editor.s: src/ui/gtk/ui_gtk_editor.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_editor.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor.c.s
+
+src/ui/gtk/ui_gtk_file_tree.o: src/ui/gtk/ui_gtk_file_tree.c.o
+.PHONY : src/ui/gtk/ui_gtk_file_tree.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_file_tree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.o
+.PHONY : src/ui/gtk/ui_gtk_file_tree.c.o
+
+src/ui/gtk/ui_gtk_file_tree.i: src/ui/gtk/ui_gtk_file_tree.c.i
+.PHONY : src/ui/gtk/ui_gtk_file_tree.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_file_tree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.i
+.PHONY : src/ui/gtk/ui_gtk_file_tree.c.i
+
+src/ui/gtk/ui_gtk_file_tree.s: src/ui/gtk/ui_gtk_file_tree.c.s
+.PHONY : src/ui/gtk/ui_gtk_file_tree.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_file_tree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.s
+.PHONY : src/ui/gtk/ui_gtk_file_tree.c.s
+
+src/ui/gtk/ui_gtk_menus.o: src/ui/gtk/ui_gtk_menus.c.o
+.PHONY : src/ui/gtk/ui_gtk_menus.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_menus.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.o
+.PHONY : src/ui/gtk/ui_gtk_menus.c.o
+
+src/ui/gtk/ui_gtk_menus.i: src/ui/gtk/ui_gtk_menus.c.i
+.PHONY : src/ui/gtk/ui_gtk_menus.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_menus.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.i
+.PHONY : src/ui/gtk/ui_gtk_menus.c.i
+
+src/ui/gtk/ui_gtk_menus.s: src/ui/gtk/ui_gtk_menus.c.s
+.PHONY : src/ui/gtk/ui_gtk_menus.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_menus.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.s
+.PHONY : src/ui/gtk/ui_gtk_menus.c.s
+
+src/ui/gtk/ui_gtk_object_list.o: src/ui/gtk/ui_gtk_object_list.c.o
+.PHONY : src/ui/gtk/ui_gtk_object_list.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_object_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_list.c.o
+.PHONY : src/ui/gtk/ui_gtk_object_list.c.o
+
+src/ui/gtk/ui_gtk_object_list.i: src/ui/gtk/ui_gtk_object_list.c.i
+.PHONY : src/ui/gtk/ui_gtk_object_list.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_object_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_list.c.i
+.PHONY : src/ui/gtk/ui_gtk_object_list.c.i
+
+src/ui/gtk/ui_gtk_object_list.s: src/ui/gtk/ui_gtk_object_list.c.s
+.PHONY : src/ui/gtk/ui_gtk_object_list.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_object_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_list.c.s
+.PHONY : src/ui/gtk/ui_gtk_object_list.c.s
+
+src/ui/gtk/ui_gtk_tabs.o: src/ui/gtk/ui_gtk_tabs.c.o
+.PHONY : src/ui/gtk/ui_gtk_tabs.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_tabs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tabs.c.o
+.PHONY : src/ui/gtk/ui_gtk_tabs.c.o
+
+src/ui/gtk/ui_gtk_tabs.i: src/ui/gtk/ui_gtk_tabs.c.i
+.PHONY : src/ui/gtk/ui_gtk_tabs.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_tabs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tabs.c.i
+.PHONY : src/ui/gtk/ui_gtk_tabs.c.i
+
+src/ui/gtk/ui_gtk_tabs.s: src/ui/gtk/ui_gtk_tabs.c.s
+.PHONY : src/ui/gtk/ui_gtk_tabs.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_tabs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tabs.c.s
+.PHONY : src/ui/gtk/ui_gtk_tabs.c.s
+
+src/ui/gtk/ui_gtk_terminal.o: src/ui/gtk/ui_gtk_terminal.c.o
+.PHONY : src/ui/gtk/ui_gtk_terminal.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_terminal.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_terminal.c.o
+.PHONY : src/ui/gtk/ui_gtk_terminal.c.o
+
+src/ui/gtk/ui_gtk_terminal.i: src/ui/gtk/ui_gtk_terminal.c.i
+.PHONY : src/ui/gtk/ui_gtk_terminal.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_terminal.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_terminal.c.i
+.PHONY : src/ui/gtk/ui_gtk_terminal.c.i
+
+src/ui/gtk/ui_gtk_terminal.s: src/ui/gtk/ui_gtk_terminal.c.s
+.PHONY : src/ui/gtk/ui_gtk_terminal.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_terminal.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_terminal.c.s
+.PHONY : src/ui/gtk/ui_gtk_terminal.c.s
+
+src/ui/gtk/ui_gtk_window.o: src/ui/gtk/ui_gtk_window.c.o
+.PHONY : src/ui/gtk/ui_gtk_window.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_window.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.o
+.PHONY : src/ui/gtk/ui_gtk_window.c.o
+
+src/ui/gtk/ui_gtk_window.i: src/ui/gtk/ui_gtk_window.c.i
+.PHONY : src/ui/gtk/ui_gtk_window.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_window.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.i
+.PHONY : src/ui/gtk/ui_gtk_window.c.i
+
+src/ui/gtk/ui_gtk_window.s: src/ui/gtk/ui_gtk_window.c.s
+.PHONY : src/ui/gtk/ui_gtk_window.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_window.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.s
+.PHONY : src/ui/gtk/ui_gtk_window.c.s
+
 src/ui/workbench.o: src/ui/workbench.c.o
 .PHONY : src/ui/workbench.o
 
@@ -1027,7 +1482,17 @@ help:
 	@echo "... connection_io_test"
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
+	@echo "... editor_close_confirmation_smoke"
+	@echo "... editor_document_save_test"
+	@echo "... editor_document_test"
+	@echo "... editor_save_smoke"
 	@echo "... event_queue_stress_test"
+	@echo "... explorer_editor_smoke"
+	@echo "... explorer_operations_smoke"
+	@echo "... explorer_sidebar_smoke"
+	@echo "... file_classify_test"
+	@echo "... file_operations_test"
+	@echo "... file_tree_test"
 	@echo "... http_listener_smoke"
 	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
@@ -1047,6 +1512,7 @@ help:
 	@echo "... toolbox"
 	@echo "... toolbox_core"
 	@echo "... toolkit_index_test"
+	@echo "... workspace_root_test"
 	@echo "... src/app/app.o"
 	@echo "... src/app/app.i"
 	@echo "... src/app/app.s"
@@ -1062,6 +1528,21 @@ help:
 	@echo "... src/db/database.o"
 	@echo "... src/db/database.i"
 	@echo "... src/db/database.s"
+	@echo "... src/files/editor_document.o"
+	@echo "... src/files/editor_document.i"
+	@echo "... src/files/editor_document.s"
+	@echo "... src/files/file_classify.o"
+	@echo "... src/files/file_classify.i"
+	@echo "... src/files/file_classify.s"
+	@echo "... src/files/file_operations.o"
+	@echo "... src/files/file_operations.i"
+	@echo "... src/files/file_operations.s"
+	@echo "... src/files/file_tree.o"
+	@echo "... src/files/file_tree.i"
+	@echo "... src/files/file_tree.s"
+	@echo "... src/files/workspace_root.o"
+	@echo "... src/files/workspace_root.i"
+	@echo "... src/files/workspace_root.s"
 	@echo "... src/listeners/byte_buffer.o"
 	@echo "... src/listeners/byte_buffer.i"
 	@echo "... src/listeners/byte_buffer.s"
@@ -1104,18 +1585,42 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/platform/linux/terminal_vte.o"
-	@echo "... src/platform/linux/terminal_vte.i"
-	@echo "... src/platform/linux/terminal_vte.s"
-	@echo "... src/platform/linux/ui_gtk.o"
-	@echo "... src/platform/linux/ui_gtk.i"
-	@echo "... src/platform/linux/ui_gtk.s"
 	@echo "... src/tools/tool_registry.o"
 	@echo "... src/tools/tool_registry.i"
 	@echo "... src/tools/tool_registry.s"
 	@echo "... src/tools/toolkit_index.o"
 	@echo "... src/tools/toolkit_index.i"
 	@echo "... src/tools/toolkit_index.s"
+	@echo "... src/ui/gtk/terminal_vte.o"
+	@echo "... src/ui/gtk/terminal_vte.i"
+	@echo "... src/ui/gtk/terminal_vte.s"
+	@echo "... src/ui/gtk/ui_gtk.o"
+	@echo "... src/ui/gtk/ui_gtk.i"
+	@echo "... src/ui/gtk/ui_gtk.s"
+	@echo "... src/ui/gtk/ui_gtk_dialogs.o"
+	@echo "... src/ui/gtk/ui_gtk_dialogs.i"
+	@echo "... src/ui/gtk/ui_gtk_dialogs.s"
+	@echo "... src/ui/gtk/ui_gtk_editor.o"
+	@echo "... src/ui/gtk/ui_gtk_editor.i"
+	@echo "... src/ui/gtk/ui_gtk_editor.s"
+	@echo "... src/ui/gtk/ui_gtk_file_tree.o"
+	@echo "... src/ui/gtk/ui_gtk_file_tree.i"
+	@echo "... src/ui/gtk/ui_gtk_file_tree.s"
+	@echo "... src/ui/gtk/ui_gtk_menus.o"
+	@echo "... src/ui/gtk/ui_gtk_menus.i"
+	@echo "... src/ui/gtk/ui_gtk_menus.s"
+	@echo "... src/ui/gtk/ui_gtk_object_list.o"
+	@echo "... src/ui/gtk/ui_gtk_object_list.i"
+	@echo "... src/ui/gtk/ui_gtk_object_list.s"
+	@echo "... src/ui/gtk/ui_gtk_tabs.o"
+	@echo "... src/ui/gtk/ui_gtk_tabs.i"
+	@echo "... src/ui/gtk/ui_gtk_tabs.s"
+	@echo "... src/ui/gtk/ui_gtk_terminal.o"
+	@echo "... src/ui/gtk/ui_gtk_terminal.i"
+	@echo "... src/ui/gtk/ui_gtk_terminal.s"
+	@echo "... src/ui/gtk/ui_gtk_window.o"
+	@echo "... src/ui/gtk/ui_gtk_window.i"
+	@echo "... src/ui/gtk/ui_gtk_window.s"
 	@echo "... src/ui/workbench.o"
 	@echo "... src/ui/workbench.i"
 	@echo "... src/ui/workbench.s"

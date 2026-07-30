@@ -716,6 +716,8 @@ tests/CMakeFiles/new_listener_dialog_smoke.dir/new_listener_dialog_smoke.c.o: \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
  /usr/include/gtk-3.0/gtk/gtk-autocleanups.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/app.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/event_queue.h \
@@ -725,5 +727,4 @@ tests/CMakeFiles/new_listener_dialog_smoke.dir/new_listener_dialog_smoke.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/connection.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h

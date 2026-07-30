@@ -434,6 +434,160 @@ https_listener_smoke/fast:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/build
 .PHONY : https_listener_smoke/fast
 
+# Convenience name for target.
+tests/CMakeFiles/workspace_root_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/workspace_root_test.dir/rule
+.PHONY : tests/CMakeFiles/workspace_root_test.dir/rule
+
+# Convenience name for target.
+workspace_root_test: tests/CMakeFiles/workspace_root_test.dir/rule
+.PHONY : workspace_root_test
+
+# fast build rule for target.
+workspace_root_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/workspace_root_test.dir/build.make tests/CMakeFiles/workspace_root_test.dir/build
+.PHONY : workspace_root_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/file_tree_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_tree_test.dir/rule
+.PHONY : tests/CMakeFiles/file_tree_test.dir/rule
+
+# Convenience name for target.
+file_tree_test: tests/CMakeFiles/file_tree_test.dir/rule
+.PHONY : file_tree_test
+
+# fast build rule for target.
+file_tree_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/build
+.PHONY : file_tree_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/explorer_sidebar_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_sidebar_smoke.dir/rule
+.PHONY : tests/CMakeFiles/explorer_sidebar_smoke.dir/rule
+
+# Convenience name for target.
+explorer_sidebar_smoke: tests/CMakeFiles/explorer_sidebar_smoke.dir/rule
+.PHONY : explorer_sidebar_smoke
+
+# fast build rule for target.
+explorer_sidebar_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/build
+.PHONY : explorer_sidebar_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/file_operations_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_operations_test.dir/rule
+.PHONY : tests/CMakeFiles/file_operations_test.dir/rule
+
+# Convenience name for target.
+file_operations_test: tests/CMakeFiles/file_operations_test.dir/rule
+.PHONY : file_operations_test
+
+# fast build rule for target.
+file_operations_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/build
+.PHONY : file_operations_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/explorer_operations_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_operations_smoke.dir/rule
+.PHONY : tests/CMakeFiles/explorer_operations_smoke.dir/rule
+
+# Convenience name for target.
+explorer_operations_smoke: tests/CMakeFiles/explorer_operations_smoke.dir/rule
+.PHONY : explorer_operations_smoke
+
+# fast build rule for target.
+explorer_operations_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/build
+.PHONY : explorer_operations_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/file_classify_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_classify_test.dir/rule
+.PHONY : tests/CMakeFiles/file_classify_test.dir/rule
+
+# Convenience name for target.
+file_classify_test: tests/CMakeFiles/file_classify_test.dir/rule
+.PHONY : file_classify_test
+
+# fast build rule for target.
+file_classify_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/build
+.PHONY : file_classify_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/editor_document_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_document_test.dir/rule
+.PHONY : tests/CMakeFiles/editor_document_test.dir/rule
+
+# Convenience name for target.
+editor_document_test: tests/CMakeFiles/editor_document_test.dir/rule
+.PHONY : editor_document_test
+
+# fast build rule for target.
+editor_document_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/build
+.PHONY : editor_document_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/explorer_editor_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_editor_smoke.dir/rule
+.PHONY : tests/CMakeFiles/explorer_editor_smoke.dir/rule
+
+# Convenience name for target.
+explorer_editor_smoke: tests/CMakeFiles/explorer_editor_smoke.dir/rule
+.PHONY : explorer_editor_smoke
+
+# fast build rule for target.
+explorer_editor_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/build
+.PHONY : explorer_editor_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/editor_document_save_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_document_save_test.dir/rule
+.PHONY : tests/CMakeFiles/editor_document_save_test.dir/rule
+
+# Convenience name for target.
+editor_document_save_test: tests/CMakeFiles/editor_document_save_test.dir/rule
+.PHONY : editor_document_save_test
+
+# fast build rule for target.
+editor_document_save_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/build
+.PHONY : editor_document_save_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/editor_save_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_save_smoke.dir/rule
+.PHONY : tests/CMakeFiles/editor_save_smoke.dir/rule
+
+# Convenience name for target.
+editor_save_smoke: tests/CMakeFiles/editor_save_smoke.dir/rule
+.PHONY : editor_save_smoke
+
+# fast build rule for target.
+editor_save_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/build
+.PHONY : editor_save_smoke/fast
+
+# Convenience name for target.
+tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule
+.PHONY : tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule
+
+# Convenience name for target.
+editor_close_confirmation_smoke: tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule
+.PHONY : editor_close_confirmation_smoke
+
+# fast build rule for target.
+editor_close_confirmation_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/build
+.PHONY : editor_close_confirmation_smoke/fast
+
 byte_buffer_test.o: byte_buffer_test.c.o
 .PHONY : byte_buffer_test.o
 
@@ -530,6 +684,102 @@ context_menu_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/context_menu_smoke.c.s
 .PHONY : context_menu_smoke.c.s
 
+editor_close_confirmation_smoke.o: editor_close_confirmation_smoke.c.o
+.PHONY : editor_close_confirmation_smoke.o
+
+# target to build an object file
+editor_close_confirmation_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/editor_close_confirmation_smoke.c.o
+.PHONY : editor_close_confirmation_smoke.c.o
+
+editor_close_confirmation_smoke.i: editor_close_confirmation_smoke.c.i
+.PHONY : editor_close_confirmation_smoke.i
+
+# target to preprocess a source file
+editor_close_confirmation_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/editor_close_confirmation_smoke.c.i
+.PHONY : editor_close_confirmation_smoke.c.i
+
+editor_close_confirmation_smoke.s: editor_close_confirmation_smoke.c.s
+.PHONY : editor_close_confirmation_smoke.s
+
+# target to generate assembly for a file
+editor_close_confirmation_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/editor_close_confirmation_smoke.c.s
+.PHONY : editor_close_confirmation_smoke.c.s
+
+editor_document_save_test.o: editor_document_save_test.c.o
+.PHONY : editor_document_save_test.o
+
+# target to build an object file
+editor_document_save_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/editor_document_save_test.c.o
+.PHONY : editor_document_save_test.c.o
+
+editor_document_save_test.i: editor_document_save_test.c.i
+.PHONY : editor_document_save_test.i
+
+# target to preprocess a source file
+editor_document_save_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/editor_document_save_test.c.i
+.PHONY : editor_document_save_test.c.i
+
+editor_document_save_test.s: editor_document_save_test.c.s
+.PHONY : editor_document_save_test.s
+
+# target to generate assembly for a file
+editor_document_save_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/editor_document_save_test.c.s
+.PHONY : editor_document_save_test.c.s
+
+editor_document_test.o: editor_document_test.c.o
+.PHONY : editor_document_test.o
+
+# target to build an object file
+editor_document_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/editor_document_test.c.o
+.PHONY : editor_document_test.c.o
+
+editor_document_test.i: editor_document_test.c.i
+.PHONY : editor_document_test.i
+
+# target to preprocess a source file
+editor_document_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/editor_document_test.c.i
+.PHONY : editor_document_test.c.i
+
+editor_document_test.s: editor_document_test.c.s
+.PHONY : editor_document_test.s
+
+# target to generate assembly for a file
+editor_document_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/editor_document_test.c.s
+.PHONY : editor_document_test.c.s
+
+editor_save_smoke.o: editor_save_smoke.c.o
+.PHONY : editor_save_smoke.o
+
+# target to build an object file
+editor_save_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/editor_save_smoke.c.o
+.PHONY : editor_save_smoke.c.o
+
+editor_save_smoke.i: editor_save_smoke.c.i
+.PHONY : editor_save_smoke.i
+
+# target to preprocess a source file
+editor_save_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/editor_save_smoke.c.i
+.PHONY : editor_save_smoke.c.i
+
+editor_save_smoke.s: editor_save_smoke.c.s
+.PHONY : editor_save_smoke.s
+
+# target to generate assembly for a file
+editor_save_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/editor_save_smoke.c.s
+.PHONY : editor_save_smoke.c.s
+
 event_queue_stress_test.o: event_queue_stress_test.c.o
 .PHONY : event_queue_stress_test.o
 
@@ -553,6 +803,150 @@ event_queue_stress_test.s: event_queue_stress_test.c.s
 event_queue_stress_test.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.s
 .PHONY : event_queue_stress_test.c.s
+
+explorer_editor_smoke.o: explorer_editor_smoke.c.o
+.PHONY : explorer_editor_smoke.o
+
+# target to build an object file
+explorer_editor_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/explorer_editor_smoke.c.o
+.PHONY : explorer_editor_smoke.c.o
+
+explorer_editor_smoke.i: explorer_editor_smoke.c.i
+.PHONY : explorer_editor_smoke.i
+
+# target to preprocess a source file
+explorer_editor_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/explorer_editor_smoke.c.i
+.PHONY : explorer_editor_smoke.c.i
+
+explorer_editor_smoke.s: explorer_editor_smoke.c.s
+.PHONY : explorer_editor_smoke.s
+
+# target to generate assembly for a file
+explorer_editor_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/explorer_editor_smoke.c.s
+.PHONY : explorer_editor_smoke.c.s
+
+explorer_operations_smoke.o: explorer_operations_smoke.c.o
+.PHONY : explorer_operations_smoke.o
+
+# target to build an object file
+explorer_operations_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.o
+.PHONY : explorer_operations_smoke.c.o
+
+explorer_operations_smoke.i: explorer_operations_smoke.c.i
+.PHONY : explorer_operations_smoke.i
+
+# target to preprocess a source file
+explorer_operations_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.i
+.PHONY : explorer_operations_smoke.c.i
+
+explorer_operations_smoke.s: explorer_operations_smoke.c.s
+.PHONY : explorer_operations_smoke.s
+
+# target to generate assembly for a file
+explorer_operations_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.s
+.PHONY : explorer_operations_smoke.c.s
+
+explorer_sidebar_smoke.o: explorer_sidebar_smoke.c.o
+.PHONY : explorer_sidebar_smoke.o
+
+# target to build an object file
+explorer_sidebar_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/explorer_sidebar_smoke.c.o
+.PHONY : explorer_sidebar_smoke.c.o
+
+explorer_sidebar_smoke.i: explorer_sidebar_smoke.c.i
+.PHONY : explorer_sidebar_smoke.i
+
+# target to preprocess a source file
+explorer_sidebar_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/explorer_sidebar_smoke.c.i
+.PHONY : explorer_sidebar_smoke.c.i
+
+explorer_sidebar_smoke.s: explorer_sidebar_smoke.c.s
+.PHONY : explorer_sidebar_smoke.s
+
+# target to generate assembly for a file
+explorer_sidebar_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/explorer_sidebar_smoke.c.s
+.PHONY : explorer_sidebar_smoke.c.s
+
+file_classify_test.o: file_classify_test.c.o
+.PHONY : file_classify_test.o
+
+# target to build an object file
+file_classify_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/file_classify_test.c.o
+.PHONY : file_classify_test.c.o
+
+file_classify_test.i: file_classify_test.c.i
+.PHONY : file_classify_test.i
+
+# target to preprocess a source file
+file_classify_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/file_classify_test.c.i
+.PHONY : file_classify_test.c.i
+
+file_classify_test.s: file_classify_test.c.s
+.PHONY : file_classify_test.s
+
+# target to generate assembly for a file
+file_classify_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/file_classify_test.c.s
+.PHONY : file_classify_test.c.s
+
+file_operations_test.o: file_operations_test.c.o
+.PHONY : file_operations_test.o
+
+# target to build an object file
+file_operations_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/file_operations_test.c.o
+.PHONY : file_operations_test.c.o
+
+file_operations_test.i: file_operations_test.c.i
+.PHONY : file_operations_test.i
+
+# target to preprocess a source file
+file_operations_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/file_operations_test.c.i
+.PHONY : file_operations_test.c.i
+
+file_operations_test.s: file_operations_test.c.s
+.PHONY : file_operations_test.s
+
+# target to generate assembly for a file
+file_operations_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/file_operations_test.c.s
+.PHONY : file_operations_test.c.s
+
+file_tree_test.o: file_tree_test.c.o
+.PHONY : file_tree_test.o
+
+# target to build an object file
+file_tree_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/file_tree_test.c.o
+.PHONY : file_tree_test.c.o
+
+file_tree_test.i: file_tree_test.c.i
+.PHONY : file_tree_test.i
+
+# target to preprocess a source file
+file_tree_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/file_tree_test.c.i
+.PHONY : file_tree_test.c.i
+
+file_tree_test.s: file_tree_test.c.s
+.PHONY : file_tree_test.s
+
+# target to generate assembly for a file
+file_tree_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/file_tree_test.c.s
+.PHONY : file_tree_test.c.s
 
 http_listener_smoke.o: http_listener_smoke.c.o
 .PHONY : http_listener_smoke.o
@@ -962,6 +1356,30 @@ toolkit_index_test.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_index_test.dir/build.make tests/CMakeFiles/toolkit_index_test.dir/toolkit_index_test.c.s
 .PHONY : toolkit_index_test.c.s
 
+workspace_root_test.o: workspace_root_test.c.o
+.PHONY : workspace_root_test.o
+
+# target to build an object file
+workspace_root_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/workspace_root_test.dir/build.make tests/CMakeFiles/workspace_root_test.dir/workspace_root_test.c.o
+.PHONY : workspace_root_test.c.o
+
+workspace_root_test.i: workspace_root_test.c.i
+.PHONY : workspace_root_test.i
+
+# target to preprocess a source file
+workspace_root_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/workspace_root_test.dir/build.make tests/CMakeFiles/workspace_root_test.dir/workspace_root_test.c.i
+.PHONY : workspace_root_test.c.i
+
+workspace_root_test.s: workspace_root_test.c.s
+.PHONY : workspace_root_test.s
+
+# target to generate assembly for a file
+workspace_root_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/workspace_root_test.dir/build.make tests/CMakeFiles/workspace_root_test.dir/workspace_root_test.c.s
+.PHONY : workspace_root_test.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -975,7 +1393,17 @@ help:
 	@echo "... connection_io_test"
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
+	@echo "... editor_close_confirmation_smoke"
+	@echo "... editor_document_save_test"
+	@echo "... editor_document_test"
+	@echo "... editor_save_smoke"
 	@echo "... event_queue_stress_test"
+	@echo "... explorer_editor_smoke"
+	@echo "... explorer_operations_smoke"
+	@echo "... explorer_sidebar_smoke"
+	@echo "... file_classify_test"
+	@echo "... file_operations_test"
+	@echo "... file_tree_test"
 	@echo "... http_listener_smoke"
 	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
@@ -993,6 +1421,7 @@ help:
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
 	@echo "... toolkit_index_test"
+	@echo "... workspace_root_test"
 	@echo "... byte_buffer_test.o"
 	@echo "... byte_buffer_test.i"
 	@echo "... byte_buffer_test.s"
@@ -1005,9 +1434,39 @@ help:
 	@echo "... context_menu_smoke.o"
 	@echo "... context_menu_smoke.i"
 	@echo "... context_menu_smoke.s"
+	@echo "... editor_close_confirmation_smoke.o"
+	@echo "... editor_close_confirmation_smoke.i"
+	@echo "... editor_close_confirmation_smoke.s"
+	@echo "... editor_document_save_test.o"
+	@echo "... editor_document_save_test.i"
+	@echo "... editor_document_save_test.s"
+	@echo "... editor_document_test.o"
+	@echo "... editor_document_test.i"
+	@echo "... editor_document_test.s"
+	@echo "... editor_save_smoke.o"
+	@echo "... editor_save_smoke.i"
+	@echo "... editor_save_smoke.s"
 	@echo "... event_queue_stress_test.o"
 	@echo "... event_queue_stress_test.i"
 	@echo "... event_queue_stress_test.s"
+	@echo "... explorer_editor_smoke.o"
+	@echo "... explorer_editor_smoke.i"
+	@echo "... explorer_editor_smoke.s"
+	@echo "... explorer_operations_smoke.o"
+	@echo "... explorer_operations_smoke.i"
+	@echo "... explorer_operations_smoke.s"
+	@echo "... explorer_sidebar_smoke.o"
+	@echo "... explorer_sidebar_smoke.i"
+	@echo "... explorer_sidebar_smoke.s"
+	@echo "... file_classify_test.o"
+	@echo "... file_classify_test.i"
+	@echo "... file_classify_test.s"
+	@echo "... file_operations_test.o"
+	@echo "... file_operations_test.i"
+	@echo "... file_operations_test.s"
+	@echo "... file_tree_test.o"
+	@echo "... file_tree_test.i"
+	@echo "... file_tree_test.s"
 	@echo "... http_listener_smoke.o"
 	@echo "... http_listener_smoke.i"
 	@echo "... http_listener_smoke.s"
@@ -1059,6 +1518,9 @@ help:
 	@echo "... toolkit_index_test.o"
 	@echo "... toolkit_index_test.i"
 	@echo "... toolkit_index_test.s"
+	@echo "... workspace_root_test.o"
+	@echo "... workspace_root_test.i"
+	@echo "... workspace_root_test.s"
 .PHONY : help
 
 

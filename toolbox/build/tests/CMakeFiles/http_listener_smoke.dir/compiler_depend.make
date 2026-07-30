@@ -802,6 +802,8 @@ tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.o: ../tests/http_
   /usr/include/x86_64-linux-gnu/sys/poll.h \
   /usr/include/x86_64-linux-gnu/bits/poll.h \
   ../src/app/app.h \
+  ../src/files/workspace_root.h \
+  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../src/listeners/listener_system.h \
   ../src/listeners/connection_manager.h \
   ../src/listeners/event_queue.h \
@@ -812,7 +814,6 @@ tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.o: ../tests/http_
   ../src/listeners/terminal_history.h \
   ../src/listeners/listener.h \
   ../src/listeners/listener_manager.h \
-  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
   ../tests/test_gtk_utils.h
 
 
@@ -829,6 +830,8 @@ tests/CMakeFiles/http_listener_smoke.dir/http_listener_smoke.c.o: ../tests/http_
 ../src/listeners/connection_manager.h:
 
 ../src/listeners/listener_system.h:
+
+../src/files/workspace_root.h:
 
 /usr/include/x86_64-linux-gnu/sys/poll.h:
 
