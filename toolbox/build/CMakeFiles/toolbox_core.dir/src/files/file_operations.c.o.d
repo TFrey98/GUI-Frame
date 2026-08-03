@@ -1,10 +1,10 @@
 CMakeFiles/toolbox_core.dir/src/files/file_operations.c.o: \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_operations.c \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_operations.c \
  /usr/include/stdc-predef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_operations.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/workspace_root.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h /usr/include/dirent.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_operations.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdbool.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h /usr/include/dirent.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -34,13 +34,14 @@ CMakeFiles/toolbox_core.dir/src/files/file_operations.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stat.h \
  /usr/include/x86_64-linux-gnu/bits/struct_stat.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h /usr/include/string.h \

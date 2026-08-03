@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/editor_document_test.dir/link.d"
   "CMakeFiles/editor_document_test.dir/editor_document_test.c.o"
   "CMakeFiles/editor_document_test.dir/editor_document_test.c.o.d"
   "editor_document_test"

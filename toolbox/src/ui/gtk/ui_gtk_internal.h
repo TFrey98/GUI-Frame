@@ -61,6 +61,9 @@ typedef struct GtkBackend {
     GtkWidget *explorer_tree_view;
     GtkCellRenderer *explorer_name_renderer;
     GtkTreeRowReference *explorer_editing_row; /* the row currently in inline create/rename, if any */
+
+    GtkCssProvider *css_provider; /* app-wide dark/light stylesheet, see ui_gtk_theme.c */
+    gboolean dark_mode;           /* current toggle state; new terminals/pages read this to match */
 } GtkBackend;
 
 /* Bottom object panel tree columns - object_list.c builds/syncs this
@@ -184,6 +187,17 @@ const char *editor_save_error_message(EditorSaveResult result);
 
 /* --- ui_gtk_window.c ----------------------------------------------------- */
 void on_activate(GtkApplication *gtk_app, gpointer user_data);
+
+/* --- ui_gtk_theme.c ------------------------------------------------------ */
+/* Attaches backend->css_provider to the default screen at application
+ * priority - must run once, before the first widget is realized (called
+ * from on_activate). Starts inert (dark_mode is FALSE at this point), so
+ * this alone doesn't change anything visible yet. */
+void gtk_theme_init(GtkBackend *backend);
+/* Toggled by the "Dark Mode" button in the top bar - swaps the app-wide
+ * CSS stylesheet and re-applies VTE colors (see terminal_apply_theme) to
+ * every currently open terminal page. */
+void apply_dark_mode(GtkBackend *backend, gboolean dark);
 
 /* --- ui_gtk_editor.c ----------------------------------------------------- */
 GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab);

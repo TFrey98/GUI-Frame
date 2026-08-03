@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/toolkit_index_test.dir/link.d"
   "CMakeFiles/toolkit_index_test.dir/toolkit_index_test.c.o"
   "CMakeFiles/toolkit_index_test.dir/toolkit_index_test.c.o.d"
   "toolkit_index_test"

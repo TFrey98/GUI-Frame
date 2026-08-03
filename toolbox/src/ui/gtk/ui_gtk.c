@@ -20,6 +20,8 @@ void *platform_ui_create(Workbench *workbench) {
     backend->status_label = NULL;
     backend->next_listener_number = 1;
     backend->tick_source_id = 0;
+    backend->css_provider = NULL;
+    backend->dark_mode = FALSE;
     backend->gtk_app = gtk_application_new("dev.toolbox.app", G_APPLICATION_FLAGS_NONE);
     g_signal_connect(backend->gtk_app, "activate", G_CALLBACK(on_activate), backend);
     return backend;
@@ -61,6 +63,9 @@ void platform_ui_destroy(void *backend_ptr) {
     file_tree_destroy(backend->file_tree);
     if (backend->explorer_editing_row) {
         gtk_tree_row_reference_free(backend->explorer_editing_row);
+    }
+    if (backend->css_provider) {
+        g_object_unref(backend->css_provider);
     }
 
     g_object_unref(backend->gtk_app);

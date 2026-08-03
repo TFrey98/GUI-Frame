@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/toolbox.dir/link.d"
   "CMakeFiles/toolbox.dir/src/main.c.o"
   "CMakeFiles/toolbox.dir/src/main.c.o.d"
   "toolbox"

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/listener_config_validate_test.dir/link.d"
   "CMakeFiles/listener_config_validate_test.dir/listener_config_validate_test.c.o"
   "CMakeFiles/listener_config_validate_test.dir/listener_config_validate_test.c.o.d"
   "listener_config_validate_test"

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/connection_terminal_smoke.dir/link.d"
   "CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o"
   "CMakeFiles/connection_terminal_smoke.dir/connection_terminal_smoke.c.o.d"
   "connection_terminal_smoke"

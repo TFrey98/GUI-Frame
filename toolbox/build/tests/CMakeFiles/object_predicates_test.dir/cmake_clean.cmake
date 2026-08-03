@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/object_predicates_test.dir/link.d"
   "CMakeFiles/object_predicates_test.dir/object_predicates_test.c.o"
   "CMakeFiles/object_predicates_test.dir/object_predicates_test.c.o.d"
   "object_predicates_test"

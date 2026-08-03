@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/byte_buffer_test.dir/link.d"
   "CMakeFiles/byte_buffer_test.dir/byte_buffer_test.c.o"
   "CMakeFiles/byte_buffer_test.dir/byte_buffer_test.c.o.d"
   "byte_buffer_test"

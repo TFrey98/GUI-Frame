@@ -67,6 +67,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tabs.c.o.d"
   "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_terminal.c.o"
   "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_terminal.c.o.d"
+  "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_theme.c.o"
+  "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_theme.c.o.d"
   "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.o"
   "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.o.d"
   "CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o"

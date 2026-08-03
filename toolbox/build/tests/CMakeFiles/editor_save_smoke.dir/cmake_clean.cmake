@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/editor_save_smoke.dir/link.d"
   "CMakeFiles/editor_save_smoke.dir/editor_save_smoke.c.o"
   "CMakeFiles/editor_save_smoke.dir/editor_save_smoke.c.o.d"
   "editor_save_smoke"

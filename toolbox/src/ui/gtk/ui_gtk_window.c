@@ -63,6 +63,10 @@ static void on_save_all_clicked(GtkButton *button, gpointer user_data) {
     save_all_modified_editors((GtkBackend *)user_data);
 }
 
+static void on_dark_mode_toggled(GtkToggleButton *button, gpointer user_data) {
+    apply_dark_mode((GtkBackend *)user_data, gtk_toggle_button_get_active(button));
+}
+
 static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidget *bottom_panel) {
     GtkWidget *bar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_set_border_width(GTK_CONTAINER(bar), 6);
@@ -93,6 +97,12 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bottom_toggle), TRUE);
     g_signal_connect(bottom_toggle, "toggled", G_CALLBACK(on_toggle_panel), bottom_panel);
     gtk_box_pack_start(GTK_BOX(bar), bottom_toggle, FALSE, FALSE, 0);
+
+    GtkWidget *dark_mode_toggle = gtk_toggle_button_new_with_label("\xF0\x9F\x8C\x99 Dark Mode");
+    g_object_set_data(G_OBJECT(dark_mode_toggle), "toolbox-dark-mode-toggle", dark_mode_toggle);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dark_mode_toggle), backend->dark_mode);
+    g_signal_connect(dark_mode_toggle, "toggled", G_CALLBACK(on_dark_mode_toggled), backend);
+    gtk_box_pack_start(GTK_BOX(bar), dark_mode_toggle, FALSE, FALSE, 0);
 
     return bar;
 }
@@ -202,6 +212,8 @@ static gboolean on_window_key_press(GtkWidget *window, GdkEventKey *event, gpoin
 
 void on_activate(GtkApplication *gtk_app, gpointer user_data) {
     GtkBackend *backend = user_data;
+
+    gtk_theme_init(backend);
 
     GtkWidget *window = gtk_application_window_new(gtk_app);
     gtk_window_set_title(GTK_WINDOW(window), "toolbox");

@@ -1,7 +1,7 @@
 CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o: \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/tools/tool_registry.c \
+ /home/taylor-frey/GUI-Frame/toolbox/src/tools/tool_registry.c \
  /usr/include/stdc-predef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/tools/tool_registry.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/tools/tool_registry.h \
  /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -11,7 +11,7 @@ CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/strings.h

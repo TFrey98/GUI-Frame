@@ -54,6 +54,7 @@ add_library(toolbox_core STATIC
     src/ui/gtk/ui_gtk_dialogs.c
     src/ui/gtk/ui_gtk_menus.c
     src/ui/gtk/ui_gtk_editor.c
+    src/ui/gtk/ui_gtk_theme.c
     src/ui/gtk/terminal_vte.c
 )
 

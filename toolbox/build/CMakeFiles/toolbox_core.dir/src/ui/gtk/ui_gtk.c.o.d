@@ -1,8 +1,8 @@
 CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk.c \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/gtk/ui_gtk.c \
  /usr/include/stdc-predef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/ui_platform.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/gtk/ui_gtk.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/ui_platform.h \
  /usr/include/stdlib.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -12,7 +12,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
@@ -43,22 +43,23 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_internal.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/gtk/ui_gtk_internal.h \
  /usr/include/gtk-3.0/gtk/gtk.h /usr/include/gtk-3.0/gdk/gdk.h \
  /usr/include/gtk-3.0/gdk/gdkconfig.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/syslimits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h \
  /usr/include/x86_64-linux-gnu/bits/pthread_stack_min.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/float.h \
- /usr/include/glib-2.0/glib/gversionmacros.h /usr/include/time.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/float.h \
+ /usr/include/glib-2.0/glib/gversionmacros.h \
+ /usr/include/glib-2.0/glib/glib-visibility.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
@@ -71,7 +72,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/glib/gatomic.h \
  /usr/include/glib-2.0/glib/glib-typeof.h \
  /usr/include/glib-2.0/glib/gerror.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdarg.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdarg.h \
  /usr/include/glib-2.0/glib/gquark.h /usr/include/glib-2.0/glib/gutils.h \
  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
@@ -117,8 +118,14 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/glib/ghostutils.h \
  /usr/include/glib-2.0/glib/giochannel.h \
  /usr/include/glib-2.0/glib/gmain.h /usr/include/glib-2.0/glib/gpoll.h \
- /usr/include/glib-2.0/glib/gslist.h /usr/include/glib-2.0/glib/gstring.h \
+ /usr/include/glib-2.0/glib/gslist.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
+ /usr/include/x86_64-linux-gnu/bits/wchar.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /usr/include/glib-2.0/glib/gstring.h \
  /usr/include/glib-2.0/glib/gunicode.h \
+ /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gkeyfile.h \
  /usr/include/glib-2.0/glib/gmappedfile.h \
  /usr/include/glib-2.0/glib/gmarkup.h \
@@ -126,6 +133,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/glib/gvariant.h \
  /usr/include/glib-2.0/glib/gvarianttype.h \
  /usr/include/glib-2.0/glib/goption.h \
+ /usr/include/glib-2.0/glib/gpathbuf.h \
  /usr/include/glib-2.0/glib/gpattern.h \
  /usr/include/glib-2.0/glib/gprimes.h /usr/include/glib-2.0/glib/gqsort.h \
  /usr/include/glib-2.0/glib/gqueue.h /usr/include/glib-2.0/glib/grand.h \
@@ -138,7 +146,6 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/glib/gsequence.h \
  /usr/include/glib-2.0/glib/gshell.h /usr/include/glib-2.0/glib/gslice.h \
  /usr/include/glib-2.0/glib/gspawn.h \
- /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gstringchunk.h \
  /usr/include/glib-2.0/glib/gstrvbuilder.h \
  /usr/include/glib-2.0/glib/gtestutils.h /usr/include/errno.h \
@@ -169,6 +176,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/gobject/gbinding.h \
  /usr/include/glib-2.0/gobject/gobject.h \
  /usr/include/glib-2.0/gobject/gtype.h \
+ /usr/include/glib-2.0/gobject/gobject-visibility.h \
  /usr/include/glib-2.0/gobject/gvalue.h \
  /usr/include/glib-2.0/gobject/gparam.h \
  /usr/include/glib-2.0/gobject/gclosure.h \
@@ -187,6 +195,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/gobject/gvaluearray.h \
  /usr/include/glib-2.0/gobject/gvaluetypes.h \
  /usr/include/glib-2.0/gobject/gobject-autocleanups.h \
+ /usr/include/glib-2.0/gio/gio-visibility.h \
  /usr/include/glib-2.0/gio/gaction.h \
  /usr/include/glib-2.0/gio/gactiongroup.h \
  /usr/include/glib-2.0/gio/gactiongroupexporter.h \
@@ -269,7 +278,11 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/gio/gsocketaddress.h \
  /usr/include/glib-2.0/gio/gioenumtypes.h \
  /usr/include/glib-2.0/gio/giomodule.h /usr/include/glib-2.0/gmodule.h \
+ /usr/include/glib-2.0/gmodule/gmodule-visibility.h \
  /usr/include/glib-2.0/gio/gioscheduler.h \
+ /usr/include/glib-2.0/gio/giptosmessage.h \
+ /usr/include/glib-2.0/gio/gsocketcontrolmessage.h \
+ /usr/include/glib-2.0/gio/gipv6tclassmessage.h \
  /usr/include/glib-2.0/gio/glistmodel.h \
  /usr/include/glib-2.0/gio/gliststore.h \
  /usr/include/glib-2.0/gio/gloadableicon.h \
@@ -316,7 +329,6 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/gio/gsocketclient.h \
  /usr/include/glib-2.0/gio/gsocketconnectable.h \
  /usr/include/glib-2.0/gio/gsocketconnection.h \
- /usr/include/glib-2.0/gio/gsocketcontrolmessage.h \
  /usr/include/glib-2.0/gio/gsocketlistener.h \
  /usr/include/glib-2.0/gio/gsocketservice.h \
  /usr/include/glib-2.0/gio/gsrvtarget.h \
@@ -337,6 +349,10 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/glib-2.0/gio/gtlsinteraction.h \
  /usr/include/glib-2.0/gio/gtlspassword.h \
  /usr/include/glib-2.0/gio/gtlsserverconnection.h \
+ /usr/include/glib-2.0/gio/gunixconnection.h \
+ /usr/include/glib-2.0/gio/gunixcredentialsmessage.h \
+ /usr/include/glib-2.0/gio/gunixfdlist.h \
+ /usr/include/glib-2.0/gio/gunixsocketaddress.h \
  /usr/include/glib-2.0/gio/gvfs.h /usr/include/glib-2.0/gio/gvolume.h \
  /usr/include/glib-2.0/gio/gzlibcompressor.h \
  /usr/include/glib-2.0/gio/gzlibdecompressor.h \
@@ -348,16 +364,14 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/pango-1.0/pango/pango-version-macros.h \
  /usr/include/pango-1.0/pango/pango-features.h /usr/include/harfbuzz/hb.h \
  /usr/include/harfbuzz/hb-blob.h /usr/include/harfbuzz/hb-common.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
- /usr/include/x86_64-linux-gnu/bits/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+ /usr/include/inttypes.h /usr/include/harfbuzz/hb-script-list.h \
  /usr/include/harfbuzz/hb-buffer.h /usr/include/harfbuzz/hb-unicode.h \
  /usr/include/harfbuzz/hb-font.h /usr/include/harfbuzz/hb-face.h \
- /usr/include/harfbuzz/hb-set.h /usr/include/harfbuzz/hb-draw.h \
- /usr/include/harfbuzz/hb.h /usr/include/harfbuzz/hb-deprecated.h \
- /usr/include/harfbuzz/hb-map.h /usr/include/harfbuzz/hb-shape.h \
- /usr/include/harfbuzz/hb-shape-plan.h /usr/include/harfbuzz/hb-style.h \
- /usr/include/harfbuzz/hb-version.h \
+ /usr/include/harfbuzz/hb-map.h /usr/include/harfbuzz/hb-set.h \
+ /usr/include/harfbuzz/hb-draw.h /usr/include/harfbuzz/hb.h \
+ /usr/include/harfbuzz/hb-paint.h /usr/include/harfbuzz/hb-deprecated.h \
+ /usr/include/harfbuzz/hb-shape.h /usr/include/harfbuzz/hb-shape-plan.h \
+ /usr/include/harfbuzz/hb-style.h /usr/include/harfbuzz/hb-version.h \
  /usr/include/pango-1.0/pango/pango-types.h \
  /usr/include/pango-1.0/pango/pango-gravity.h \
  /usr/include/pango-1.0/pango/pango-matrix.h \
@@ -387,6 +401,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/cairo/cairo.h /usr/include/cairo/cairo-version.h \
  /usr/include/cairo/cairo-features.h \
@@ -416,7 +431,6 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
- /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-autocleanups.h \
  /usr/include/pango-1.0/pango/pangocairo.h \
  /usr/include/gtk-3.0/gdk/gdkcursor.h \
  /usr/include/gtk-3.0/gdk/gdkdevicepad.h \
@@ -439,28 +453,27 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/gtk-3.0/gtk/gtkaccelgroup.h \
  /usr/include/gtk-3.0/gtk/gtkenums.h /usr/include/gtk-3.0/gtk/gtkborder.h \
  /usr/include/gtk-3.0/gtk/gtktypes.h /usr/include/atk-1.0/atk/atk.h \
- /usr/include/atk-1.0/atk/atkobject.h \
+ /usr/include/atk-1.0/atk/atk-enum-types.h \
  /usr/include/atk-1.0/atk/atkversion.h \
- /usr/include/atk-1.0/atk/atkstate.h \
- /usr/include/atk-1.0/atk/atkrelationtype.h \
  /usr/include/atk-1.0/atk/atkaction.h \
+ /usr/include/atk-1.0/atk/atkobject.h \
+ /usr/include/atk-1.0/atk/atkrelationtype.h \
+ /usr/include/atk-1.0/atk/atkstate.h \
  /usr/include/atk-1.0/atk/atkcomponent.h \
  /usr/include/atk-1.0/atk/atkutil.h \
  /usr/include/atk-1.0/atk/atkdocument.h \
  /usr/include/atk-1.0/atk/atkeditabletext.h \
  /usr/include/atk-1.0/atk/atktext.h \
- /usr/include/atk-1.0/atk/atk-enum-types.h \
  /usr/include/atk-1.0/atk/atkgobjectaccessible.h \
  /usr/include/atk-1.0/atk/atkhyperlink.h \
  /usr/include/atk-1.0/atk/atkhyperlinkimpl.h \
  /usr/include/atk-1.0/atk/atkhypertext.h \
- /usr/include/atk-1.0/atk/atkimage.h \
+ /usr/include/atk-1.0/atk/atkimage.h /usr/include/atk-1.0/atk/atkmisc.h \
  /usr/include/atk-1.0/atk/atknoopobject.h \
  /usr/include/atk-1.0/atk/atknoopobjectfactory.h \
  /usr/include/atk-1.0/atk/atkobjectfactory.h \
  /usr/include/atk-1.0/atk/atkplug.h /usr/include/atk-1.0/atk/atkrange.h \
  /usr/include/atk-1.0/atk/atkregistry.h \
- /usr/include/atk-1.0/atk/atkobjectfactory.h \
  /usr/include/atk-1.0/atk/atkrelation.h \
  /usr/include/atk-1.0/atk/atkrelationset.h \
  /usr/include/atk-1.0/atk/atkselection.h \
@@ -469,8 +482,9 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/atk-1.0/atk/atkstreamablecontent.h \
  /usr/include/atk-1.0/atk/atktable.h \
  /usr/include/atk-1.0/atk/atktablecell.h \
- /usr/include/atk-1.0/atk/atkmisc.h /usr/include/atk-1.0/atk/atkvalue.h \
- /usr/include/atk-1.0/atk/atkwindow.h /usr/include/gtk-3.0/gtk/gtkbin.h \
+ /usr/include/atk-1.0/atk/atkvalue.h /usr/include/atk-1.0/atk/atkwindow.h \
+ /usr/include/atk-1.0/atk/atk-autocleanups.h \
+ /usr/include/gtk-3.0/gtk/gtkbin.h \
  /usr/include/gtk-3.0/gtk/gtkcontainer.h \
  /usr/include/gtk-3.0/gtk/gtkaccellabel.h \
  /usr/include/gtk-3.0/gtk/gtklabel.h \
@@ -718,34 +732,34 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o: \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvscrollbar.h \
  /usr/include/gtk-3.0/gtk/deprecated/gtkvseparator.h \
  /usr/include/gtk-3.0/gtk/gtk-autocleanups.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/tab.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/terminal_session.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/workspace.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/tab.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/editor_document.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_ids.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/workspace_root.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_classify.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_operations.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_tree.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener_system.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection_manager.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/event_queue.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener_event.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/object_registry.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/managed_object.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/terminal_history.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener_manager.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/object_predicates.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/tools/toolkit_index.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/workbench.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../core/workspace.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../files/workspace_root.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_system.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/ui_platform.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/terminal_vte.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h
+ /home/taylor-frey/GUI-Frame/toolbox/src/core/tab.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/core/terminal_session.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/core/workspace.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/core/tab.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/editor_document.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdbool.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_ids.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/workspace_root.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_classify.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_operations.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/files/file_tree.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/listener_system.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/connection_manager.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/event_queue.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/listener_event.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/object_registry.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/managed_object.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/connection.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/terminal_history.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/listener.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/listener_manager.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/listeners/object_predicates.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/tools/toolkit_index.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/workbench.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../core/workspace.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../files/workspace_root.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/listener_system.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/ui_platform.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/gtk/terminal_vte.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/terminal/terminal.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/terminal/../core/terminal_session.h

@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/explorer_operations_smoke.dir/link.d"
   "CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.o"
   "CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.o.d"
   "explorer_operations_smoke"

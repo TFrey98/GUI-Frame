@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/layout_smoke.dir/link.d"
   "CMakeFiles/layout_smoke.dir/layout_smoke.c.o"
   "CMakeFiles/layout_smoke.dir/layout_smoke.c.o.d"
   "layout_smoke"

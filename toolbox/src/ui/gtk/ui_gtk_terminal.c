@@ -11,6 +11,7 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
     tab->backend_data = session;
 
     Terminal *view = terminal_create();
+    terminal_apply_theme(view, backend->dark_mode);
     if (terminal_start_shell(view, session) != 0) {
         g_printerr("toolbox: could not start a shell for tab '%s'\n", tab->title);
     }
@@ -193,6 +194,7 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     gtk_box_pack_start(GTK_BOX(page), button_box, FALSE, FALSE, 0);
 
     Terminal *view = terminal_create();
+    terminal_apply_theme(view, backend->dark_mode);
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
     gtk_box_pack_start(GTK_BOX(page), scroller, TRUE, TRUE, 0);

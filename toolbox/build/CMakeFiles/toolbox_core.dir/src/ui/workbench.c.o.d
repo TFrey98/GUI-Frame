@@ -1,10 +1,10 @@
 CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/workbench.c \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/workbench.c \
  /usr/include/stdc-predef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/workbench.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../core/workspace.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../core/tab.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/workbench.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../core/workspace.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../core/tab.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -19,13 +19,14 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../files/workspace_root.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stddef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_system.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/connection_manager.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/event_queue.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_event.h \
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../files/workspace_root.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stdbool.h \
+ /usr/lib/gcc/x86_64-linux-gnu/15/include/stddef.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/listener_system.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/connection_manager.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/event_queue.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/listener_event.h \
  /usr/include/time.h /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \
@@ -38,13 +39,13 @@ CMakeFiles/toolbox_core.dir/src/ui/workbench.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/object_registry.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/managed_object.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/connection.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/terminal_history.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/../listeners/listener_manager.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/ui_platform.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/object_registry.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/managed_object.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/connection.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/terminal_history.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/listener.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/../listeners/listener_manager.h \
+ /home/taylor-frey/GUI-Frame/toolbox/src/ui/ui_platform.h \
  /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
