@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/event_queue_stress_test.dir/link.d"
   "CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.o"
   "CMakeFiles/event_queue_stress_test.dir/event_queue_stress_test.c.o.d"
   "event_queue_stress_test"

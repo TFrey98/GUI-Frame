@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/object_registry_test.dir/link.d"
   "CMakeFiles/object_registry_test.dir/object_registry_test.c.o"
   "CMakeFiles/object_registry_test.dir/object_registry_test.c.o.d"
   "object_registry_test"

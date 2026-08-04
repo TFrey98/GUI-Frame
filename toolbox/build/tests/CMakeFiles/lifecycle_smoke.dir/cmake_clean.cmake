@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/lifecycle_smoke.dir/link.d"
   "CMakeFiles/lifecycle_smoke.dir/lifecycle_smoke.c.o"
   "CMakeFiles/lifecycle_smoke.dir/lifecycle_smoke.c.o.d"
   "lifecycle_smoke"

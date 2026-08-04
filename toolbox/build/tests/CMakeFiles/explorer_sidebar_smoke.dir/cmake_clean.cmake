@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/explorer_sidebar_smoke.dir/link.d"
   "CMakeFiles/explorer_sidebar_smoke.dir/explorer_sidebar_smoke.c.o"
   "CMakeFiles/explorer_sidebar_smoke.dir/explorer_sidebar_smoke.c.o.d"
   "explorer_sidebar_smoke"

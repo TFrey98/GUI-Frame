@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/terminal_session_test.dir/link.d"
   "CMakeFiles/terminal_session_test.dir/terminal_session_test.c.o"
   "CMakeFiles/terminal_session_test.dir/terminal_session_test.c.o.d"
   "terminal_session_test"

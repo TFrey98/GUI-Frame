@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/taylor-frey/GUI-Frame/toolbox/build/cmake_install.cmake",
-		"/home/taylor-frey/GUI-Frame/toolbox/build/tests/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

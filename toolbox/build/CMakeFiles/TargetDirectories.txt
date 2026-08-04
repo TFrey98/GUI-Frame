@@ -1,41 +1,41 @@
-/home/taylor-frey/GUI-Frame/toolbox/build/CMakeFiles/toolbox_core.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/CMakeFiles/toolbox.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/CMakeFiles/test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/CMakeFiles/edit_cache.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/CMakeFiles/rebuild_cache.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/lifecycle_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/layout_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/tabs_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/terminal_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/multi_terminal_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/terminal_session_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/toolkit_index_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/event_queue_stress_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/byte_buffer_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/object_registry_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/object_predicates_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/listener_config_validate_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/listener_manager_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/reverse_tcp_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/connection_io_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/new_listener_dialog_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/listener_console_tab_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/object_panel_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/connection_terminal_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/context_menu_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/http_listener_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/https_listener_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/workspace_root_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/file_tree_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/explorer_sidebar_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/file_operations_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/explorer_operations_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/file_classify_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/editor_document_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/explorer_editor_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/editor_document_save_test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/editor_save_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/editor_close_confirmation_smoke.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/test.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
-/home/taylor-frey/GUI-Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/toolbox_core.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/toolbox.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/edit_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles/rebuild_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/lifecycle_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/layout_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/tabs_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/multi_terminal_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_session_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/toolkit_index_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/event_queue_stress_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/byte_buffer_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/object_registry_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/object_predicates_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/listener_config_validate_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/listener_manager_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/reverse_tcp_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/connection_io_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/new_listener_dialog_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/listener_console_tab_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/object_panel_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/connection_terminal_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/context_menu_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/http_listener_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/https_listener_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/workspace_root_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_tree_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_sidebar_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_operations_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_operations_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_classify_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_document_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_editor_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_document_save_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_save_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_close_confirmation_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

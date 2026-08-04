@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/object_panel_smoke.dir/link.d"
   "CMakeFiles/object_panel_smoke.dir/object_panel_smoke.c.o"
   "CMakeFiles/object_panel_smoke.dir/object_panel_smoke.c.o.d"
   "object_panel_smoke"

@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/https_listener_smoke.dir/link.d"
   "CMakeFiles/https_listener_smoke.dir/https_listener_smoke.c.o"
   "CMakeFiles/https_listener_smoke.dir/https_listener_smoke.c.o.d"
   "https_listener_smoke"
