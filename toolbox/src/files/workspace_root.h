@@ -14,6 +14,12 @@ typedef struct WorkspaceRoot {
  * must treat that as fatal to startup, not a soft-fail. */
 bool workspace_root_init(WorkspaceRoot *out);
 
+/* Same population as workspace_root_init(), for a directory that
+ * already exists and is already resolved (e.g. toolkit_index_dir()) -
+ * no /proc/self/exe re-derivation, no mkdir(). Returns false (leaving
+ * *out unwritten) if absolute_directory can't be realpath()'d. */
+bool workspace_root_init_at(WorkspaceRoot *out, const char *absolute_directory);
+
 /*
  * The containment function every filesystem operation in this subsystem
  * must go through. relative_path must have no leading '/' and no ".."

@@ -23,6 +23,8 @@
 #include "files/file_classify.h"
 #include "files/file_operations.h"
 #include "files/file_tree.h"
+#include "files/file_watch_event.h"
+#include "files/file_watcher.h"
 #include "listeners/listener_system.h"
 #include "listeners/object_predicates.h"
 #include "tools/toolkit_index.h"
@@ -39,6 +41,24 @@ typedef struct TerminalEntry {
     Terminal *view;
     TerminalSession *session; /* not owned - the Tab owns it */
 } TerminalEntry;
+
+/* Single-item explorer clipboard - matches this app's own single-
+ * selection tree (nothing anywhere lets a user select more than one row
+ * at once). Cut/Copy (ui_gtk_menus.c) set this via
+ * explorer_set_clipboard(); Paste (either trigger) reads it. `source`
+ * holds an EXPLORER_SOURCE_FILES/TOOLKIT value (that enum is declared
+ * below, after GtkBackend - both are plain ints, no ordering dependency). */
+typedef enum ExplorerClipboardMode {
+    EXPLORER_CLIPBOARD_NONE,
+    EXPLORER_CLIPBOARD_COPY,
+    EXPLORER_CLIPBOARD_CUT
+} ExplorerClipboardMode;
+
+typedef struct ExplorerClipboard {
+    ExplorerClipboardMode mode;
+    int source; /* EXPLORER_SOURCE_FILES/TOOLKIT - which root relative_path is against */
+    char relative_path[4096];
+} ExplorerClipboard;
 
 typedef struct GtkBackend {
     Workbench *workbench;
@@ -61,6 +81,20 @@ typedef struct GtkBackend {
     GtkWidget *explorer_tree_view;
     GtkCellRenderer *explorer_name_renderer;
     GtkTreeRowReference *explorer_editing_row; /* the row currently in inline create/rename, if any */
+    ExplorerClipboard explorer_clipboard;      /* see ExplorerClipboard's own comment */
+    GtkWidget *explorer_paste_button;          /* toolbar Paste button; sensitivity mirrors the clipboard's mode */
+
+    /* The row currently being drag-and-dropped, if any - stashed in
+     * on_explorer_drag_begin, read back in on_explorer_drag_data_received.
+     * Source and dest are always this same tree view in this same
+     * process (GTK_TARGET_SAME_APP), so this is the real source of
+     * truth rather than anything serialized through GtkSelectionData. */
+    gboolean explorer_drag_active;
+    int explorer_drag_source;
+    char explorer_drag_relative_path[4096];
+
+    FileWatcher *file_watcher;     /* watches directories loaded under the TOOLBOX (files/) root */
+    FileWatcher *toolkit_watcher;  /* watches directories loaded under the Toolkit (toolkit/) root */
 
     GtkCssProvider *css_provider; /* app-wide dark/light stylesheet, see ui_gtk_theme.c */
     gboolean dark_mode;           /* current toggle state; new terminals/pages read this to match */
@@ -82,7 +116,7 @@ enum {
 enum {
     EXPLORER_COL_ICON,
     EXPLORER_COL_NAME,
-    EXPLORER_COL_PATH, /* FILES rows: relative_path; TOOLKIT rows: absolute path */
+    EXPLORER_COL_PATH, /* root-relative for either source - see explorer_root_for_source() */
     EXPLORER_COL_IS_DIR,
     EXPLORER_COL_LOADED,
     EXPLORER_COL_SOURCE,
@@ -145,6 +179,26 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab);
 GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab);
 void open_or_focus_connection_terminal(GtkBackend *backend, uint64_t connection_id);
 void refresh_all_connection_terminal_pages(GtkBackend *backend);
+/* Opens a new terminal tab with a plain interactive shell rooted at
+ * relative_directory (resolved against root) - backs "Open in
+ * Integrated Terminal" (a folder's own path) and "Open in Terminal
+ * Directory" (an ordinary file's parent). */
+void open_terminal_at(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_directory);
+/* Opens a new terminal tab and runs request as its only child (a real
+ * argv spawn, never a shell string) - backs "Run in Terminal"/"Run
+ * with Arguments..." when creating a new terminal. Neither this nor
+ * run_command_in_active_terminal below takes ownership of
+ * request->arguments/env_overrides - the caller keeps owning and
+ * freeing whatever it parsed. */
+void run_command_in_new_terminal(GtkBackend *backend, const TerminalLaunchRequest *request, char **env_overrides,
+                                  size_t env_override_count);
+/* Types request into the currently active TAB_TYPE_TERMINAL tab's
+ * already-live shell (every argument/override individually
+ * g_shell_quote()'d, never raw-concatenated) - backs "Run with
+ * Arguments..." when reusing an existing terminal. Shows an error
+ * rather than silently doing nothing if no terminal tab is active. */
+void run_command_in_active_terminal(GtkBackend *backend, const TerminalLaunchRequest *request, char **env_overrides,
+                                     size_t env_override_count);
 
 /* --- ui_gtk_file_tree.c ------------------------------------------------ */
 GtkWidget *build_explorer_sidebar(GtkBackend *backend);
@@ -152,6 +206,38 @@ void load_row_children(GtkBackend *backend, GtkTreeStore *store, GtkTreeIter *it
 void refresh_row_preserving_expansion(GtkBackend *backend, GtkTreeView *tree_view, GtkTreeStore *store,
                                        GtkTreeIter *iter);
 void start_new_entry(GtkBackend *backend, GtkTreeIter *parent_iter, gboolean is_folder);
+/* Picks the right WorkspaceRoot for a row's EXPLORER_COL_SOURCE value -
+ * every explorer action that used to hardcode
+ * workbench_get_file_workspace_root() goes through this instead, so
+ * the same logic works for either source unchanged. */
+const WorkspaceRoot *explorer_root_for_source(GtkBackend *backend, int source);
+/* FileTreeNode already caches executable/read_only (lstat at scan
+ * time); ToolkitEntry has neither field. Computes both fresh via
+ * stat()+access(W_OK) - identical logic to file_tree.c's own
+ * classify_entry(), just not cached anywhere for Toolkit. */
+void explorer_toolkit_file_flags(const char *absolute_path, bool *out_executable, bool *out_read_only);
+/* Applies one FileWatchEvent (drained from backend->file_watcher/
+ * toolkit_watcher, source picking which) to the explorer tree and any
+ * open editor tab - called from ui_gtk_window.c's on_tick. */
+void apply_file_watch_event(GtkBackend *backend, int source, const FileWatchEvent *event);
+/* Finds the GtkTreeIter under scope (searched recursively, matching
+ * each row's own EXPLORER_COL_PATH directly) whose root-relative path
+ * equals relative_path - "" means scope itself. Only ever needs to
+ * succeed as far as an already-loaded directory goes. Promoted from
+ * static (Step 6) for reuse by perform_explorer_paste's source-parent
+ * refresh. */
+gboolean find_dir_iter_by_relative_path(GtkTreeModel *model, GtkTreeIter *scope, const char *relative_path,
+                                         GtkTreeIter *out);
+/* Sets backend->explorer_clipboard and enables the toolbar Paste
+ * button - the one entry point both Cut and Copy (ui_gtk_menus.c) call. */
+void explorer_set_clipboard(GtkBackend *backend, ExplorerClipboardMode mode, int source, const char *relative_path);
+/* Pastes the clipboard's item into dest_parent_iter's directory - the
+ * one entry point both the toolbar Paste button and the context menu's
+ * Paste item call. A no-op (shows an error) if the clipboard is empty,
+ * the paste would put a folder inside itself/its own subfolder, or the
+ * underlying file_copy()/file_move() fails. CUT mode clears the
+ * clipboard on success (a cut is spent after one paste). */
+void perform_explorer_paste(GtkBackend *backend, GtkTreeIter *dest_parent_iter);
 
 /* --- ui_gtk_object_list.c ---------------------------------------------- */
 GtkWidget *build_bottom_panel(GtkBackend *backend);
@@ -184,6 +270,11 @@ void on_new_listener_clicked(GtkButton *button, gpointer user_data);
  * restructuring plan's splitting rule. */
 void on_explorer_menu_properties(GtkMenuItem *item, gpointer user_data);
 const char *editor_save_error_message(EditorSaveResult result);
+/* Triggered from the explorer's context menu (menus.c builds the item),
+ * but unconditionally just shows a dialog - lives here per the same
+ * splitting rule Properties/New Listener already follow. */
+void open_run_with_arguments_dialog(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path,
+                                     GtkWindow *parent);
 
 /* --- ui_gtk_window.c ----------------------------------------------------- */
 void on_activate(GtkApplication *gtk_app, gpointer user_data);
@@ -202,11 +293,15 @@ void apply_dark_mode(GtkBackend *backend, gboolean dark);
 /* --- ui_gtk_editor.c ----------------------------------------------------- */
 GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab);
 GtkWidget *build_binary_info_page(GtkBackend *backend, Tab *tab);
-/* The one entry point ui_gtk_file_tree.c calls for a non-directory
- * FILES row - resolves, classifies, dedups against any already-open
- * tab for the same relative_path, and opens (or silently declines,
- * via show_explorer_error()) accordingly. */
-void open_or_focus_file_tab(GtkBackend *backend, const FileTreeNode *node);
+/* The one entry point ui_gtk_file_tree.c calls for a non-directory row
+ * of either source - resolves relative_path against root, classifies,
+ * dedups against any already-open tab for the same (root,
+ * relative_path) pair, and opens (or silently declines, via
+ * show_explorer_error()) accordingly. executable/read_only come from
+ * the caller's already-known bits (FileTreeNode for FILES,
+ * explorer_toolkit_file_flags() for Toolkit). */
+void open_or_focus_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path,
+                             bool executable, bool read_only);
 /* Extracts page's live buffer text and saves it in place via
  * editor_document_save(); on success refreshes the page's Save/Revert
  * sensitivity + tab label. Shows no dialog itself either way - callers
@@ -221,12 +316,31 @@ EditorSaveResult save_editor_page(GtkBackend *backend, GtkWidget *page);
  * "Save All reports each failure rather than silently skipping files." */
 void save_all_modified_editors(GtkBackend *backend);
 /* Called from ui_gtk_file_tree.c right after a real (non-create)
- * file_rename() succeeds - updates any open editor/binary-info tab
- * for old_relative_path (EditorDocument, Tab title, tab label, and
+ * file_rename() succeeds - updates any open editor/binary-info tab for
+ * (root, old_relative_path) (EditorDocument, Tab title, tab label, and
  * the editor page's own header label) so a future Save keeps
  * targeting the right file. A no-op if nothing has that file open. */
-void editor_handle_external_rename(GtkBackend *backend, const char *old_relative_path,
+void editor_handle_external_rename(GtkBackend *backend, const WorkspaceRoot *root, const char *old_relative_path,
                                     const char *new_relative_path);
+/* Generalizes editor_handle_external_rename() to a possibly cross-root
+ * move (Cut+Paste, drag-and-drop) - also reassigns doc->root, not just
+ * relative_path/display_name/tab title. editor_handle_external_rename()
+ * is now a thin same-root wrapper around this. */
+void editor_handle_external_move(GtkBackend *backend, const WorkspaceRoot *old_root, const char *old_relative_path,
+                                  const WorkspaceRoot *new_root, const char *new_relative_path);
+/* Called from apply_file_watch_event() for a FILE_WATCH_DELETED event -
+ * a no-op unless (root, relative_path) has an open editor/binary-info
+ * tab, in which case it sets doc->deleted_on_disk and shows the "Deleted
+ * from disk" banner on that tab. */
+void editor_handle_external_delete(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path);
+/* Called from apply_file_watch_event() for a FILE_WATCH_MODIFIED event -
+ * a no-op unless (root, relative_path) has an open TAB_TYPE_EDITOR tab.
+ * Compares a fresh stat() mtime against doc->last_known_mtime to ignore
+ * an echo of this app's own save; otherwise reloads silently if the doc
+ * has no unsaved changes, or sets doc->externally_modified and shows the
+ * Compare/Reload from Disk/Keep Editor Version conflict dialog if it
+ * does. */
+void editor_handle_external_modification(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path);
 /* Back Ctrl+S/Ctrl+Shift+S - resolve the notebook's current page and
  * no-op unless it's a writable TAB_TYPE_EDITOR tab. */
 void trigger_save_active_editor(GtkBackend *backend);

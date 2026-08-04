@@ -16,10 +16,19 @@ void *platform_ui_create(Workbench *workbench) {
     backend->explorer_tree_view = NULL;
     backend->explorer_name_renderer = NULL;
     backend->explorer_editing_row = NULL;
+    backend->explorer_clipboard.mode = EXPLORER_CLIPBOARD_NONE;
+    backend->explorer_clipboard.source = EXPLORER_SOURCE_FILES;
+    backend->explorer_clipboard.relative_path[0] = '\0';
+    backend->explorer_paste_button = NULL;
+    backend->explorer_drag_active = FALSE;
+    backend->explorer_drag_source = EXPLORER_SOURCE_FILES;
+    backend->explorer_drag_relative_path[0] = '\0';
     backend->last_listener_id = 0;
     backend->status_label = NULL;
     backend->next_listener_number = 1;
     backend->tick_source_id = 0;
+    backend->file_watcher = file_watcher_create(workbench_get_file_workspace_root(workbench));
+    backend->toolkit_watcher = file_watcher_create(workbench_get_toolkit_workspace_root(workbench));
     backend->css_provider = NULL;
     backend->dark_mode = FALSE;
     backend->gtk_app = gtk_application_new("dev.toolbox.app", G_APPLICATION_FLAGS_NONE);
@@ -61,6 +70,8 @@ void platform_ui_destroy(void *backend_ptr) {
     g_ptr_array_free(backend->terminal_entries, TRUE);
 
     file_tree_destroy(backend->file_tree);
+    file_watcher_destroy(backend->file_watcher);
+    file_watcher_destroy(backend->toolkit_watcher);
     if (backend->explorer_editing_row) {
         gtk_tree_row_reference_free(backend->explorer_editing_row);
     }

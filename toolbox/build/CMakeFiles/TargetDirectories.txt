@@ -36,6 +36,14 @@
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_document_save_test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_save_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/editor_close_confirmation_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_context_actions_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_run_command_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/toolkit_interaction_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watch_queue_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watcher_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watch_explorer_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watch_conflict_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_clipboard_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

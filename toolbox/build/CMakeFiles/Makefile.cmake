@@ -143,4 +143,12 @@ set(CMAKE_DEPEND_INFO_FILES
   "tests/CMakeFiles/editor_document_save_test.dir/DependInfo.cmake"
   "tests/CMakeFiles/editor_save_smoke.dir/DependInfo.cmake"
   "tests/CMakeFiles/editor_close_confirmation_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/terminal_context_actions_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/terminal_run_command_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/toolkit_interaction_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/file_watch_queue_test.dir/DependInfo.cmake"
+  "tests/CMakeFiles/file_watcher_test.dir/DependInfo.cmake"
+  "tests/CMakeFiles/file_watch_explorer_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/file_watch_conflict_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/explorer_clipboard_smoke.dir/DependInfo.cmake"
   )

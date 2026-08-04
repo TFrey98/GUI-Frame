@@ -359,7 +359,15 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* Refresh preserves an already-expanded folder's state. Toolbar New
-     * Folder again, nothing selected -> targets TOOLBOX. */
+     * Folder again, nothing selected -> targets TOOLBOX. Explicitly
+     * cleared rather than just assumed: removing newfolder above (its
+     * own parent TOOLBOX's last remaining child at that point) can
+     * leave GTK's own tree selection auto-advanced onto TOOLBOX's next
+     * sibling - "Toolkit" - which is now a legitimate New Folder target
+     * in its own right (full parity with TOOLBOX), so this step must
+     * guarantee its own "nothing selected" precondition rather than
+     * merely hope for it. */
+    gtk_tree_selection_unselect_all(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view)));
     GtkWidget *new_folder_button2 = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-new-folder-button");
     if (!new_folder_button2) {
         fail(test, "New Folder toolbar button not found");

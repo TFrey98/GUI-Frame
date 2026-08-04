@@ -28,6 +28,10 @@ TerminalSession *terminal_session_create(uint64_t tab_id, const char *title);
 void terminal_session_destroy(TerminalSession *session);
 
 void terminal_session_set_title(TerminalSession *session, const char *title);
+/* Overrides the default $HOME working directory - must be called
+ * before terminal_start_shell()/terminal_run_command() actually spawns
+ * anything. */
+void terminal_session_set_working_directory(TerminalSession *session, const char *working_directory);
 void terminal_session_mark_running(TerminalSession *session);
 void terminal_session_mark_exited(TerminalSession *session, int exit_code);
 

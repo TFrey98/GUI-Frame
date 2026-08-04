@@ -1,6 +1,38 @@
 #include "ui_gtk_internal.h"
 
 #include <stdio.h>
+#include <string.h>
+
+#define WATCH_DRAIN_MAX 64
+
+/* Drains up to WATCH_DRAIN_MAX pending events from watcher and applies
+ * each, deduping by new_relative_path within this one batch (keeping
+ * only the last event for a given path) - the doc's "a single save may
+ * cause several filesystem notifications," a second debounce layer
+ * beyond IN_CLOSE_WRITE alone. */
+static void drain_and_apply_watcher(GtkBackend *backend, FileWatcher *watcher, int source) {
+    if (!watcher) {
+        return;
+    }
+    FileWatchEvent events[WATCH_DRAIN_MAX];
+    int count = 0;
+    FileWatchEvent event;
+    while (count < WATCH_DRAIN_MAX && file_watcher_try_pop_event(watcher, &event)) {
+        events[count++] = event;
+    }
+    for (int i = 0; i < count; i++) {
+        gboolean superseded = FALSE;
+        for (int j = i + 1; j < count; j++) {
+            if (strcmp(events[i].new_relative_path, events[j].new_relative_path) == 0) {
+                superseded = TRUE;
+                break;
+            }
+        }
+        if (!superseded) {
+            apply_file_watch_event(backend, source, &events[i]);
+        }
+    }
+}
 
 /* Shared handler for both the sidebar and bottom-panel toggle buttons -
  * user_data is bound per-button to the specific panel widget it controls. */
@@ -38,6 +70,8 @@ static gboolean on_tick(gpointer user_data) {
     refresh_all_listener_tabs(backend);
     refresh_all_connection_terminal_pages(backend);
     refresh_object_panel(backend);
+    drain_and_apply_watcher(backend, backend->file_watcher, EXPLORER_SOURCE_FILES);
+    drain_and_apply_watcher(backend, backend->toolkit_watcher, EXPLORER_SOURCE_TOOLKIT);
 
     if (backend->last_listener_id != 0 && backend->status_label) {
         const Listener *listener =

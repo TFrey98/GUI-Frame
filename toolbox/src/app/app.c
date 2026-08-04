@@ -16,6 +16,7 @@ struct App {
     ListenerSystem *listener_system;
     Workbench *workbench;
     WorkspaceRoot file_workspace_root;
+    WorkspaceRoot toolkit_workspace_root;
     int db_open;
 };
 
@@ -41,9 +42,26 @@ App *app_create(int argc, char **argv) {
      * initial UI (sidebar tree, etc.) reads from them. */
     tool_registry_init();
     toolkit_index_init();
+
+    /* toolkit_index_init() already created toolkit/ if it was missing -
+     * same "assume a valid, already-resolved root" fatality as
+     * file_workspace_root above, since the explorer sidebar's Toolkit
+     * section now routes real create/rename/delete/save operations
+     * through this root too, not just reads. */
+    if (!workspace_root_init_at(&app->toolkit_workspace_root, toolkit_index_dir())) {
+        if (app->db_open) {
+            database_close();
+        }
+        toolkit_index_shutdown();
+        tool_registry_shutdown();
+        free(app);
+        return NULL;
+    }
+
     app->workspace = workspace_create();
     app->listener_system = listener_system_create();
-    app->workbench = workbench_create(app->workspace, app->listener_system, &app->file_workspace_root);
+    app->workbench = workbench_create(app->workspace, app->listener_system, &app->file_workspace_root,
+                                       &app->toolkit_workspace_root);
 
     return app;
 }
@@ -58,6 +76,10 @@ ListenerSystem *app_get_listener_system(const App *app) {
 
 const WorkspaceRoot *app_get_file_workspace_root(const App *app) {
     return &app->file_workspace_root;
+}
+
+const WorkspaceRoot *app_get_toolkit_workspace_root(const App *app) {
+    return &app->toolkit_workspace_root;
 }
 
 void app_destroy(App *app) {

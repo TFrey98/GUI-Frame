@@ -727,6 +727,9 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_classify.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_operations.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_tree.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watch_event.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watcher.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watch_event.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/event_queue.h \
@@ -746,4 +749,7 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/ui_platform.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/terminal_vte.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h

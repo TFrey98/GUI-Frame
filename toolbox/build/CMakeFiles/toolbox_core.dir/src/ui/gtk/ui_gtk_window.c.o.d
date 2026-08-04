@@ -727,6 +727,9 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_window.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_classify.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_operations.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_tree.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watch_event.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watcher.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/files/file_watch_event.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/listener_system.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection_manager.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/event_queue.h \

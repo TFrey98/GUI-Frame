@@ -726,4 +726,5 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o: \
  /usr/include/vte-2.91/vte/vtedeprecated.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/terminal_vte.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h

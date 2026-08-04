@@ -115,6 +115,14 @@ tests/all: tests/CMakeFiles/explorer_editor_smoke.dir/all
 tests/all: tests/CMakeFiles/editor_document_save_test.dir/all
 tests/all: tests/CMakeFiles/editor_save_smoke.dir/all
 tests/all: tests/CMakeFiles/editor_close_confirmation_smoke.dir/all
+tests/all: tests/CMakeFiles/terminal_context_actions_smoke.dir/all
+tests/all: tests/CMakeFiles/terminal_run_command_smoke.dir/all
+tests/all: tests/CMakeFiles/toolkit_interaction_smoke.dir/all
+tests/all: tests/CMakeFiles/file_watch_queue_test.dir/all
+tests/all: tests/CMakeFiles/file_watcher_test.dir/all
+tests/all: tests/CMakeFiles/file_watch_explorer_smoke.dir/all
+tests/all: tests/CMakeFiles/file_watch_conflict_smoke.dir/all
+tests/all: tests/CMakeFiles/explorer_clipboard_smoke.dir/all
 .PHONY : tests/all
 
 # Recursive "preinstall" directory target.
@@ -155,6 +163,14 @@ tests/clean: tests/CMakeFiles/explorer_editor_smoke.dir/clean
 tests/clean: tests/CMakeFiles/editor_document_save_test.dir/clean
 tests/clean: tests/CMakeFiles/editor_save_smoke.dir/clean
 tests/clean: tests/CMakeFiles/editor_close_confirmation_smoke.dir/clean
+tests/clean: tests/CMakeFiles/terminal_context_actions_smoke.dir/clean
+tests/clean: tests/CMakeFiles/terminal_run_command_smoke.dir/clean
+tests/clean: tests/CMakeFiles/toolkit_interaction_smoke.dir/clean
+tests/clean: tests/CMakeFiles/file_watch_queue_test.dir/clean
+tests/clean: tests/CMakeFiles/file_watcher_test.dir/clean
+tests/clean: tests/CMakeFiles/file_watch_explorer_smoke.dir/clean
+tests/clean: tests/CMakeFiles/file_watch_conflict_smoke.dir/clean
+tests/clean: tests/CMakeFiles/explorer_clipboard_smoke.dir/clean
 .PHONY : tests/clean
 
 #=============================================================================
@@ -164,12 +180,12 @@ tests/clean: tests/CMakeFiles/editor_close_confirmation_smoke.dir/clean
 CMakeFiles/toolbox_core.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96 "Built target toolbox_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95 "Built target toolbox_core"
 .PHONY : CMakeFiles/toolbox_core.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/toolbox_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 36
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 33
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/toolbox_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : CMakeFiles/toolbox_core.dir/rule
@@ -190,12 +206,12 @@ CMakeFiles/toolbox_core.dir/clean:
 CMakeFiles/toolbox.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox.dir/build.make CMakeFiles/toolbox.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox.dir/build.make CMakeFiles/toolbox.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=59,60 "Built target toolbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=62 "Built target toolbox"
 .PHONY : CMakeFiles/toolbox.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/toolbox.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/toolbox.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : CMakeFiles/toolbox.dir/rule
@@ -216,12 +232,12 @@ CMakeFiles/toolbox.dir/clean:
 tests/CMakeFiles/lifecycle_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/lifecycle_smoke.dir/build.make tests/CMakeFiles/lifecycle_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/lifecycle_smoke.dir/build.make tests/CMakeFiles/lifecycle_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=34,35 "Built target lifecycle_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=38 "Built target lifecycle_smoke"
 .PHONY : tests/CMakeFiles/lifecycle_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/lifecycle_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/lifecycle_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/lifecycle_smoke.dir/rule
@@ -242,12 +258,12 @@ tests/CMakeFiles/lifecycle_smoke.dir/clean:
 tests/CMakeFiles/layout_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/layout_smoke.dir/build.make tests/CMakeFiles/layout_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/layout_smoke.dir/build.make tests/CMakeFiles/layout_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=33 "Built target layout_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=36,37 "Built target layout_smoke"
 .PHONY : tests/CMakeFiles/layout_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/layout_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 37
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/layout_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/layout_smoke.dir/rule
@@ -268,12 +284,12 @@ tests/CMakeFiles/layout_smoke.dir/clean:
 tests/CMakeFiles/tabs_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tabs_smoke.dir/build.make tests/CMakeFiles/tabs_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tabs_smoke.dir/build.make tests/CMakeFiles/tabs_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=53,54 "Built target tabs_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=54 "Built target tabs_smoke"
 .PHONY : tests/CMakeFiles/tabs_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/tabs_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/tabs_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/tabs_smoke.dir/rule
@@ -294,12 +310,12 @@ tests/CMakeFiles/tabs_smoke.dir/clean:
 tests/CMakeFiles/terminal_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_smoke.dir/build.make tests/CMakeFiles/terminal_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_smoke.dir/build.make tests/CMakeFiles/terminal_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=57,58 "Built target terminal_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=60,61 "Built target terminal_smoke"
 .PHONY : tests/CMakeFiles/terminal_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/terminal_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/terminal_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/terminal_smoke.dir/rule
@@ -320,12 +336,12 @@ tests/CMakeFiles/terminal_smoke.dir/clean:
 tests/CMakeFiles/multi_terminal_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/multi_terminal_smoke.dir/build.make tests/CMakeFiles/multi_terminal_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/multi_terminal_smoke.dir/build.make tests/CMakeFiles/multi_terminal_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=42,43 "Built target multi_terminal_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=44,45 "Built target multi_terminal_smoke"
 .PHONY : tests/CMakeFiles/multi_terminal_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/multi_terminal_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/multi_terminal_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/multi_terminal_smoke.dir/rule
@@ -346,12 +362,12 @@ tests/CMakeFiles/multi_terminal_smoke.dir/clean:
 tests/CMakeFiles/terminal_session_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_session_test.dir/build.make tests/CMakeFiles/terminal_session_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_session_test.dir/build.make tests/CMakeFiles/terminal_session_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=55,56 "Built target terminal_session_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=59 "Built target terminal_session_test"
 .PHONY : tests/CMakeFiles/terminal_session_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/terminal_session_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/terminal_session_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/terminal_session_test.dir/rule
@@ -372,12 +388,12 @@ tests/CMakeFiles/terminal_session_test.dir/clean:
 tests/CMakeFiles/toolkit_index_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_index_test.dir/build.make tests/CMakeFiles/toolkit_index_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_index_test.dir/build.make tests/CMakeFiles/toolkit_index_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=97,98 "Built target toolkit_index_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=96 "Built target toolkit_index_test"
 .PHONY : tests/CMakeFiles/toolkit_index_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/toolkit_index_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/toolkit_index_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/toolkit_index_test.dir/rule
@@ -398,12 +414,12 @@ tests/CMakeFiles/toolkit_index_test.dir/clean:
 tests/CMakeFiles/event_queue_stress_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_queue_stress_test.dir/build.make tests/CMakeFiles/event_queue_stress_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=16 "Built target event_queue_stress_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=13,14 "Built target event_queue_stress_test"
 .PHONY : tests/CMakeFiles/event_queue_stress_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/event_queue_stress_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 37
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/event_queue_stress_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/event_queue_stress_test.dir/rule
@@ -429,7 +445,7 @@ tests/CMakeFiles/byte_buffer_test.dir/all: CMakeFiles/toolbox_core.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/byte_buffer_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 37
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/byte_buffer_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/byte_buffer_test.dir/rule
@@ -450,12 +466,12 @@ tests/CMakeFiles/byte_buffer_test.dir/clean:
 tests/CMakeFiles/object_registry_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=50 "Built target object_registry_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=51 "Built target object_registry_test"
 .PHONY : tests/CMakeFiles/object_registry_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/object_registry_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 37
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_registry_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/object_registry_test.dir/rule
@@ -476,12 +492,12 @@ tests/CMakeFiles/object_registry_test.dir/clean:
 tests/CMakeFiles/object_predicates_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_predicates_test.dir/build.make tests/CMakeFiles/object_predicates_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=48,49 "Built target object_predicates_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=49,50 "Built target object_predicates_test"
 .PHONY : tests/CMakeFiles/object_predicates_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/object_predicates_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_predicates_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/object_predicates_test.dir/rule
@@ -502,12 +518,12 @@ tests/CMakeFiles/object_predicates_test.dir/clean:
 tests/CMakeFiles/listener_config_validate_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_config_validate_test.dir/build.make tests/CMakeFiles/listener_config_validate_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=36,37 "Built target listener_config_validate_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=39,40 "Built target listener_config_validate_test"
 .PHONY : tests/CMakeFiles/listener_config_validate_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/listener_config_validate_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_config_validate_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/listener_config_validate_test.dir/rule
@@ -528,12 +544,12 @@ tests/CMakeFiles/listener_config_validate_test.dir/clean:
 tests/CMakeFiles/listener_manager_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_manager_test.dir/build.make tests/CMakeFiles/listener_manager_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=40,41 "Built target listener_manager_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=42,43 "Built target listener_manager_test"
 .PHONY : tests/CMakeFiles/listener_manager_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/listener_manager_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_manager_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/listener_manager_test.dir/rule
@@ -554,12 +570,12 @@ tests/CMakeFiles/listener_manager_test.dir/clean:
 tests/CMakeFiles/reverse_tcp_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/reverse_tcp_test.dir/build.make tests/CMakeFiles/reverse_tcp_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=51,52 "Built target reverse_tcp_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=52,53 "Built target reverse_tcp_test"
 .PHONY : tests/CMakeFiles/reverse_tcp_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/reverse_tcp_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/reverse_tcp_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/reverse_tcp_test.dir/rule
@@ -585,7 +601,7 @@ tests/CMakeFiles/connection_io_test.dir/all: CMakeFiles/toolbox_core.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/connection_io_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/connection_io_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/connection_io_test.dir/rule
@@ -606,12 +622,12 @@ tests/CMakeFiles/connection_io_test.dir/clean:
 tests/CMakeFiles/new_listener_dialog_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/new_listener_dialog_smoke.dir/build.make tests/CMakeFiles/new_listener_dialog_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=44,45 "Built target new_listener_dialog_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=46 "Built target new_listener_dialog_smoke"
 .PHONY : tests/CMakeFiles/new_listener_dialog_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/new_listener_dialog_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/new_listener_dialog_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/new_listener_dialog_smoke.dir/rule
@@ -632,12 +648,12 @@ tests/CMakeFiles/new_listener_dialog_smoke.dir/clean:
 tests/CMakeFiles/listener_console_tab_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/listener_console_tab_smoke.dir/build.make tests/CMakeFiles/listener_console_tab_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=38,39 "Built target listener_console_tab_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=41 "Built target listener_console_tab_smoke"
 .PHONY : tests/CMakeFiles/listener_console_tab_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/listener_console_tab_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/listener_console_tab_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/listener_console_tab_smoke.dir/rule
@@ -658,12 +674,12 @@ tests/CMakeFiles/listener_console_tab_smoke.dir/clean:
 tests/CMakeFiles/object_panel_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_panel_smoke.dir/build.make tests/CMakeFiles/object_panel_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=46,47 "Built target object_panel_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=47,48 "Built target object_panel_smoke"
 .PHONY : tests/CMakeFiles/object_panel_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/object_panel_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/object_panel_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/object_panel_smoke.dir/rule
@@ -684,12 +700,12 @@ tests/CMakeFiles/object_panel_smoke.dir/clean:
 tests/CMakeFiles/connection_terminal_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/connection_terminal_smoke.dir/build.make tests/CMakeFiles/connection_terminal_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=4,5 "Built target connection_terminal_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=4 "Built target connection_terminal_smoke"
 .PHONY : tests/CMakeFiles/connection_terminal_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/connection_terminal_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/connection_terminal_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/connection_terminal_smoke.dir/rule
@@ -710,12 +726,12 @@ tests/CMakeFiles/connection_terminal_smoke.dir/clean:
 tests/CMakeFiles/context_menu_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=6,7 "Built target context_menu_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=5,6 "Built target context_menu_smoke"
 .PHONY : tests/CMakeFiles/context_menu_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/context_menu_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/context_menu_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/context_menu_smoke.dir/rule
@@ -736,12 +752,12 @@ tests/CMakeFiles/context_menu_smoke.dir/clean:
 tests/CMakeFiles/http_listener_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_listener_smoke.dir/build.make tests/CMakeFiles/http_listener_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=29,30 "Built target http_listener_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=33 "Built target http_listener_smoke"
 .PHONY : tests/CMakeFiles/http_listener_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/http_listener_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/http_listener_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/http_listener_smoke.dir/rule
@@ -762,12 +778,12 @@ tests/CMakeFiles/http_listener_smoke.dir/clean:
 tests/CMakeFiles/https_listener_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/https_listener_smoke.dir/build.make tests/CMakeFiles/https_listener_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=31,32 "Built target https_listener_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=34,35 "Built target https_listener_smoke"
 .PHONY : tests/CMakeFiles/https_listener_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/https_listener_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/https_listener_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/https_listener_smoke.dir/rule
@@ -793,7 +809,7 @@ tests/CMakeFiles/workspace_root_test.dir/all: CMakeFiles/toolbox_core.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/workspace_root_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/workspace_root_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/workspace_root_test.dir/rule
@@ -814,12 +830,12 @@ tests/CMakeFiles/workspace_root_test.dir/clean:
 tests/CMakeFiles/file_tree_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_tree_test.dir/build.make tests/CMakeFiles/file_tree_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=27,28 "Built target file_tree_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=25 "Built target file_tree_test"
 .PHONY : tests/CMakeFiles/file_tree_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/file_tree_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_tree_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/file_tree_test.dir/rule
@@ -840,12 +856,12 @@ tests/CMakeFiles/file_tree_test.dir/clean:
 tests/CMakeFiles/explorer_sidebar_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_sidebar_smoke.dir/build.make tests/CMakeFiles/explorer_sidebar_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=21,22 "Built target explorer_sidebar_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=20 "Built target explorer_sidebar_smoke"
 .PHONY : tests/CMakeFiles/explorer_sidebar_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/explorer_sidebar_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_sidebar_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/explorer_sidebar_smoke.dir/rule
@@ -866,12 +882,12 @@ tests/CMakeFiles/explorer_sidebar_smoke.dir/clean:
 tests/CMakeFiles/file_operations_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=25,26 "Built target file_operations_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=23,24 "Built target file_operations_test"
 .PHONY : tests/CMakeFiles/file_operations_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/file_operations_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_operations_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/file_operations_test.dir/rule
@@ -892,12 +908,12 @@ tests/CMakeFiles/file_operations_test.dir/clean:
 tests/CMakeFiles/explorer_operations_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=19,20 "Built target explorer_operations_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=18,19 "Built target explorer_operations_smoke"
 .PHONY : tests/CMakeFiles/explorer_operations_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/explorer_operations_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_operations_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/explorer_operations_smoke.dir/rule
@@ -918,12 +934,12 @@ tests/CMakeFiles/explorer_operations_smoke.dir/clean:
 tests/CMakeFiles/file_classify_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_classify_test.dir/build.make tests/CMakeFiles/file_classify_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=23,24 "Built target file_classify_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=21,22 "Built target file_classify_test"
 .PHONY : tests/CMakeFiles/file_classify_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/file_classify_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_classify_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/file_classify_test.dir/rule
@@ -944,12 +960,12 @@ tests/CMakeFiles/file_classify_test.dir/clean:
 tests/CMakeFiles/editor_document_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_test.dir/build.make tests/CMakeFiles/editor_document_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=12,13 "Built target editor_document_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=10,11 "Built target editor_document_test"
 .PHONY : tests/CMakeFiles/editor_document_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/editor_document_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_document_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/editor_document_test.dir/rule
@@ -970,12 +986,12 @@ tests/CMakeFiles/editor_document_test.dir/clean:
 tests/CMakeFiles/explorer_editor_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_editor_smoke.dir/build.make tests/CMakeFiles/explorer_editor_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=17,18 "Built target explorer_editor_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=17 "Built target explorer_editor_smoke"
 .PHONY : tests/CMakeFiles/explorer_editor_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/explorer_editor_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_editor_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/explorer_editor_smoke.dir/rule
@@ -996,12 +1012,12 @@ tests/CMakeFiles/explorer_editor_smoke.dir/clean:
 tests/CMakeFiles/editor_document_save_test.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_document_save_test.dir/build.make tests/CMakeFiles/editor_document_save_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=10,11 "Built target editor_document_save_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=9 "Built target editor_document_save_test"
 .PHONY : tests/CMakeFiles/editor_document_save_test.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/editor_document_save_test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_document_save_test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/editor_document_save_test.dir/rule
@@ -1022,12 +1038,12 @@ tests/CMakeFiles/editor_document_save_test.dir/clean:
 tests/CMakeFiles/editor_save_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_save_smoke.dir/build.make tests/CMakeFiles/editor_save_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=14,15 "Built target editor_save_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=12 "Built target editor_save_smoke"
 .PHONY : tests/CMakeFiles/editor_save_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/editor_save_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_save_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/editor_save_smoke.dir/rule
@@ -1048,12 +1064,12 @@ tests/CMakeFiles/editor_save_smoke.dir/clean:
 tests/CMakeFiles/editor_close_confirmation_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=8,9 "Built target editor_close_confirmation_smoke"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=7,8 "Built target editor_close_confirmation_smoke"
 .PHONY : tests/CMakeFiles/editor_close_confirmation_smoke.dir/all
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 38
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/editor_close_confirmation_smoke.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
 .PHONY : tests/CMakeFiles/editor_close_confirmation_smoke.dir/rule
@@ -1066,6 +1082,214 @@ editor_close_confirmation_smoke: tests/CMakeFiles/editor_close_confirmation_smok
 tests/CMakeFiles/editor_close_confirmation_smoke.dir/clean:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/clean
 .PHONY : tests/CMakeFiles/editor_close_confirmation_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/terminal_context_actions_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/terminal_context_actions_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_context_actions_smoke.dir/build.make tests/CMakeFiles/terminal_context_actions_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_context_actions_smoke.dir/build.make tests/CMakeFiles/terminal_context_actions_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=55,56 "Built target terminal_context_actions_smoke"
+.PHONY : tests/CMakeFiles/terminal_context_actions_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/terminal_context_actions_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/terminal_context_actions_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/terminal_context_actions_smoke.dir/rule
+
+# Convenience name for target.
+terminal_context_actions_smoke: tests/CMakeFiles/terminal_context_actions_smoke.dir/rule
+.PHONY : terminal_context_actions_smoke
+
+# clean rule for target.
+tests/CMakeFiles/terminal_context_actions_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_context_actions_smoke.dir/build.make tests/CMakeFiles/terminal_context_actions_smoke.dir/clean
+.PHONY : tests/CMakeFiles/terminal_context_actions_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/terminal_run_command_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/terminal_run_command_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_run_command_smoke.dir/build.make tests/CMakeFiles/terminal_run_command_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_run_command_smoke.dir/build.make tests/CMakeFiles/terminal_run_command_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=57,58 "Built target terminal_run_command_smoke"
+.PHONY : tests/CMakeFiles/terminal_run_command_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/terminal_run_command_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/terminal_run_command_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/terminal_run_command_smoke.dir/rule
+
+# Convenience name for target.
+terminal_run_command_smoke: tests/CMakeFiles/terminal_run_command_smoke.dir/rule
+.PHONY : terminal_run_command_smoke
+
+# clean rule for target.
+tests/CMakeFiles/terminal_run_command_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_run_command_smoke.dir/build.make tests/CMakeFiles/terminal_run_command_smoke.dir/clean
+.PHONY : tests/CMakeFiles/terminal_run_command_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/toolkit_interaction_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/toolkit_interaction_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_interaction_smoke.dir/build.make tests/CMakeFiles/toolkit_interaction_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_interaction_smoke.dir/build.make tests/CMakeFiles/toolkit_interaction_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=97,98 "Built target toolkit_interaction_smoke"
+.PHONY : tests/CMakeFiles/toolkit_interaction_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/toolkit_interaction_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/toolkit_interaction_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/toolkit_interaction_smoke.dir/rule
+
+# Convenience name for target.
+toolkit_interaction_smoke: tests/CMakeFiles/toolkit_interaction_smoke.dir/rule
+.PHONY : toolkit_interaction_smoke
+
+# clean rule for target.
+tests/CMakeFiles/toolkit_interaction_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_interaction_smoke.dir/build.make tests/CMakeFiles/toolkit_interaction_smoke.dir/clean
+.PHONY : tests/CMakeFiles/toolkit_interaction_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/file_watch_queue_test.dir
+
+# All Build rule for target.
+tests/CMakeFiles/file_watch_queue_test.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_queue_test.dir/build.make tests/CMakeFiles/file_watch_queue_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_queue_test.dir/build.make tests/CMakeFiles/file_watch_queue_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=30 "Built target file_watch_queue_test"
+.PHONY : tests/CMakeFiles/file_watch_queue_test.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/file_watch_queue_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 34
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_watch_queue_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/file_watch_queue_test.dir/rule
+
+# Convenience name for target.
+file_watch_queue_test: tests/CMakeFiles/file_watch_queue_test.dir/rule
+.PHONY : file_watch_queue_test
+
+# clean rule for target.
+tests/CMakeFiles/file_watch_queue_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_queue_test.dir/build.make tests/CMakeFiles/file_watch_queue_test.dir/clean
+.PHONY : tests/CMakeFiles/file_watch_queue_test.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/file_watcher_test.dir
+
+# All Build rule for target.
+tests/CMakeFiles/file_watcher_test.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watcher_test.dir/build.make tests/CMakeFiles/file_watcher_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watcher_test.dir/build.make tests/CMakeFiles/file_watcher_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=31,32 "Built target file_watcher_test"
+.PHONY : tests/CMakeFiles/file_watcher_test.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/file_watcher_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_watcher_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/file_watcher_test.dir/rule
+
+# Convenience name for target.
+file_watcher_test: tests/CMakeFiles/file_watcher_test.dir/rule
+.PHONY : file_watcher_test
+
+# clean rule for target.
+tests/CMakeFiles/file_watcher_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watcher_test.dir/build.make tests/CMakeFiles/file_watcher_test.dir/clean
+.PHONY : tests/CMakeFiles/file_watcher_test.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/file_watch_explorer_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/file_watch_explorer_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_explorer_smoke.dir/build.make tests/CMakeFiles/file_watch_explorer_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_explorer_smoke.dir/build.make tests/CMakeFiles/file_watch_explorer_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=28,29 "Built target file_watch_explorer_smoke"
+.PHONY : tests/CMakeFiles/file_watch_explorer_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/file_watch_explorer_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_watch_explorer_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/file_watch_explorer_smoke.dir/rule
+
+# Convenience name for target.
+file_watch_explorer_smoke: tests/CMakeFiles/file_watch_explorer_smoke.dir/rule
+.PHONY : file_watch_explorer_smoke
+
+# clean rule for target.
+tests/CMakeFiles/file_watch_explorer_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_explorer_smoke.dir/build.make tests/CMakeFiles/file_watch_explorer_smoke.dir/clean
+.PHONY : tests/CMakeFiles/file_watch_explorer_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/file_watch_conflict_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/file_watch_conflict_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_conflict_smoke.dir/build.make tests/CMakeFiles/file_watch_conflict_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_conflict_smoke.dir/build.make tests/CMakeFiles/file_watch_conflict_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=26,27 "Built target file_watch_conflict_smoke"
+.PHONY : tests/CMakeFiles/file_watch_conflict_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/file_watch_conflict_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_watch_conflict_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/file_watch_conflict_smoke.dir/rule
+
+# Convenience name for target.
+file_watch_conflict_smoke: tests/CMakeFiles/file_watch_conflict_smoke.dir/rule
+.PHONY : file_watch_conflict_smoke
+
+# clean rule for target.
+tests/CMakeFiles/file_watch_conflict_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_conflict_smoke.dir/build.make tests/CMakeFiles/file_watch_conflict_smoke.dir/clean
+.PHONY : tests/CMakeFiles/file_watch_conflict_smoke.dir/clean
+
+#=============================================================================
+# Target rules for target tests/CMakeFiles/explorer_clipboard_smoke.dir
+
+# All Build rule for target.
+tests/CMakeFiles/explorer_clipboard_smoke.dir/all: CMakeFiles/toolbox_core.dir/all
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/depend
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" --progress-num=15,16 "Built target explorer_clipboard_smoke"
+.PHONY : tests/CMakeFiles/explorer_clipboard_smoke.dir/all
+
+# Build rule for subdir invocation for target.
+tests/CMakeFiles/explorer_clipboard_smoke.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 35
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_clipboard_smoke.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/CMakeFiles" 0
+.PHONY : tests/CMakeFiles/explorer_clipboard_smoke.dir/rule
+
+# Convenience name for target.
+explorer_clipboard_smoke: tests/CMakeFiles/explorer_clipboard_smoke.dir/rule
+.PHONY : explorer_clipboard_smoke
+
+# clean rule for target.
+tests/CMakeFiles/explorer_clipboard_smoke.dir/clean:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/clean
+.PHONY : tests/CMakeFiles/explorer_clipboard_smoke.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

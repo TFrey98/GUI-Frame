@@ -6,6 +6,7 @@ struct Workbench {
     Workspace *workspace;
     ListenerSystem *listener_system;        /* borrowed - App owns it, outlives the Workbench */
     const WorkspaceRoot *file_workspace_root; /* borrowed - App owns it, outlives the Workbench */
+    const WorkspaceRoot *toolkit_workspace_root; /* borrowed - App owns it, outlives the Workbench */
     /* Opaque handle owned by the active platform backend (e.g. GtkBackend
      * in src/platform/linux/ui_gtk.c). Workbench never dereferences it
      * directly - only passes it back through platform_ui_*. */
@@ -13,11 +14,12 @@ struct Workbench {
 };
 
 Workbench *workbench_create(Workspace *workspace, ListenerSystem *listener_system,
-                             const WorkspaceRoot *file_workspace_root) {
+                             const WorkspaceRoot *file_workspace_root, const WorkspaceRoot *toolkit_workspace_root) {
     Workbench *workbench = calloc(1, sizeof(Workbench));
     workbench->workspace = workspace;
     workbench->listener_system = listener_system;
     workbench->file_workspace_root = file_workspace_root;
+    workbench->toolkit_workspace_root = toolkit_workspace_root;
     workbench->backend = platform_ui_create(workbench);
     return workbench;
 }
@@ -45,4 +47,8 @@ ListenerSystem *workbench_get_listener_system(const Workbench *workbench) {
 
 const WorkspaceRoot *workbench_get_file_workspace_root(const Workbench *workbench) {
     return workbench->file_workspace_root;
+}
+
+const WorkspaceRoot *workbench_get_toolkit_workspace_root(const Workbench *workbench) {
+    return workbench->toolkit_workspace_root;
 }

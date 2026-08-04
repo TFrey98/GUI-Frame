@@ -120,6 +120,74 @@ int terminal_start_shell(Terminal *terminal, TerminalSession *session) {
     return result.success ? 0 : -1;
 }
 
+int terminal_run_command(Terminal *terminal, TerminalSession *session, const TerminalLaunchRequest *request,
+                          char **env_overrides, size_t env_override_count) {
+    terminal->session = session;
+
+    size_t argc = 1 + request->argument_count;
+    char **argv = malloc(sizeof(char *) * (argc + 1));
+    argv[0] = (char *)request->executable;
+    for (size_t i = 0; i < request->argument_count; i++) {
+        argv[1 + i] = request->arguments[i];
+    }
+    argv[argc] = NULL;
+
+    const char *working_directory = request->working_directory[0] ? request->working_directory : NULL;
+
+    /* NULL (inherit unchanged) unless there's actually an override to
+     * apply - g_get_environ() + g_environ_setenv() per override builds
+     * a real merged envv rather than hand-assembling one. */
+    gchar **envv = NULL;
+    for (size_t i = 0; i < env_override_count; i++) {
+        char *eq = strchr(env_overrides[i], '=');
+        if (!eq) {
+            continue;
+        }
+        size_t key_len = (size_t)(eq - env_overrides[i]);
+        char key[256];
+        if (key_len >= sizeof(key)) {
+            continue;
+        }
+        memcpy(key, env_overrides[i], key_len);
+        key[key_len] = '\0';
+        if (!envv) {
+            envv = g_get_environ();
+        }
+        envv = g_environ_setenv(envv, key, eq + 1, TRUE);
+    }
+
+    SpawnResult result = {
+        .loop = g_main_loop_new(NULL, FALSE),
+        .success = FALSE,
+    };
+
+    vte_terminal_spawn_async(
+        terminal->widget,
+        VTE_PTY_DEFAULT,
+        working_directory,
+        argv,
+        envv,
+        G_SPAWN_DEFAULT,
+        NULL, NULL, NULL,
+        -1, /* no timeout */
+        NULL,
+        on_spawn_complete,
+        &result
+    );
+
+    g_main_loop_run(result.loop);
+    g_main_loop_unref(result.loop);
+    free(argv);
+    if (envv) {
+        g_strfreev(envv);
+    }
+
+    if (result.success) {
+        terminal_session_mark_running(session);
+    }
+    return result.success ? 0 : -1;
+}
+
 int terminal_send(Terminal *terminal, const char *data, size_t length) {
     if (!terminal || !data) {
         return -1;

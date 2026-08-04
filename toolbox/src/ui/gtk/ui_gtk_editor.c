@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /* Bundles what every Save/Save As/Revert/buffer-changed handler on an
  * editor page needs - the page itself (to reach its Tab/EditorDocument
@@ -47,6 +48,7 @@ static void on_editor_buffer_changed(GtkTextBuffer *buffer, gpointer user_data) 
 }
 
 EditorSaveResult save_editor_page(GtkBackend *backend, GtkWidget *page) {
+    (void)backend; /* doc knows its own root now - see EditorDocument.root */
     Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
     EditorDocument *doc = tab->backend_data;
     GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
@@ -56,11 +58,20 @@ EditorSaveResult save_editor_page(GtkBackend *backend, GtkWidget *page) {
     gtk_text_buffer_get_bounds(buffer, &start, &end);
     gchar *text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
 
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
-    EditorSaveResult result = editor_document_save(root, doc, NULL, text, strlen(text));
+    EditorSaveResult result = editor_document_save(doc->root, doc, NULL, text, strlen(text));
     g_free(text);
 
     if (result == EDITOR_SAVE_OK) {
+        /* A save writes the file back out regardless of whether it had
+         * been externally deleted or modified - clear both flags and
+         * hide the banner rather than requiring the user to separately
+         * dismiss them. */
+        doc->deleted_on_disk = false;
+        doc->externally_modified = false;
+        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+        if (banner) {
+            gtk_widget_set_visible(banner, FALSE);
+        }
         refresh_editor_page_buttons(page);
     }
     return result;
@@ -87,7 +98,6 @@ static void on_save_as_response(GtkDialog *dialog, gint response_id, gpointer us
         return;
     }
 
-    GtkBackend *backend = state->backend;
     GtkWidget *page = state->page;
     Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
     EditorDocument *doc = tab->backend_data;
@@ -99,8 +109,7 @@ static void on_save_as_response(GtkDialog *dialog, gint response_id, gpointer us
     gchar *text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
 
     const char *new_path = gtk_entry_get_text(GTK_ENTRY(state->path_entry));
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
-    EditorSaveResult result = editor_document_save(root, doc, new_path, text, strlen(text));
+    EditorSaveResult result = editor_document_save(doc->root, doc, new_path, text, strlen(text));
     g_free(text);
 
     if (result != EDITOR_SAVE_OK) {
@@ -163,12 +172,19 @@ static void on_editor_save_as_clicked(GtkButton *button, gpointer user_data) {
 
 /* --- Revert ------------------------------------------------------------- */
 
-static void perform_revert(GtkBackend *backend, GtkWidget *page) {
+/* The one reload primitive both a confirmed Revert-button click and an
+ * unedited external-modification event (see editor_handle_external_
+ * modification below) share - re-reads the file fresh from disk into
+ * the already-open page's buffer/EditorDocument, clearing modified/
+ * externally_modified and re-stamping last_known_mtime so a save-echo
+ * comparison against this fresh read starts clean. Shows an error and
+ * leaves everything untouched if the file can no longer be read (e.g.
+ * deleted out from under a Revert click). */
+static void reload_editor_document_from_disk(GtkBackend *backend, GtkWidget *page) {
     Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
     EditorDocument *doc = tab->backend_data;
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
 
-    EditorDocument *fresh = editor_document_open(root, doc->relative_path, doc->read_only, true);
+    EditorDocument *fresh = editor_document_open(doc->root, doc->relative_path, doc->read_only, true);
     if (!fresh) {
         show_explorer_error(backend, "Could not reload this file from disk.");
         return;
@@ -188,16 +204,23 @@ static void perform_revert(GtkBackend *backend, GtkWidget *page) {
     doc->contents = fresh->contents;
     doc->content_size = fresh->content_size;
     doc->modified = false;
+    doc->externally_modified = false;
+    doc->deleted_on_disk = false;
+    doc->last_known_mtime = fresh->last_known_mtime;
     fresh->contents = NULL; /* ownership moved above - prevent a double-free below */
     editor_document_destroy(fresh);
 
+    GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+    if (banner) {
+        gtk_widget_set_visible(banner, FALSE);
+    }
     refresh_editor_page_buttons(page);
 }
 
 static void on_revert_confirm_response(GtkDialog *dialog, gint response_id, gpointer user_data) {
     EditorPageContext *ctx = user_data;
     if (response_id == GTK_RESPONSE_YES) {
-        perform_revert(ctx->backend, ctx->page);
+        reload_editor_document_from_disk(ctx->backend, ctx->page);
     }
     gtk_widget_destroy(GTK_WIDGET(dialog));
 }
@@ -277,6 +300,14 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
     gtk_box_pack_start(GTK_BOX(header), read_only_label, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(page), header, FALSE, FALSE, 0);
 
+    /* Hidden until editor_handle_external_delete() sets it - same
+     * no_show_all-hidden-until-true pattern as read_only_label above. */
+    GtkWidget *deleted_banner = gtk_label_new("Deleted from disk");
+    gtk_widget_set_no_show_all(deleted_banner, TRUE);
+    gtk_widget_set_visible(deleted_banner, FALSE);
+    gtk_box_pack_start(GTK_BOX(page), deleted_banner, FALSE, FALSE, 0);
+    g_object_set_data(G_OBJECT(page), "toolbox-editor-deleted-banner", deleted_banner);
+
     GtkWidget *view = gtk_text_view_new();
     gtk_text_view_set_monospace(GTK_TEXT_VIEW(view), TRUE);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(view), !doc->read_only);
@@ -329,54 +360,67 @@ GtkWidget *build_binary_info_page(GtkBackend *backend, Tab *tab) {
     return page;
 }
 
-static GtkWidget *find_file_tab(GtkBackend *backend, const char *relative_path) {
+/* Matches on (root, relative_path) rather than relative_path alone -
+ * the app now has more than one root (files/ and toolkit/), and a
+ * relative_path match alone could collide if a TOOLBOX file and a
+ * Toolkit file ever happened to share the same relative path. Pointer
+ * equality on root is safe and correct: both roots are long-lived
+ * values owned by App, never copied or relocated. */
+static GtkWidget *find_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path) {
     if (!backend->notebook) {
         return NULL;
     }
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
+        /* A Compare tab (see open_compare_tab below) deliberately shares
+         * its (root, relative_path) with the real edited tab it was
+         * opened alongside - it must never be mistaken for a match here,
+         * or a later open/rename/delete could end up acting on the
+         * read-only snapshot instead of the real open document. */
+        if (g_object_get_data(G_OBJECT(page), "toolbox-editor-is-compare")) {
+            continue;
+        }
         Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
         if (!tab || (tab->type != TAB_TYPE_EDITOR && tab->type != TAB_TYPE_BINARY_INFO)) {
             continue;
         }
         const EditorDocument *doc = tab->backend_data;
-        if (doc && strcmp(doc->relative_path, relative_path) == 0) {
+        if (doc && doc->root == root && strcmp(doc->relative_path, relative_path) == 0) {
             return page;
         }
     }
     return NULL;
 }
 
-void open_or_focus_file_tab(GtkBackend *backend, const FileTreeNode *node) {
+void open_or_focus_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path,
+                             bool executable, bool read_only) {
     /* "Does not open duplicate tabs" - checked before touching disk at
      * all, matching open_or_focus_connection_terminal's own order. */
-    GtkWidget *existing = find_file_tab(backend, node->relative_path);
+    GtkWidget *existing = find_file_tab(backend, root, relative_path);
     if (existing) {
         focus_page(backend, existing);
         return;
     }
-
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
 
     /* Reusing workspace_root_resolve_path() here is what satisfies
      * "Symlink -> open only if target remains inside toolbox": it
      * already resolves through symlinks via realpath() and enforces
      * containment - no separate symlink-specific check needed. */
     char resolved[4096];
-    if (!workspace_root_resolve_path(root, node->relative_path, resolved, sizeof(resolved))) {
+    if (!workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
         show_explorer_error(backend, "Can't open - the target is missing or outside the workspace.");
         return;
     }
 
-    FileClassification classification = file_classify(resolved, node->executable);
+    FileClassification classification = file_classify(resolved, executable);
     if (classification.target == FILE_TARGET_UNSUPPORTED) {
         show_explorer_error(backend, "This file can't be opened.");
         return;
     }
 
     bool load_contents = classification.target == FILE_TARGET_EDITOR;
-    EditorDocument *doc = editor_document_open(root, node->relative_path, node->read_only, load_contents);
+    EditorDocument *doc = editor_document_open(root, relative_path, read_only, load_contents);
     if (!doc) {
         show_explorer_error(backend, "Could not read this file.");
         return;
@@ -389,18 +433,22 @@ void open_or_focus_file_tab(GtkBackend *backend, const FileTreeNode *node) {
     add_tab_page(backend, tab, TRUE);
 }
 
-/* Called from ui_gtk_file_tree.c right after a real (non-create)
- * file_rename() succeeds. A no-op if old_relative_path has no open
- * editor/binary-info tab. */
-void editor_handle_external_rename(GtkBackend *backend, const char *old_relative_path,
-                                    const char *new_relative_path) {
-    GtkWidget *page = find_file_tab(backend, old_relative_path);
+/* Generalizes a same-root rename to a possibly cross-root move -
+ * old_root/new_root are the same pointer for a plain rename
+ * (editor_handle_external_rename below), different pointers for a
+ * Cut+Paste or drag-and-drop that crosses FILES/Toolkit. A no-op if
+ * old_relative_path (under old_root) has no open editor/binary-info
+ * tab. */
+void editor_handle_external_move(GtkBackend *backend, const WorkspaceRoot *old_root, const char *old_relative_path,
+                                  const WorkspaceRoot *new_root, const char *new_relative_path) {
+    GtkWidget *page = find_file_tab(backend, old_root, old_relative_path);
     if (!page) {
         return;
     }
 
     Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
     EditorDocument *doc = tab->backend_data;
+    doc->root = new_root;
     snprintf(doc->relative_path, sizeof(doc->relative_path), "%s", new_relative_path);
     const char *slash = strrchr(new_relative_path, '/');
     snprintf(doc->display_name, sizeof(doc->display_name), "%s", slash ? slash + 1 : new_relative_path);
@@ -414,6 +462,140 @@ void editor_handle_external_rename(GtkBackend *backend, const char *old_relative
             gtk_label_set_text(GTK_LABEL(name_label), doc->display_name);
         }
     }
+}
+
+/* Called from ui_gtk_file_tree.c right after a real (non-create)
+ * file_rename() succeeds. A no-op if old_relative_path has no open
+ * editor/binary-info tab. */
+void editor_handle_external_rename(GtkBackend *backend, const WorkspaceRoot *root, const char *old_relative_path,
+                                    const char *new_relative_path) {
+    editor_handle_external_move(backend, root, old_relative_path, root, new_relative_path);
+}
+
+void editor_handle_external_delete(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path) {
+    GtkWidget *page = find_file_tab(backend, root, relative_path);
+    if (!page) {
+        return;
+    }
+
+    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    EditorDocument *doc = tab->backend_data;
+    doc->deleted_on_disk = true;
+
+    if (tab->type == TAB_TYPE_EDITOR) {
+        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+        if (banner) {
+            gtk_widget_set_visible(banner, TRUE);
+        }
+    }
+}
+
+/* Opens the on-disk content of doc's file as a separate, always-read-
+ * only "<name> (on disk)" tab - a real, working action rather than a
+ * stub, reading fresh from disk (never from doc's own in-memory buffer)
+ * so it genuinely reflects the external change that triggered the
+ * conflict dialog below. Deliberately bypasses open_or_focus_file_tab's
+ * normal dedup (find_file_tab already skips any tab tagged
+ * "toolbox-editor-is-compare", see there) - Compare must never just
+ * re-focus the already-open edited tab. */
+static void open_compare_tab(GtkBackend *backend, const EditorDocument *doc) {
+    EditorDocument *fresh = editor_document_open(doc->root, doc->relative_path, true, true);
+    if (!fresh) {
+        show_explorer_error(backend, "Could not read the on-disk version of this file.");
+        return;
+    }
+    fresh->read_only = true;
+
+    char compare_title[300];
+    snprintf(compare_title, sizeof(compare_title), "%s (on disk)", fresh->display_name);
+
+    Workspace *workspace = workbench_get_workspace(backend->workbench);
+    Tab *tab = tab_create(TAB_TYPE_EDITOR, compare_title);
+    tab->backend_data = fresh;
+    workspace_add_tab(workspace, tab);
+    add_tab_page(backend, tab, TRUE);
+
+    /* add_tab_page() always appends to the notebook's end, so the page
+     * it just built is the last one. */
+    int last_index = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook)) - 1;
+    GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), last_index);
+    g_object_set_data(G_OBJECT(page), "toolbox-editor-is-compare", GINT_TO_POINTER(TRUE));
+}
+
+/* --- External-modification conflict dialog -----------------------------
+ * "<name> changed on disk." / Compare / Reload from Disk / Keep Editor
+ * Version - shown only when the file changed externally *and* the open
+ * tab has real unsaved edits (see editor_handle_external_modification
+ * below; an unedited tab reloads silently instead, no dialog needed). */
+
+static void on_conflict_response(GtkDialog *dialog, gint response_id, gpointer user_data) {
+    EditorPageContext *ctx = user_data;
+    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "toolbox-tab");
+    EditorDocument *doc = tab->backend_data;
+
+    if (response_id == GTK_RESPONSE_APPLY) { /* Compare */
+        open_compare_tab(ctx->backend, doc);
+    } else if (response_id == GTK_RESPONSE_YES) { /* Reload from Disk */
+        reload_editor_document_from_disk(ctx->backend, ctx->page);
+    }
+    /* Compare, "Keep Editor Version", and dismissing the dialog outright
+     * all leave the buffer untouched - just clear the flag so it isn't
+     * left permanently set. Reload already clears it too, via
+     * reload_editor_document_from_disk, but clearing it again here is
+     * harmless. */
+    doc->externally_modified = false;
+    gtk_widget_destroy(GTK_WIDGET(dialog));
+}
+
+static void open_external_change_conflict_dialog(GtkBackend *backend, GtkWidget *page) {
+    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    EditorPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-editor-page-context");
+
+    GtkWindow *parent = gtk_application_get_active_window(backend->gtk_app);
+    GtkWidget *dialog = gtk_message_dialog_new(parent, GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_NONE,
+                                                "%s changed on disk.", tab->title);
+    gtk_dialog_add_button(GTK_DIALOG(dialog), "_Compare", GTK_RESPONSE_APPLY);
+    gtk_dialog_add_button(GTK_DIALOG(dialog), "_Reload from Disk", GTK_RESPONSE_YES);
+    gtk_dialog_add_button(GTK_DIALOG(dialog), "_Keep Editor Version", GTK_RESPONSE_NO);
+    g_signal_connect(dialog, "response", G_CALLBACK(on_conflict_response), ctx);
+    gtk_widget_show_all(dialog);
+}
+
+void editor_handle_external_modification(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path) {
+    GtkWidget *page = find_file_tab(backend, root, relative_path);
+    if (!page) {
+        return;
+    }
+    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    if (tab->type != TAB_TYPE_EDITOR) {
+        return; /* a binary-info tab has no live buffer to reload/compare */
+    }
+    EditorDocument *doc = tab->backend_data;
+
+    char resolved[4096];
+    if (!workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+        return;
+    }
+    struct stat st;
+    if (stat(resolved, &st) != 0) {
+        return; /* shouldn't happen for a just-reported MODIFIED event, but stay defensive */
+    }
+
+    /* An equal mtime means this event is just an echo of this app's own
+     * save (the safe-write's rename() itself triggers the watched
+     * directory's own IN_CLOSE_WRITE/IN_MOVED_TO) - ignored rather than
+     * reloaded, so saving never causes a spurious reload or prompt. */
+    if (st.st_mtim.tv_sec == doc->last_known_mtime.tv_sec && st.st_mtim.tv_nsec == doc->last_known_mtime.tv_nsec) {
+        return;
+    }
+
+    if (!doc->modified) {
+        reload_editor_document_from_disk(backend, page);
+        return;
+    }
+
+    doc->externally_modified = true;
+    open_external_change_conflict_dialog(backend, page);
 }
 
 void save_all_modified_editors(GtkBackend *backend) {

@@ -17,6 +17,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/file_classify.c" "CMakeFiles/toolbox_core.dir/src/files/file_classify.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/file_classify.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/file_operations.c" "CMakeFiles/toolbox_core.dir/src/files/file_operations.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/file_operations.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/file_tree.c" "CMakeFiles/toolbox_core.dir/src/files/file_tree.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/file_tree.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/file_watch_queue.c" "CMakeFiles/toolbox_core.dir/src/files/file_watch_queue.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/file_watch_queue.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/file_watcher.c" "CMakeFiles/toolbox_core.dir/src/files/file_watcher.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/file_watcher.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/files/workspace_root.c" "CMakeFiles/toolbox_core.dir/src/files/workspace_root.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/files/workspace_root.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/byte_buffer.c" "CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/byte_buffer.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/connection_manager.c" "CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/connection_manager.c.o.d"

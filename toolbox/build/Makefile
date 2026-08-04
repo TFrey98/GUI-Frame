@@ -581,6 +581,110 @@ editor_close_confirmation_smoke/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/editor_close_confirmation_smoke.dir/build.make tests/CMakeFiles/editor_close_confirmation_smoke.dir/build
 .PHONY : editor_close_confirmation_smoke/fast
 
+#=============================================================================
+# Target rules for targets named terminal_context_actions_smoke
+
+# Build rule for target.
+terminal_context_actions_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 terminal_context_actions_smoke
+.PHONY : terminal_context_actions_smoke
+
+# fast build rule for target.
+terminal_context_actions_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_context_actions_smoke.dir/build.make tests/CMakeFiles/terminal_context_actions_smoke.dir/build
+.PHONY : terminal_context_actions_smoke/fast
+
+#=============================================================================
+# Target rules for targets named terminal_run_command_smoke
+
+# Build rule for target.
+terminal_run_command_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 terminal_run_command_smoke
+.PHONY : terminal_run_command_smoke
+
+# fast build rule for target.
+terminal_run_command_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_run_command_smoke.dir/build.make tests/CMakeFiles/terminal_run_command_smoke.dir/build
+.PHONY : terminal_run_command_smoke/fast
+
+#=============================================================================
+# Target rules for targets named toolkit_interaction_smoke
+
+# Build rule for target.
+toolkit_interaction_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 toolkit_interaction_smoke
+.PHONY : toolkit_interaction_smoke
+
+# fast build rule for target.
+toolkit_interaction_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/toolkit_interaction_smoke.dir/build.make tests/CMakeFiles/toolkit_interaction_smoke.dir/build
+.PHONY : toolkit_interaction_smoke/fast
+
+#=============================================================================
+# Target rules for targets named file_watch_queue_test
+
+# Build rule for target.
+file_watch_queue_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_watch_queue_test
+.PHONY : file_watch_queue_test
+
+# fast build rule for target.
+file_watch_queue_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_queue_test.dir/build.make tests/CMakeFiles/file_watch_queue_test.dir/build
+.PHONY : file_watch_queue_test/fast
+
+#=============================================================================
+# Target rules for targets named file_watcher_test
+
+# Build rule for target.
+file_watcher_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_watcher_test
+.PHONY : file_watcher_test
+
+# fast build rule for target.
+file_watcher_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watcher_test.dir/build.make tests/CMakeFiles/file_watcher_test.dir/build
+.PHONY : file_watcher_test/fast
+
+#=============================================================================
+# Target rules for targets named file_watch_explorer_smoke
+
+# Build rule for target.
+file_watch_explorer_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_watch_explorer_smoke
+.PHONY : file_watch_explorer_smoke
+
+# fast build rule for target.
+file_watch_explorer_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_explorer_smoke.dir/build.make tests/CMakeFiles/file_watch_explorer_smoke.dir/build
+.PHONY : file_watch_explorer_smoke/fast
+
+#=============================================================================
+# Target rules for targets named file_watch_conflict_smoke
+
+# Build rule for target.
+file_watch_conflict_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_watch_conflict_smoke
+.PHONY : file_watch_conflict_smoke
+
+# fast build rule for target.
+file_watch_conflict_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_watch_conflict_smoke.dir/build.make tests/CMakeFiles/file_watch_conflict_smoke.dir/build
+.PHONY : file_watch_conflict_smoke/fast
+
+#=============================================================================
+# Target rules for targets named explorer_clipboard_smoke
+
+# Build rule for target.
+explorer_clipboard_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 explorer_clipboard_smoke
+.PHONY : explorer_clipboard_smoke
+
+# fast build rule for target.
+explorer_clipboard_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/build
+.PHONY : explorer_clipboard_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -796,6 +900,54 @@ src/files/file_tree.s: src/files/file_tree.c.s
 src/files/file_tree.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_tree.c.s
 .PHONY : src/files/file_tree.c.s
+
+src/files/file_watch_queue.o: src/files/file_watch_queue.c.o
+.PHONY : src/files/file_watch_queue.o
+
+# target to build an object file
+src/files/file_watch_queue.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watch_queue.c.o
+.PHONY : src/files/file_watch_queue.c.o
+
+src/files/file_watch_queue.i: src/files/file_watch_queue.c.i
+.PHONY : src/files/file_watch_queue.i
+
+# target to preprocess a source file
+src/files/file_watch_queue.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watch_queue.c.i
+.PHONY : src/files/file_watch_queue.c.i
+
+src/files/file_watch_queue.s: src/files/file_watch_queue.c.s
+.PHONY : src/files/file_watch_queue.s
+
+# target to generate assembly for a file
+src/files/file_watch_queue.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watch_queue.c.s
+.PHONY : src/files/file_watch_queue.c.s
+
+src/files/file_watcher.o: src/files/file_watcher.c.o
+.PHONY : src/files/file_watcher.o
+
+# target to build an object file
+src/files/file_watcher.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watcher.c.o
+.PHONY : src/files/file_watcher.c.o
+
+src/files/file_watcher.i: src/files/file_watcher.c.i
+.PHONY : src/files/file_watcher.i
+
+# target to preprocess a source file
+src/files/file_watcher.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watcher.c.i
+.PHONY : src/files/file_watcher.c.i
+
+src/files/file_watcher.s: src/files/file_watcher.c.s
+.PHONY : src/files/file_watcher.s
+
+# target to generate assembly for a file
+src/files/file_watcher.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_watcher.c.s
+.PHONY : src/files/file_watcher.c.s
 
 src/files/workspace_root.o: src/files/workspace_root.c.o
 .PHONY : src/files/workspace_root.o
@@ -1511,12 +1663,17 @@ help:
 	@echo "... editor_document_test"
 	@echo "... editor_save_smoke"
 	@echo "... event_queue_stress_test"
+	@echo "... explorer_clipboard_smoke"
 	@echo "... explorer_editor_smoke"
 	@echo "... explorer_operations_smoke"
 	@echo "... explorer_sidebar_smoke"
 	@echo "... file_classify_test"
 	@echo "... file_operations_test"
 	@echo "... file_tree_test"
+	@echo "... file_watch_conflict_smoke"
+	@echo "... file_watch_explorer_smoke"
+	@echo "... file_watch_queue_test"
+	@echo "... file_watcher_test"
 	@echo "... http_listener_smoke"
 	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
@@ -1531,11 +1688,14 @@ help:
 	@echo "... object_registry_test"
 	@echo "... reverse_tcp_test"
 	@echo "... tabs_smoke"
+	@echo "... terminal_context_actions_smoke"
+	@echo "... terminal_run_command_smoke"
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
 	@echo "... toolbox"
 	@echo "... toolbox_core"
 	@echo "... toolkit_index_test"
+	@echo "... toolkit_interaction_smoke"
 	@echo "... workspace_root_test"
 	@echo "... src/app/app.o"
 	@echo "... src/app/app.i"
@@ -1564,6 +1724,12 @@ help:
 	@echo "... src/files/file_tree.o"
 	@echo "... src/files/file_tree.i"
 	@echo "... src/files/file_tree.s"
+	@echo "... src/files/file_watch_queue.o"
+	@echo "... src/files/file_watch_queue.i"
+	@echo "... src/files/file_watch_queue.s"
+	@echo "... src/files/file_watcher.o"
+	@echo "... src/files/file_watcher.i"
+	@echo "... src/files/file_watcher.s"
 	@echo "... src/files/workspace_root.o"
 	@echo "... src/files/workspace_root.i"
 	@echo "... src/files/workspace_root.s"

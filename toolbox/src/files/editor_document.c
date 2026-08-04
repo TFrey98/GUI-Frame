@@ -38,9 +38,11 @@ EditorDocument *editor_document_open(const WorkspaceRoot *root, const char *rela
 
     EditorDocument *doc = calloc(1, sizeof(EditorDocument));
     doc->id = g_next_document_id++;
+    doc->root = root;
     snprintf(doc->relative_path, sizeof(doc->relative_path), "%s", relative_path);
     snprintf(doc->display_name, sizeof(doc->display_name), "%s", basename_of(relative_path));
     doc->read_only = read_only_hint;
+    doc->last_known_mtime = st.st_mtim;
 
     if (!load_contents) {
         doc->content_size = (size_t)st.st_size;
@@ -135,6 +137,15 @@ EditorSaveResult editor_document_save(const WorkspaceRoot *root, EditorDocument 
     if (rename(tmp_path, resolved) != 0) {
         unlink(tmp_path);
         return EDITOR_SAVE_IO_ERROR;
+    }
+
+    /* Fresh stat() after the rename, rather than time(NULL)/clock_gettime()
+     * here, so last_known_mtime is exactly what a later stat() of the
+     * same file will report - what apply_file_watch_event()'s echo-
+     * suppression compares against. */
+    struct stat saved_st;
+    if (stat(resolved, &saved_st) == 0) {
+        doc->last_known_mtime = saved_st.st_mtim;
     }
 
     char *contents_copy = malloc(contents_size + 1);

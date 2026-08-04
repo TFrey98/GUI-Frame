@@ -55,6 +55,11 @@ void terminal_session_set_title(TerminalSession *session, const char *title) {
     session->title = strdup(title);
 }
 
+void terminal_session_set_working_directory(TerminalSession *session, const char *working_directory) {
+    free(session->working_directory);
+    session->working_directory = strdup(working_directory);
+}
+
 void terminal_session_mark_running(TerminalSession *session) {
     session->running = 1;
 }

@@ -97,6 +97,30 @@ target_link_libraries(editor_save_smoke PRIVATE toolbox_core)
 add_executable(editor_close_confirmation_smoke editor_close_confirmation_smoke.c)
 target_link_libraries(editor_close_confirmation_smoke PRIVATE toolbox_core)
 
+add_executable(terminal_context_actions_smoke terminal_context_actions_smoke.c)
+target_link_libraries(terminal_context_actions_smoke PRIVATE toolbox_core)
+
+add_executable(terminal_run_command_smoke terminal_run_command_smoke.c)
+target_link_libraries(terminal_run_command_smoke PRIVATE toolbox_core)
+
+add_executable(toolkit_interaction_smoke toolkit_interaction_smoke.c)
+target_link_libraries(toolkit_interaction_smoke PRIVATE toolbox_core)
+
+add_executable(file_watch_queue_test file_watch_queue_test.c)
+target_link_libraries(file_watch_queue_test PRIVATE toolbox_core)
+
+add_executable(file_watcher_test file_watcher_test.c)
+target_link_libraries(file_watcher_test PRIVATE toolbox_core)
+
+add_executable(file_watch_explorer_smoke file_watch_explorer_smoke.c)
+target_link_libraries(file_watch_explorer_smoke PRIVATE toolbox_core)
+
+add_executable(file_watch_conflict_smoke file_watch_conflict_smoke.c)
+target_link_libraries(file_watch_conflict_smoke PRIVATE toolbox_core)
+
+add_executable(explorer_clipboard_smoke explorer_clipboard_smoke.c)
+target_link_libraries(explorer_clipboard_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -195,3 +219,27 @@ set_tests_properties(editor_save_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME editor_close_confirmation_smoke COMMAND editor_close_confirmation_smoke)
 set_tests_properties(editor_close_confirmation_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME terminal_context_actions_smoke COMMAND terminal_context_actions_smoke)
+set_tests_properties(terminal_context_actions_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME terminal_run_command_smoke COMMAND terminal_run_command_smoke)
+set_tests_properties(terminal_run_command_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME toolkit_interaction_smoke COMMAND toolkit_interaction_smoke)
+set_tests_properties(toolkit_interaction_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME file_watch_queue_test COMMAND file_watch_queue_test)
+set_tests_properties(file_watch_queue_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME file_watcher_test COMMAND file_watcher_test)
+set_tests_properties(file_watcher_test PROPERTIES TIMEOUT 15)
+
+add_test(NAME file_watch_explorer_smoke COMMAND file_watch_explorer_smoke)
+set_tests_properties(file_watch_explorer_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME file_watch_conflict_smoke COMMAND file_watch_conflict_smoke)
+set_tests_properties(file_watch_conflict_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME explorer_clipboard_smoke COMMAND explorer_clipboard_smoke)
+set_tests_properties(explorer_clipboard_smoke PROPERTIES TIMEOUT 30)

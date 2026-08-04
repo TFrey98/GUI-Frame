@@ -25,6 +25,8 @@ add_library(toolbox_core STATIC
     src/files/file_operations.c
     src/files/file_classify.c
     src/files/editor_document.c
+    src/files/file_watch_queue.c
+    src/files/file_watcher.c
     src/core/workspace.c
     src/core/tab.c
     src/core/terminal_session.c

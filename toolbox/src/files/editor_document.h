@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <time.h>
 
 #include "file_ids.h"
 #include "workspace_root.h"
@@ -18,6 +19,15 @@
 typedef struct EditorDocument {
     DocumentId id;
 
+    /* Which root relative_path resolves against - the app now has more
+     * than one (files/ and toolkit/), so this is what lets
+     * find_file_tab() disambiguate two same-named relative paths from
+     * different roots, and lets Save/Revert resolve correctly without
+     * the GTK layer needing to separately track "which source was this
+     * tab opened from." Borrowed - App owns every WorkspaceRoot, which
+     * outlives any document opened against it. */
+    const WorkspaceRoot *root;
+
     char relative_path[4096];
     char display_name[256];
 
@@ -26,8 +36,17 @@ typedef struct EditorDocument {
 
     bool modified;
     bool read_only;
-    bool externally_modified; /* unused until Step 6's file watcher exists */
-    bool deleted_on_disk;     /* unused until Step 6's file watcher exists */
+    bool externally_modified; /* set by apply_file_watch_event() on a genuine external edit while doc->modified */
+    bool deleted_on_disk;     /* set by apply_file_watch_event() on an external delete of an open document */
+
+    /* mtime as of the last time this process wrote/read the file's
+     * actual content - stamped by both editor_document_open() and
+     * editor_document_save(). Compared against a fresh stat() when a
+     * FILE_WATCH_MODIFIED event arrives for this doc's path: an equal
+     * mtime means the event is just an echo of this app's own save
+     * (the safe-write's rename() itself triggers the watched directory's
+     * IN_MOVED_TO/IN_CLOSE_WRITE) and is ignored rather than reloaded. */
+    struct timespec last_known_mtime;
 
     int cursor_line;         /* unused until Step 10's session persistence */
     int cursor_column;       /* unused until Step 10's session persistence */

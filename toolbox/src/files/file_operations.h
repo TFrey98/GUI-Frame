@@ -27,6 +27,25 @@ FileOperationResult directory_create(const WorkspaceRoot *root, const char *rela
 FileOperationResult file_rename(const WorkspaceRoot *root, const char *old_relative_path,
                                  const char *new_relative_path);
 
+/* Resolves src/dest through their own (possibly different) roots
+ * independently - a copy can cross two different WorkspaceRoots (e.g.
+ * files/ <-> toolkit/), not just rename within one. Rejects an existing
+ * destination (no silent overwrite, same discipline file_rename already
+ * has). Recursively copies a directory; never follows a symlink into
+ * copying its target's content - a symlink entry is recreated via
+ * readlink()+symlink(), mirroring file_delete's own symlink discipline. */
+FileOperationResult file_copy(const WorkspaceRoot *src_root, const char *src_relative_path,
+                               const WorkspaceRoot *dest_root, const char *dest_relative_path);
+
+/* Same cross-root resolution as file_copy. Tries rename() directly first
+ * (atomic, works whenever both resolved paths land on the same
+ * filesystem regardless of which WorkspaceRoot each belongs to); falls
+ * back to file_copy() + a recursive delete of the source only on a real
+ * EXDEV (genuinely different filesystems). file_rename() above is a
+ * same-root call to this. */
+FileOperationResult file_move(const WorkspaceRoot *src_root, const char *src_relative_path,
+                               const WorkspaceRoot *dest_root, const char *dest_relative_path);
+
 /* recursive controls behavior on a non-empty directory: false fails
  * with FILE_OP_DIRECTORY_NOT_EMPTY, true deletes it and everything
  * under it (never following a symlink into deleting its target - a

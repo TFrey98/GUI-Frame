@@ -38,12 +38,9 @@ static bool resolve_exe_relative_toolbox_dir(char *dir_out, size_t dir_out_size)
     return true;
 }
 
-bool workspace_root_init(WorkspaceRoot *out) {
-    char dir[4096];
-    if (!resolve_exe_relative_toolbox_dir(dir, sizeof(dir))) {
-        return false;
-    }
-
+/* Shared by workspace_root_init() and workspace_root_init_at() - realpath()s
+ * dir and populates both path fields from the result. */
+static bool populate_from_dir(WorkspaceRoot *out, const char *dir) {
     char canonical[4096];
     if (!realpath(dir, canonical)) {
         return false;
@@ -55,6 +52,21 @@ bool workspace_root_init(WorkspaceRoot *out) {
     strcpy(out->canonical_path, canonical);
     strcpy(out->display_path, canonical);
     return true;
+}
+
+bool workspace_root_init(WorkspaceRoot *out) {
+    char dir[4096];
+    if (!resolve_exe_relative_toolbox_dir(dir, sizeof(dir))) {
+        return false;
+    }
+    return populate_from_dir(out, dir);
+}
+
+bool workspace_root_init_at(WorkspaceRoot *out, const char *absolute_directory) {
+    if (!absolute_directory) {
+        return false;
+    }
+    return populate_from_dir(out, absolute_directory);
 }
 
 /* Rejects a ".." path component anywhere, unconditionally - even a

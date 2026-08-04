@@ -1,5 +1,7 @@
 #include "ui_gtk_internal.h"
 
+#include <string.h>
+
 /* --- Object context menu -------------------------------------------------
  * Right-click (or Shift+F10/Menu key) on a bottom-panel row. One uniform
  * set of items built the same way for both object types every time -
@@ -293,10 +295,11 @@ static void perform_explorer_delete(GtkBackend *backend, GtkTreeIter *iter, GtkT
     GtkTreeStore *store = backend->explorer_store;
     gchar *relative_path = NULL;
     gboolean is_dir = FALSE;
+    int source = EXPLORER_SOURCE_FILES;
     gtk_tree_model_get(GTK_TREE_MODEL(store), iter, EXPLORER_COL_PATH, &relative_path, EXPLORER_COL_IS_DIR, &is_dir,
-                        -1);
+                        EXPLORER_COL_SOURCE, &source, -1);
 
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
     FileOperationResult result = file_delete(root, relative_path, is_dir);
     if (result != FILE_OP_OK) {
         show_explorer_error(backend, file_operation_error_message(result));
@@ -349,16 +352,24 @@ static void on_explorer_menu_delete(GtkMenuItem *item, gpointer user_data) {
     gchar *relative_path = NULL;
     gboolean is_dir = FALSE;
     guint64 node_id = 0;
+    int source = EXPLORER_SOURCE_FILES;
     gtk_tree_model_get(GTK_TREE_MODEL(store), &ctx->iter, EXPLORER_COL_PATH, &relative_path, EXPLORER_COL_IS_DIR,
-                        &is_dir, EXPLORER_COL_NODE_ID, &node_id, -1);
+                        &is_dir, EXPLORER_COL_NODE_ID, &node_id, EXPLORER_COL_SOURCE, &source, -1);
 
-    const WorkspaceRoot *root = workbench_get_file_workspace_root(backend->workbench);
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
     gboolean needs_confirm;
     if (is_dir) {
         needs_confirm = !file_operations_directory_is_empty(root, relative_path);
-    } else {
+    } else if (source == EXPLORER_SOURCE_FILES) {
         const FileTreeNode *node = file_tree_find(backend->file_tree, (FileNodeId)node_id);
         needs_confirm = node && node->executable;
+    } else {
+        char resolved[4096];
+        bool executable = false, read_only = true;
+        if (relative_path && workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+        }
+        needs_confirm = executable;
     }
     g_free(relative_path);
 
@@ -387,12 +398,212 @@ static void on_explorer_menu_delete(GtkMenuItem *item, gpointer user_data) {
     gtk_widget_show_all(dialog);
 }
 
-/* Builds a menu only for FILES-sourced rows - a Toolkit row gets none,
- * unchanged from before this step. A folder gets New File/New Folder/
- * Rename/Delete/Refresh/Properties; a file gets Rename/Delete/
- * Properties; the two permanent roots never get Rename/Delete ("the
- * root toolbox directory cannot be renamed or deleted") - TOOLBOX's own
- * menu ends up New File/New Folder/Refresh/Properties. */
+/* --- Step 5: terminal actions / clipboard ------------------------------ */
+
+/* Truncates relative_path at its last '/' into out - "" (the workspace
+ * root itself) if there isn't one, matching open_terminal_at()'s own
+ * empty-string-means-root convention. */
+static void relative_parent_dir(const char *relative_path, char *out, size_t out_size) {
+    out[0] = '\0';
+    if (!relative_path) {
+        return;
+    }
+    const char *slash = strrchr(relative_path, '/');
+    if (!slash) {
+        return;
+    }
+    size_t len = (size_t)(slash - relative_path);
+    if (len >= out_size) {
+        len = out_size - 1;
+    }
+    memcpy(out, relative_path, len);
+    out[len] = '\0';
+}
+
+static void on_explorer_menu_open_terminal(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(ctx->backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+    open_terminal_at(ctx->backend, explorer_root_for_source(ctx->backend, source), relative_path ? relative_path : "");
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_open_terminal_directory(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(ctx->backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+    char parent[4096];
+    relative_parent_dir(relative_path, parent, sizeof(parent));
+    open_terminal_at(ctx->backend, explorer_root_for_source(ctx->backend, source), parent);
+    g_free(relative_path);
+}
+
+/* Identical to what double-click already does (open_or_focus_file_tab) -
+ * an explicit, discoverable equivalent for a script/executable row,
+ * never execution itself ("do not treat a double-click as execution"
+ * stays true either way). Only offered when file_classify() agrees the
+ * file is actually text - see popup_explorer_context_menu. */
+static void on_explorer_menu_open_as_text(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    GtkBackend *backend = ctx->backend;
+    guint64 node_id = 0;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(backend->explorer_store), &ctx->iter, EXPLORER_COL_NODE_ID, &node_id,
+                        EXPLORER_COL_PATH, &relative_path, EXPLORER_COL_SOURCE, &source, -1);
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
+
+    if (source == EXPLORER_SOURCE_FILES) {
+        const FileTreeNode *node = file_tree_find(backend->file_tree, (FileNodeId)node_id);
+        if (node) {
+            open_or_focus_file_tab(backend, root, node->relative_path, node->executable, node->read_only);
+        }
+    } else if (relative_path) {
+        char resolved[4096];
+        bool executable = false, read_only = true;
+        if (workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+        }
+        open_or_focus_file_tab(backend, root, relative_path, executable, read_only);
+    }
+    g_free(relative_path);
+}
+
+/* No arguments, no reuse option (that's what "Run with Arguments..."
+ * is for) - always a fresh terminal, working directory defaults to the
+ * file's own parent. */
+static void on_explorer_menu_run_in_terminal(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    GtkBackend *backend = ctx->backend;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
+    char resolved[4096];
+    if (!relative_path || !workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+        show_explorer_error(backend, "Can't run - the target is missing or outside the workspace.");
+        g_free(relative_path);
+        return;
+    }
+
+    TerminalLaunchRequest request = {0};
+    g_strlcpy(request.executable, resolved, sizeof(request.executable));
+    char parent[4096];
+    relative_parent_dir(relative_path, parent, sizeof(parent));
+    if (parent[0] != '\0') {
+        workspace_root_resolve_path(root, parent, request.working_directory, sizeof(request.working_directory));
+    } else {
+        g_strlcpy(request.working_directory, root->canonical_path, sizeof(request.working_directory));
+    }
+    request.create_new_terminal = TRUE;
+
+    run_command_in_new_terminal(backend, &request, NULL, 0);
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_run_with_arguments(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    GtkBackend *backend = ctx->backend;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+    GtkWindow *parent_window = gtk_application_get_active_window(backend->gtk_app);
+    open_run_with_arguments_dialog(backend, explorer_root_for_source(backend, source),
+                                    relative_path ? relative_path : "", parent_window);
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_copy_path(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    GtkBackend *backend = ctx->backend;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
+    char resolved[4096];
+    const char *text = root->canonical_path;
+    if (relative_path && relative_path[0] != '\0' &&
+        workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+        text = resolved;
+    }
+    gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), text, -1);
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_copy_relative_path(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    gchar *relative_path = NULL;
+    gtk_tree_model_get(GTK_TREE_MODEL(ctx->backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        -1);
+    gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), relative_path ? relative_path : "", -1);
+    g_free(relative_path);
+}
+
+/* --- Step 7: Cut/Copy/Paste --------------------------------------------- */
+
+static void on_explorer_menu_cut(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(ctx->backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+    explorer_set_clipboard(ctx->backend, EXPLORER_CLIPBOARD_CUT, source, relative_path ? relative_path : "");
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_copy(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(GTK_TREE_MODEL(ctx->backend->explorer_store), &ctx->iter, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_SOURCE, &source, -1);
+    explorer_set_clipboard(ctx->backend, EXPLORER_CLIPBOARD_COPY, source, relative_path ? relative_path : "");
+    g_free(relative_path);
+}
+
+static void on_explorer_menu_paste(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    ExplorerMenuContext *ctx = user_data;
+    perform_explorer_paste(ctx->backend, &ctx->iter);
+}
+/* --- end Step 7: Cut/Copy/Paste ------------------------------------------- */
+
+/* Builds a menu for either source (a Toolkit row previously got none -
+ * full parity with TOOLBOX, requested directly by the user). A folder
+ * gets New File/New Folder/Rename/Cut/Copy/Delete/Paste/Refresh/
+ * Properties; a file gets Rename/Cut/Copy/Delete/Properties; the two
+ * permanent roots never get Rename/Cut/Copy/Delete ("the root toolbox
+ * directory cannot be renamed or deleted") - TOOLBOX's/Toolkit's own
+ * root menu ends up New File/New Folder/Paste/Refresh/Properties. Step
+ * 7 adds Cut/Copy (any non-root row) and Paste (any folder, sensitive
+ * only when the clipboard isn't empty) - both funnel into
+ * perform_explorer_paste()/explorer_set_clipboard() in file_tree.c.
+ * Step 5 adds, additively: a folder gets
+ * Open in Integrated Terminal; a script/executable (node->executable
+ * for FILES - already false for every directory per file_tree.c's own
+ * scan - or explorer_toolkit_file_flags() for Toolkit, since
+ * ToolkitEntry tracks neither bit) gets Open as Text (only when
+ * file_classify() also agrees it's text)/Run in Terminal/Run with
+ * Arguments...; an ordinary file gets Open in Terminal Directory;
+ * every row gets Copy Path/Copy Relative Path. */
 void popup_explorer_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTreePath *path,
                                   GdkEventButton *event) {
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
@@ -403,13 +614,27 @@ void popup_explorer_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkT
 
     int source = EXPLORER_SOURCE_FILES;
     gtk_tree_model_get(model, &iter, EXPLORER_COL_SOURCE, &source, -1);
-    if (source != EXPLORER_SOURCE_FILES) {
-        return;
-    }
 
     gboolean is_dir = FALSE;
-    gtk_tree_model_get(model, &iter, EXPLORER_COL_IS_DIR, &is_dir, -1);
+    gchar *relative_path = NULL;
+    guint64 node_id = 0;
+    gtk_tree_model_get(model, &iter, EXPLORER_COL_IS_DIR, &is_dir, EXPLORER_COL_PATH, &relative_path,
+                        EXPLORER_COL_NODE_ID, &node_id, -1);
     gboolean is_root = gtk_tree_path_get_depth(path) == 1;
+    const WorkspaceRoot *root = explorer_root_for_source(backend, source);
+
+    gboolean is_executable = FALSE;
+    if (source == EXPLORER_SOURCE_FILES) {
+        const FileTreeNode *node = file_tree_find(backend->file_tree, (FileNodeId)node_id);
+        is_executable = node && node->executable;
+    } else if (relative_path) {
+        char resolved_for_exec[4096];
+        bool executable = false, read_only = true;
+        if (workspace_root_resolve_path(root, relative_path, resolved_for_exec, sizeof(resolved_for_exec))) {
+            explorer_toolkit_file_flags(resolved_for_exec, &executable, &read_only);
+        }
+        is_executable = executable;
+    }
 
     ExplorerMenuContext *ctx = g_new(ExplorerMenuContext, 1);
     ctx->backend = backend;
@@ -425,13 +650,44 @@ void popup_explorer_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkT
     }
     if (!is_root) {
         add_explorer_menu_item(menu, "Rename", TRUE, G_CALLBACK(on_explorer_menu_rename), ctx);
+        add_explorer_menu_item(menu, "Cut", TRUE, G_CALLBACK(on_explorer_menu_cut), ctx);
+        add_explorer_menu_item(menu, "Copy", TRUE, G_CALLBACK(on_explorer_menu_copy), ctx);
         add_explorer_menu_item(menu, "Delete", TRUE, G_CALLBACK(on_explorer_menu_delete), ctx);
     }
     if (is_dir) {
+        add_explorer_menu_item(menu, "Paste", backend->explorer_clipboard.mode != EXPLORER_CLIPBOARD_NONE,
+                                G_CALLBACK(on_explorer_menu_paste), ctx);
         add_explorer_menu_item(menu, "Refresh", TRUE, G_CALLBACK(on_explorer_menu_refresh), ctx);
     }
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), gtk_separator_menu_item_new());
+    if (is_dir) {
+        add_explorer_menu_item(menu, "Open in Integrated Terminal", TRUE, G_CALLBACK(on_explorer_menu_open_terminal),
+                                ctx);
+    } else if (is_executable) {
+        gboolean can_open_as_text = FALSE;
+        char resolved[4096];
+        if (relative_path && workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
+            FileClassification classification = file_classify(resolved, TRUE);
+            can_open_as_text = classification.target == FILE_TARGET_EDITOR;
+        }
+        if (can_open_as_text) {
+            add_explorer_menu_item(menu, "Open as Text", TRUE, G_CALLBACK(on_explorer_menu_open_as_text), ctx);
+        }
+        add_explorer_menu_item(menu, "Run in Terminal", TRUE, G_CALLBACK(on_explorer_menu_run_in_terminal), ctx);
+        add_explorer_menu_item(menu, "Run with Arguments\xE2\x80\xA6", TRUE,
+                                G_CALLBACK(on_explorer_menu_run_with_arguments), ctx);
+    } else {
+        add_explorer_menu_item(menu, "Open in Terminal Directory", TRUE,
+                                G_CALLBACK(on_explorer_menu_open_terminal_directory), ctx);
+    }
+    add_explorer_menu_item(menu, "Copy Path", TRUE, G_CALLBACK(on_explorer_menu_copy_path), ctx);
+    add_explorer_menu_item(menu, "Copy Relative Path", TRUE, G_CALLBACK(on_explorer_menu_copy_relative_path), ctx);
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), gtk_separator_menu_item_new());
     add_explorer_menu_item(menu, "Properties", TRUE, G_CALLBACK(on_explorer_menu_properties), ctx);
 
+    g_free(relative_path);
     gtk_widget_show_all(menu);
     if (event) {
         gtk_menu_popup_at_pointer(GTK_MENU(menu), (GdkEvent *)event);
