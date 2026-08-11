@@ -12,6 +12,13 @@ static const char *const DARK_THEME_CSS =
     "button:checked, button:active { background-color: #094771; color: #ffffff; }\n"
     "entry { background-color: #3c3c3c; color: #cccccc; border-color: #3c3c3c; caret-color: #cccccc; }\n"
     "notebook { background-color: #1e1e1e; }\n"
+    /* Yaru (and stock Adwaita) paint notebook's internal "stack" node -
+     * the content area behind every page - solid white whenever the
+     * notebook has more than one tab (":not(:only-child)"). Left
+     * unstyled, that white shows through around any page whose own
+     * widgets don't cover every pixel (e.g. the editor page's 8px
+     * container border), reading as a white box outlining the page. */
+    "notebook > stack { background-color: #1e1e1e; }\n"
     "notebook > header { background-color: #252526; border-color: #252526; }\n"
     "notebook > header tab { background-color: #2d2d2d; color: #969696; border-color: #252526; }\n"
     "notebook > header tab:checked { background-color: #1e1e1e; color: #ffffff; }\n"
@@ -21,6 +28,13 @@ static const char *const DARK_THEME_CSS =
     "treeview header button { background-color: #252526; color: #cccccc; border-color: #1e1e1e; }\n"
     "textview, textview text { background-color: #1e1e1e; color: #d4d4d4; caret-color: #ffffff; }\n"
     "textview text:selected { background-color: #264f78; color: #ffffff; }\n"
+    /* GtkScrolledWindow always carries the .frame style class, which the
+     * base GTK theme draws as a light 1px border - left unstyled here it
+     * stays light/white against every dark-themed widget it wraps
+     * (editor, sidebar, terminal, ...). Matching the border color to the
+     * surrounding background makes it disappear instead of outlining
+     * the content. */
+    "scrolledwindow, scrolledwindow.frame { border-color: #1e1e1e; }\n"
     "scrollbar { background-color: #1e1e1e; }\n"
     "scrollbar slider { background-color: #4d4d4d; }\n"
     "scrollbar slider:hover { background-color: #5a5a5a; }\n"
