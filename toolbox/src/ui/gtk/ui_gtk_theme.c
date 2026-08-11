@@ -1,4 +1,4 @@
-#include "ui_gtk_internal.h"
+#include "ui_gtk_backend.h"
 
 /* Approximates VSCode's default "Dark+" color theme using plain GTK3 CSS
  * node selectors (window, button, treeview, textview, ...) rather than

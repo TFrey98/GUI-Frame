@@ -1,4 +1,8 @@
-#include "ui_gtk_internal.h"
+#include "ui_gtk_backend.h"
+#include "ui_gtk_tabs_internal.h"
+#include "ui_gtk_explorer_internal.h"
+#include "ui_gtk_editor_internal.h"
+#include "ui_gtk_terminal_internal.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -101,6 +105,11 @@ static void on_dark_mode_toggled(GtkToggleButton *button, gpointer user_data) {
     apply_dark_mode((GtkBackend *)user_data, gtk_toggle_button_get_active(button));
 }
 
+static void on_search_clicked(GtkButton *button, gpointer user_data) {
+    (void)button;
+    open_or_present_search_window((GtkBackend *)user_data);
+}
+
 static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidget *bottom_panel) {
     GtkWidget *bar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_set_border_width(GTK_CONTAINER(bar), 6);
@@ -117,6 +126,11 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     g_object_set_data(G_OBJECT(new_listener_button), "toolbox-new-listener-button", new_listener_button);
     g_signal_connect(new_listener_button, "clicked", G_CALLBACK(on_new_listener_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), new_listener_button, FALSE, FALSE, 0);
+
+    GtkWidget *search_button = gtk_button_new_with_label("\xF0\x9F\x94\x8D Search");
+    g_object_set_data(G_OBJECT(search_button), "toolbox-search-open-button", search_button);
+    g_signal_connect(search_button, "clicked", G_CALLBACK(on_search_clicked), backend);
+    gtk_box_pack_start(GTK_BOX(bar), search_button, FALSE, FALSE, 0);
 
     backend->status_label = gtk_label_new("No listeners yet");
     g_object_set_data(G_OBJECT(backend->status_label), "toolbox-listener-status-label", backend->status_label);
@@ -194,6 +208,18 @@ static void on_window_destroy(GtkWidget *window, gpointer user_data) {
     backend->status_label = NULL;
     backend->notebook = NULL;
     backend->object_panel_store = NULL;
+
+    /* The search window is a separate top-level (see ui_gtk_search.c) -
+     * gtk_application_add_window() there only means it participates in
+     * the app's own "quit once every window is gone" bookkeeping, not
+     * that GTK closes it automatically alongside this one. Without this,
+     * closing the main window while Search is still open would leave it
+     * as an orphan keeping the process alive. Its own "destroy" handler
+     * nulls backend->search_window synchronously, so nothing further is
+     * needed here. */
+    if (backend->search_window) {
+        gtk_widget_destroy(backend->search_window);
+    }
 }
 
 /* Always blocks the *immediate* default close (returns TRUE) -

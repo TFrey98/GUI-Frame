@@ -151,4 +151,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "tests/CMakeFiles/file_watch_explorer_smoke.dir/DependInfo.cmake"
   "tests/CMakeFiles/file_watch_conflict_smoke.dir/DependInfo.cmake"
   "tests/CMakeFiles/explorer_clipboard_smoke.dir/DependInfo.cmake"
+  "tests/CMakeFiles/file_search_test.dir/DependInfo.cmake"
+  "tests/CMakeFiles/explorer_search_smoke.dir/DependInfo.cmake"
   )

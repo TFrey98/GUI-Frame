@@ -685,6 +685,32 @@ explorer_clipboard_smoke/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/build
 .PHONY : explorer_clipboard_smoke/fast
 
+#=============================================================================
+# Target rules for targets named file_search_test
+
+# Build rule for target.
+file_search_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 file_search_test
+.PHONY : file_search_test
+
+# fast build rule for target.
+file_search_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_search_test.dir/build.make tests/CMakeFiles/file_search_test.dir/build
+.PHONY : file_search_test/fast
+
+#=============================================================================
+# Target rules for targets named explorer_search_smoke
+
+# Build rule for target.
+explorer_search_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 explorer_search_smoke
+.PHONY : explorer_search_smoke
+
+# fast build rule for target.
+explorer_search_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/build
+.PHONY : explorer_search_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -876,6 +902,30 @@ src/files/file_operations.s: src/files/file_operations.c.s
 src/files/file_operations.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_operations.c.s
 .PHONY : src/files/file_operations.c.s
+
+src/files/file_search.o: src/files/file_search.c.o
+.PHONY : src/files/file_search.o
+
+# target to build an object file
+src/files/file_search.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_search.c.o
+.PHONY : src/files/file_search.c.o
+
+src/files/file_search.i: src/files/file_search.c.i
+.PHONY : src/files/file_search.i
+
+# target to preprocess a source file
+src/files/file_search.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_search.c.i
+.PHONY : src/files/file_search.c.i
+
+src/files/file_search.s: src/files/file_search.c.s
+.PHONY : src/files/file_search.s
+
+# target to generate assembly for a file
+src/files/file_search.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/files/file_search.c.s
+.PHONY : src/files/file_search.c.s
 
 src/files/file_tree.o: src/files/file_tree.c.o
 .PHONY : src/files/file_tree.o
@@ -1405,6 +1455,30 @@ src/ui/gtk/ui_gtk.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.s
 .PHONY : src/ui/gtk/ui_gtk.c.s
 
+src/ui/gtk/ui_gtk_connection_terminal.o: src/ui/gtk/ui_gtk_connection_terminal.c.o
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_connection_terminal.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.o
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.c.o
+
+src/ui/gtk/ui_gtk_connection_terminal.i: src/ui/gtk/ui_gtk_connection_terminal.c.i
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_connection_terminal.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.i
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.c.i
+
+src/ui/gtk/ui_gtk_connection_terminal.s: src/ui/gtk/ui_gtk_connection_terminal.c.s
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_connection_terminal.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.s
+.PHONY : src/ui/gtk/ui_gtk_connection_terminal.c.s
+
 src/ui/gtk/ui_gtk_dialogs.o: src/ui/gtk/ui_gtk_dialogs.c.o
 .PHONY : src/ui/gtk/ui_gtk_dialogs.o
 
@@ -1453,6 +1527,174 @@ src/ui/gtk/ui_gtk_editor.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.s
 .PHONY : src/ui/gtk/ui_gtk_editor.c.s
 
+src/ui/gtk/ui_gtk_editor_conflicts.o: src/ui/gtk/ui_gtk_editor_conflicts.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_editor_conflicts.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_conflicts.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.c.o
+
+src/ui/gtk/ui_gtk_editor_conflicts.i: src/ui/gtk/ui_gtk_editor_conflicts.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_editor_conflicts.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_conflicts.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.c.i
+
+src/ui/gtk/ui_gtk_editor_conflicts.s: src/ui/gtk/ui_gtk_editor_conflicts.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_editor_conflicts.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_conflicts.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor_conflicts.c.s
+
+src/ui/gtk/ui_gtk_editor_tabs.o: src/ui/gtk/ui_gtk_editor_tabs.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_editor_tabs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_tabs.c.o
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.c.o
+
+src/ui/gtk/ui_gtk_editor_tabs.i: src/ui/gtk/ui_gtk_editor_tabs.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_editor_tabs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_tabs.c.i
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.c.i
+
+src/ui/gtk/ui_gtk_editor_tabs.s: src/ui/gtk/ui_gtk_editor_tabs.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_editor_tabs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_tabs.c.s
+.PHONY : src/ui/gtk/ui_gtk_editor_tabs.c.s
+
+src/ui/gtk/ui_gtk_explorer_dialogs.o: src/ui/gtk/ui_gtk_explorer_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_explorer_dialogs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.c.o
+
+src/ui/gtk/ui_gtk_explorer_dialogs.i: src/ui/gtk/ui_gtk_explorer_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_explorer_dialogs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.c.i
+
+src/ui/gtk/ui_gtk_explorer_dialogs.s: src/ui/gtk/ui_gtk_explorer_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_explorer_dialogs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_dialogs.c.s
+
+src/ui/gtk/ui_gtk_explorer_menu.o: src/ui/gtk/ui_gtk_explorer_menu.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_explorer_menu.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_menu.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.c.o
+
+src/ui/gtk/ui_gtk_explorer_menu.i: src/ui/gtk/ui_gtk_explorer_menu.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_explorer_menu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_menu.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.c.i
+
+src/ui/gtk/ui_gtk_explorer_menu.s: src/ui/gtk/ui_gtk_explorer_menu.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_explorer_menu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_menu.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_menu.c.s
+
+src/ui/gtk/ui_gtk_explorer_navigation.o: src/ui/gtk/ui_gtk_explorer_navigation.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_explorer_navigation.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_navigation.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.c.o
+
+src/ui/gtk/ui_gtk_explorer_navigation.i: src/ui/gtk/ui_gtk_explorer_navigation.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_explorer_navigation.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_navigation.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.c.i
+
+src/ui/gtk/ui_gtk_explorer_navigation.s: src/ui/gtk/ui_gtk_explorer_navigation.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_explorer_navigation.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_navigation.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_navigation.c.s
+
+src/ui/gtk/ui_gtk_explorer_sidebar.o: src/ui/gtk/ui_gtk_explorer_sidebar.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_explorer_sidebar.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_sidebar.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.c.o
+
+src/ui/gtk/ui_gtk_explorer_sidebar.i: src/ui/gtk/ui_gtk_explorer_sidebar.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_explorer_sidebar.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_sidebar.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.c.i
+
+src/ui/gtk/ui_gtk_explorer_sidebar.s: src/ui/gtk/ui_gtk_explorer_sidebar.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_explorer_sidebar.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_sidebar.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_sidebar.c.s
+
+src/ui/gtk/ui_gtk_explorer_transfer.o: src/ui/gtk/ui_gtk_explorer_transfer.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_explorer_transfer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_transfer.c.o
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.c.o
+
+src/ui/gtk/ui_gtk_explorer_transfer.i: src/ui/gtk/ui_gtk_explorer_transfer.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_explorer_transfer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_transfer.c.i
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.c.i
+
+src/ui/gtk/ui_gtk_explorer_transfer.s: src/ui/gtk/ui_gtk_explorer_transfer.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_explorer_transfer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_explorer_transfer.c.s
+.PHONY : src/ui/gtk/ui_gtk_explorer_transfer.c.s
+
 src/ui/gtk/ui_gtk_file_tree.o: src/ui/gtk/ui_gtk_file_tree.c.o
 .PHONY : src/ui/gtk/ui_gtk_file_tree.o
 
@@ -1477,29 +1719,77 @@ src/ui/gtk/ui_gtk_file_tree.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_tree.c.s
 .PHONY : src/ui/gtk/ui_gtk_file_tree.c.s
 
-src/ui/gtk/ui_gtk_menus.o: src/ui/gtk/ui_gtk_menus.c.o
-.PHONY : src/ui/gtk/ui_gtk_menus.o
+src/ui/gtk/ui_gtk_file_watch.o: src/ui/gtk/ui_gtk_file_watch.c.o
+.PHONY : src/ui/gtk/ui_gtk_file_watch.o
 
 # target to build an object file
-src/ui/gtk/ui_gtk_menus.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.o
-.PHONY : src/ui/gtk/ui_gtk_menus.c.o
+src/ui/gtk/ui_gtk_file_watch.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_watch.c.o
+.PHONY : src/ui/gtk/ui_gtk_file_watch.c.o
 
-src/ui/gtk/ui_gtk_menus.i: src/ui/gtk/ui_gtk_menus.c.i
-.PHONY : src/ui/gtk/ui_gtk_menus.i
+src/ui/gtk/ui_gtk_file_watch.i: src/ui/gtk/ui_gtk_file_watch.c.i
+.PHONY : src/ui/gtk/ui_gtk_file_watch.i
 
 # target to preprocess a source file
-src/ui/gtk/ui_gtk_menus.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.i
-.PHONY : src/ui/gtk/ui_gtk_menus.c.i
+src/ui/gtk/ui_gtk_file_watch.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_watch.c.i
+.PHONY : src/ui/gtk/ui_gtk_file_watch.c.i
 
-src/ui/gtk/ui_gtk_menus.s: src/ui/gtk/ui_gtk_menus.c.s
-.PHONY : src/ui/gtk/ui_gtk_menus.s
+src/ui/gtk/ui_gtk_file_watch.s: src/ui/gtk/ui_gtk_file_watch.c.s
+.PHONY : src/ui/gtk/ui_gtk_file_watch.s
 
 # target to generate assembly for a file
-src/ui/gtk/ui_gtk_menus.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_menus.c.s
-.PHONY : src/ui/gtk/ui_gtk_menus.c.s
+src/ui/gtk/ui_gtk_file_watch.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_file_watch.c.s
+.PHONY : src/ui/gtk/ui_gtk_file_watch.c.s
+
+src/ui/gtk/ui_gtk_listener_dialog.o: src/ui/gtk/ui_gtk_listener_dialog.c.o
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_listener_dialog.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_dialog.c.o
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.c.o
+
+src/ui/gtk/ui_gtk_listener_dialog.i: src/ui/gtk/ui_gtk_listener_dialog.c.i
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_listener_dialog.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_dialog.c.i
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.c.i
+
+src/ui/gtk/ui_gtk_listener_dialog.s: src/ui/gtk/ui_gtk_listener_dialog.c.s
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_listener_dialog.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_dialog.c.s
+.PHONY : src/ui/gtk/ui_gtk_listener_dialog.c.s
+
+src/ui/gtk/ui_gtk_listener_page.o: src/ui/gtk/ui_gtk_listener_page.c.o
+.PHONY : src/ui/gtk/ui_gtk_listener_page.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_listener_page.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_page.c.o
+.PHONY : src/ui/gtk/ui_gtk_listener_page.c.o
+
+src/ui/gtk/ui_gtk_listener_page.i: src/ui/gtk/ui_gtk_listener_page.c.i
+.PHONY : src/ui/gtk/ui_gtk_listener_page.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_listener_page.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_page.c.i
+.PHONY : src/ui/gtk/ui_gtk_listener_page.c.i
+
+src/ui/gtk/ui_gtk_listener_page.s: src/ui/gtk/ui_gtk_listener_page.c.s
+.PHONY : src/ui/gtk/ui_gtk_listener_page.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_listener_page.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_listener_page.c.s
+.PHONY : src/ui/gtk/ui_gtk_listener_page.c.s
 
 src/ui/gtk/ui_gtk_object_list.o: src/ui/gtk/ui_gtk_object_list.c.o
 .PHONY : src/ui/gtk/ui_gtk_object_list.o
@@ -1524,6 +1814,126 @@ src/ui/gtk/ui_gtk_object_list.s: src/ui/gtk/ui_gtk_object_list.c.s
 src/ui/gtk/ui_gtk_object_list.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_list.c.s
 .PHONY : src/ui/gtk/ui_gtk_object_list.c.s
+
+src/ui/gtk/ui_gtk_object_menu.o: src/ui/gtk/ui_gtk_object_menu.c.o
+.PHONY : src/ui/gtk/ui_gtk_object_menu.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_object_menu.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_menu.c.o
+.PHONY : src/ui/gtk/ui_gtk_object_menu.c.o
+
+src/ui/gtk/ui_gtk_object_menu.i: src/ui/gtk/ui_gtk_object_menu.c.i
+.PHONY : src/ui/gtk/ui_gtk_object_menu.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_object_menu.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_menu.c.i
+.PHONY : src/ui/gtk/ui_gtk_object_menu.c.i
+
+src/ui/gtk/ui_gtk_object_menu.s: src/ui/gtk/ui_gtk_object_menu.c.s
+.PHONY : src/ui/gtk/ui_gtk_object_menu.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_object_menu.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_object_menu.c.s
+.PHONY : src/ui/gtk/ui_gtk_object_menu.c.s
+
+src/ui/gtk/ui_gtk_run_dialog.o: src/ui/gtk/ui_gtk_run_dialog.c.o
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_run_dialog.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_run_dialog.c.o
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.c.o
+
+src/ui/gtk/ui_gtk_run_dialog.i: src/ui/gtk/ui_gtk_run_dialog.c.i
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_run_dialog.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_run_dialog.c.i
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.c.i
+
+src/ui/gtk/ui_gtk_run_dialog.s: src/ui/gtk/ui_gtk_run_dialog.c.s
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_run_dialog.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_run_dialog.c.s
+.PHONY : src/ui/gtk/ui_gtk_run_dialog.c.s
+
+src/ui/gtk/ui_gtk_search.o: src/ui/gtk/ui_gtk_search.c.o
+.PHONY : src/ui/gtk/ui_gtk_search.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_search.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_search.c.o
+.PHONY : src/ui/gtk/ui_gtk_search.c.o
+
+src/ui/gtk/ui_gtk_search.i: src/ui/gtk/ui_gtk_search.c.i
+.PHONY : src/ui/gtk/ui_gtk_search.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_search.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_search.c.i
+.PHONY : src/ui/gtk/ui_gtk_search.c.i
+
+src/ui/gtk/ui_gtk_search.s: src/ui/gtk/ui_gtk_search.c.s
+.PHONY : src/ui/gtk/ui_gtk_search.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_search.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_search.c.s
+.PHONY : src/ui/gtk/ui_gtk_search.c.s
+
+src/ui/gtk/ui_gtk_tab_close.o: src/ui/gtk/ui_gtk_tab_close.c.o
+.PHONY : src/ui/gtk/ui_gtk_tab_close.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_tab_close.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_close.c.o
+.PHONY : src/ui/gtk/ui_gtk_tab_close.c.o
+
+src/ui/gtk/ui_gtk_tab_close.i: src/ui/gtk/ui_gtk_tab_close.c.i
+.PHONY : src/ui/gtk/ui_gtk_tab_close.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_tab_close.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_close.c.i
+.PHONY : src/ui/gtk/ui_gtk_tab_close.c.i
+
+src/ui/gtk/ui_gtk_tab_close.s: src/ui/gtk/ui_gtk_tab_close.c.s
+.PHONY : src/ui/gtk/ui_gtk_tab_close.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_tab_close.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_close.c.s
+.PHONY : src/ui/gtk/ui_gtk_tab_close.c.s
+
+src/ui/gtk/ui_gtk_tab_labels.o: src/ui/gtk/ui_gtk_tab_labels.c.o
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_tab_labels.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_labels.c.o
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.c.o
+
+src/ui/gtk/ui_gtk_tab_labels.i: src/ui/gtk/ui_gtk_tab_labels.c.i
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_tab_labels.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_labels.c.i
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.c.i
+
+src/ui/gtk/ui_gtk_tab_labels.s: src/ui/gtk/ui_gtk_tab_labels.c.s
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_tab_labels.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_tab_labels.c.s
+.PHONY : src/ui/gtk/ui_gtk_tab_labels.c.s
 
 src/ui/gtk/ui_gtk_tabs.o: src/ui/gtk/ui_gtk_tabs.c.o
 .PHONY : src/ui/gtk/ui_gtk_tabs.o
@@ -1666,9 +2076,11 @@ help:
 	@echo "... explorer_clipboard_smoke"
 	@echo "... explorer_editor_smoke"
 	@echo "... explorer_operations_smoke"
+	@echo "... explorer_search_smoke"
 	@echo "... explorer_sidebar_smoke"
 	@echo "... file_classify_test"
 	@echo "... file_operations_test"
+	@echo "... file_search_test"
 	@echo "... file_tree_test"
 	@echo "... file_watch_conflict_smoke"
 	@echo "... file_watch_explorer_smoke"
@@ -1721,6 +2133,9 @@ help:
 	@echo "... src/files/file_operations.o"
 	@echo "... src/files/file_operations.i"
 	@echo "... src/files/file_operations.s"
+	@echo "... src/files/file_search.o"
+	@echo "... src/files/file_search.i"
+	@echo "... src/files/file_search.s"
 	@echo "... src/files/file_tree.o"
 	@echo "... src/files/file_tree.i"
 	@echo "... src/files/file_tree.s"
@@ -1787,21 +2202,66 @@ help:
 	@echo "... src/ui/gtk/ui_gtk.o"
 	@echo "... src/ui/gtk/ui_gtk.i"
 	@echo "... src/ui/gtk/ui_gtk.s"
+	@echo "... src/ui/gtk/ui_gtk_connection_terminal.o"
+	@echo "... src/ui/gtk/ui_gtk_connection_terminal.i"
+	@echo "... src/ui/gtk/ui_gtk_connection_terminal.s"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.o"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.i"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.s"
 	@echo "... src/ui/gtk/ui_gtk_editor.o"
 	@echo "... src/ui/gtk/ui_gtk_editor.i"
 	@echo "... src/ui/gtk/ui_gtk_editor.s"
+	@echo "... src/ui/gtk/ui_gtk_editor_conflicts.o"
+	@echo "... src/ui/gtk/ui_gtk_editor_conflicts.i"
+	@echo "... src/ui/gtk/ui_gtk_editor_conflicts.s"
+	@echo "... src/ui/gtk/ui_gtk_editor_tabs.o"
+	@echo "... src/ui/gtk/ui_gtk_editor_tabs.i"
+	@echo "... src/ui/gtk/ui_gtk_editor_tabs.s"
+	@echo "... src/ui/gtk/ui_gtk_explorer_dialogs.o"
+	@echo "... src/ui/gtk/ui_gtk_explorer_dialogs.i"
+	@echo "... src/ui/gtk/ui_gtk_explorer_dialogs.s"
+	@echo "... src/ui/gtk/ui_gtk_explorer_menu.o"
+	@echo "... src/ui/gtk/ui_gtk_explorer_menu.i"
+	@echo "... src/ui/gtk/ui_gtk_explorer_menu.s"
+	@echo "... src/ui/gtk/ui_gtk_explorer_navigation.o"
+	@echo "... src/ui/gtk/ui_gtk_explorer_navigation.i"
+	@echo "... src/ui/gtk/ui_gtk_explorer_navigation.s"
+	@echo "... src/ui/gtk/ui_gtk_explorer_sidebar.o"
+	@echo "... src/ui/gtk/ui_gtk_explorer_sidebar.i"
+	@echo "... src/ui/gtk/ui_gtk_explorer_sidebar.s"
+	@echo "... src/ui/gtk/ui_gtk_explorer_transfer.o"
+	@echo "... src/ui/gtk/ui_gtk_explorer_transfer.i"
+	@echo "... src/ui/gtk/ui_gtk_explorer_transfer.s"
 	@echo "... src/ui/gtk/ui_gtk_file_tree.o"
 	@echo "... src/ui/gtk/ui_gtk_file_tree.i"
 	@echo "... src/ui/gtk/ui_gtk_file_tree.s"
-	@echo "... src/ui/gtk/ui_gtk_menus.o"
-	@echo "... src/ui/gtk/ui_gtk_menus.i"
-	@echo "... src/ui/gtk/ui_gtk_menus.s"
+	@echo "... src/ui/gtk/ui_gtk_file_watch.o"
+	@echo "... src/ui/gtk/ui_gtk_file_watch.i"
+	@echo "... src/ui/gtk/ui_gtk_file_watch.s"
+	@echo "... src/ui/gtk/ui_gtk_listener_dialog.o"
+	@echo "... src/ui/gtk/ui_gtk_listener_dialog.i"
+	@echo "... src/ui/gtk/ui_gtk_listener_dialog.s"
+	@echo "... src/ui/gtk/ui_gtk_listener_page.o"
+	@echo "... src/ui/gtk/ui_gtk_listener_page.i"
+	@echo "... src/ui/gtk/ui_gtk_listener_page.s"
 	@echo "... src/ui/gtk/ui_gtk_object_list.o"
 	@echo "... src/ui/gtk/ui_gtk_object_list.i"
 	@echo "... src/ui/gtk/ui_gtk_object_list.s"
+	@echo "... src/ui/gtk/ui_gtk_object_menu.o"
+	@echo "... src/ui/gtk/ui_gtk_object_menu.i"
+	@echo "... src/ui/gtk/ui_gtk_object_menu.s"
+	@echo "... src/ui/gtk/ui_gtk_run_dialog.o"
+	@echo "... src/ui/gtk/ui_gtk_run_dialog.i"
+	@echo "... src/ui/gtk/ui_gtk_run_dialog.s"
+	@echo "... src/ui/gtk/ui_gtk_search.o"
+	@echo "... src/ui/gtk/ui_gtk_search.i"
+	@echo "... src/ui/gtk/ui_gtk_search.s"
+	@echo "... src/ui/gtk/ui_gtk_tab_close.o"
+	@echo "... src/ui/gtk/ui_gtk_tab_close.i"
+	@echo "... src/ui/gtk/ui_gtk_tab_close.s"
+	@echo "... src/ui/gtk/ui_gtk_tab_labels.o"
+	@echo "... src/ui/gtk/ui_gtk_tab_labels.i"
+	@echo "... src/ui/gtk/ui_gtk_tab_labels.s"
 	@echo "... src/ui/gtk/ui_gtk_tabs.o"
 	@echo "... src/ui/gtk/ui_gtk_tabs.i"
 	@echo "... src/ui/gtk/ui_gtk_tabs.s"

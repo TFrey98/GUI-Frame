@@ -1,4 +1,6 @@
-#include "ui_gtk_internal.h"
+#include "ui_gtk_backend.h"
+#include "ui_gtk_tabs_internal.h"
+#include "ui_gtk_terminal_internal.h"
 
 #include <stdio.h>
 
@@ -47,7 +49,7 @@ const char *connection_state_name(ConnectionState state) {
  * The sync below only ever updates a row's text in place or appends a new
  * row - it never removes one. That's safe today because nothing in this
  * file ever calls object_registry_remove() (guarded removal is Phase 10's
- * job); revisit this once a remove action exists. See ui_gtk_internal.h
+ * job); revisit this once a remove action exists. See ui_gtk_backend.h
  * for OBJECT_PANEL_COL_*'s declaration. */
 
 static void sync_listener_row(GtkTreeStore *store, GtkTreeIter *iter, const Listener *listener) {

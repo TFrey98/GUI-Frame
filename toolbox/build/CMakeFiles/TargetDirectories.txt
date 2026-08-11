@@ -44,6 +44,8 @@
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watch_explorer_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_watch_conflict_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_clipboard_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_search_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_search_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

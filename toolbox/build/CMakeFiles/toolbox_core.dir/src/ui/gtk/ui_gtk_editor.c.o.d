@@ -1,7 +1,7 @@
 CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_editor.c \
  /usr/include/stdc-predef.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_internal.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_backend.h \
  /usr/include/gtk-3.0/gtk/gtk.h /usr/include/gtk-3.0/gdk/gdk.h \
  /usr/include/gtk-3.0/gdk/gdkconfig.h /usr/include/glib-2.0/glib.h \
  /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
@@ -750,6 +750,5 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/terminal_vte.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h \
- /usr/include/x86_64-linux-gnu/sys/stat.h \
- /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_tabs_internal.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_editor_internal.h

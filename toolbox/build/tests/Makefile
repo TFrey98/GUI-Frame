@@ -700,6 +700,34 @@ explorer_clipboard_smoke/fast:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_clipboard_smoke.dir/build.make tests/CMakeFiles/explorer_clipboard_smoke.dir/build
 .PHONY : explorer_clipboard_smoke/fast
 
+# Convenience name for target.
+tests/CMakeFiles/file_search_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/file_search_test.dir/rule
+.PHONY : tests/CMakeFiles/file_search_test.dir/rule
+
+# Convenience name for target.
+file_search_test: tests/CMakeFiles/file_search_test.dir/rule
+.PHONY : file_search_test
+
+# fast build rule for target.
+file_search_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_search_test.dir/build.make tests/CMakeFiles/file_search_test.dir/build
+.PHONY : file_search_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/explorer_search_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/explorer_search_smoke.dir/rule
+.PHONY : tests/CMakeFiles/explorer_search_smoke.dir/rule
+
+# Convenience name for target.
+explorer_search_smoke: tests/CMakeFiles/explorer_search_smoke.dir/rule
+.PHONY : explorer_search_smoke
+
+# fast build rule for target.
+explorer_search_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/build
+.PHONY : explorer_search_smoke/fast
+
 byte_buffer_test.o: byte_buffer_test.c.o
 .PHONY : byte_buffer_test.o
 
@@ -988,6 +1016,30 @@ explorer_operations_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_operations_smoke.dir/build.make tests/CMakeFiles/explorer_operations_smoke.dir/explorer_operations_smoke.c.s
 .PHONY : explorer_operations_smoke.c.s
 
+explorer_search_smoke.o: explorer_search_smoke.c.o
+.PHONY : explorer_search_smoke.o
+
+# target to build an object file
+explorer_search_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/explorer_search_smoke.c.o
+.PHONY : explorer_search_smoke.c.o
+
+explorer_search_smoke.i: explorer_search_smoke.c.i
+.PHONY : explorer_search_smoke.i
+
+# target to preprocess a source file
+explorer_search_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/explorer_search_smoke.c.i
+.PHONY : explorer_search_smoke.c.i
+
+explorer_search_smoke.s: explorer_search_smoke.c.s
+.PHONY : explorer_search_smoke.s
+
+# target to generate assembly for a file
+explorer_search_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/explorer_search_smoke.c.s
+.PHONY : explorer_search_smoke.c.s
+
 explorer_sidebar_smoke.o: explorer_sidebar_smoke.c.o
 .PHONY : explorer_sidebar_smoke.o
 
@@ -1059,6 +1111,30 @@ file_operations_test.s: file_operations_test.c.s
 file_operations_test.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_operations_test.dir/build.make tests/CMakeFiles/file_operations_test.dir/file_operations_test.c.s
 .PHONY : file_operations_test.c.s
+
+file_search_test.o: file_search_test.c.o
+.PHONY : file_search_test.o
+
+# target to build an object file
+file_search_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_search_test.dir/build.make tests/CMakeFiles/file_search_test.dir/file_search_test.c.o
+.PHONY : file_search_test.c.o
+
+file_search_test.i: file_search_test.c.i
+.PHONY : file_search_test.i
+
+# target to preprocess a source file
+file_search_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_search_test.dir/build.make tests/CMakeFiles/file_search_test.dir/file_search_test.c.i
+.PHONY : file_search_test.c.i
+
+file_search_test.s: file_search_test.c.s
+.PHONY : file_search_test.s
+
+# target to generate assembly for a file
+file_search_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/file_search_test.dir/build.make tests/CMakeFiles/file_search_test.dir/file_search_test.c.s
+.PHONY : file_search_test.c.s
 
 file_tree_test.o: file_tree_test.c.o
 .PHONY : file_tree_test.o
@@ -1705,9 +1781,11 @@ help:
 	@echo "... explorer_clipboard_smoke"
 	@echo "... explorer_editor_smoke"
 	@echo "... explorer_operations_smoke"
+	@echo "... explorer_search_smoke"
 	@echo "... explorer_sidebar_smoke"
 	@echo "... file_classify_test"
 	@echo "... file_operations_test"
+	@echo "... file_search_test"
 	@echo "... file_tree_test"
 	@echo "... file_watch_conflict_smoke"
 	@echo "... file_watch_explorer_smoke"
@@ -1770,6 +1848,9 @@ help:
 	@echo "... explorer_operations_smoke.o"
 	@echo "... explorer_operations_smoke.i"
 	@echo "... explorer_operations_smoke.s"
+	@echo "... explorer_search_smoke.o"
+	@echo "... explorer_search_smoke.i"
+	@echo "... explorer_search_smoke.s"
 	@echo "... explorer_sidebar_smoke.o"
 	@echo "... explorer_sidebar_smoke.i"
 	@echo "... explorer_sidebar_smoke.s"
@@ -1779,6 +1860,9 @@ help:
 	@echo "... file_operations_test.o"
 	@echo "... file_operations_test.i"
 	@echo "... file_operations_test.s"
+	@echo "... file_search_test.o"
+	@echo "... file_search_test.i"
+	@echo "... file_search_test.s"
 	@echo "... file_tree_test.o"
 	@echo "... file_tree_test.i"
 	@echo "... file_tree_test.s"

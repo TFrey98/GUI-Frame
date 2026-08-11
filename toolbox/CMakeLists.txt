@@ -27,6 +27,7 @@ add_library(toolbox_core STATIC
     src/files/editor_document.c
     src/files/file_watch_queue.c
     src/files/file_watcher.c
+    src/files/file_search.c
     src/core/workspace.c
     src/core/tab.c
     src/core/terminal_session.c
@@ -50,13 +51,28 @@ add_library(toolbox_core STATIC
     src/ui/gtk/ui_gtk.c
     src/ui/gtk/ui_gtk_window.c
     src/ui/gtk/ui_gtk_tabs.c
+    src/ui/gtk/ui_gtk_tab_labels.c
+    src/ui/gtk/ui_gtk_tab_close.c
+    src/ui/gtk/ui_gtk_listener_page.c
     src/ui/gtk/ui_gtk_terminal.c
+    src/ui/gtk/ui_gtk_connection_terminal.c
     src/ui/gtk/ui_gtk_file_tree.c
+    src/ui/gtk/ui_gtk_explorer_sidebar.c
+    src/ui/gtk/ui_gtk_file_watch.c
+    src/ui/gtk/ui_gtk_explorer_transfer.c
+    src/ui/gtk/ui_gtk_explorer_navigation.c
     src/ui/gtk/ui_gtk_object_list.c
     src/ui/gtk/ui_gtk_dialogs.c
-    src/ui/gtk/ui_gtk_menus.c
+    src/ui/gtk/ui_gtk_explorer_dialogs.c
+    src/ui/gtk/ui_gtk_listener_dialog.c
+    src/ui/gtk/ui_gtk_run_dialog.c
+    src/ui/gtk/ui_gtk_object_menu.c
+    src/ui/gtk/ui_gtk_explorer_menu.c
     src/ui/gtk/ui_gtk_editor.c
+    src/ui/gtk/ui_gtk_editor_tabs.c
+    src/ui/gtk/ui_gtk_editor_conflicts.c
     src/ui/gtk/ui_gtk_theme.c
+    src/ui/gtk/ui_gtk_search.c
     src/ui/gtk/terminal_vte.c
 )
 

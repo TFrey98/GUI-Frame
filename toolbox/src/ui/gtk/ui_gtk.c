@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-#include "ui_gtk_internal.h"
+#include "ui_gtk_backend.h"
 
 void *platform_ui_create(Workbench *workbench) {
     GtkBackend *backend = malloc(sizeof(GtkBackend));
@@ -31,6 +31,7 @@ void *platform_ui_create(Workbench *workbench) {
     backend->toolkit_watcher = file_watcher_create(workbench_get_toolkit_workspace_root(workbench));
     backend->css_provider = NULL;
     backend->dark_mode = FALSE;
+    backend->search_window = NULL;
     backend->gtk_app = gtk_application_new("dev.toolbox.app", G_APPLICATION_FLAGS_NONE);
     g_signal_connect(backend->gtk_app, "activate", G_CALLBACK(on_activate), backend);
     return backend;

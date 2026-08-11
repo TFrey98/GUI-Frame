@@ -121,6 +121,12 @@ target_link_libraries(file_watch_conflict_smoke PRIVATE toolbox_core)
 add_executable(explorer_clipboard_smoke explorer_clipboard_smoke.c)
 target_link_libraries(explorer_clipboard_smoke PRIVATE toolbox_core)
 
+add_executable(file_search_test file_search_test.c)
+target_link_libraries(file_search_test PRIVATE toolbox_core)
+
+add_executable(explorer_search_smoke explorer_search_smoke.c)
+target_link_libraries(explorer_search_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -243,3 +249,9 @@ set_tests_properties(file_watch_conflict_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME explorer_clipboard_smoke COMMAND explorer_clipboard_smoke)
 set_tests_properties(explorer_clipboard_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME file_search_test COMMAND file_search_test)
+set_tests_properties(file_search_test PROPERTIES TIMEOUT 15)
+
+add_test(NAME explorer_search_smoke COMMAND explorer_search_smoke)
+set_tests_properties(explorer_search_smoke PROPERTIES TIMEOUT 30)
