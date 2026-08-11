@@ -48,9 +48,11 @@ typedef struct EditorDocument {
      * IN_MOVED_TO/IN_CLOSE_WRITE) and is ignored rather than reloaded. */
     struct timespec last_known_mtime;
 
-    int cursor_line;         /* unused until Step 10's session persistence */
-    int cursor_column;       /* unused until Step 10's session persistence */
-    int first_visible_line;  /* unused until Step 10's session persistence */
+    /* Reserved model state for future editor-session restoration; the GTK
+     * view does not currently read or update these fields. */
+    int cursor_line;
+    int cursor_column;
+    int first_visible_line;
 } EditorDocument;
 
 /*

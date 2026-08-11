@@ -17,6 +17,9 @@
  * destroy-notify below, which owns the only per-view resource (view). */
 
 static uint64_t connection_tab_id(const Tab *tab) {
+    /* Connection tabs use Tab.backend_data as an integer-sized opaque
+     * handle, not as an owned pointer. Keep both casts: uintptr_t is the
+     * portable bridge between void * and an integer that can hold it. */
     return (uint64_t)(uintptr_t)tab->backend_data;
 }
 
@@ -38,6 +41,9 @@ typedef struct ConnectionPageContext {
 
 static void destroy_connection_page_context(gpointer data) {
     ConnectionPageContext *ctx = data;
+    /* Registered with g_object_set_data_full() below, so GTK invokes this
+     * when the page is finalized. The registry owns the Connection and its
+     * history; this page owns only its presentation-side Terminal. */
     terminal_destroy(ctx->view);
     g_free(ctx);
 }
@@ -73,6 +79,8 @@ static void refresh_connection_terminal_page(GtkBackend *backend, GtkWidget *pag
     const Connection *connection =
         object_registry_get_connection(backend->listener_system->registry, ctx->connection_id);
     if (!connection) {
+        /* A tab may outlive the registry object it was displaying. Leave
+         * already-rendered output visible, but prevent any further input. */
         gtk_label_set_text(GTK_LABEL(state_label), "State: gone");
         gtk_widget_set_sensitive(take_control_button, FALSE);
         return;
@@ -84,6 +92,10 @@ static void refresh_connection_terminal_page(GtkBackend *backend, GtkWidget *pag
 
     size_t total = terminal_history_len(connection->history);
     if (total > ctx->history_offset) {
+        /* Read in bounded chunks because history is append-only and can be
+         * much larger than a single UI update should place on the stack.
+         * history_offset is per page, which lets late-opened views replay
+         * the complete session without affecting existing views. */
         char buf[4096];
         size_t copied = terminal_history_read(connection->history, ctx->history_offset, buf, sizeof(buf));
         while (copied > 0) {
@@ -150,6 +162,9 @@ static GtkWidget *find_connection_terminal_page(GtkBackend *backend, uint64_t co
 
 GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     uint64_t connection_id = connection_tab_id(tab);
+    /* add_tab_page() has not appended this page to the notebook yet, so a
+     * match here can only be an older view. The first view starts writable;
+     * explicitly opened additional views start read-only. */
     gboolean already_open = find_connection_terminal_page(backend, connection_id) != NULL;
 
     GtkWidget *page = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
@@ -176,6 +191,10 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
     gtk_box_pack_start(GTK_BOX(page), scroller, TRUE, TRUE, 0);
 
+    /* These are borrowed child-widget pointers. Attaching them to the page
+     * avoids a second UI-only struct and is safe because GTK destroys the
+     * children with their parent page. The string keys form a private
+     * convention shared with the refresh path above. */
     g_object_set_data(G_OBJECT(page), "toolbox-connection-state-label", state_label);
     g_object_set_data(G_OBJECT(page), "toolbox-connection-control-label", control_label);
     g_object_set_data(G_OBJECT(page), "toolbox-connection-take-control-button", take_control_button);
@@ -212,6 +231,8 @@ static GtkWidget *find_connection_terminal_page(GtkBackend *backend, uint64_t co
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
+        /* add_tab_page() tags every notebook child with its model Tab. This
+         * keeps lookup independent of tab titles, which users may rename. */
         Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
         if (tab && tab->type == TAB_TYPE_CONNECTION_TERMINAL && connection_tab_id(tab) == connection_id) {
             return page;
@@ -235,6 +256,9 @@ static void open_new_connection_terminal_tab(GtkBackend *backend, uint64_t conne
     snprintf(title, sizeof(title), "%s:%u", connection->remote_host, connection->remote_port);
 
     Tab *tab = tab_create(TAB_TYPE_CONNECTION_TERMINAL, title);
+    /* Unlike pointer-valued backend_data used by editor/local-terminal
+     * tabs, this is a non-owning registry ID. close_tab_page() therefore
+     * must not free or disconnect it. */
     tab->backend_data = (void *)(uintptr_t)connection_id;
     workspace_add_tab(workspace, tab);
     add_tab_page(backend, tab, focus);
@@ -258,6 +282,9 @@ static void on_open_another_view_clicked(GtkButton *button, gpointer user_data) 
 }
 
 void refresh_all_connection_terminal_pages(GtkBackend *backend) {
+    /* Called from the GTK main-loop tick after connection data has been
+     * drained into TerminalHistory. Keeping all widget access here on the
+     * GUI thread avoids synchronization inside Terminal and GTK. */
     if (!backend->notebook) {
         return;
     }

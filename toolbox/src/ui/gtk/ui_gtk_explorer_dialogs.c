@@ -4,7 +4,7 @@
 /* --- Properties dialog --------------------------------------------------
  * Triggered from the explorer's context menu, but its whole effect is
  * unconditionally showing a dialog - lives here rather than
- * ui_gtk_explorer_menu.c, see the restructuring plan's splitting rule.
+ * ui_gtk_explorer_menu.c to keep menu construction separate from dialogs.
  * Only its G_CALLBACK reference lives in the menu's own item-building code. */
 
 static void on_explorer_properties_response(GtkDialog *dialog, gint response_id, gpointer user_data) {

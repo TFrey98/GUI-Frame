@@ -13,10 +13,9 @@
 /* Lets a caller pre-configure a terminal tab's session (a custom
  * working directory, or a real command to run instead of an
  * interactive shell) before add_tab_page/build_terminal_page create
- * its page - the same "pre-seed tab->backend_data, let the builder
- * consume it" pattern Step 3's open_or_focus_file_tab already
- * established for editor tabs. NULL launch_request means "just start
- * a plain shell in session's own working directory" (backs Open in
+ * its page. This is the same "pre-seed tab->backend_data, let the
+ * builder consume it" pattern editor tabs use. NULL launch_request means
+ * "just start a plain shell in session's own working directory" (backs Open in
  * Integrated Terminal/Open in Terminal Directory); non-NULL means
  * "run this command instead" (backs Run in Terminal/Run with
  * Arguments). Consumed and freed by build_terminal_page - never seen
@@ -81,7 +80,7 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
     return scroller;
 }
 
-/* --- Explorer-triggered terminal actions (Step 5) ---------------------- */
+/* --- Explorer-triggered terminal actions ------------------------------- */
 
 static char **dup_strv(char *const *src, size_t count) {
     if (count == 0) {

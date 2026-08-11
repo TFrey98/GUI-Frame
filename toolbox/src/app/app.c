@@ -10,14 +10,14 @@
 #include "../ui/workbench.h"
 
 struct App {
-    int argc;
-    char **argv;
-    Workspace *workspace;
-    ListenerSystem *listener_system;
-    Workbench *workbench;
+    int argc;    /* borrowed from main(); valid for the process lifetime */
+    char **argv; /* borrowed alongside argc */
+    Workspace *workspace;             /* owned */
+    ListenerSystem *listener_system;   /* owned */
+    Workbench *workbench;              /* owned; borrows the fields above */
     WorkspaceRoot file_workspace_root;
     WorkspaceRoot toolkit_workspace_root;
-    int db_open;
+    int db_open; /* records whether the optional global DB needs closing */
 };
 
 App *app_create(int argc, char **argv) {

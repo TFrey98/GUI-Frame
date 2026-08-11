@@ -156,9 +156,8 @@ void on_new_listener_clicked(GtkButton *button, gpointer user_data);
 
 /* --- ui_gtk_run_dialog.c (Run with Arguments dialog) -------------------- */
 /* Triggered from the explorer's context menu, but unconditionally just
- * shows a dialog - lives in its own file per the restructuring plan's
- * splitting rule, declared here since it has no dedicated feature
- * header of its own (needs WorkspaceRoot, already visible via
+ * shows a dialog - lives in its own module, declared here since it has
+ * no dedicated feature header of its own (needs WorkspaceRoot, already visible via
  * ui/workbench.h above). */
 void open_run_with_arguments_dialog(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path,
                                      GtkWindow *parent);

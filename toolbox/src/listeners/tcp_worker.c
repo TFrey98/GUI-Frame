@@ -25,9 +25,9 @@ typedef struct WorkerArgs {
 
 /* Tries bind_address as IPv4 then IPv6 (same order as
  * listener_config_validate), filling storage/addr_len on success.
- * Returns the resolved address family, or -1 if bind_address is
- * neither (shouldn't happen - Phase 2 validation already checked this -
- * but the worker can't assume the config didn't change codepaths). */
+ * Returns the resolved address family, or -1 if bind_address is neither.
+ * Listener validation normally catches that first, but the worker remains
+ * defensive because it is an independent subsystem boundary. */
 static int build_bind_address(const char *bind_address, uint16_t port, struct sockaddr_storage *storage,
                                socklen_t *addr_len) {
     memset(storage, 0, sizeof(*storage));

@@ -7,9 +7,9 @@
 /*
  * Applies what a Connection's worker thread (connection_worker.h)
  * reports, the same layering ListenerManager established for listener
- * workers. Deliberately doesn't drain EventQueue itself - see the
- * Phase 4 plan for why listener_manager_process_events() stays the
- * sole drain loop; the caller inspects events it returns and dispatches
+ * workers. Deliberately doesn't drain EventQueue itself:
+ * listener_manager_process_events() stays the sole drain loop, and the
+ * caller inspects events it returns and dispatches
  * CONNECTION_OPENED/CONNECTION_CLOSED here.
  */
 typedef struct ConnectionManager ConnectionManager;

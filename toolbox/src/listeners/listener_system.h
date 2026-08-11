@@ -27,8 +27,8 @@ void listener_system_destroy(ListenerSystem *system);
 /* Drains listener_manager_process_events(), dispatches
  * LISTENER_EVENT_CONNECTION_OPENED to connection_manager_start_worker()
  * and LISTENER_EVENT_CONNECTION_CLOSED to
- * connection_manager_handle_closed() (the same wiring every test since
- * Phase 4 has hand-rolled as its own pump() helper), then calls
+ * connection_manager_handle_closed() (the same wiring used by headless
+ * tests' pump helpers), then calls
  * connection_manager_drain_data(). Call once per GUI tick.
  *
  * Same out/max_out contract as listener_manager_process_events(): every

@@ -289,10 +289,8 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
      * of gtk_text_view_set_editable() below actually enforcing it at
      * the widget level, not just displaying it. Same no_show_all
      * requirement as the buttons above - this one was previously
-     * missing it (a latent cosmetic bug: the label was always forced
-     * visible by add_tab_page's later show_all(), regardless of
-     * doc->read_only, since nothing before Step 4 ever exercised the
-     * non-read-only negative case). */
+     * required because add_tab_page() later calls show_all(), which would
+     * otherwise force the label visible even for writable documents. */
     GtkWidget *read_only_label = gtk_label_new("Read-only");
     gtk_widget_set_no_show_all(read_only_label, TRUE);
     gtk_widget_set_visible(read_only_label, doc->read_only);

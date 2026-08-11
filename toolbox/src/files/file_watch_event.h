@@ -8,7 +8,11 @@ typedef enum FileWatchEventType {
     FILE_WATCH_RENAMED,
 } FileWatchEventType;
 
-/* Convention: FILE_WATCH_RENAMED populates both old_relative_path and
+/* Value payload copied through FileWatchQueue; it owns no heap memory and is
+ * therefore safe to construct on the watcher thread and consume later on the
+ * GTK thread.
+ *
+ * Convention: FILE_WATCH_RENAMED populates both old_relative_path and
  * new_relative_path. Every other type only populates new_relative_path
  * (the affected path) and leaves old_relative_path empty ("").
  * Both paths are root-relative, matching every other path this

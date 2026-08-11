@@ -107,8 +107,8 @@ bool listener_config_validate(const ObjectRegistry *registry, const ListenerConf
 /* Tracks the worker thread behind each currently-starting-or-running
  * listener - implementation-internal bookkeeping that intentionally
  * never touches ObjectRegistry's Listener/ListenerRuntime types (the
- * listening socket's fd never needs to be GUI/registry-visible; see the
- * Phase 3 plan). Dense array + linear search by id, same shape as
+ * listening socket's fd never needs to be GUI/registry-visible). Dense
+ * array + linear search by id, same shape as
  * ObjectRegistry's own storage. */
 typedef struct WorkerEntry {
     uint64_t listener_id;
@@ -184,7 +184,7 @@ static void push_event(ListenerManager *manager, ListenerEventType type, uint64_
     event_queue_push(manager->events, event);
 }
 
-/* Builds a throwaway ManagedObject snapshot to reuse Phase 1's
+/* Builds a throwaway ManagedObject snapshot to reuse the shared
  * object_can_* predicates, which take a ManagedObject rather than a
  * bare Listener. */
 static bool listener_predicate(const ObjectRegistry *registry, uint64_t id, bool (*predicate)(const ManagedObject *)) {

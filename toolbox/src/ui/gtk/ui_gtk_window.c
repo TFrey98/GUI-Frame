@@ -50,8 +50,8 @@ static void on_toggle_panel(GtkToggleButton *button, gpointer user_data) {
 }
 
 /* g_timeout_add callback: the GUI's per-tick event pump. Never does
- * socket I/O itself - only ever reads registry state and drives the
- * managers, exactly like every headless test since Phase 3. */
+ * socket I/O itself - it only reads registry state and drives managers;
+ * worker threads remain responsible for blocking network operations. */
 static gboolean on_tick(gpointer user_data) {
     GtkBackend *backend = user_data;
     /* Window already torn down (see on_window_destroy) - nothing left to

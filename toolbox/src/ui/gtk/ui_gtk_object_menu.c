@@ -5,7 +5,7 @@
  * Right-click (or Shift+F10/Menu key) on a bottom-panel row. One uniform
  * set of items built the same way for both object types every time -
  * Start/Stop/Restart/Open Terminal/Wait for Reconnection gated by their
- * matching object_can_* predicate (Phase 1), Remove always sensitive
+ * matching object_can_* predicate, Remove always sensitive
  * since there isn't a predicate for it, just a confirmation guard when
  * the target is currently running/connected. */
 
@@ -218,9 +218,8 @@ gboolean on_object_panel_button_press(GtkWidget *tree_view, GdkEventButton *even
 /* GTK's own keyboard-triggered-context-menu signal (Shift+F10/Menu key)
  * - acts on whatever row is currently selected. Also the test's entry
  * point: g_signal_emit_by_name(tree_view, "popup-menu", &handled) is a
- * real, standard GTK signal emission (unlike simulating VTE's "commit",
- * which Phase 9 deliberately avoided since that would fake raw user
- * input) - select a row, emit this, inspect the resulting menu. */
+ * real, standard GTK signal emission: select a row, emit this, then
+ * inspect the resulting menu without fabricating raw terminal input. */
 gboolean on_object_panel_popup_menu(GtkWidget *tree_view, gpointer user_data) {
     GtkBackend *backend = user_data;
     GtkTreeSelection *selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));

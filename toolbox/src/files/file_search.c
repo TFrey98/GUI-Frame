@@ -9,9 +9,8 @@
  * project's toolchain - NOT strcasestr(), which is a GNU extension that
  * isn't reliably declared even under -std=gnu11 and silently falls back
  * to an implicit int-returning declaration, truncating the returned
- * pointer to 32 bits and segfaulting. This is the exact real bug
- * Phase 11's HTTP provider hit with its Host: header matching - fixed
- * there the same way, a manual scan instead. */
+ * pointer to 32 bits and segfaulting. HTTP header matching uses the same
+ * portable manual-scan approach for this reason. */
 static const char *case_insensitive_strstr(const char *haystack, const char *needle) {
     size_t needle_len = strlen(needle);
     if (needle_len == 0) {

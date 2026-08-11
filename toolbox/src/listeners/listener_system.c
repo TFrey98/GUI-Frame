@@ -15,6 +15,9 @@ void listener_system_destroy(ListenerSystem *system) {
     if (!system) {
         return;
     }
+    /* Managers stop/join their worker threads before the shared queue and
+     * registry disappear. Reversing this order would let workers publish to
+     * freed memory during shutdown. */
     listener_manager_destroy(system->listener_manager);
     connection_manager_destroy(system->connection_manager);
     event_queue_destroy(system->events);

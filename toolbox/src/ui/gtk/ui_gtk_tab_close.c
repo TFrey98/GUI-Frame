@@ -3,9 +3,8 @@
 #include "ui_gtk_editor_internal.h"
 
 /* --- Tab close/quit confirmation --------------------------------------
- * Generalizes Phase 10's single guard (confirm before closing a
- * *running* listener tab) into a sequential batch that can run over
- * any list of pages - the × button and Close Others/Close All
+ * Generalizes the single-tab close guard into a sequential batch that can
+ * run over any list of pages - the × button and Close Others/Close All
  * (ui_gtk_tab_labels.c) and quitting the whole application
  * (prepare_window_close) all share this same per-page decision and the
  * same two dialogs, so a running listener or a modified editor tab is

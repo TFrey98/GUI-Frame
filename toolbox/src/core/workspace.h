@@ -5,6 +5,9 @@
 
 typedef struct Workspace Workspace;
 
+/* Toolkit-independent tab model for one application window. Workspace owns
+ * every Tab added to it; the GTK notebook is a view over this collection. */
+
 Workspace *workspace_create(void);
 void workspace_destroy(Workspace *workspace);
 
@@ -19,6 +22,8 @@ int workspace_close_tab(Workspace *workspace, uint64_t tab_id);
 /* Returns 0 on success, -1 if no such tab exists. */
 int workspace_set_active_tab(Workspace *workspace, uint64_t tab_id);
 
+/* Returned pointers are borrowed and become invalid when their tab (or the
+ * workspace) is destroyed. */
 Tab *workspace_get_active_tab(Workspace *workspace);
 Tab *workspace_find_tab(const Workspace *workspace, uint64_t tab_id);
 

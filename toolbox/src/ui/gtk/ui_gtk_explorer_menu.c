@@ -167,7 +167,7 @@ static void on_explorer_menu_delete(GtkMenuItem *item, gpointer user_data) {
     gtk_widget_show_all(dialog);
 }
 
-/* --- Step 5: terminal actions / clipboard ------------------------------ */
+/* --- Terminal actions and system clipboard ----------------------------- */
 
 /* Truncates relative_path at its last '/' into out - "" (the workspace
  * root itself) if there isn't one, matching open_terminal_at()'s own
@@ -324,7 +324,7 @@ static void on_explorer_menu_copy_relative_path(GtkMenuItem *item, gpointer user
     g_free(relative_path);
 }
 
-/* --- Step 7: Cut/Copy/Paste --------------------------------------------- */
+/* --- Explorer Cut/Copy/Paste -------------------------------------------- */
 
 static void on_explorer_menu_cut(GtkMenuItem *item, gpointer user_data) {
     (void)item;
@@ -353,7 +353,7 @@ static void on_explorer_menu_paste(GtkMenuItem *item, gpointer user_data) {
     ExplorerMenuContext *ctx = user_data;
     perform_explorer_paste(ctx->backend, &ctx->iter);
 }
-/* --- end Step 7: Cut/Copy/Paste ------------------------------------------- */
+/* --- end Explorer Cut/Copy/Paste ------------------------------------------ */
 
 /* Builds a menu for either source (a Toolkit row previously got none -
  * full parity with TOOLBOX, requested directly by the user). A folder
@@ -361,11 +361,11 @@ static void on_explorer_menu_paste(GtkMenuItem *item, gpointer user_data) {
  * Properties; a file gets Rename/Cut/Copy/Delete/Properties; the two
  * permanent roots never get Rename/Cut/Copy/Delete ("the root toolbox
  * directory cannot be renamed or deleted") - TOOLBOX's/Toolkit's own
- * root menu ends up New File/New Folder/Paste/Refresh/Properties. Step
- * 7 adds Cut/Copy (any non-root row) and Paste (any folder, sensitive
- * only when the clipboard isn't empty) - both funnel into
+ * root menu ends up New File/New Folder/Paste/Refresh/Properties.
+ * Cut/Copy apply to any non-root row and Paste applies to any folder
+ * (sensitive only when the clipboard isn't empty) - both funnel into
  * perform_explorer_paste()/explorer_set_clipboard() in
- * ui_gtk_explorer_transfer.c. Step 5 adds, additively: a folder gets
+ * ui_gtk_explorer_transfer.c. Terminal actions add: a folder gets
  * Open in Integrated Terminal; a script/executable (node->executable
  * for FILES - already false for every directory per file_tree.c's own
  * scan - or explorer_toolkit_file_flags() for Toolkit, since

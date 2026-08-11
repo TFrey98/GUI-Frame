@@ -6,6 +6,8 @@
 typedef struct EventQueue EventQueue;
 
 EventQueue *event_queue_create(void);
+/* Destroy only after producers have stopped; pending value events are
+ * discarded, and the queue does not own resources referenced by payloads. */
 void event_queue_destroy(EventQueue *queue);
 
 /* Thread-safe from any thread - workers push events as network state

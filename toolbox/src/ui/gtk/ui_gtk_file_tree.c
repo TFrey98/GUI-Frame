@@ -219,8 +219,8 @@ gboolean explorer_find_child_by_name(GtkTreeModel *model, GtkTreeIter *parent, c
     return FALSE;
 }
 
-/* Refreshes iter's own children, then - the checkpoint beyond a flat
- * reload - re-expands and recursively refreshes any new child whose
+/* Refreshes iter's own children, then re-expands and recursively refreshes
+ * any new child whose
  * name matches one that was expanded *before* the reload ("preserves
  * expanded folders where possible"; ids aren't stable across a reload,
  * by FileTree's own design, so name is the only thing to match on).

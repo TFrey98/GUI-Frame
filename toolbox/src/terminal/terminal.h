@@ -8,6 +8,8 @@
 
 typedef struct Terminal Terminal;
 
+/* Terminal is a platform view/PTY abstraction. Creation does not spawn a
+ * process; callers choose a shell, a command, or display-only operation. */
 Terminal *terminal_create(void);
 void terminal_destroy(Terminal *terminal);
 

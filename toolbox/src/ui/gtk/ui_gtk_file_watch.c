@@ -10,9 +10,8 @@
  * FileWatchEvent (an external create/modify/delete/rename detected by a
  * FileWatcher, drained each tick - see ui_gtk_window.c's on_tick) to
  * both the explorer tree and any open editor tab, reusing
- * refresh_row_preserving_expansion() (Step 2) and
- * editor_handle_external_rename()/_delete()/_modification() (Steps 4/5
- * and Step 6) rather than any separate tree-mutation logic. */
+ * refresh_row_preserving_expansion() and the editor_handle_external_*
+ * functions rather than maintaining a separate tree-mutation path. */
 
 /* Registers a watch on the directory iter itself represents (not its
  * children) with the source's matching FileWatcher, once it's actually

@@ -4,8 +4,11 @@
 #include <stdint.h>
 #include <time.h>
 
+/* Worker-to-main-thread messages. Events are copied by value through
+ * EventQueue, so fields must remain self-contained except for explicitly
+ * transferred resources such as the CONNECTION_OPENED TLS handle. */
 typedef enum ListenerEventType {
-    LISTENER_EVENT_TEST, /* Phase 0 placeholder; still exercised by event_queue_stress_test */
+    LISTENER_EVENT_TEST, /* synthetic payload used by event_queue_stress_test */
     LISTENER_EVENT_CREATED,
     LISTENER_EVENT_STARTING,
     LISTENER_EVENT_STARTED,
@@ -19,7 +22,7 @@ typedef enum ListenerEventType {
 typedef struct ListenerEvent {
     ListenerEventType type;
     uint64_t object_id; /* the listener id this event is about (CONNECTION_OPENED: the owning listener's id) */
-    uint64_t sequence;  /* Phase 0 scratch field, still used by the stress test; also carries the newly
+    uint64_t sequence;  /* sequence number for synthetic stress-test events; also carries the newly
                          * created Connection's id for CONNECTION_OPENED once
                          * listener_manager_process_events() has applied it (0 before then) */
     char message[128];  /* human-readable detail (e.g. START_FAILED's reason); empty ("") otherwise */

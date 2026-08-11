@@ -8,6 +8,8 @@
 
 typedef struct Workbench Workbench;
 
+/* Workbench is the platform-neutral seam between application services and
+ * the native UI. All four arguments are borrowed and must outlive it. */
 Workbench *workbench_create(Workspace *workspace, ListenerSystem *listener_system,
                              const WorkspaceRoot *file_workspace_root, const WorkspaceRoot *toolkit_workspace_root);
 void workbench_destroy(Workbench *workbench);

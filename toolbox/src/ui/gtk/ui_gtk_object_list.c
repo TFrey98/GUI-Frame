@@ -40,16 +40,14 @@ const char *connection_state_name(ConnectionState state) {
 /* --- Bottom object panel -----------------------------------------------
  * Tree from the registry: listeners -> their connections. Refreshed every
  * tick (see on_tick/refresh_object_panel) rather than on a manual action
- * like the Toolkit sidebar's refresh button, since the checkpoint requires
- * connections to appear live as they connect. That live-refresh
+ * like the Toolkit sidebar's refresh button, so connections appear live
+ * as they connect. That live-refresh
  * requirement is why this syncs rows in place instead of the sidebar's
  * clear-and-repopulate: clearing every 100ms would collapse any row the
  * user had expanded on every single tick.
  *
- * The sync below only ever updates a row's text in place or appends a new
- * row - it never removes one. That's safe today because nothing in this
- * file ever calls object_registry_remove() (guarded removal is Phase 10's
- * job); revisit this once a remove action exists. See ui_gtk_backend.h
+ * The sync below is bidirectional: it updates/appends live objects and
+ * removes rows whose registry objects were removed. See ui_gtk_backend.h
  * for OBJECT_PANEL_COL_*'s declaration. */
 
 static void sync_listener_row(GtkTreeStore *store, GtkTreeIter *iter, const Listener *listener) {
@@ -85,9 +83,8 @@ static const Connection *find_connection_by_id(const Connection **connections, i
     return NULL;
 }
 
-/* Bidirectional as of Phase 10 (guarded remove): pass 1 walks the
- * store's existing children, updating any whose connection still
- * exists and removing any that don't (gtk_tree_store_remove() returns
+/* Pass 1 walks the store's existing children, updating any whose
+ * connection still exists and removing any that don't (gtk_tree_store_remove() returns
  * the next iter directly, so this is still a single walk); pass 2
  * appends anything the registry has that the store doesn't yet.
  * Matching is by OBJECT_PANEL_COL_ID, not position, since removal can

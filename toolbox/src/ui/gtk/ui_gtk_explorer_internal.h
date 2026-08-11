@@ -38,8 +38,8 @@ enum {
 /* Built by ui_gtk_explorer_menu.c's popup_explorer_context_menu and
  * read by its own item handlers *and*
  * ui_gtk_explorer_dialogs.c's on_explorer_menu_properties - the one
- * cross-file case, since Properties otherwise lives in its own file
- * (see the restructuring plan's splitting rule). Safe to trust directly
+ * cross-file case, since Properties otherwise lives in its own dialog
+ * module. Safe to trust directly
  * (unlike the object panel's file-local MenuItemContext, which
  * re-checks live state): nothing but user actions ever mutates this
  * tree, and a popup menu grabs input so nothing else can run between
@@ -69,9 +69,8 @@ void explorer_toolkit_file_flags(const char *absolute_path, bool *out_executable
 /* Finds the GtkTreeIter under scope (searched recursively, matching
  * each row's own EXPLORER_COL_PATH directly) whose root-relative path
  * equals relative_path - "" means scope itself. Only ever needs to
- * succeed as far as an already-loaded directory goes. Promoted from
- * static (Step 6) for reuse by perform_explorer_paste's source-parent
- * refresh. */
+ * succeed as far as an already-loaded directory goes. Shared with
+ * perform_explorer_paste() for refreshing the source parent. */
 gboolean find_dir_iter_by_relative_path(GtkTreeModel *model, GtkTreeIter *scope, const char *relative_path,
                                          GtkTreeIter *out);
 /* Recursively searches scope for a row whose EXPLORER_COL_NAME matches
@@ -138,8 +137,8 @@ gboolean on_explorer_popup_menu(GtkWidget *tree_view, gpointer user_data);
 /* --- ui_gtk_explorer_dialogs.c (Properties dialog) --------------------- */
 /* Properties is triggered from the explorer's context menu
  * (ui_gtk_explorer_menu.c builds the menu item), but its entire effect
- * is unconditionally showing a dialog, so its definition lives in its
- * own file - see the restructuring plan's splitting rule. */
+ * is unconditionally showing a dialog, so its definition lives in the
+ * dialog module rather than the menu module. */
 void on_explorer_menu_properties(GtkMenuItem *item, gpointer user_data);
 
 #endif /* TOOLBOX_UI_GTK_EXPLORER_INTERNAL_H */
