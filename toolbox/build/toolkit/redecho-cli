@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Launches RedEcho's re-cli (re_cli.main) against its dispatcher/tool
+# sources, so it can be run from toolbox's toolkit sidebar via
+# "Run"/"Run with Arguments" (see src/ui/gtk/ui_gtk_run_dialog.c).
+#
+# REDECHO_ROOT overrides the default checkout location; toolbox's Run
+# dialog also supports per-launch env overrides for this.
+set -euo pipefail
+
+
+
+cd "/home/taylor.frey/Documents/red_echo-V1.0.0-dev.200/dist/RedEcho" 
+./RedEcho
