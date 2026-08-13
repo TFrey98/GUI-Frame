@@ -76,3 +76,44 @@ cmake --build build
 cmake --build build
 ctest --test-dir build
 ```
+
+## Running on Windows (Beta)
+
+toolbox is a GTK3 + VTE Linux application and is not natively portable to
+Windows — the terminal widget (VTE), pty handling, and file-change
+watching are all POSIX/Linux-specific. The supported way to run it on
+Windows is under **WSL2 with WSLg**, which runs Linux GUI apps directly
+on the Windows desktop with no code changes required.
+
+1. Install WSL2 with a distro (Ubuntu is recommended and includes WSLg
+   by default on Windows 11 / Windows 10 21H2+). From an elevated
+   PowerShell:
+
+   ```powershell
+   wsl --install
+   ```
+
+   If WSL is already installed, make sure it's up to date:
+
+   ```powershell
+   wsl --update
+   ```
+
+2. Inside the WSL Ubuntu shell, install the build dependencies:
+
+   ```sh
+   sudo apt update
+   sudo apt install build-essential cmake pkg-config \
+       libgtk-3-dev libvte-2.91-dev libsqlite3-dev libssl-dev
+   ```
+
+3. Build and run exactly as on native Linux:
+
+   ```sh
+   cmake -B build -S .
+   cmake --build build
+   ./build/toolbox
+   ```
+
+The window will appear on the Windows desktop via WSLg automatically —
+no X server or extra display configuration needed.
