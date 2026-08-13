@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_EVENT_QUEUE_H
-#define TOOLBOX_EVENT_QUEUE_H
+#ifndef WORKBENCH_EVENT_QUEUE_H
+#define WORKBENCH_EVENT_QUEUE_H
 
 #include "listener_event.h"
 
@@ -19,4 +19,4 @@ void event_queue_push(EventQueue *queue, ListenerEvent event);
  * empty, 1 if an event was popped into *out. */
 int event_queue_try_pop(EventQueue *queue, ListenerEvent *out);
 
-#endif /* TOOLBOX_EVENT_QUEUE_H */
+#endif /* WORKBENCH_EVENT_QUEUE_H */

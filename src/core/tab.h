@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TAB_H
-#define TOOLBOX_TAB_H
+#ifndef WORKBENCH_TAB_H
+#define WORKBENCH_TAB_H
 
 #include <stdint.h>
 
@@ -31,4 +31,4 @@ void tab_destroy(Tab *tab);
 
 void tab_set_title(Tab *tab, const char *title);
 
-#endif /* TOOLBOX_TAB_H */
+#endif /* WORKBENCH_TAB_H */

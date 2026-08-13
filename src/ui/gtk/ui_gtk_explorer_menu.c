@@ -359,7 +359,7 @@ static void on_explorer_menu_paste(GtkMenuItem *item, gpointer user_data) {
  * full parity with TOOLBOX, requested directly by the user). A folder
  * gets New File/New Folder/Rename/Cut/Copy/Delete/Paste/Refresh/
  * Properties; a file gets Rename/Cut/Copy/Delete/Properties; the two
- * permanent roots never get Rename/Cut/Copy/Delete ("the root toolbox
+ * permanent roots never get Rename/Cut/Copy/Delete ("the root workbench
  * directory cannot be renamed or deleted") - TOOLBOX's/Toolkit's own
  * root menu ends up New File/New Folder/Paste/Refresh/Properties.
  * Cut/Copy apply to any non-root row and Paste applies to any folder
@@ -410,8 +410,8 @@ void popup_explorer_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkT
     ctx->iter = iter;
 
     GtkWidget *menu = gtk_menu_new();
-    g_object_set_data_full(G_OBJECT(menu), "toolbox-explorer-menu-context", ctx, g_free);
-    g_object_set_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu", menu);
+    g_object_set_data_full(G_OBJECT(menu), "workbench-explorer-menu-context", ctx, g_free);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-explorer-context-menu", menu);
 
     if (is_dir) {
         add_explorer_menu_item(menu, "New File", TRUE, G_CALLBACK(on_explorer_menu_new_file), ctx);

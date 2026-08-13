@@ -18,10 +18,10 @@
  * called after every state change: a keystroke, a successful save, a
  * revert, or a Save As. */
 static void refresh_editor_page_buttons(GtkWidget *page) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
-    GtkWidget *save_button = g_object_get_data(G_OBJECT(page), "toolbox-editor-save-button");
-    GtkWidget *revert_button = g_object_get_data(G_OBJECT(page), "toolbox-editor-revert-button");
+    GtkWidget *save_button = g_object_get_data(G_OBJECT(page), "workbench-editor-save-button");
+    GtkWidget *revert_button = g_object_get_data(G_OBJECT(page), "workbench-editor-revert-button");
     if (save_button) {
         gtk_widget_set_sensitive(save_button, doc->modified);
     }
@@ -39,7 +39,7 @@ static void refresh_editor_page_buttons(GtkWidget *page) {
 static void on_editor_buffer_changed(GtkTextBuffer *buffer, gpointer user_data) {
     (void)buffer;
     EditorPageContext *ctx = user_data;
-    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
     doc->modified = TRUE;
     refresh_editor_page_buttons(ctx->page);
@@ -47,9 +47,9 @@ static void on_editor_buffer_changed(GtkTextBuffer *buffer, gpointer user_data) 
 
 EditorSaveResult save_editor_page(GtkBackend *backend, GtkWidget *page) {
     (void)backend; /* doc knows its own root now - see EditorDocument.root */
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
 
     GtkTextIter start, end;
@@ -66,7 +66,7 @@ EditorSaveResult save_editor_page(GtkBackend *backend, GtkWidget *page) {
          * dismiss them. */
         doc->deleted_on_disk = false;
         doc->externally_modified = false;
-        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "workbench-editor-deleted-banner");
         if (banner) {
             gtk_widget_set_visible(banner, FALSE);
         }
@@ -97,9 +97,9 @@ static void on_save_as_response(GtkDialog *dialog, gint response_id, gpointer us
     }
 
     GtkWidget *page = state->page;
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
 
     GtkTextIter start, end;
@@ -116,7 +116,7 @@ static void on_save_as_response(GtkDialog *dialog, gint response_id, gpointer us
     }
 
     tab_set_title(tab, doc->display_name);
-    GtkWidget *name_label = g_object_get_data(G_OBJECT(page), "toolbox-editor-name-label");
+    GtkWidget *name_label = g_object_get_data(G_OBJECT(page), "workbench-editor-name-label");
     if (name_label) {
         gtk_label_set_text(GTK_LABEL(name_label), doc->display_name);
     }
@@ -125,7 +125,7 @@ static void on_save_as_response(GtkDialog *dialog, gint response_id, gpointer us
 }
 
 static void open_save_as_dialog(GtkBackend *backend, GtkWidget *page, GtkWindow *parent) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
 
     GtkWidget *dialog = gtk_dialog_new_with_buttons("Save As", parent, GTK_DIALOG_MODAL, "_Cancel",
@@ -146,8 +146,8 @@ static void open_save_as_dialog(GtkBackend *backend, GtkWidget *page, GtkWindow 
     state->error_label = add_error_row(GTK_GRID(grid), 1);
 
     g_signal_connect(dialog, "response", G_CALLBACK(on_save_as_response), state);
-    g_object_set_data_full(G_OBJECT(dialog), "toolbox-save-as-dialog-state", state, g_free);
-    g_object_set_data(G_OBJECT(state->path_entry), "toolbox-save-as-path-entry", state->path_entry);
+    g_object_set_data_full(G_OBJECT(dialog), "workbench-save-as-dialog-state", state, g_free);
+    g_object_set_data(G_OBJECT(state->path_entry), "workbench-save-as-path-entry", state->path_entry);
 
     gtk_widget_show_all(dialog);
 }
@@ -180,7 +180,7 @@ static void on_editor_save_as_clicked(GtkButton *button, gpointer user_data) {
  * file can no longer be read (e.g. deleted out from under a Revert
  * click). */
 void reload_editor_document_from_disk(GtkBackend *backend, GtkWidget *page) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
 
     EditorDocument *fresh = editor_document_open(doc->root, doc->relative_path, doc->read_only, true);
@@ -189,9 +189,9 @@ void reload_editor_document_from_disk(GtkBackend *backend, GtkWidget *page) {
         return;
     }
 
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
-    EditorPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-editor-page-context");
+    EditorPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-editor-page-context");
     /* Blocked so this programmatic reset doesn't itself re-mark the doc
      * modified via on_editor_buffer_changed - same reasoning as the
      * initial "set defaults, then connect" load ordering. */
@@ -209,7 +209,7 @@ void reload_editor_document_from_disk(GtkBackend *backend, GtkWidget *page) {
     fresh->contents = NULL; /* ownership moved above - prevent a double-free below */
     editor_document_destroy(fresh);
 
-    GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+    GtkWidget *banner = g_object_get_data(G_OBJECT(page), "workbench-editor-deleted-banner");
     if (banner) {
         gtk_widget_set_visible(banner, FALSE);
     }
@@ -230,7 +230,7 @@ static void on_revert_confirm_response(GtkDialog *dialog, gint response_id, gpoi
 static void on_editor_revert_clicked(GtkButton *button, gpointer user_data) {
     (void)button;
     EditorPageContext *ctx = user_data;
-    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "workbench-tab");
 
     GtkWindow *parent = gtk_application_get_active_window(ctx->backend->gtk_app);
     GtkWidget *dialog = gtk_message_dialog_new(parent, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
@@ -255,7 +255,7 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
     EditorPageContext *ctx = g_new(EditorPageContext, 1);
     ctx->backend = backend;
     ctx->page = page;
-    g_object_set_data_full(G_OBJECT(page), "toolbox-editor-page-context", ctx, g_free);
+    g_object_set_data_full(G_OBJECT(page), "workbench-editor-page-context", ctx, g_free);
 
     /* Save/Save As/Revert never make sense for a read-only doc (a
      * chmod'd file, or one truncated by EDITOR_DOCUMENT_MAX_SIZE) - the
@@ -303,7 +303,7 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
     gtk_widget_set_no_show_all(deleted_banner, TRUE);
     gtk_widget_set_visible(deleted_banner, FALSE);
     gtk_box_pack_start(GTK_BOX(page), deleted_banner, FALSE, FALSE, 0);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-deleted-banner", deleted_banner);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-deleted-banner", deleted_banner);
 
     GtkWidget *view = gtk_text_view_new();
     gtk_text_view_set_monospace(GTK_TEXT_VIEW(view), TRUE);
@@ -317,12 +317,12 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
     gtk_container_add(GTK_CONTAINER(scroller), view);
     gtk_box_pack_start(GTK_BOX(page), scroller, TRUE, TRUE, 0);
 
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-text-view", view);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-read-only-label", read_only_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-name-label", name_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-save-button", save_button);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-save-as-button", save_as_button);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-revert-button", revert_button);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-text-view", view);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-read-only-label", read_only_label);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-name-label", name_label);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-save-button", save_button);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-save-as-button", save_as_button);
+    g_object_set_data(G_OBJECT(page), "workbench-editor-revert-button", revert_button);
 
     return page;
 }
@@ -352,7 +352,7 @@ GtkWidget *build_binary_info_page(GtkBackend *backend, Tab *tab) {
     gtk_label_set_xalign(GTK_LABEL(notice), 0.0);
     gtk_box_pack_start(GTK_BOX(page), notice, FALSE, FALSE, 0);
 
-    g_object_set_data(G_OBJECT(page), "toolbox-binary-info-page", page);
+    g_object_set_data(G_OBJECT(page), "workbench-binary-info-page", page);
 
     return page;
 }
@@ -366,7 +366,7 @@ void save_all_modified_editors(GtkBackend *backend) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (!tab || tab->type != TAB_TYPE_EDITOR) {
             continue;
         }
@@ -403,7 +403,7 @@ static GtkWidget *active_editor_page(GtkBackend *backend) {
         return NULL;
     }
     GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), idx);
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     if (!tab || tab->type != TAB_TYPE_EDITOR) {
         return NULL;
     }

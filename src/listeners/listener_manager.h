@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_LISTENER_MANAGER_H
-#define TOOLBOX_LISTENER_MANAGER_H
+#ifndef WORKBENCH_LISTENER_MANAGER_H
+#define WORKBENCH_LISTENER_MANAGER_H
 
 #include <stdbool.h>
 
@@ -131,4 +131,4 @@ int listener_manager_report_stop_result(ListenerManager *manager, uint64_t id);
  * Returns the number of events processed. */
 int listener_manager_process_events(ListenerManager *manager, ListenerEvent *out, int max_out);
 
-#endif /* TOOLBOX_LISTENER_MANAGER_H */
+#endif /* WORKBENCH_LISTENER_MANAGER_H */

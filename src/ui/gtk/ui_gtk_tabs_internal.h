@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_TABS_INTERNAL_H
-#define TOOLBOX_UI_GTK_TABS_INTERNAL_H
+#ifndef WORKBENCH_UI_GTK_TABS_INTERNAL_H
+#define WORKBENCH_UI_GTK_TABS_INTERNAL_H
 
 /*
  * Declarations shared across the tab-lifecycle feature: generic
@@ -69,4 +69,4 @@ void open_listener_tab(GtkBackend *backend, uint64_t listener_id);
 void focus_or_open_listener_tab(GtkBackend *backend, uint64_t listener_id);
 void refresh_all_listener_tabs(GtkBackend *backend);
 
-#endif /* TOOLBOX_UI_GTK_TABS_INTERNAL_H */
+#endif /* WORKBENCH_UI_GTK_TABS_INTERNAL_H */

@@ -106,7 +106,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -115,13 +115,13 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
 }
 
 static void set_buffer_text(GtkWidget *page, const char *text) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     gtk_text_buffer_set_text(buffer, text, -1);
 }
 
 static gchar *get_buffer_text(GtkWidget *page) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     GtkTextIter start, end;
     gtk_text_buffer_get_bounds(buffer, &start, &end);
@@ -129,7 +129,7 @@ static gchar *get_buffer_text(GtkWidget *page) {
 }
 
 static gboolean label_has_dot(GtkWidget *page) {
-    GtkWidget *label = g_object_get_data(G_OBJECT(page), "toolbox-tab-label-widget");
+    GtkWidget *label = g_object_get_data(G_OBJECT(page), "workbench-tab-label-widget");
     const char *text = gtk_label_get_text(GTK_LABEL(label));
     return strstr(text, "\xE2\x97\x8F") != NULL;
 }
@@ -176,7 +176,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GPtrArray *notebooks = g_ptr_array_new();
     if (window) {
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
@@ -198,8 +198,8 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
 
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
@@ -207,7 +207,7 @@ static gboolean drive(gpointer user_data) {
     /* Editing a real open tab shows the modified dot and enables
      * Save/Revert. */
     GtkTreeIter alpha_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "alpha.txt", &alpha_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "alpha.txt", &alpha_iter)) {
         fail(test, "'alpha.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -223,8 +223,8 @@ static gboolean drive(gpointer user_data) {
         fail(test, "the modified dot should appear once alpha.txt's buffer is edited");
         goto done;
     }
-    GtkWidget *save_button = g_object_get_data(G_OBJECT(alpha_page), "toolbox-editor-save-button");
-    GtkWidget *revert_button = g_object_get_data(G_OBJECT(alpha_page), "toolbox-editor-revert-button");
+    GtkWidget *save_button = g_object_get_data(G_OBJECT(alpha_page), "workbench-editor-save-button");
+    GtkWidget *revert_button = g_object_get_data(G_OBJECT(alpha_page), "workbench-editor-revert-button");
     if (!save_button || !gtk_widget_get_sensitive(save_button)) {
         fail(test, "Save should be sensitive once alpha.txt is modified");
         goto done;
@@ -250,14 +250,14 @@ static gboolean drive(gpointer user_data) {
 
     /* Save As switches the tab to a new path; the old file survives
      * untouched. */
-    GtkWidget *save_as_button = g_object_get_data(G_OBJECT(alpha_page), "toolbox-editor-save-as-button");
+    GtkWidget *save_as_button = g_object_get_data(G_OBJECT(alpha_page), "workbench-editor-save-as-button");
     gtk_button_clicked(GTK_BUTTON(save_as_button));
 
     GtkWidget *save_as_dialog = NULL;
     {
         GList *toplevels = gtk_window_list_toplevels();
         for (GList *l = toplevels; l; l = l->next) {
-            if (g_object_get_data(G_OBJECT(l->data), "toolbox-save-as-dialog-state")) {
+            if (g_object_get_data(G_OBJECT(l->data), "workbench-save-as-dialog-state")) {
                 save_as_dialog = GTK_WIDGET(l->data);
                 break;
             }
@@ -268,7 +268,7 @@ static gboolean drive(gpointer user_data) {
         fail(test, "Save As dialog did not appear");
         goto done;
     }
-    GtkWidget *path_entry = find_by_data_key(save_as_dialog, "toolbox-save-as-path-entry");
+    GtkWidget *path_entry = find_by_data_key(save_as_dialog, "workbench-save-as-path-entry");
     if (!path_entry) {
         fail(test, "Save As path entry not found");
         goto done;
@@ -276,7 +276,7 @@ static gboolean drive(gpointer user_data) {
     gtk_entry_set_text(GTK_ENTRY(path_entry), "alpha-copy.txt");
     gtk_dialog_response(GTK_DIALOG(save_as_dialog), GTK_RESPONSE_OK);
 
-    Tab *alpha_tab = g_object_get_data(G_OBJECT(alpha_page), "toolbox-tab");
+    Tab *alpha_tab = g_object_get_data(G_OBJECT(alpha_page), "workbench-tab");
     if (strcmp(alpha_tab->title, "alpha-copy.txt") != 0) {
         fail(test, "the tab's title should switch to alpha-copy.txt after Save As");
         goto done;
@@ -318,7 +318,7 @@ static gboolean drive(gpointer user_data) {
     /* Save All across several modified tabs, one forced to fail via a
      * non-writable parent directory - reports exactly the failing one. */
     GtkTreeIter beta_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "beta.txt", &beta_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "beta.txt", &beta_iter)) {
         fail(test, "'beta.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -331,7 +331,7 @@ static gboolean drive(gpointer user_data) {
     set_buffer_text(beta_page, "beta edited\n");
 
     GtkTreeIter lockeddir_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "lockeddir", &lockeddir_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "lockeddir", &lockeddir_iter)) {
         fail(test, "'lockeddir' row not found under TOOLBOX");
         goto done;
     }
@@ -355,7 +355,7 @@ static gboolean drive(gpointer user_data) {
     snprintf(lockeddir_abs, sizeof(lockeddir_abs), "%s/lockeddir", test->root.canonical_path);
     chmod(lockeddir_abs, 0555); /* no write - gamma.txt's safe-write temp file can't be created */
 
-    GtkWidget *save_all_button = find_by_data_key(GTK_WIDGET(window), "toolbox-save-all-button");
+    GtkWidget *save_all_button = find_by_data_key(GTK_WIDGET(window), "workbench-save-all-button");
     if (!save_all_button) {
         fail(test, "Save All button not found");
         chmod(lockeddir_abs, 0755);

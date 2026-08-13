@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_OBJECT_PREDICATES_H
-#define TOOLBOX_OBJECT_PREDICATES_H
+#ifndef WORKBENCH_OBJECT_PREDICATES_H
+#define WORKBENCH_OBJECT_PREDICATES_H
 
 #include <stdbool.h>
 
@@ -19,4 +19,4 @@ bool object_can_restart(const ManagedObject *obj);
 bool object_can_open_terminal(const ManagedObject *obj);
 bool object_can_wait_for_reconnection(const ManagedObject *obj);
 
-#endif /* TOOLBOX_OBJECT_PREDICATES_H */
+#endif /* WORKBENCH_OBJECT_PREDICATES_H */

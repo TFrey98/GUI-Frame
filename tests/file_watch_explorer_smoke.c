@@ -118,7 +118,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     if (!tree_view) {
         test->elapsed_ms += STEP_INTERVAL_MS;
         if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
@@ -132,8 +132,8 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
@@ -155,7 +155,7 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_WAIT_CREATED: {
             GtkTreeIter found;
-            if (find_child_by_name(model, &toolbox_iter, "external.txt", &found)) {
+            if (find_child_by_name(model, &workbench_iter, "external.txt", &found)) {
                 test->stage = STAGE_DELETE_TRIGGER;
                 test->elapsed_ms = 0;
             } else if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
@@ -173,7 +173,7 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_WAIT_DELETED: {
             GtkTreeIter found;
-            if (!find_child_by_name(model, &toolbox_iter, "external.txt", &found)) {
+            if (!find_child_by_name(model, &workbench_iter, "external.txt", &found)) {
                 test->stage = STAGE_RENAME_SETUP;
                 test->elapsed_ms = 0;
             } else if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
@@ -191,7 +191,7 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_WAIT_RENAME_SOURCE: {
             GtkTreeIter found;
-            if (find_child_by_name(model, &toolbox_iter, "before_rename.txt", &found)) {
+            if (find_child_by_name(model, &workbench_iter, "before_rename.txt", &found)) {
                 test->stage = STAGE_RENAME_TRIGGER;
                 test->elapsed_ms = 0;
             } else if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
@@ -209,8 +209,8 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_WAIT_RENAMED: {
             GtkTreeIter old_row, new_row;
-            gboolean old_gone = !find_child_by_name(model, &toolbox_iter, "before_rename.txt", &old_row);
-            gboolean new_here = find_child_by_name(model, &toolbox_iter, "after_rename.txt", &new_row);
+            gboolean old_gone = !find_child_by_name(model, &workbench_iter, "before_rename.txt", &old_row);
+            gboolean new_here = find_child_by_name(model, &workbench_iter, "after_rename.txt", &new_row);
             if (old_gone && new_here) {
                 test->done = TRUE;
                 goto done;

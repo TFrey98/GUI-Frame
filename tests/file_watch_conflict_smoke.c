@@ -149,7 +149,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -158,7 +158,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
 }
 
 static gchar *editor_buffer_text(GtkWidget *page) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     GtkTextIter start, end;
     gtk_text_buffer_get_bounds(buffer, &start, &end);
@@ -166,16 +166,16 @@ static gchar *editor_buffer_text(GtkWidget *page) {
 }
 
 static void append_marker(GtkWidget *page) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     GtkTextIter end;
     gtk_text_buffer_get_end_iter(buffer, &end);
     gtk_text_buffer_insert(buffer, &end, EDIT_MARKER, -1);
 }
 
-static gboolean open_tab(GtkWidget *tree_view, GtkTreeModel *model, GtkTreeIter *toolbox_iter, const char *name) {
+static gboolean open_tab(GtkWidget *tree_view, GtkTreeModel *model, GtkTreeIter *workbench_iter, const char *name) {
     GtkTreeIter row;
-    if (!find_child_by_name(model, toolbox_iter, name, &row)) {
+    if (!find_child_by_name(model, workbench_iter, name, &row)) {
         return FALSE;
     }
     GtkTreePath *path = gtk_tree_model_get_path(model, &row);
@@ -201,7 +201,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GtkWidget *real_notebook = NULL;
     if (window) {
         GPtrArray *notebooks = g_ptr_array_new();
@@ -225,8 +225,8 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
@@ -239,7 +239,7 @@ static gboolean drive(gpointer user_data) {
             const char *names[] = {"unedited.txt",     "edited_reload.txt", "edited_keep.txt",
                                     "edited_compare.txt", "deleted_open.txt", "saved_no_conflict.txt"};
             for (size_t i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
-                if (!open_tab(tree_view, model, &toolbox_iter, names[i])) {
+                if (!open_tab(tree_view, model, &workbench_iter, names[i])) {
                     fail(test, "a fixture row was missing under TOOLBOX at startup");
                     goto done;
                 }
@@ -274,7 +274,7 @@ static gboolean drive(gpointer user_data) {
             gboolean reloaded = text && strcmp(text, UNEDITED_EXTERNAL) == 0;
             g_free(text);
             if (reloaded) {
-                Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+                Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
                 EditorDocument *doc = tab->backend_data;
                 if (doc->modified) {
                     fail(test, "unedited.txt should silently reload without ever becoming 'modified'");
@@ -319,7 +319,7 @@ static gboolean drive(gpointer user_data) {
             gboolean matches = text && strcmp(text, RELOAD_EXTERNAL) == 0;
             g_free(text);
             if (matches) {
-                Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+                Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
                 EditorDocument *doc = tab->backend_data;
                 if (doc->modified || doc->externally_modified) {
                     fail(test, "'Reload from Disk' should leave the doc unmodified and no longer conflicted");
@@ -363,7 +363,7 @@ static gboolean drive(gpointer user_data) {
                 fail(test, "'Keep Editor Version' should leave the edited buffer completely untouched");
                 goto done;
             }
-            Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+            Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
             EditorDocument *doc = tab->backend_data;
             if (!doc->modified) {
                 fail(test, "'Keep Editor Version' should leave the edit's modified state intact");
@@ -422,7 +422,7 @@ static gboolean drive(gpointer user_data) {
                 fail(test, "the 'Compare' tab should show the real on-disk content");
                 goto done;
             }
-            GtkWidget *on_disk_view = g_object_get_data(G_OBJECT(on_disk_page), "toolbox-editor-text-view");
+            GtkWidget *on_disk_view = g_object_get_data(G_OBJECT(on_disk_page), "workbench-editor-text-view");
             if (gtk_text_view_get_editable(GTK_TEXT_VIEW(on_disk_view))) {
                 fail(test, "the 'Compare' tab must always be read-only");
                 goto done;
@@ -441,7 +441,7 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_WAIT_DELETE_BANNER: {
             GtkWidget *page = find_editor_page(real_notebook, "deleted_open.txt");
-            GtkWidget *banner = page ? g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner") : NULL;
+            GtkWidget *banner = page ? g_object_get_data(G_OBJECT(page), "workbench-editor-deleted-banner") : NULL;
             if (banner && gtk_widget_get_visible(banner)) {
                 test->stage = STAGE_TRIGGER_SAVE_CASE;
                 test->elapsed_ms = 0;
@@ -454,13 +454,13 @@ static gboolean drive(gpointer user_data) {
 
         case STAGE_TRIGGER_SAVE_CASE: {
             GtkWidget *page = find_editor_page(real_notebook, "saved_no_conflict.txt");
-            GtkWidget *save_button = page ? g_object_get_data(G_OBJECT(page), "toolbox-editor-save-button") : NULL;
+            GtkWidget *save_button = page ? g_object_get_data(G_OBJECT(page), "workbench-editor-save-button") : NULL;
             if (!save_button) {
                 fail(test, "saved_no_conflict.txt's editor tab should have a Save button");
                 goto done;
             }
             gtk_button_clicked(GTK_BUTTON(save_button));
-            Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+            Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
             EditorDocument *doc = tab->backend_data;
             if (doc->modified) {
                 fail(test, "clicking Save should clear the modified flag immediately");
@@ -477,7 +477,7 @@ static gboolean drive(gpointer user_data) {
                 goto done;
             }
             GtkWidget *page = find_editor_page(real_notebook, "saved_no_conflict.txt");
-            Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+            Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
             EditorDocument *doc = tab->backend_data;
             if (doc->externally_modified) {
                 fail(test, "saving through the app's own Save button should never set externally_modified");

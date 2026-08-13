@@ -218,7 +218,7 @@ GtkWidget *build_bottom_panel(GtkBackend *backend) {
 
     GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(backend->object_panel_store));
     g_object_unref(backend->object_panel_store); /* the tree view holds its own reference */
-    g_object_set_data(G_OBJECT(tree_view), "toolbox-object-panel-tree", tree_view);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-object-panel-tree", tree_view);
     g_signal_connect(tree_view, "row-activated", G_CALLBACK(on_object_panel_row_activated), backend);
     g_signal_connect(tree_view, "button-press-event", G_CALLBACK(on_object_panel_button_press), backend);
     g_signal_connect(tree_view, "popup-menu", G_CALLBACK(on_object_panel_popup_menu), backend);

@@ -49,14 +49,14 @@ static GtkWindow *main_window(void) {
 
 /* The dialog is its own top-level, separate from the main window, so
  * gtk_application_get_windows() alone won't surface it - it's tagged
- * with "toolbox-new-listener-dialog" on itself (not a descendant) in
+ * with "workbench-new-listener-dialog" on itself (not a descendant) in
  * open_new_listener_dialog(), so a plain toplevel scan finds it. */
 static GtkWidget *find_new_listener_dialog(void) {
     GList *toplevels = gtk_window_list_toplevels();
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -85,7 +85,7 @@ static gboolean poll_for_running(gpointer user_data) {
         return G_SOURCE_REMOVE;
     }
 
-    GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "toolbox-listener-status-label");
+    GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "workbench-listener-status-label");
     if (status) {
         const char *text = gtk_label_get_text(GTK_LABEL(status));
         if (text && strstr(text, "RUNNING")) {
@@ -115,12 +115,12 @@ static gboolean run_scenario(gpointer user_data) {
     GtkWindow *window = main_window();
     CHECK(window != NULL, "main window not found");
 
-    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
     CHECK(new_button != NULL, "could not find the + New Listener button");
     gtk_button_clicked(GTK_BUTTON(new_button));
 
     /* Modal opens with no socket: opening it alone must not have created anything. */
-    GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "toolbox-listener-status-label");
+    GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "workbench-listener-status-label");
     CHECK(status != NULL, "could not find the status label");
     CHECK(strcmp(gtk_label_get_text(GTK_LABEL(status)), "No listeners yet") == 0,
           "opening the dialog should not have created anything");
@@ -128,11 +128,11 @@ static gboolean run_scenario(gpointer user_data) {
     GtkWidget *dialog = find_new_listener_dialog();
     CHECK(dialog != NULL, "New Listener dialog did not appear");
 
-    GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-    GtkWidget *name_error = find_by_data_key(dialog, "toolbox-listener-name-error");
-    GtkWidget *bind_entry = find_by_data_key(dialog, "toolbox-listener-bind-address-entry");
-    GtkWidget *port_entry = find_by_data_key(dialog, "toolbox-listener-port-entry");
-    GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
+    GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+    GtkWidget *name_error = find_by_data_key(dialog, "workbench-listener-name-error");
+    GtkWidget *bind_entry = find_by_data_key(dialog, "workbench-listener-bind-address-entry");
+    GtkWidget *port_entry = find_by_data_key(dialog, "workbench-listener-port-entry");
+    GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
     CHECK(name_entry && name_error && bind_entry && port_entry && callback_entry,
           "could not find every expected dialog field");
 

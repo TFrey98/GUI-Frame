@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TERMINAL_VTE_H
-#define TOOLBOX_TERMINAL_VTE_H
+#ifndef WORKBENCH_TERMINAL_VTE_H
+#define WORKBENCH_TERMINAL_VTE_H
 
 #include <gtk/gtk.h>
 
@@ -18,4 +18,4 @@ GtkWidget *terminal_get_widget(Terminal *terminal);
  * provider. !dark resets to VTE's built-in default colors. */
 void terminal_apply_theme(Terminal *terminal, gboolean dark);
 
-#endif /* TOOLBOX_TERMINAL_VTE_H */
+#endif /* WORKBENCH_TERMINAL_VTE_H */

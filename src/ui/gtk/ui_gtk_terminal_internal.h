@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_TERMINAL_INTERNAL_H
-#define TOOLBOX_UI_GTK_TERMINAL_INTERNAL_H
+#ifndef WORKBENCH_UI_GTK_TERMINAL_INTERNAL_H
+#define WORKBENCH_UI_GTK_TERMINAL_INTERNAL_H
 
 /*
  * Declarations shared across the terminal feature: local-shell terminal
@@ -37,4 +37,4 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab);
 void open_or_focus_connection_terminal(GtkBackend *backend, uint64_t connection_id);
 void refresh_all_connection_terminal_pages(GtkBackend *backend);
 
-#endif /* TOOLBOX_UI_GTK_TERMINAL_INTERNAL_H */
+#endif /* WORKBENCH_UI_GTK_TERMINAL_INTERNAL_H */

@@ -7,7 +7,7 @@
  *
  * The full manual checklist from 4.5 (top, python3, Ctrl+C, Ctrl+D, arrow
  * keys, backspace, live resize) is best verified by a human against the
- * compiled `toolbox` binary - a full-screen ncurses program and a REPL
+ * compiled `workbench` binary - a full-screen ncurses program and a REPL
  * aren't practical to assert on by scraping rendered text.
  */
 #include <gtk/gtk.h>
@@ -25,7 +25,7 @@ static gboolean check_output(gpointer user_data) {
     VteTerminal *vte = VTE_TERMINAL(user_data);
 
     char *text = vte_terminal_get_text(vte, NULL, NULL, NULL);
-    gboolean found = text && strstr(text, "hello-from-toolbox") != NULL;
+    gboolean found = text && strstr(text, "hello-from-workbench") != NULL;
     g_free(text);
 
     if (!found) {
@@ -68,11 +68,11 @@ static gboolean send_command(gpointer user_data) {
      * letting VTE spawn/own it, so vte_terminal_feed_child() has nothing
      * to write to - go through the same terminal_send() path a real
      * keystroke takes, via the Terminal* the app attaches to the
-     * terminal's containing page ("toolbox-view", the same convention
+     * terminal's containing page ("workbench-view", the same convention
      * ui_gtk_terminal.c's own active_terminal_page() uses). */
     GtkWidget *page = gtk_widget_get_parent(GTK_WIDGET(vte));
-    Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
-    static const char command[] = "echo hello-from-toolbox\n";
+    Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
+    static const char command[] = "echo hello-from-workbench\n";
     terminal_send(view, command, strlen(command));
 
     g_timeout_add(600, check_output, vte);

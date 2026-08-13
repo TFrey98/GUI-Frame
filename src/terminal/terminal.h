@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TERMINAL_H
-#define TOOLBOX_TERMINAL_H
+#ifndef WORKBENCH_TERMINAL_H
+#define WORKBENCH_TERMINAL_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -64,4 +64,4 @@ void terminal_set_commit_handler(Terminal *terminal, TerminalCommitHandler handl
  * spawned child (e.g. connection-backed display-only terminals). */
 void terminal_pump_pty_output(Terminal *terminal);
 
-#endif /* TOOLBOX_TERMINAL_H */
+#endif /* WORKBENCH_TERMINAL_H */

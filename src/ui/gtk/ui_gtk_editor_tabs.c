@@ -27,10 +27,10 @@ GtkWidget *find_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const c
          * mistaken for a match here, or a later open/rename/delete
          * could end up acting on the read-only snapshot instead of the
          * real open document. */
-        if (g_object_get_data(G_OBJECT(page), "toolbox-editor-is-compare")) {
+        if (g_object_get_data(G_OBJECT(page), "workbench-editor-is-compare")) {
             continue;
         }
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (!tab || (tab->type != TAB_TYPE_EDITOR && tab->type != TAB_TYPE_BINARY_INFO)) {
             continue;
         }
@@ -53,7 +53,7 @@ void open_or_focus_file_tab(GtkBackend *backend, const WorkspaceRoot *root, cons
     }
 
     /* Reusing workspace_root_resolve_path() here is what satisfies
-     * "Symlink -> open only if target remains inside toolbox": it
+     * "Symlink -> open only if target remains inside workbench": it
      * already resolves through symlinks via realpath() and enforces
      * containment - no separate symlink-specific check needed. */
     char resolved[4096];

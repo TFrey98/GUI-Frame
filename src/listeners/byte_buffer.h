@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_BYTE_BUFFER_H
-#define TOOLBOX_BYTE_BUFFER_H
+#ifndef WORKBENCH_BYTE_BUFFER_H
+#define WORKBENCH_BYTE_BUFFER_H
 
 #include <stddef.h>
 
@@ -43,4 +43,4 @@ size_t byte_buffer_len(const ByteBuffer *buf);
 /* Discards all unread bytes without freeing the buffer. */
 void byte_buffer_clear(ByteBuffer *buf);
 
-#endif /* TOOLBOX_BYTE_BUFFER_H */
+#endif /* WORKBENCH_BYTE_BUFFER_H */

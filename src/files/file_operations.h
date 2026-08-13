@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_OPERATIONS_H
-#define TOOLBOX_FILE_OPERATIONS_H
+#ifndef WORKBENCH_FILE_OPERATIONS_H
+#define WORKBENCH_FILE_OPERATIONS_H
 
 #include <stdbool.h>
 
@@ -58,4 +58,4 @@ FileOperationResult file_delete(const WorkspaceRoot *root, const char *relative_
  * erring toward "needs confirmation" rather than silently skipping it. */
 bool file_operations_directory_is_empty(const WorkspaceRoot *root, const char *relative_path);
 
-#endif /* TOOLBOX_FILE_OPERATIONS_H */
+#endif /* WORKBENCH_FILE_OPERATIONS_H */

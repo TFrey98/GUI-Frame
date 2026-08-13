@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_CONNECTION_MANAGER_H
-#define TOOLBOX_CONNECTION_MANAGER_H
+#ifndef WORKBENCH_CONNECTION_MANAGER_H
+#define WORKBENCH_CONNECTION_MANAGER_H
 
 #include "event_queue.h"
 #include "object_registry.h"
@@ -67,4 +67,4 @@ int connection_manager_send(ConnectionManager *manager, uint64_t connection_id, 
  * connection's incoming buffer into its TerminalHistory. */
 void connection_manager_drain_data(ConnectionManager *manager);
 
-#endif /* TOOLBOX_CONNECTION_MANAGER_H */
+#endif /* WORKBENCH_CONNECTION_MANAGER_H */

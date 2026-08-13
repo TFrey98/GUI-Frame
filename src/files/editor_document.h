@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_EDITOR_DOCUMENT_H
-#define TOOLBOX_EDITOR_DOCUMENT_H
+#ifndef WORKBENCH_EDITOR_DOCUMENT_H
+#define WORKBENCH_EDITOR_DOCUMENT_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -98,4 +98,4 @@ typedef enum EditorSaveResult {
 EditorSaveResult editor_document_save(const WorkspaceRoot *root, EditorDocument *doc, const char *new_relative_path,
                                        const char *contents, size_t contents_size);
 
-#endif /* TOOLBOX_EDITOR_DOCUMENT_H */
+#endif /* WORKBENCH_EDITOR_DOCUMENT_H */

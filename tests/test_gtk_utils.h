@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TEST_GTK_UTILS_H
-#define TOOLBOX_TEST_GTK_UTILS_H
+#ifndef WORKBENCH_TEST_GTK_UTILS_H
+#define WORKBENCH_TEST_GTK_UTILS_H
 
 #include <gtk/gtk.h>
 
@@ -19,4 +19,4 @@ static inline void collect_by_type(GtkWidget *widget, GPtrArray *out, GType type
     }
 }
 
-#endif /* TOOLBOX_TEST_GTK_UTILS_H */
+#endif /* WORKBENCH_TEST_GTK_UTILS_H */

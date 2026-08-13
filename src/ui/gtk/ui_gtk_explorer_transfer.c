@@ -309,7 +309,7 @@ static void on_explorer_drag_data_received(GtkWidget *tree_view, GdkDragContext 
  * in this same process, so no real payload needs to cross through
  * GtkSelectionData (see on_explorer_drag_data_get/received). */
 static const GtkTargetEntry EXPLORER_DND_TARGETS[] = {
-    {"application/x-toolbox-explorer-row", GTK_TARGET_SAME_APP, 0},
+    {"application/x-workbench-explorer-row", GTK_TARGET_SAME_APP, 0},
 };
 
 /* Wires in-app drag-and-drop (move only) onto tree_view - called once

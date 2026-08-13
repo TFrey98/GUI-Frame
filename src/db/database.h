@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_DATABASE_H
-#define TOOLBOX_DATABASE_H
+#ifndef WORKBENCH_DATABASE_H
+#define WORKBENCH_DATABASE_H
 
 #include <stddef.h>
 #include <stdint.h>
@@ -40,4 +40,4 @@ int database_for_each_terminal_event(TerminalEventCallback cb, void *user_data);
 /* Deletes every captured event. Returns 0 on success. */
 int database_clear_terminal_events(void);
 
-#endif /* TOOLBOX_DATABASE_H */
+#endif /* WORKBENCH_DATABASE_H */

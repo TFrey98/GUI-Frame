@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_BACKEND_H
-#define TOOLBOX_UI_GTK_BACKEND_H
+#ifndef WORKBENCH_UI_GTK_BACKEND_H
+#define WORKBENCH_UI_GTK_BACKEND_H
 
 /*
  * The one header every .c file under src/ui/gtk/ includes: GtkBackend
@@ -181,4 +181,4 @@ void popup_object_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTre
 gboolean on_object_panel_button_press(GtkWidget *tree_view, GdkEventButton *event, gpointer user_data);
 gboolean on_object_panel_popup_menu(GtkWidget *tree_view, gpointer user_data);
 
-#endif /* TOOLBOX_UI_GTK_BACKEND_H */
+#endif /* WORKBENCH_UI_GTK_BACKEND_H */

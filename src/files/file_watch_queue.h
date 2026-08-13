@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_WATCH_QUEUE_H
-#define TOOLBOX_FILE_WATCH_QUEUE_H
+#ifndef WORKBENCH_FILE_WATCH_QUEUE_H
+#define WORKBENCH_FILE_WATCH_QUEUE_H
 
 #include "file_watch_event.h"
 
@@ -17,4 +17,4 @@ void file_watch_queue_push(FileWatchQueue *queue, FileWatchEvent event);
  * 1 if an event was popped into *out. */
 int file_watch_queue_try_pop(FileWatchQueue *queue, FileWatchEvent *out);
 
-#endif /* TOOLBOX_FILE_WATCH_QUEUE_H */
+#endif /* WORKBENCH_FILE_WATCH_QUEUE_H */

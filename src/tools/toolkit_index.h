@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TOOLKIT_INDEX_H
-#define TOOLBOX_TOOLKIT_INDEX_H
+#ifndef WORKBENCH_TOOLKIT_INDEX_H
+#define WORKBENCH_TOOLKIT_INDEX_H
 
 /* Shared cap for both the root index and any single toolkit_scan_directory
  * call (e.g. lazily scanning a subfolder on expand in the sidebar). */
@@ -36,4 +36,4 @@ const char *toolkit_index_dir(void);
  */
 int toolkit_scan_directory(const char *dir_path, ToolkitEntry *out, int max_entries);
 
-#endif /* TOOLBOX_TOOLKIT_INDEX_H */
+#endif /* WORKBENCH_TOOLKIT_INDEX_H */

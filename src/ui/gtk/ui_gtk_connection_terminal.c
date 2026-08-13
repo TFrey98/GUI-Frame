@@ -98,9 +98,9 @@ static void on_connection_commit(const char *data, size_t length, void *user_dat
  * history in one shot - no separate "initial dump" path needed) and
  * again every tick (see on_tick). */
 static void refresh_connection_terminal_page(GtkBackend *backend, GtkWidget *page, ConnectionPageContext *ctx) {
-    GtkWidget *state_label = g_object_get_data(G_OBJECT(page), "toolbox-connection-state-label");
-    GtkWidget *control_label = g_object_get_data(G_OBJECT(page), "toolbox-connection-control-label");
-    GtkWidget *take_control_button = g_object_get_data(G_OBJECT(page), "toolbox-connection-take-control-button");
+    GtkWidget *state_label = g_object_get_data(G_OBJECT(page), "workbench-connection-state-label");
+    GtkWidget *control_label = g_object_get_data(G_OBJECT(page), "workbench-connection-control-label");
+    GtkWidget *take_control_button = g_object_get_data(G_OBJECT(page), "workbench-connection-take-control-button");
 
     const Connection *connection =
         object_registry_get_connection(backend->listener_system->registry, ctx->connection_id);
@@ -151,14 +151,14 @@ static void for_each_connection_terminal_page(GtkBackend *backend, uint64_t conn
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (!tab || tab->type != TAB_TYPE_CONNECTION_TERMINAL) {
             continue;
         }
         if (connection_id != 0 && connection_tab_id(tab) != connection_id) {
             continue;
         }
-        ConnectionPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-connection-page-context");
+        ConnectionPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-connection-page-context");
         fn(page, ctx, user_data);
     }
 }
@@ -221,11 +221,11 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
      * avoids a second UI-only struct and is safe because GTK destroys the
      * children with their parent page. The string keys form a private
      * convention shared with the refresh path above. */
-    g_object_set_data(G_OBJECT(page), "toolbox-connection-state-label", state_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-connection-control-label", control_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-connection-take-control-button", take_control_button);
-    g_object_set_data(G_OBJECT(page), "toolbox-connection-open-another-button", open_another_button);
-    g_object_set_data(G_OBJECT(page), "toolbox-view", view);
+    g_object_set_data(G_OBJECT(page), "workbench-connection-state-label", state_label);
+    g_object_set_data(G_OBJECT(page), "workbench-connection-control-label", control_label);
+    g_object_set_data(G_OBJECT(page), "workbench-connection-take-control-button", take_control_button);
+    g_object_set_data(G_OBJECT(page), "workbench-connection-open-another-button", open_another_button);
+    g_object_set_data(G_OBJECT(page), "workbench-view", view);
 
     ConnectionPageContext *ctx = g_new(ConnectionPageContext, 1);
     ctx->backend = backend;
@@ -235,7 +235,7 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     ctx->view = view;
     ctx->is_writer = !already_open;
     ctx->input_lines = line_accumulator_create();
-    g_object_set_data_full(G_OBJECT(page), "toolbox-connection-page-context", ctx, destroy_connection_page_context);
+    g_object_set_data_full(G_OBJECT(page), "workbench-connection-page-context", ctx, destroy_connection_page_context);
 
     terminal_set_commit_handler(view, on_connection_commit, ctx);
     g_signal_connect(take_control_button, "clicked", G_CALLBACK(on_take_control_clicked), ctx);
@@ -260,7 +260,7 @@ static GtkWidget *find_connection_terminal_page(GtkBackend *backend, uint64_t co
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
         /* add_tab_page() tags every notebook child with its model Tab. This
          * keeps lookup independent of tab titles, which users may rename. */
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_CONNECTION_TERMINAL && connection_tab_id(tab) == connection_id) {
             return page;
         }
@@ -318,9 +318,9 @@ void refresh_all_connection_terminal_pages(GtkBackend *backend) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_CONNECTION_TERMINAL) {
-            ConnectionPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-connection-page-context");
+            ConnectionPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-connection-page-context");
             refresh_connection_terminal_page(backend, page, ctx);
         }
     }

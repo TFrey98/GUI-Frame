@@ -64,22 +64,22 @@ static gboolean on_label_button_press(GtkWidget *event_box, GdkEventButton *even
 }
 
 /* Bound to the × button on every tab label - derives backend from the
- * page itself (add_tab_page tags "toolbox-backend" on every page it
+ * page itself (add_tab_page tags "workbench-backend" on every page it
  * builds) since the button's own "clicked" signal only ever carries
  * the page as user_data. */
 static void on_tab_close_clicked(GtkButton *button, gpointer user_data) {
     (void)button;
     GtkWidget *page = GTK_WIDGET(user_data);
-    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "toolbox-backend");
+    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
     close_page_with_confirmation(backend, page);
 }
 
 /* Builds "Title  x" with the title double-click-to-rename and the x
- * closing the page. `page` must already carry "toolbox-tab"/
- * "toolbox-workspace" object data. */
+ * closing the page. `page` must already carry "workbench-tab"/
+ * "workbench-workspace" object data. */
 GtkWidget *build_tab_label(Tab *tab, GtkWidget *page) {
     GtkWidget *label = gtk_label_new(tab->title);
-    g_object_set_data(G_OBJECT(page), "toolbox-tab-label-widget", label);
+    g_object_set_data(G_OBJECT(page), "workbench-tab-label-widget", label);
 
     GtkWidget *entry = gtk_entry_new();
     gtk_widget_set_no_show_all(entry, TRUE);
@@ -98,7 +98,7 @@ GtkWidget *build_tab_label(Tab *tab, GtkWidget *page) {
     data->label = label;
     data->entry = entry;
     data->page = page;
-    g_object_set_data_full(G_OBJECT(event_box), "toolbox-label-data", data, g_free);
+    g_object_set_data_full(G_OBJECT(event_box), "workbench-label-data", data, g_free);
 
     g_signal_connect(event_box, "button-press-event", G_CALLBACK(on_label_button_press), data);
     g_signal_connect(event_box, "popup-menu", G_CALLBACK(on_tab_label_popup_menu), data);
@@ -109,7 +109,7 @@ GtkWidget *build_tab_label(Tab *tab, GtkWidget *page) {
     gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
     gtk_widget_set_focus_on_click(close_button, FALSE);
     g_signal_connect(close_button, "clicked", G_CALLBACK(on_tab_close_clicked), page);
-    g_object_set_data(G_OBJECT(page), "toolbox-tab-close-button", close_button);
+    g_object_set_data(G_OBJECT(page), "workbench-tab-close-button", close_button);
 
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
     gtk_box_pack_start(GTK_BOX(box), event_box, TRUE, TRUE, 0);
@@ -124,14 +124,14 @@ GtkWidget *build_tab_label(Tab *tab, GtkWidget *page) {
 static void on_tab_context_close(GtkMenuItem *item, gpointer user_data) {
     (void)item;
     GtkWidget *page = user_data;
-    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "toolbox-backend");
+    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
     close_page_with_confirmation(backend, page);
 }
 
 static void on_tab_context_close_others(GtkMenuItem *item, gpointer user_data) {
     (void)item;
     GtkWidget *page = user_data;
-    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "toolbox-backend");
+    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
     GPtrArray *pages = g_ptr_array_new();
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
@@ -146,7 +146,7 @@ static void on_tab_context_close_others(GtkMenuItem *item, gpointer user_data) {
 static void on_tab_context_close_all(GtkMenuItem *item, gpointer user_data) {
     (void)item;
     GtkWidget *page = user_data;
-    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "toolbox-backend");
+    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
     GPtrArray *pages = g_ptr_array_new();
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
@@ -174,7 +174,7 @@ static void popup_tab_context_menu(GtkWidget *page, GdkEventButton *event) {
     gtk_menu_shell_append(GTK_MENU_SHELL(menu), close_others_item);
     gtk_menu_shell_append(GTK_MENU_SHELL(menu), close_all_item);
 
-    g_object_set_data(G_OBJECT(page), "toolbox-tab-context-menu", menu);
+    g_object_set_data(G_OBJECT(page), "workbench-tab-context-menu", menu);
     gtk_widget_show_all(menu);
     if (event) {
         gtk_menu_popup_at_pointer(GTK_MENU(menu), (GdkEvent *)event);

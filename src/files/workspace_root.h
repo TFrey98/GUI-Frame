@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_WORKSPACE_ROOT_H
-#define TOOLBOX_WORKSPACE_ROOT_H
+#ifndef WORKBENCH_WORKSPACE_ROOT_H
+#define WORKBENCH_WORKSPACE_ROOT_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -9,7 +9,7 @@ typedef struct WorkspaceRoot {
     char canonical_path[4096];
 } WorkspaceRoot;
 
-/* Resolves <exe_dir>/toolbox, creating it if missing. Returns false
+/* Resolves <exe_dir>/workbench, creating it if missing. Returns false
  * (leaving *out unwritten) if it can't be created or accessed - callers
  * must treat that as fatal to startup, not a soft-fail. */
 bool workspace_root_init(WorkspaceRoot *out);
@@ -34,4 +34,4 @@ bool workspace_root_init_at(WorkspaceRoot *out, const char *absolute_directory);
 bool workspace_root_resolve_path(const WorkspaceRoot *root, const char *relative_path, char *resolved_path,
                                   size_t resolved_size);
 
-#endif /* TOOLBOX_WORKSPACE_ROOT_H */
+#endif /* WORKBENCH_WORKSPACE_ROOT_H */

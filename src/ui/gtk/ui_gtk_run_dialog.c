@@ -158,15 +158,15 @@ void open_run_with_arguments_dialog(GtkBackend *backend, const WorkspaceRoot *ro
     gtk_grid_attach(GTK_GRID(grid), state->create_new_terminal_check, 0, row++, 2, 1);
 
     g_signal_connect(dialog, "response", G_CALLBACK(on_run_with_arguments_response), state);
-    g_object_set_data_full(G_OBJECT(dialog), "toolbox-run-with-arguments-state", state, g_free);
+    g_object_set_data_full(G_OBJECT(dialog), "workbench-run-with-arguments-state", state, g_free);
 
-    g_object_set_data(G_OBJECT(state->working_directory_entry), "toolbox-run-working-directory-entry",
+    g_object_set_data(G_OBJECT(state->working_directory_entry), "workbench-run-working-directory-entry",
                        state->working_directory_entry);
-    g_object_set_data(G_OBJECT(state->arguments_entry), "toolbox-run-arguments-entry", state->arguments_entry);
-    g_object_set_data(G_OBJECT(state->env_entry), "toolbox-run-env-entry", state->env_entry);
-    g_object_set_data(G_OBJECT(state->create_new_terminal_check), "toolbox-run-create-new-terminal-check",
+    g_object_set_data(G_OBJECT(state->arguments_entry), "workbench-run-arguments-entry", state->arguments_entry);
+    g_object_set_data(G_OBJECT(state->env_entry), "workbench-run-env-entry", state->env_entry);
+    g_object_set_data(G_OBJECT(state->create_new_terminal_check), "workbench-run-create-new-terminal-check",
                        state->create_new_terminal_check);
-    g_object_set_data(G_OBJECT(dialog), "toolbox-run-with-arguments-dialog", dialog);
+    g_object_set_data(G_OBJECT(dialog), "workbench-run-with-arguments-dialog", dialog);
 
     gtk_widget_show_all(dialog);
 }

@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TERMINAL_HISTORY_H
-#define TOOLBOX_TERMINAL_HISTORY_H
+#ifndef WORKBENCH_TERMINAL_HISTORY_H
+#define WORKBENCH_TERMINAL_HISTORY_H
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -51,4 +51,4 @@ size_t terminal_history_len(const TerminalHistory *history);
  * offset is at or past the end). */
 size_t terminal_history_read(const TerminalHistory *history, size_t offset, void *dst, size_t max_len);
 
-#endif /* TOOLBOX_TERMINAL_HISTORY_H */
+#endif /* WORKBENCH_TERMINAL_HISTORY_H */

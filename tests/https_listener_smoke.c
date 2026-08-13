@@ -101,7 +101,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -111,7 +111,7 @@ static GtkWidget *find_new_listener_dialog(void) {
 }
 
 static GtkWidget *object_panel_tree(GtkWidget *window) {
-    return find_by_data_key(window, "toolbox-object-panel-tree");
+    return find_by_data_key(window, "workbench-object-panel-tree");
 }
 
 static gboolean find_row_by_name(GtkTreeModel *model, const char *name, GtkTreeIter *out_iter) {
@@ -272,7 +272,7 @@ static size_t connection_history_len(TestState *test, uint64_t connection_id) {
  * listener and the deliberately-broken bad-cert-path one below. */
 static gboolean submit_https_listener(GtkWindow *window, const char *name, uint16_t port, const char *cert_path,
                                        const char *key_path, TestState *test) {
-    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
     if (!new_button) {
         return FALSE; /* window may not have finished its initial build yet */
     }
@@ -283,13 +283,13 @@ static gboolean submit_https_listener(GtkWindow *window, const char *name, uint1
         fail(test, "New Listener dialog did not appear");
         return TRUE;
     }
-    GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-    GtkWidget *type_combo = find_by_data_key(dialog, "toolbox-listener-type-combo");
-    GtkWidget *port_entry = find_by_data_key(dialog, "toolbox-listener-port-entry");
-    GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
-    GtkWidget *url_path_entry = find_by_data_key(dialog, "toolbox-listener-url-path-entry");
-    GtkWidget *cert_path_entry = find_by_data_key(dialog, "toolbox-listener-cert-path-entry");
-    GtkWidget *key_path_entry = find_by_data_key(dialog, "toolbox-listener-key-path-entry");
+    GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+    GtkWidget *type_combo = find_by_data_key(dialog, "workbench-listener-type-combo");
+    GtkWidget *port_entry = find_by_data_key(dialog, "workbench-listener-port-entry");
+    GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
+    GtkWidget *url_path_entry = find_by_data_key(dialog, "workbench-listener-url-path-entry");
+    GtkWidget *cert_path_entry = find_by_data_key(dialog, "workbench-listener-cert-path-entry");
+    GtkWidget *key_path_entry = find_by_data_key(dialog, "workbench-listener-key-path-entry");
     if (!name_entry || !type_combo || !port_entry || !callback_entry || !url_path_entry || !cert_path_entry ||
         !key_path_entry) {
         fail(test, "could not find dialog fields");
@@ -322,9 +322,9 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_GENERATE_CERT: {
-                snprintf(test->cert_path, sizeof(test->cert_path), "/tmp/toolbox_https_smoke_cert_%d.pem",
+                snprintf(test->cert_path, sizeof(test->cert_path), "/tmp/workbench_https_smoke_cert_%d.pem",
                           (int)getpid());
-                snprintf(test->key_path, sizeof(test->key_path), "/tmp/toolbox_https_smoke_key_%d.pem",
+                snprintf(test->key_path, sizeof(test->key_path), "/tmp/workbench_https_smoke_key_%d.pem",
                           (int)getpid());
                 if (!generate_self_signed_cert(test->cert_path, test->key_path)) {
                     fail(test, "failed to generate a self-signed test certificate");

@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_APP_H
-#define TOOLBOX_APP_H
+#ifndef WORKBENCH_APP_H
+#define WORKBENCH_APP_H
 
 #include "../files/workspace_root.h"
 #include "../listeners/listener_system.h"
@@ -25,4 +25,4 @@ ListenerSystem *app_get_listener_system(const App *app);
 const WorkspaceRoot *app_get_file_workspace_root(const App *app);
 const WorkspaceRoot *app_get_toolkit_workspace_root(const App *app);
 
-#endif /* TOOLBOX_APP_H */
+#endif /* WORKBENCH_APP_H */

@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_CLASSIFY_H
-#define TOOLBOX_FILE_CLASSIFY_H
+#ifndef WORKBENCH_FILE_CLASSIFY_H
+#define WORKBENCH_FILE_CLASSIFY_H
 
 #include <stdbool.h>
 
@@ -28,4 +28,4 @@ typedef struct FileClassification {
  */
 FileClassification file_classify(const char *absolute_path, bool executable);
 
-#endif /* TOOLBOX_FILE_CLASSIFY_H */
+#endif /* WORKBENCH_FILE_CLASSIFY_H */

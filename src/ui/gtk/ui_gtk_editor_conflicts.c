@@ -21,7 +21,7 @@ void editor_handle_external_move(GtkBackend *backend, const WorkspaceRoot *old_r
         return;
     }
 
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
     doc->root = new_root;
     snprintf(doc->relative_path, sizeof(doc->relative_path), "%s", new_relative_path);
@@ -32,7 +32,7 @@ void editor_handle_external_move(GtkBackend *backend, const WorkspaceRoot *old_r
     update_tab_label_text(page);
 
     if (tab->type == TAB_TYPE_EDITOR) {
-        GtkWidget *name_label = g_object_get_data(G_OBJECT(page), "toolbox-editor-name-label");
+        GtkWidget *name_label = g_object_get_data(G_OBJECT(page), "workbench-editor-name-label");
         if (name_label) {
             gtk_label_set_text(GTK_LABEL(name_label), doc->display_name);
         }
@@ -53,12 +53,12 @@ void editor_handle_external_delete(GtkBackend *backend, const WorkspaceRoot *roo
         return;
     }
 
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
     doc->deleted_on_disk = true;
 
     if (tab->type == TAB_TYPE_EDITOR) {
-        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "toolbox-editor-deleted-banner");
+        GtkWidget *banner = g_object_get_data(G_OBJECT(page), "workbench-editor-deleted-banner");
         if (banner) {
             gtk_widget_set_visible(banner, TRUE);
         }
@@ -71,7 +71,7 @@ void editor_handle_external_delete(GtkBackend *backend, const WorkspaceRoot *roo
  * so it genuinely reflects the external change that triggered the
  * conflict dialog below. Deliberately bypasses open_or_focus_file_tab's
  * normal dedup (find_file_tab already skips any tab tagged
- * "toolbox-editor-is-compare", see there) - Compare must never just
+ * "workbench-editor-is-compare", see there) - Compare must never just
  * re-focus the already-open edited tab. */
 static void open_compare_tab(GtkBackend *backend, const EditorDocument *doc) {
     EditorDocument *fresh = editor_document_open(doc->root, doc->relative_path, true, true);
@@ -94,7 +94,7 @@ static void open_compare_tab(GtkBackend *backend, const EditorDocument *doc) {
      * it just built is the last one. */
     int last_index = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook)) - 1;
     GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), last_index);
-    g_object_set_data(G_OBJECT(page), "toolbox-editor-is-compare", GINT_TO_POINTER(TRUE));
+    g_object_set_data(G_OBJECT(page), "workbench-editor-is-compare", GINT_TO_POINTER(TRUE));
 }
 
 /* --- External-modification conflict dialog -----------------------------
@@ -105,7 +105,7 @@ static void open_compare_tab(GtkBackend *backend, const EditorDocument *doc) {
 
 static void on_conflict_response(GtkDialog *dialog, gint response_id, gpointer user_data) {
     EditorPageContext *ctx = user_data;
-    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(ctx->page), "workbench-tab");
     EditorDocument *doc = tab->backend_data;
 
     if (response_id == GTK_RESPONSE_APPLY) { /* Compare */
@@ -123,8 +123,8 @@ static void on_conflict_response(GtkDialog *dialog, gint response_id, gpointer u
 }
 
 static void open_external_change_conflict_dialog(GtkBackend *backend, GtkWidget *page) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
-    EditorPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-editor-page-context");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+    EditorPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-editor-page-context");
 
     GtkWindow *parent = gtk_application_get_active_window(backend->gtk_app);
     GtkWidget *dialog = gtk_message_dialog_new(parent, GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_NONE,
@@ -141,7 +141,7 @@ void editor_handle_external_modification(GtkBackend *backend, const WorkspaceRoo
     if (!page) {
         return;
     }
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     if (tab->type != TAB_TYPE_EDITOR) {
         return; /* a binary-info tab has no live buffer to reload/compare */
     }

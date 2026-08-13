@@ -111,7 +111,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -120,13 +120,13 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
 }
 
 static void set_buffer_text(GtkWidget *page, const char *text) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     gtk_text_buffer_set_text(buffer, text, -1);
 }
 
 static gboolean label_has_dot(GtkWidget *page) {
-    GtkWidget *label = g_object_get_data(G_OBJECT(page), "toolbox-tab-label-widget");
+    GtkWidget *label = g_object_get_data(G_OBJECT(page), "workbench-tab-label-widget");
     const char *text = gtk_label_get_text(GTK_LABEL(label));
     return strstr(text, "\xE2\x97\x8F") != NULL;
 }
@@ -170,7 +170,7 @@ static GtkWidget *find_message_dialog(void) {
 }
 
 static void click_page_close_button(GtkWidget *page) {
-    GtkWidget *close_button = g_object_get_data(G_OBJECT(page), "toolbox-tab-close-button");
+    GtkWidget *close_button = g_object_get_data(G_OBJECT(page), "workbench-tab-close-button");
     gtk_button_clicked(GTK_BUTTON(close_button));
 }
 
@@ -210,7 +210,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -244,7 +244,7 @@ static gboolean click_menu_item(GtkWidget *menu, const char *label) {
 /* --- Tab-label context menu helpers -------------------------------- */
 
 static GtkWidget *find_tab_event_box(GtkWidget *page) {
-    GtkWidget *label = g_object_get_data(G_OBJECT(page), "toolbox-tab-label-widget");
+    GtkWidget *label = g_object_get_data(G_OBJECT(page), "workbench-tab-label-widget");
     GtkWidget *label_stack = label ? gtk_widget_get_parent(label) : NULL;
     return label_stack ? gtk_widget_get_parent(label_stack) : NULL;
 }
@@ -256,14 +256,14 @@ static GtkWidget *open_tab_context_menu(GtkWidget *page) {
     }
     gboolean handled = FALSE;
     g_signal_emit_by_name(event_box, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(page), "toolbox-tab-context-menu");
+    return g_object_get_data(G_OBJECT(page), "workbench-tab-context-menu");
 }
 
 static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GPtrArray *notebooks = g_ptr_array_new();
     if (window) {
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
@@ -284,15 +284,15 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
 
     /* --- Close with Save/Discard/Cancel --- */
     GtkTreeIter doc1_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "doc1.txt", &doc1_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "doc1.txt", &doc1_iter)) {
         fail(test, "'doc1.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -338,7 +338,7 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* Save writes then closes. */
-    if (!find_child_by_name(model, &toolbox_iter, "doc1.txt", &doc1_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "doc1.txt", &doc1_iter)) {
         fail(test, "'doc1.txt' row missing after Discard");
         goto done;
     }
@@ -368,8 +368,8 @@ static gboolean drive(gpointer user_data) {
 
     /* --- Close Others / Close All --- */
     GtkTreeIter doc2_iter, doc3_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "doc2.txt", &doc2_iter) ||
-        !find_child_by_name(model, &toolbox_iter, "doc3.txt", &doc3_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "doc2.txt", &doc2_iter) ||
+        !find_child_by_name(model, &workbench_iter, "doc3.txt", &doc3_iter)) {
         fail(test, "'doc2.txt'/'doc3.txt' rows not found under TOOLBOX");
         goto done;
     }
@@ -395,7 +395,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    if (!find_child_by_name(model, &toolbox_iter, "doc3.txt", &doc3_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "doc3.txt", &doc3_iter)) {
         fail(test, "'doc3.txt' row missing before Close All setup");
         goto done;
     }
@@ -416,7 +416,7 @@ static gboolean drive(gpointer user_data) {
 
     /* --- Renaming an open file keeps the tab targeting the new path --- */
     GtkTreeIter renameme_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "renameme.txt", &renameme_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "renameme.txt", &renameme_iter)) {
         fail(test, "'renameme.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -434,13 +434,13 @@ static gboolean drive(gpointer user_data) {
     }
     commit_row(tree_view, model, &renameme_iter, "renamed.txt");
 
-    Tab *rename_tab = g_object_get_data(G_OBJECT(rename_page), "toolbox-tab");
+    Tab *rename_tab = g_object_get_data(G_OBJECT(rename_page), "workbench-tab");
     if (strcmp(rename_tab->title, "renamed.txt") != 0) {
         fail(test, "the open tab's title should switch to renamed.txt after an explorer rename");
         goto done;
     }
     set_buffer_text(rename_page, "renamed and edited\n");
-    GtkWidget *rename_save_button = g_object_get_data(G_OBJECT(rename_page), "toolbox-editor-save-button");
+    GtkWidget *rename_save_button = g_object_get_data(G_OBJECT(rename_page), "workbench-editor-save-button");
     gtk_button_clicked(GTK_BUTTON(rename_save_button));
 
     char old_path[4400], new_path[4400], new_on_disk[64] = {0};
@@ -468,7 +468,7 @@ static gboolean drive(gpointer user_data) {
 
     /* --- Quitting with a modified tab open --- */
     GtkTreeIter quittest_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "quittest.txt", &quittest_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "quittest.txt", &quittest_iter)) {
         fail(test, "'quittest.txt' row not found under TOOLBOX");
         goto done;
     }

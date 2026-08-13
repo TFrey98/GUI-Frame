@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_LISTENER_EVENT_H
-#define TOOLBOX_LISTENER_EVENT_H
+#ifndef WORKBENCH_LISTENER_EVENT_H
+#define WORKBENCH_LISTENER_EVENT_H
 
 #include <stdint.h>
 #include <time.h>
@@ -44,4 +44,4 @@ typedef struct ListenerEvent {
                 * processing, opaque here for the same reason connection.h's is. */
 } ListenerEvent;
 
-#endif /* TOOLBOX_LISTENER_EVENT_H */
+#endif /* WORKBENCH_LISTENER_EVENT_H */

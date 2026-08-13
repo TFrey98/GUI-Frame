@@ -161,7 +161,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -204,7 +204,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     if (!tree_view) {
         test->elapsed_ms += STEP_INTERVAL_MS;
         if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
@@ -220,21 +220,21 @@ static gboolean drive(gpointer user_data) {
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     char path_buf[4400];
 
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
 
     /* Toolbar New Folder, nothing selected -> targets TOOLBOX. */
-    GtkWidget *new_folder_button = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-new-folder-button");
+    GtkWidget *new_folder_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-new-folder-button");
     if (!new_folder_button) {
         fail(test, "New Folder toolbar button not found");
         goto done;
     }
     gtk_button_clicked(GTK_BUTTON(new_folder_button));
     GtkTreeIter pending;
-    if (!find_pending_child(model, &toolbox_iter, &pending)) {
+    if (!find_pending_child(model, &workbench_iter, &pending)) {
         fail(test, "no pending blank row appeared under TOOLBOX after New Folder");
         goto done;
     }
@@ -245,7 +245,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     GtkTreeIter newfolder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "newfolder", &newfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter)) {
         fail(test, "'newfolder' row not found under TOOLBOX");
         goto done;
     }
@@ -268,7 +268,7 @@ static gboolean drive(gpointer user_data) {
     }
     /* Creating a child replaced newfolder's own row via load_row_children -
      * re-fetch it by name (ids aren't stable across a reload). */
-    if (!find_child_by_name(model, &toolbox_iter, "newfolder", &newfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter)) {
         fail(test, "'newfolder' row missing after New File");
         goto done;
     }
@@ -295,7 +295,7 @@ static gboolean drive(gpointer user_data) {
         fail(test, "'newfolder/renamed.txt' should exist after rename");
         goto done;
     }
-    if (!find_child_by_name(model, &toolbox_iter, "newfolder", &newfolder_iter) ||
+    if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter) ||
         !find_child_by_name(model, &newfolder_iter, "renamed.txt", &newfile_iter)) {
         fail(test, "'renamed.txt' row not found under newfolder after rename");
         goto done;
@@ -314,7 +314,7 @@ static gboolean drive(gpointer user_data) {
 
     /* Create a file inside newfolder to make it non-empty again, then
      * try to delete newfolder itself - this must require confirmation. */
-    if (!find_child_by_name(model, &toolbox_iter, "newfolder", &newfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter)) {
         fail(test, "'newfolder' row missing before non-empty-delete setup");
         goto done;
     }
@@ -328,7 +328,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     commit_row(tree_view, model, &pending, "keepme.txt");
-    if (!find_child_by_name(model, &toolbox_iter, "newfolder", &newfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter)) {
         fail(test, "'newfolder' row missing after repopulating it");
         goto done;
     }
@@ -368,19 +368,19 @@ static gboolean drive(gpointer user_data) {
      * guarantee its own "nothing selected" precondition rather than
      * merely hope for it. */
     gtk_tree_selection_unselect_all(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view)));
-    GtkWidget *new_folder_button2 = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-new-folder-button");
+    GtkWidget *new_folder_button2 = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-new-folder-button");
     if (!new_folder_button2) {
         fail(test, "New Folder toolbar button not found");
         goto done;
     }
     gtk_button_clicked(GTK_BUTTON(new_folder_button2));
-    if (!find_pending_child(model, &toolbox_iter, &pending)) {
+    if (!find_pending_child(model, &workbench_iter, &pending)) {
         fail(test, "no pending blank row appeared under TOOLBOX for expandedfolder");
         goto done;
     }
     commit_row(tree_view, model, &pending, "expandedfolder");
     GtkTreeIter expanded_folder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "expandedfolder", &expanded_folder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "expandedfolder", &expanded_folder_iter)) {
         fail(test, "'expandedfolder' row not found under TOOLBOX");
         goto done;
     }
@@ -394,7 +394,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     commit_row(tree_view, model, &pending, "child.txt");
-    if (!find_child_by_name(model, &toolbox_iter, "expandedfolder", &expanded_folder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "expandedfolder", &expanded_folder_iter)) {
         fail(test, "'expandedfolder' row missing before refresh");
         goto done;
     }
@@ -406,14 +406,14 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    GtkWidget *refresh_button = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-refresh-button");
+    GtkWidget *refresh_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-refresh-button");
     if (!refresh_button) {
         fail(test, "Refresh toolbar button not found");
         goto done;
     }
     gtk_button_clicked(GTK_BUTTON(refresh_button));
 
-    if (!find_child_by_name(model, &toolbox_iter, "expandedfolder", &expanded_folder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "expandedfolder", &expanded_folder_iter)) {
         fail(test, "'expandedfolder' row missing after refresh");
         goto done;
     }
@@ -431,7 +431,7 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* The TOOLBOX root never offers Rename/Delete. */
-    menu = open_menu_for_row(tree_view, model, &toolbox_iter);
+    menu = open_menu_for_row(tree_view, model, &workbench_iter);
     if (!menu) {
         fail(test, "TOOLBOX root context menu did not appear");
         goto done;

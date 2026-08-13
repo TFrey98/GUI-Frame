@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_CONNECTION_WORKER_H
-#define TOOLBOX_CONNECTION_WORKER_H
+#ifndef WORKBENCH_CONNECTION_WORKER_H
+#define WORKBENCH_CONNECTION_WORKER_H
 
 #include <pthread.h>
 #include <stdatomic.h>
@@ -57,4 +57,4 @@ void connection_worker_signal_stop(ConnectionWorker *worker);
  * LISTENER_EVENT_CONNECTION_CLOSED has already been observed. */
 void connection_worker_join(ConnectionWorker *worker);
 
-#endif /* TOOLBOX_CONNECTION_WORKER_H */
+#endif /* WORKBENCH_CONNECTION_WORKER_H */

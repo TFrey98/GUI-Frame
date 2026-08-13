@@ -113,7 +113,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -233,7 +233,7 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkWindow *window = main_window();
-    GtkWidget *search_open_button = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-search-open-button")
+    GtkWidget *search_open_button = window ? find_by_data_key(GTK_WIDGET(window), "workbench-search-open-button")
                                             : NULL;
     if (!search_open_button) {
         test->elapsed_ms += STEP_INTERVAL_MS;
@@ -256,11 +256,11 @@ static gboolean drive(gpointer user_data) {
     }
     g_signal_connect(search_window, "destroy", G_CALLBACK(on_test_search_window_destroy), test);
 
-    GtkWidget *entry = find_by_data_key(GTK_WIDGET(search_window), "toolbox-search-entry");
-    GtkWidget *match_case = find_by_data_key(GTK_WIDGET(search_window), "toolbox-search-match-case");
-    GtkWidget *search_button = find_by_data_key(GTK_WIDGET(search_window), "toolbox-search-button");
-    GtkWidget *results_tree = find_by_data_key(GTK_WIDGET(search_window), "toolbox-search-results-tree");
-    GtkWidget *status_label = find_by_data_key(GTK_WIDGET(search_window), "toolbox-search-status-label");
+    GtkWidget *entry = find_by_data_key(GTK_WIDGET(search_window), "workbench-search-entry");
+    GtkWidget *match_case = find_by_data_key(GTK_WIDGET(search_window), "workbench-search-match-case");
+    GtkWidget *search_button = find_by_data_key(GTK_WIDGET(search_window), "workbench-search-button");
+    GtkWidget *results_tree = find_by_data_key(GTK_WIDGET(search_window), "workbench-search-results-tree");
+    GtkWidget *status_label = find_by_data_key(GTK_WIDGET(search_window), "workbench-search-status-label");
     if (!entry || !match_case || !search_button || !results_tree || !status_label) {
         fail(test, "the search window is missing one of its expected widgets");
         goto done;
@@ -314,19 +314,19 @@ static gboolean drive(gpointer user_data) {
      * explorer tree, loading "container" (not yet expanded/loaded) on
      * demand - not just working because the row already happened to be
      * visible. */
-    GtkWidget *explorer_tree = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree");
+    GtkWidget *explorer_tree = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree");
     if (!explorer_tree) {
         fail(test, "explorer tree view not found");
         goto done;
     }
     GtkTreeModel *explorer_model = gtk_tree_view_get_model(GTK_TREE_VIEW(explorer_tree));
-    GtkTreeIter toolbox_iter, container_iter;
-    if (!gtk_tree_model_get_iter_first(explorer_model, &toolbox_iter) ||
-        !explorer_row_name_is(explorer_model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter, container_iter;
+    if (!gtk_tree_model_get_iter_first(explorer_model, &workbench_iter) ||
+        !explorer_row_name_is(explorer_model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
-    if (!explorer_find_child(explorer_model, &toolbox_iter, "container", &container_iter)) {
+    if (!explorer_find_child(explorer_model, &workbench_iter, "container", &container_iter)) {
         fail(test, "'container' row not found under TOOLBOX");
         goto done;
     }
@@ -345,7 +345,7 @@ static gboolean drive(gpointer user_data) {
     /* Re-fetch container (reveal's own load_row_children reload may
      * have replaced the iter) and confirm needlefolder is now loaded,
      * present, and selected. */
-    if (!explorer_find_child(explorer_model, &toolbox_iter, "container", &container_iter)) {
+    if (!explorer_find_child(explorer_model, &workbench_iter, "container", &container_iter)) {
         fail(test, "'container' row missing after reveal");
         goto done;
     }

@@ -111,7 +111,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -148,7 +148,7 @@ static GtkWidget *find_notebook(GtkWidget *window) {
 }
 
 static GtkWidget *object_panel_tree(GtkWidget *window) {
-    return find_by_data_key(window, "toolbox-object-panel-tree");
+    return find_by_data_key(window, "workbench-object-panel-tree");
 }
 
 static gboolean find_row_by_name(GtkTreeModel *model, const char *name, GtkTreeIter *out_iter) {
@@ -236,7 +236,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-object-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-object-context-menu");
 }
 
 static void click_menu_item(GtkWidget *menu, const char *label) {
@@ -256,7 +256,7 @@ static void click_menu_item(GtkWidget *menu, const char *label) {
 }
 
 static gboolean submit_new_listener(GtkWindow *window, const char *name, const char *port) {
-    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+    GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
     if (!new_button) {
         return FALSE;
     }
@@ -266,9 +266,9 @@ static gboolean submit_new_listener(GtkWindow *window, const char *name, const c
     if (!dialog) {
         return FALSE;
     }
-    GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-    GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
-    GtkWidget *port_entry = find_by_data_key(dialog, "toolbox-listener-port-entry");
+    GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+    GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
+    GtkWidget *port_entry = find_by_data_key(dialog, "workbench-listener-port-entry");
     if (!name_entry || !callback_entry || !port_entry) {
         return FALSE;
     }
@@ -324,7 +324,7 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_OPEN_DIALOG_A: {
-                if (!find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button")) {
+                if (!find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button")) {
                     break; /* window may not have finished its initial build yet */
                 }
                 if (!submit_new_listener(window, "MenuSmokeA", NULL)) {
@@ -636,7 +636,7 @@ static gboolean drive(gpointer user_data) {
                     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
                     for (int i = 0; i < n && !tab_open; i++) {
                         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-                        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+                        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
                         tab_open = tab && tab->type == TAB_TYPE_LISTENER &&
                                    (uint64_t)(uintptr_t)tab->backend_data == test->listener_d_id;
                     }
@@ -654,7 +654,7 @@ static gboolean drive(gpointer user_data) {
                 int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
                 for (int i = 0; i < n; i++) {
                     GtkWidget *candidate = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-                    Tab *tab = g_object_get_data(G_OBJECT(candidate), "toolbox-tab");
+                    Tab *tab = g_object_get_data(G_OBJECT(candidate), "workbench-tab");
                     if (tab && tab->type == TAB_TYPE_LISTENER &&
                         (uint64_t)(uintptr_t)tab->backend_data == test->listener_d_id) {
                         page = candidate;
@@ -698,7 +698,7 @@ static gboolean drive(gpointer user_data) {
                     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
                     for (int i = 0; i < n; i++) {
                         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-                        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+                        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
                         if (tab && tab->type == TAB_TYPE_LISTENER &&
                             (uint64_t)(uintptr_t)tab->backend_data == test->listener_d_id) {
                             tab_gone = FALSE;

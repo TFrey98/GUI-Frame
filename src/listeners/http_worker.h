@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_HTTP_WORKER_H
-#define TOOLBOX_HTTP_WORKER_H
+#ifndef WORKBENCH_HTTP_WORKER_H
+#define WORKBENCH_HTTP_WORKER_H
 
 #include "event_queue.h"
 #include "tcp_worker.h"
@@ -31,4 +31,4 @@
 int http_worker_start(TcpWorker *out, EventQueue *events, uint64_t listener_id, const char *bind_address,
                        uint16_t port, const char *url_path, const char *host_header);
 
-#endif /* TOOLBOX_HTTP_WORKER_H */
+#endif /* WORKBENCH_HTTP_WORKER_H */

@@ -1,149 +1,149 @@
 add_executable(lifecycle_smoke lifecycle_smoke.c)
-target_link_libraries(lifecycle_smoke PRIVATE toolbox_core)
+target_link_libraries(lifecycle_smoke PRIVATE workbench_core)
 
 add_executable(layout_smoke layout_smoke.c)
-target_link_libraries(layout_smoke PRIVATE toolbox_core)
+target_link_libraries(layout_smoke PRIVATE workbench_core)
 
 add_executable(tabs_smoke tabs_smoke.c)
-target_link_libraries(tabs_smoke PRIVATE toolbox_core)
+target_link_libraries(tabs_smoke PRIVATE workbench_core)
 
 add_executable(terminal_smoke terminal_smoke.c)
-target_link_libraries(terminal_smoke PRIVATE toolbox_core)
+target_link_libraries(terminal_smoke PRIVATE workbench_core)
 
 add_executable(multi_terminal_smoke multi_terminal_smoke.c)
-target_link_libraries(multi_terminal_smoke PRIVATE toolbox_core)
+target_link_libraries(multi_terminal_smoke PRIVATE workbench_core)
 
 add_executable(terminal_session_test terminal_session_test.c)
-target_link_libraries(terminal_session_test PRIVATE toolbox_core)
+target_link_libraries(terminal_session_test PRIVATE workbench_core)
 
 add_executable(toolkit_index_test toolkit_index_test.c)
-target_link_libraries(toolkit_index_test PRIVATE toolbox_core)
+target_link_libraries(toolkit_index_test PRIVATE workbench_core)
 
 add_executable(event_queue_stress_test event_queue_stress_test.c)
-target_link_libraries(event_queue_stress_test PRIVATE toolbox_core)
+target_link_libraries(event_queue_stress_test PRIVATE workbench_core)
 
 add_executable(byte_buffer_test byte_buffer_test.c)
-target_link_libraries(byte_buffer_test PRIVATE toolbox_core)
+target_link_libraries(byte_buffer_test PRIVATE workbench_core)
 
 add_executable(object_registry_test object_registry_test.c)
-target_link_libraries(object_registry_test PRIVATE toolbox_core)
+target_link_libraries(object_registry_test PRIVATE workbench_core)
 
 add_executable(object_predicates_test object_predicates_test.c)
-target_link_libraries(object_predicates_test PRIVATE toolbox_core)
+target_link_libraries(object_predicates_test PRIVATE workbench_core)
 
 add_executable(listener_config_validate_test listener_config_validate_test.c)
-target_link_libraries(listener_config_validate_test PRIVATE toolbox_core)
+target_link_libraries(listener_config_validate_test PRIVATE workbench_core)
 
 add_executable(listener_manager_test listener_manager_test.c)
-target_link_libraries(listener_manager_test PRIVATE toolbox_core)
+target_link_libraries(listener_manager_test PRIVATE workbench_core)
 
 add_executable(reverse_tcp_test reverse_tcp_test.c)
-target_link_libraries(reverse_tcp_test PRIVATE toolbox_core)
+target_link_libraries(reverse_tcp_test PRIVATE workbench_core)
 
 add_executable(connection_io_test connection_io_test.c)
-target_link_libraries(connection_io_test PRIVATE toolbox_core)
+target_link_libraries(connection_io_test PRIVATE workbench_core)
 
 add_executable(new_listener_dialog_smoke new_listener_dialog_smoke.c)
-target_link_libraries(new_listener_dialog_smoke PRIVATE toolbox_core)
+target_link_libraries(new_listener_dialog_smoke PRIVATE workbench_core)
 
 add_executable(listener_console_tab_smoke listener_console_tab_smoke.c)
-target_link_libraries(listener_console_tab_smoke PRIVATE toolbox_core)
+target_link_libraries(listener_console_tab_smoke PRIVATE workbench_core)
 
 add_executable(object_panel_smoke object_panel_smoke.c)
-target_link_libraries(object_panel_smoke PRIVATE toolbox_core)
+target_link_libraries(object_panel_smoke PRIVATE workbench_core)
 
 add_executable(connection_terminal_smoke connection_terminal_smoke.c)
-target_link_libraries(connection_terminal_smoke PRIVATE toolbox_core)
+target_link_libraries(connection_terminal_smoke PRIVATE workbench_core)
 
 add_executable(context_menu_smoke context_menu_smoke.c)
-target_link_libraries(context_menu_smoke PRIVATE toolbox_core)
+target_link_libraries(context_menu_smoke PRIVATE workbench_core)
 
 add_executable(http_listener_smoke http_listener_smoke.c)
-target_link_libraries(http_listener_smoke PRIVATE toolbox_core)
+target_link_libraries(http_listener_smoke PRIVATE workbench_core)
 
 add_executable(https_listener_smoke https_listener_smoke.c)
-target_link_libraries(https_listener_smoke PRIVATE toolbox_core)
+target_link_libraries(https_listener_smoke PRIVATE workbench_core)
 
 add_executable(workspace_root_test workspace_root_test.c)
-target_link_libraries(workspace_root_test PRIVATE toolbox_core)
+target_link_libraries(workspace_root_test PRIVATE workbench_core)
 
 add_executable(file_tree_test file_tree_test.c)
-target_link_libraries(file_tree_test PRIVATE toolbox_core)
+target_link_libraries(file_tree_test PRIVATE workbench_core)
 
 add_executable(explorer_sidebar_smoke explorer_sidebar_smoke.c)
-target_link_libraries(explorer_sidebar_smoke PRIVATE toolbox_core)
+target_link_libraries(explorer_sidebar_smoke PRIVATE workbench_core)
 
 add_executable(file_operations_test file_operations_test.c)
-target_link_libraries(file_operations_test PRIVATE toolbox_core)
+target_link_libraries(file_operations_test PRIVATE workbench_core)
 
 add_executable(explorer_operations_smoke explorer_operations_smoke.c)
-target_link_libraries(explorer_operations_smoke PRIVATE toolbox_core)
+target_link_libraries(explorer_operations_smoke PRIVATE workbench_core)
 
 add_executable(file_classify_test file_classify_test.c)
-target_link_libraries(file_classify_test PRIVATE toolbox_core)
+target_link_libraries(file_classify_test PRIVATE workbench_core)
 
 add_executable(editor_document_test editor_document_test.c)
-target_link_libraries(editor_document_test PRIVATE toolbox_core)
+target_link_libraries(editor_document_test PRIVATE workbench_core)
 
 add_executable(explorer_editor_smoke explorer_editor_smoke.c)
-target_link_libraries(explorer_editor_smoke PRIVATE toolbox_core)
+target_link_libraries(explorer_editor_smoke PRIVATE workbench_core)
 
 add_executable(editor_document_save_test editor_document_save_test.c)
-target_link_libraries(editor_document_save_test PRIVATE toolbox_core)
+target_link_libraries(editor_document_save_test PRIVATE workbench_core)
 
 add_executable(editor_save_smoke editor_save_smoke.c)
-target_link_libraries(editor_save_smoke PRIVATE toolbox_core)
+target_link_libraries(editor_save_smoke PRIVATE workbench_core)
 
 add_executable(editor_close_confirmation_smoke editor_close_confirmation_smoke.c)
-target_link_libraries(editor_close_confirmation_smoke PRIVATE toolbox_core)
+target_link_libraries(editor_close_confirmation_smoke PRIVATE workbench_core)
 
 add_executable(terminal_context_actions_smoke terminal_context_actions_smoke.c)
-target_link_libraries(terminal_context_actions_smoke PRIVATE toolbox_core)
+target_link_libraries(terminal_context_actions_smoke PRIVATE workbench_core)
 
 add_executable(terminal_run_command_smoke terminal_run_command_smoke.c)
-target_link_libraries(terminal_run_command_smoke PRIVATE toolbox_core)
+target_link_libraries(terminal_run_command_smoke PRIVATE workbench_core)
 
 add_executable(toolkit_interaction_smoke toolkit_interaction_smoke.c)
-target_link_libraries(toolkit_interaction_smoke PRIVATE toolbox_core)
+target_link_libraries(toolkit_interaction_smoke PRIVATE workbench_core)
 
 add_executable(file_watch_queue_test file_watch_queue_test.c)
-target_link_libraries(file_watch_queue_test PRIVATE toolbox_core)
+target_link_libraries(file_watch_queue_test PRIVATE workbench_core)
 
 add_executable(file_watcher_test file_watcher_test.c)
-target_link_libraries(file_watcher_test PRIVATE toolbox_core)
+target_link_libraries(file_watcher_test PRIVATE workbench_core)
 
 add_executable(file_watch_explorer_smoke file_watch_explorer_smoke.c)
-target_link_libraries(file_watch_explorer_smoke PRIVATE toolbox_core)
+target_link_libraries(file_watch_explorer_smoke PRIVATE workbench_core)
 
 add_executable(file_watch_conflict_smoke file_watch_conflict_smoke.c)
-target_link_libraries(file_watch_conflict_smoke PRIVATE toolbox_core)
+target_link_libraries(file_watch_conflict_smoke PRIVATE workbench_core)
 
 add_executable(explorer_clipboard_smoke explorer_clipboard_smoke.c)
-target_link_libraries(explorer_clipboard_smoke PRIVATE toolbox_core)
+target_link_libraries(explorer_clipboard_smoke PRIVATE workbench_core)
 
 add_executable(file_search_test file_search_test.c)
-target_link_libraries(file_search_test PRIVATE toolbox_core)
+target_link_libraries(file_search_test PRIVATE workbench_core)
 
 add_executable(explorer_search_smoke explorer_search_smoke.c)
-target_link_libraries(explorer_search_smoke PRIVATE toolbox_core)
+target_link_libraries(explorer_search_smoke PRIVATE workbench_core)
 
 add_executable(pty_worker_test pty_worker_test.c)
-target_link_libraries(pty_worker_test PRIVATE toolbox_core)
+target_link_libraries(pty_worker_test PRIVATE workbench_core)
 
 add_executable(line_accumulator_test line_accumulator_test.c)
-target_link_libraries(line_accumulator_test PRIVATE toolbox_core)
+target_link_libraries(line_accumulator_test PRIVATE workbench_core)
 
 add_executable(ansi_strip_test ansi_strip_test.c)
-target_link_libraries(ansi_strip_test PRIVATE toolbox_core)
+target_link_libraries(ansi_strip_test PRIVATE workbench_core)
 
 add_executable(database_terminal_capture_test database_terminal_capture_test.c)
-target_link_libraries(database_terminal_capture_test PRIVATE toolbox_core)
+target_link_libraries(database_terminal_capture_test PRIVATE workbench_core)
 
 add_executable(terminal_history_capture_test terminal_history_capture_test.c)
-target_link_libraries(terminal_history_capture_test PRIVATE toolbox_core)
+target_link_libraries(terminal_history_capture_test PRIVATE workbench_core)
 
 add_executable(database_export_clear_smoke database_export_clear_smoke.c)
-target_link_libraries(database_export_clear_smoke PRIVATE toolbox_core)
+target_link_libraries(database_export_clear_smoke PRIVATE workbench_core)
 
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)

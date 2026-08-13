@@ -318,11 +318,11 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     gtk_button_set_relief(GTK_BUTTON(collapse_all_button), GTK_RELIEF_NONE);
     gtk_button_set_relief(GTK_BUTTON(paste_button), GTK_RELIEF_NONE);
     gtk_widget_set_sensitive(paste_button, FALSE); /* enabled by explorer_set_clipboard() once Cut/Copy sets something */
-    g_object_set_data(G_OBJECT(new_file_button), "toolbox-explorer-new-file-button", new_file_button);
-    g_object_set_data(G_OBJECT(new_folder_button), "toolbox-explorer-new-folder-button", new_folder_button);
-    g_object_set_data(G_OBJECT(refresh_button), "toolbox-explorer-refresh-button", refresh_button);
-    g_object_set_data(G_OBJECT(collapse_all_button), "toolbox-explorer-collapse-all-button", collapse_all_button);
-    g_object_set_data(G_OBJECT(paste_button), "toolbox-explorer-paste-button", paste_button);
+    g_object_set_data(G_OBJECT(new_file_button), "workbench-explorer-new-file-button", new_file_button);
+    g_object_set_data(G_OBJECT(new_folder_button), "workbench-explorer-new-folder-button", new_folder_button);
+    g_object_set_data(G_OBJECT(refresh_button), "workbench-explorer-refresh-button", refresh_button);
+    g_object_set_data(G_OBJECT(collapse_all_button), "workbench-explorer-collapse-all-button", collapse_all_button);
+    g_object_set_data(G_OBJECT(paste_button), "workbench-explorer-paste-button", paste_button);
     gtk_box_pack_start(GTK_BOX(toolbar), new_file_button, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(toolbar), new_folder_button, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(toolbar), refresh_button, FALSE, FALSE, 0);
@@ -373,7 +373,7 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
 
     GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     g_object_unref(store); /* the tree view holds its own reference */
-    g_object_set_data(G_OBJECT(tree_view), "toolbox-explorer-tree", tree_view);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-explorer-tree", tree_view);
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tree_view), FALSE);
     backend->explorer_tree_view = tree_view;
 

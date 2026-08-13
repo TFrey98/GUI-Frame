@@ -157,24 +157,24 @@ void open_or_present_search_window(GtkBackend *backend) {
     GtkWidget *entry = gtk_entry_new();
     gtk_entry_set_placeholder_text(GTK_ENTRY(entry), "Search file and folder names\xE2\x80\xA6");
     gtk_widget_set_hexpand(entry, TRUE);
-    g_object_set_data(G_OBJECT(entry), "toolbox-search-entry", entry);
+    g_object_set_data(G_OBJECT(entry), "workbench-search-entry", entry);
     GtkWidget *match_case = gtk_check_button_new_with_label("Match Case");
-    g_object_set_data(G_OBJECT(match_case), "toolbox-search-match-case", match_case);
+    g_object_set_data(G_OBJECT(match_case), "workbench-search-match-case", match_case);
     GtkWidget *search_button = gtk_button_new_with_label("Search");
-    g_object_set_data(G_OBJECT(search_button), "toolbox-search-button", search_button);
+    g_object_set_data(G_OBJECT(search_button), "workbench-search-button", search_button);
     gtk_box_pack_start(GTK_BOX(search_row), entry, TRUE, TRUE, 0);
     gtk_box_pack_start(GTK_BOX(search_row), match_case, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(search_row), search_button, FALSE, FALSE, 0);
 
     GtkWidget *status_label = gtk_label_new("Type a query, then press Enter or click Search.");
     gtk_label_set_xalign(GTK_LABEL(status_label), 0.0);
-    g_object_set_data(G_OBJECT(status_label), "toolbox-search-status-label", status_label);
+    g_object_set_data(G_OBJECT(status_label), "workbench-search-status-label", status_label);
 
     GtkListStore *store = gtk_list_store_new(SEARCH_COL_COUNT, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING,
                                               G_TYPE_BOOLEAN);
     GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     g_object_unref(store); /* the tree view holds its own reference */
-    g_object_set_data(G_OBJECT(tree_view), "toolbox-search-results-tree", tree_view);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-search-results-tree", tree_view);
     gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tree_view), TRUE);
 
     GtkTreeViewColumn *path_col = gtk_tree_view_column_new_with_attributes(
@@ -194,7 +194,7 @@ void open_or_present_search_window(GtkBackend *backend) {
     ctx->match_case = match_case;
     ctx->status_label = status_label;
     ctx->store = store;
-    g_object_set_data_full(G_OBJECT(window), "toolbox-search-context", ctx, g_free);
+    g_object_set_data_full(G_OBJECT(window), "workbench-search-context", ctx, g_free);
     g_signal_connect(entry, "activate", G_CALLBACK(on_search_entry_activate), ctx);
     g_signal_connect(search_button, "clicked", G_CALLBACK(on_search_button_clicked), ctx);
 

@@ -166,7 +166,7 @@ int terminal_start_shell(Terminal *terminal, TerminalSession *session) {
         (session->working_directory && *session->working_directory) ? session->working_directory : NULL;
 
     if (pty_worker_start(&terminal->pty_worker, session->shell_path, argv, NULL, working_directory) != 0) {
-        g_printerr("toolbox: could not start a shell for session '%s'\n", session->title);
+        g_printerr("workbench: could not start a shell for session '%s'\n", session->title);
         return -1;
     }
 
@@ -225,7 +225,7 @@ int terminal_run_command(Terminal *terminal, TerminalSession *session, const Ter
     }
 
     if (rc != 0) {
-        g_printerr("toolbox: could not run command for session '%s'\n", session->title);
+        g_printerr("workbench: could not run command for session '%s'\n", session->title);
         return -1;
     }
 

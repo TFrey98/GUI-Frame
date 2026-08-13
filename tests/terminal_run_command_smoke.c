@@ -121,7 +121,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -156,7 +156,7 @@ static GtkWidget *find_run_dialog(void) {
     GtkWidget *found = NULL;
     GList *toplevels = gtk_window_list_toplevels();
     for (GList *l = toplevels; l; l = l->next) {
-        if (g_object_get_data(G_OBJECT(l->data), "toolbox-run-with-arguments-dialog")) {
+        if (g_object_get_data(G_OBJECT(l->data), "workbench-run-with-arguments-dialog")) {
             found = GTK_WIDGET(l->data);
             break;
         }
@@ -170,7 +170,7 @@ static int count_terminal_pages(GtkWidget *notebook) {
     int count = 0;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_TERMINAL) {
             count++;
         }
@@ -232,7 +232,7 @@ static gboolean drive(gpointer user_data) {
         if (!window) {
             return G_SOURCE_REMOVE;
         }
-        GtkWidget *tree_view = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree");
+        GtkWidget *tree_view = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree");
         GPtrArray *notebooks = g_ptr_array_new();
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
         GtkWidget *notebook = notebooks->len > 0 ? GTK_WIDGET(g_ptr_array_index(notebooks, 0)) : NULL;
@@ -244,9 +244,9 @@ static gboolean drive(gpointer user_data) {
                     break;
                 }
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter toolbox_iter;
-                if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) ||
-                    !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+                GtkTreeIter workbench_iter;
+                if (!gtk_tree_model_get_iter_first(model, &workbench_iter) ||
+                    !row_name_is(model, &workbench_iter, "TOOLBOX")) {
                     break;
                 }
                 test->step = STEP_SUBMIT_NEW_TERMINAL_RUN;
@@ -256,9 +256,9 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_SUBMIT_NEW_TERMINAL_RUN: {
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter toolbox_iter, script_iter;
-                gtk_tree_model_get_iter_first(model, &toolbox_iter);
-                if (!find_child_by_name(model, &toolbox_iter, "runner.sh", &script_iter)) {
+                GtkTreeIter workbench_iter, script_iter;
+                gtk_tree_model_get_iter_first(model, &workbench_iter);
+                if (!find_child_by_name(model, &workbench_iter, "runner.sh", &script_iter)) {
                     fail(test, "'runner.sh' row not found under TOOLBOX");
                     return G_SOURCE_REMOVE;
                 }
@@ -272,8 +272,8 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "Run with Arguments dialog did not appear");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *args_entry = find_by_data_key(dialog, "toolbox-run-arguments-entry");
-                GtkWidget *env_entry = find_by_data_key(dialog, "toolbox-run-env-entry");
+                GtkWidget *args_entry = find_by_data_key(dialog, "workbench-run-arguments-entry");
+                GtkWidget *env_entry = find_by_data_key(dialog, "workbench-run-env-entry");
                 if (!args_entry || !env_entry) {
                     fail(test, "Run with Arguments dialog fields not found");
                     return G_SOURCE_REMOVE;
@@ -333,9 +333,9 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_VALIDATE_REJECTION: {
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter toolbox_iter, script_iter;
-                gtk_tree_model_get_iter_first(model, &toolbox_iter);
-                find_child_by_name(model, &toolbox_iter, "runner.sh", &script_iter);
+                GtkTreeIter workbench_iter, script_iter;
+                gtk_tree_model_get_iter_first(model, &workbench_iter);
+                find_child_by_name(model, &workbench_iter, "runner.sh", &script_iter);
                 GtkWidget *menu = open_menu_for_row(tree_view, model, &script_iter);
                 if (!menu || !click_menu_item(menu, "Run with Arguments\xE2\x80\xA6")) {
                     fail(test, "could not click 'Run with Arguments...' on runner.sh (rejection check)");
@@ -346,7 +346,7 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "Run with Arguments dialog did not appear (rejection check)");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *wd_entry = find_by_data_key(dialog, "toolbox-run-working-directory-entry");
+                GtkWidget *wd_entry = find_by_data_key(dialog, "workbench-run-working-directory-entry");
                 gtk_entry_set_text(GTK_ENTRY(wd_entry), "../escape");
                 int terminals_before = count_terminal_pages(notebook);
                 gtk_dialog_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
@@ -381,9 +381,9 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_SUBMIT_REUSE_RUN: {
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter toolbox_iter, script_iter;
-                gtk_tree_model_get_iter_first(model, &toolbox_iter);
-                find_child_by_name(model, &toolbox_iter, "runner.sh", &script_iter);
+                GtkTreeIter workbench_iter, script_iter;
+                gtk_tree_model_get_iter_first(model, &workbench_iter);
+                find_child_by_name(model, &workbench_iter, "runner.sh", &script_iter);
                 test->terminals_before_reuse = count_terminal_pages(notebook);
 
                 /* "Reuse" targets whichever terminal tab is currently
@@ -396,7 +396,7 @@ static gboolean drive(gpointer user_data) {
                 int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
                 for (int i = 0; i < n; i++) {
                     GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-                    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+                    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
                     if (tab && tab->type == TAB_TYPE_TERMINAL && strcmp(tab->title, "Terminal 1") == 0) {
                         gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook), i);
                         break;
@@ -413,9 +413,9 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "Run with Arguments dialog did not appear (reuse check)");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *args_entry = find_by_data_key(dialog, "toolbox-run-arguments-entry");
-                GtkWidget *env_entry = find_by_data_key(dialog, "toolbox-run-env-entry");
-                GtkWidget *create_new_check = find_by_data_key(dialog, "toolbox-run-create-new-terminal-check");
+                GtkWidget *args_entry = find_by_data_key(dialog, "workbench-run-arguments-entry");
+                GtkWidget *env_entry = find_by_data_key(dialog, "workbench-run-env-entry");
+                GtkWidget *create_new_check = find_by_data_key(dialog, "workbench-run-create-new-terminal-check");
                 char args_text[512];
                 snprintf(args_text, sizeof(args_text), "%s reused", test->sentinel_reuse);
                 gtk_entry_set_text(GTK_ENTRY(args_entry), args_text);
@@ -545,13 +545,13 @@ int main(void) {
     clear_workspace_root(&test.root);
     write_fixtures(&test.root);
 
-    /* toolbox.db is shared across every App-backed test in this suite -
+    /* workbench.db is shared across every App-backed test in this suite -
      * start from a clean slate so the capture assertions below can't pass
      * by matching a leftover row from an earlier test run. */
     database_clear_terminal_events();
 
-    snprintf(test.sentinel_new, sizeof(test.sentinel_new), "/tmp/toolbox_run_cmd_smoke_%d_new", (int)getpid());
-    snprintf(test.sentinel_reuse, sizeof(test.sentinel_reuse), "/tmp/toolbox_run_cmd_smoke_%d_reuse", (int)getpid());
+    snprintf(test.sentinel_new, sizeof(test.sentinel_new), "/tmp/workbench_run_cmd_smoke_%d_new", (int)getpid());
+    snprintf(test.sentinel_reuse, sizeof(test.sentinel_reuse), "/tmp/workbench_run_cmd_smoke_%d_reuse", (int)getpid());
     unlink(test.sentinel_new);
     unlink(test.sentinel_reuse);
 

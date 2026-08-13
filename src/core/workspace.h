@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_WORKSPACE_H
-#define TOOLBOX_WORKSPACE_H
+#ifndef WORKBENCH_WORKSPACE_H
+#define WORKBENCH_WORKSPACE_H
 
 #include "tab.h"
 
@@ -30,4 +30,4 @@ Tab *workspace_find_tab(const Workspace *workspace, uint64_t tab_id);
 int workspace_tab_count(const Workspace *workspace);
 Tab *workspace_get_tab_at(const Workspace *workspace, int index);
 
-#endif /* TOOLBOX_WORKSPACE_H */
+#endif /* WORKBENCH_WORKSPACE_H */

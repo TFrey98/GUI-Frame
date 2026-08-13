@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_ANSI_STRIP_H
-#define TOOLBOX_ANSI_STRIP_H
+#ifndef WORKBENCH_ANSI_STRIP_H
+#define WORKBENCH_ANSI_STRIP_H
 
 #include <stddef.h>
 
@@ -36,4 +36,4 @@ void ansi_stripper_reset(AnsiStripper *stripper);
  * completed by combining them with the start of the next feed() call). */
 void ansi_stripper_feed(AnsiStripper *stripper, const void *data, size_t len, unsigned char **out, size_t *out_len);
 
-#endif /* TOOLBOX_ANSI_STRIP_H */
+#endif /* WORKBENCH_ANSI_STRIP_H */

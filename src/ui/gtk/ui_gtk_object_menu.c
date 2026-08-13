@@ -179,8 +179,8 @@ void popup_object_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTre
     ctx->depth = depth;
 
     GtkWidget *menu = gtk_menu_new();
-    g_object_set_data_full(G_OBJECT(menu), "toolbox-menu-context", ctx, g_free);
-    g_object_set_data(G_OBJECT(tree_view), "toolbox-object-context-menu", menu);
+    g_object_set_data_full(G_OBJECT(menu), "workbench-menu-context", ctx, g_free);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-object-context-menu", menu);
 
     add_object_menu_item(menu, "Start", object_can_start(&obj), G_CALLBACK(on_menu_start), ctx);
     add_object_menu_item(menu, "Stop", object_can_stop(&obj), G_CALLBACK(on_menu_stop), ctx);

@@ -57,7 +57,7 @@ int main(void) {
         return 1;
     }
     char db_path[512];
-    snprintf(db_path, sizeof(db_path), "%s/toolbox.db", dir);
+    snprintf(db_path, sizeof(db_path), "%s/workbench.db", dir);
 
     if (database_open(db_path) != 0 || database_init_schema() != 0) {
         fprintf(stderr, "%s: database setup failed\n", TEST_NAME);

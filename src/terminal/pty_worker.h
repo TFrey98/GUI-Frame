@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_PTY_WORKER_H
-#define TOOLBOX_PTY_WORKER_H
+#ifndef WORKBENCH_PTY_WORKER_H
+#define WORKBENCH_PTY_WORKER_H
 
 #include <pthread.h>
 #include <stdatomic.h>
@@ -66,4 +66,4 @@ void pty_worker_signal_stop(PtyWorker *worker);
  * (natural exit) or after pty_worker_signal_stop() (forced stop). */
 void pty_worker_join(PtyWorker *worker);
 
-#endif /* TOOLBOX_PTY_WORKER_H */
+#endif /* WORKBENCH_PTY_WORKER_H */

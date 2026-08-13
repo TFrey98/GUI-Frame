@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_CONNECTION_H
-#define TOOLBOX_CONNECTION_H
+#ifndef WORKBENCH_CONNECTION_H
+#define WORKBENCH_CONNECTION_H
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -45,4 +45,4 @@ typedef struct Connection {
     bool capturing_output;
 } Connection;
 
-#endif /* TOOLBOX_CONNECTION_H */
+#endif /* WORKBENCH_CONNECTION_H */

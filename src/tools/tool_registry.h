@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TOOL_REGISTRY_H
-#define TOOLBOX_TOOL_REGISTRY_H
+#ifndef WORKBENCH_TOOL_REGISTRY_H
+#define WORKBENCH_TOOL_REGISTRY_H
 
 typedef struct ToolDescriptor {
     const char *id;   /* stable machine-readable key */
@@ -19,4 +19,4 @@ const ToolDescriptor *tool_registry_find(const char *id);
 int tool_registry_count(void);
 const ToolDescriptor *tool_registry_get(int index);
 
-#endif /* TOOLBOX_TOOL_REGISTRY_H */
+#endif /* WORKBENCH_TOOL_REGISTRY_H */

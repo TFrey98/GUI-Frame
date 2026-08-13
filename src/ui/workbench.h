@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_WORKBENCH_H
-#define TOOLBOX_WORKBENCH_H
+#ifndef WORKBENCH_WORKBENCH_H
+#define WORKBENCH_WORKBENCH_H
 
 #include "../core/workspace.h"
 #include "../files/workspace_root.h"
@@ -22,4 +22,4 @@ ListenerSystem *workbench_get_listener_system(const Workbench *workbench);
 const WorkspaceRoot *workbench_get_file_workspace_root(const Workbench *workbench);
 const WorkspaceRoot *workbench_get_toolkit_workspace_root(const Workbench *workbench);
 
-#endif /* TOOLBOX_WORKBENCH_H */
+#endif /* WORKBENCH_WORKBENCH_H */

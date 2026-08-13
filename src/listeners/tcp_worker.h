@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TCP_WORKER_H
-#define TOOLBOX_TCP_WORKER_H
+#ifndef WORKBENCH_TCP_WORKER_H
+#define WORKBENCH_TCP_WORKER_H
 
 #include <pthread.h>
 #include <stdint.h>
@@ -43,4 +43,4 @@ void tcp_worker_signal_stop(TcpWorker *worker);
  * returns quickly. */
 void tcp_worker_join(TcpWorker *worker);
 
-#endif /* TOOLBOX_TCP_WORKER_H */
+#endif /* WORKBENCH_TCP_WORKER_H */

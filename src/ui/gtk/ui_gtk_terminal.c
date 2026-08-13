@@ -51,7 +51,7 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
     if (!pending) {
         session = terminal_session_create(tab->id, tab->title);
         if (terminal_start_shell(view, session) != 0) {
-            g_printerr("toolbox: could not start a shell for tab '%s'\n", tab->title);
+            g_printerr("workbench: could not start a shell for tab '%s'\n", tab->title);
         }
     } else {
         session = pending->session;
@@ -59,10 +59,10 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
             size_t env_count = pending->env_overrides ? g_strv_length(pending->env_overrides) : 0;
             if (terminal_run_command(view, session, pending->launch_request, pending->env_overrides, env_count) !=
                 0) {
-                g_printerr("toolbox: could not run command for tab '%s'\n", tab->title);
+                g_printerr("workbench: could not run command for tab '%s'\n", tab->title);
             }
         } else if (terminal_start_shell(view, session) != 0) {
-            g_printerr("toolbox: could not start a shell for tab '%s'\n", tab->title);
+            g_printerr("workbench: could not start a shell for tab '%s'\n", tab->title);
         }
         pending_terminal_spawn_destroy(pending);
     }
@@ -75,8 +75,8 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
 
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
-    g_object_set_data(G_OBJECT(scroller), "toolbox-view", view);
-    g_object_set_data(G_OBJECT(scroller), "toolbox-backend", backend);
+    g_object_set_data(G_OBJECT(scroller), "workbench-view", view);
+    g_object_set_data(G_OBJECT(scroller), "workbench-backend", backend);
     return scroller;
 }
 
@@ -163,7 +163,7 @@ static GtkWidget *active_terminal_page(GtkBackend *backend) {
         return NULL;
     }
     GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), idx);
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     return (tab && tab->type == TAB_TYPE_TERMINAL) ? page : NULL;
 }
 
@@ -178,7 +178,7 @@ static GtkWidget *active_terminal_page(GtkBackend *backend) {
 void run_command_in_active_terminal(GtkBackend *backend, const TerminalLaunchRequest *request, char **env_overrides,
                                      size_t env_override_count) {
     GtkWidget *page = active_terminal_page(backend);
-    Terminal *view = page ? g_object_get_data(G_OBJECT(page), "toolbox-view") : NULL;
+    Terminal *view = page ? g_object_get_data(G_OBJECT(page), "workbench-view") : NULL;
     if (!view) {
         show_explorer_error(backend, "No terminal tab is active to run this command in.");
         return;

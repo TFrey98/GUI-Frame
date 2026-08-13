@@ -70,7 +70,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -88,7 +88,7 @@ static GtkWidget *find_notebook(GtkWidget *window) {
 }
 
 /* Finds the (at most one, in this test) TAB_TYPE_LISTENER page - each
- * page carries its owning Tab* as "toolbox-tab", the same convention
+ * page carries its owning Tab* as "workbench-tab", the same convention
  * every page in ui_gtk.c already uses. */
 static GtkWidget *find_listener_page(GtkWidget *notebook) {
     if (!notebook) {
@@ -97,7 +97,7 @@ static GtkWidget *find_listener_page(GtkWidget *notebook) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_LISTENER) {
             return page;
         }
@@ -115,7 +115,7 @@ static GtkWidget *listener_page_widget(GtkWidget *page, const char *key) {
 }
 
 static gboolean state_label_contains(GtkWidget *page, const char *needle) {
-    GtkWidget *label = listener_page_widget(page, "toolbox-listener-state-label");
+    GtkWidget *label = listener_page_widget(page, "workbench-listener-state-label");
     if (!label) {
         return FALSE;
     }
@@ -149,7 +149,7 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_OPEN_DIALOG: {
-                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
                 if (!new_button) {
                     /* The window may not have finished its initial
                      * build on the very first tick - wait rather than
@@ -163,8 +163,8 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "New Listener dialog did not appear");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-                GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
+                GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+                GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
                 if (!name_entry || !callback_entry) {
                     fail(test, "could not find dialog fields");
                     return G_SOURCE_REMOVE;
@@ -193,7 +193,7 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_CLICK_STOP: {
                 GtkWidget *page = find_listener_page(notebook);
-                GtkWidget *stop_button = page ? listener_page_widget(page, "toolbox-listener-stop-button") : NULL;
+                GtkWidget *stop_button = page ? listener_page_widget(page, "workbench-listener-stop-button") : NULL;
                 if (!stop_button) {
                     fail(test, "could not find the Stop button");
                     return G_SOURCE_REMOVE;
@@ -207,8 +207,8 @@ static gboolean drive(gpointer user_data) {
             case STEP_WAIT_STOPPED: {
                 GtkWidget *page = find_listener_page(notebook);
                 if (page && state_label_contains(page, "STOPPED")) {
-                    GtkWidget *stop_button = listener_page_widget(page, "toolbox-listener-stop-button");
-                    GtkWidget *restart_button = listener_page_widget(page, "toolbox-listener-restart-button");
+                    GtkWidget *stop_button = listener_page_widget(page, "workbench-listener-stop-button");
+                    GtkWidget *restart_button = listener_page_widget(page, "workbench-listener-restart-button");
                     if (gtk_widget_get_sensitive(stop_button)) {
                         fail(test, "expected Stop to be insensitive once STOPPED");
                         return G_SOURCE_REMOVE;
@@ -226,7 +226,7 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_CLICK_RESTART_FROM_STOPPED: {
                 GtkWidget *page = find_listener_page(notebook);
-                GtkWidget *restart_button = page ? listener_page_widget(page, "toolbox-listener-restart-button") : NULL;
+                GtkWidget *restart_button = page ? listener_page_widget(page, "workbench-listener-restart-button") : NULL;
                 if (!restart_button) {
                     fail(test, "could not find the Restart button");
                     return G_SOURCE_REMOVE;
@@ -250,7 +250,7 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_CLICK_RESTART_FROM_RUNNING: {
                 GtkWidget *page = find_listener_page(notebook);
-                GtkWidget *restart_button = page ? listener_page_widget(page, "toolbox-listener-restart-button") : NULL;
+                GtkWidget *restart_button = page ? listener_page_widget(page, "workbench-listener-restart-button") : NULL;
                 if (!restart_button) {
                     fail(test, "could not find the Restart button (second time)");
                     return G_SOURCE_REMOVE;
@@ -302,7 +302,7 @@ static gboolean drive(gpointer user_data) {
                 }
                 /* The core invariant: closing the tab must not have
                  * touched the listener itself. */
-                GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "toolbox-listener-status-label");
+                GtkWidget *status = find_by_data_key(GTK_WIDGET(window), "workbench-listener-status-label");
                 const char *text = status ? gtk_label_get_text(GTK_LABEL(status)) : NULL;
                 if (!text || strcmp(text, "TabSmoke: RUNNING") != 0) {
                     fail(test, "expected the listener to still show RUNNING after its tab was closed");

@@ -41,7 +41,7 @@ static void on_close_operation_listener_response(GtkDialog *dialog, gint respons
     gtk_widget_destroy(GTK_WIDGET(dialog));
 
     if (response_id == GTK_RESPONSE_YES) { /* "Stop Listener" */
-        ListenerPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-listener-page-context");
+        ListenerPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-listener-page-context");
         listener_manager_stop(ctx->backend->listener_system->listener_manager, ctx->listener_id);
         close_tab_page(page);
         close_operation_continue(op);
@@ -86,10 +86,10 @@ static void close_operation_advance(CloseOperation *op) {
     }
 
     GtkWidget *page = g_ptr_array_index(op->pages, op->index);
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
 
     if (tab->type == TAB_TYPE_LISTENER) {
-        ListenerPageContext *ctx = g_object_get_data(G_OBJECT(page), "toolbox-listener-page-context");
+        ListenerPageContext *ctx = g_object_get_data(G_OBJECT(page), "workbench-listener-page-context");
         const Listener *listener =
             object_registry_get_listener(ctx->backend->listener_system->registry, ctx->listener_id);
         if (listener && listener->runtime.state == LISTENER_STATE_RUNNING) {

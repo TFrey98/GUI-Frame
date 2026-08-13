@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_TERMINAL_SESSION_H
-#define TOOLBOX_TERMINAL_SESSION_H
+#ifndef WORKBENCH_TERMINAL_SESSION_H
+#define WORKBENCH_TERMINAL_SESSION_H
 
 #include <stdint.h>
 
@@ -35,4 +35,4 @@ void terminal_session_set_working_directory(TerminalSession *session, const char
 void terminal_session_mark_running(TerminalSession *session);
 void terminal_session_mark_exited(TerminalSession *session, int exit_code);
 
-#endif /* TOOLBOX_TERMINAL_SESSION_H */
+#endif /* WORKBENCH_TERMINAL_SESSION_H */

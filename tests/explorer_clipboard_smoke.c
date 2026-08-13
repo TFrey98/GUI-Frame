@@ -107,7 +107,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -157,7 +157,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -182,7 +182,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GtkWidget *notebook = NULL;
     if (window) {
         GPtrArray *notebooks = g_ptr_array_new();
@@ -206,18 +206,18 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter, toolkit_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter, toolkit_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
-    toolkit_iter = toolbox_iter;
+    toolkit_iter = workbench_iter;
     if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
         fail(test, "expected Toolkit as the second top-level row");
         goto done;
     }
 
-    GtkWidget *paste_button = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-paste-button");
+    GtkWidget *paste_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-paste-button");
     if (!paste_button) {
         fail(test, "Paste toolbar button not found");
         goto done;
@@ -229,7 +229,7 @@ static gboolean drive(gpointer user_data) {
 
     /* Cut/Copy are never offered on the permanent TOOLBOX root; Paste is
      * (it's a directory). */
-    GtkWidget *menu = open_menu_for_row(tree_view, model, &toolbox_iter);
+    GtkWidget *menu = open_menu_for_row(tree_view, model, &workbench_iter);
     if (!menu) {
         fail(test, "TOOLBOX root context menu did not appear");
         goto done;
@@ -246,7 +246,7 @@ static gboolean drive(gpointer user_data) {
 
     /* A plain file's context menu offers Cut/Copy, never Paste. */
     GtkTreeIter copysrc_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "copysrc.txt", &copysrc_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "copysrc.txt", &copysrc_iter)) {
         fail(test, "'copysrc.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -300,7 +300,7 @@ static gboolean drive(gpointer user_data) {
      * it into destfolder, and confirm the open tab keeps tracking it at
      * its new path. */
     GtkTreeIter cutsrc_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "cutsrc.txt", &cutsrc_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "cutsrc.txt", &cutsrc_iter)) {
         fail(test, "'cutsrc.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -321,7 +321,7 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeIter destfolder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "destfolder", &destfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "destfolder", &destfolder_iter)) {
         fail(test, "'destfolder' row not found under TOOLBOX");
         goto done;
     }
@@ -351,7 +351,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    Tab *cutsrc_tab = g_object_get_data(G_OBJECT(cutsrc_page), "toolbox-tab");
+    Tab *cutsrc_tab = g_object_get_data(G_OBJECT(cutsrc_page), "workbench-tab");
     EditorDocument *cutsrc_doc = cutsrc_tab->backend_data;
     if (strcmp(cutsrc_doc->relative_path, "destfolder/cutsrc.txt") != 0) {
         fail(test, "the open editor tab for a cut-and-pasted file should keep tracking its new path");
@@ -371,7 +371,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    if (!find_child_by_name(model, &toolbox_iter, "destfolder", &destfolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "destfolder", &destfolder_iter)) {
         fail(test, "'destfolder' row missing before the cross-root paste");
         goto done;
     }
@@ -404,7 +404,7 @@ static gboolean drive(gpointer user_data) {
     /* Pasting a folder into its own subfolder is rejected with an error,
      * not a hang or a corrupted recursive copy. */
     GtkTreeIter selffolder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "selffolder", &selffolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "selffolder", &selffolder_iter)) {
         fail(test, "'selffolder' row not found under TOOLBOX");
         goto done;
     }

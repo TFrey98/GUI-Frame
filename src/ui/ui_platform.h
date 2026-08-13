@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_PLATFORM_H
-#define TOOLBOX_UI_PLATFORM_H
+#ifndef WORKBENCH_UI_PLATFORM_H
+#define WORKBENCH_UI_PLATFORM_H
 
 /* Forward declaration, not #include "workbench.h" - would be circular,
  * since workbench.h itself includes this header. Both files declaring
@@ -16,4 +16,4 @@ void *platform_ui_create(Workbench *workbench);
 int platform_ui_run(void *backend, int argc, char **argv);
 void platform_ui_destroy(void *backend);
 
-#endif /* TOOLBOX_UI_PLATFORM_H */
+#endif /* WORKBENCH_UI_PLATFORM_H */

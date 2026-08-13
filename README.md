@@ -1,6 +1,6 @@
-# toolbox
+# workbench
 
-A GTK3 desktop toolbox for running and observing network listeners and
+A GTK3 desktop workbench for running and observing network listeners and
 local terminals side by side: a tabbed workspace with an embedded shell
 terminal, reverse-TCP/HTTP/HTTPS listeners with live per-connection
 terminal views, a sandboxed file explorer and text editor, and a local
@@ -18,7 +18,7 @@ SQLite database that captures terminal activity for later export.
   for capture, not just rendered.
 - **Terminal capture** — every terminal (local and connection) records
   the final submitted line of each command (not individual keystrokes)
-  and the response that follows it into `toolbox.db`.
+  and the response that follows it into `workbench.db`.
 - **File explorer & editor** — a sandboxed workspace root (`files/`,
   created next to the built binary) with create/rename/move/delete,
   drag-and-drop, live filesystem-change watching, and a built-in text
@@ -33,7 +33,7 @@ SQLite database that captures terminal activity for later export.
 ## Layout
 
 ```
-toolbox/
+workbench/
 ├── CMakeLists.txt
 ├── src/
 │   ├── main.c            # Entry point
@@ -67,7 +67,7 @@ for HTTPS listeners).
 ```sh
 cmake -B build -S .
 cmake --build build
-./build/toolbox
+./build/workbench
 ```
 
 ## Testing
@@ -79,7 +79,7 @@ ctest --test-dir build
 
 ## Running on Windows (Beta)
 
-toolbox is a GTK3 + VTE Linux application and is not natively portable to
+workbench is a GTK3 + VTE Linux application and is not natively portable to
 Windows — the terminal widget (VTE), pty handling, and file-change
 watching are all POSIX/Linux-specific. The supported way to run it on
 Windows is under **WSL2 with WSLg**, which runs Linux GUI apps directly
@@ -112,7 +112,7 @@ on the Windows desktop with no code changes required.
    ```sh
    cmake -B build -S .
    cmake --build build
-   ./build/toolbox
+   ./build/workbench
    ```
 
 The window will appear on the Windows desktop via WSLg automatically —

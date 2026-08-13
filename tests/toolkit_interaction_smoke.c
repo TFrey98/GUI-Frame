@@ -151,7 +151,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -190,7 +190,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -203,7 +203,7 @@ static int count_pages_of_type(GtkWidget *notebook, TabType type) {
     int count = 0;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == type) {
             count++;
         }
@@ -216,7 +216,7 @@ static GtkWidget *newest_page_of_type(GtkWidget *notebook, TabType type) {
     GtkWidget *newest = NULL;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == type) {
             newest = page;
         }
@@ -225,7 +225,7 @@ static GtkWidget *newest_page_of_type(GtkWidget *notebook, TabType type) {
 }
 
 static gchar *editor_buffer_text(GtkWidget *page) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(view));
     GtkTextIter start, end;
     gtk_text_buffer_get_bounds(buffer, &start, &end);
@@ -258,7 +258,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GPtrArray *notebooks = g_ptr_array_new();
     if (window) {
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
@@ -279,12 +279,12 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter, toolkit_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter, toolkit_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
-    toolkit_iter = toolbox_iter;
+    toolkit_iter = workbench_iter;
     if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
         fail(test, "expected Toolkit as the second top-level row");
         goto done;
@@ -454,7 +454,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     GtkWidget *toolkit_terminal_page = newest_page_of_type(notebook, TAB_TYPE_TERMINAL);
-    Tab *toolkit_terminal_tab = g_object_get_data(G_OBJECT(toolkit_terminal_page), "toolbox-tab");
+    Tab *toolkit_terminal_tab = g_object_get_data(G_OBJECT(toolkit_terminal_page), "workbench-tab");
     TerminalSession *toolkit_session = toolkit_terminal_tab->backend_data;
     if (strcmp(toolkit_session->working_directory, test->toolkit_root.canonical_path) != 0) {
         fail(test, "the new terminal's working directory should be toolkit/'s real path");
@@ -485,7 +485,7 @@ static gboolean drive(gpointer user_data) {
      * the same relative path stay genuinely independent tabs - proving
      * find_file_tab()'s root-aware matching. */
     GtkTreeIter files_samename_iter, toolkit_samename_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "samename.txt", &files_samename_iter) ||
+    if (!find_child_by_name(model, &workbench_iter, "samename.txt", &files_samename_iter) ||
         !find_child_by_name(model, &toolkit_iter, "samename.txt", &toolkit_samename_iter)) {
         fail(test, "'samename.txt' row not found under both TOOLBOX and Toolkit");
         goto done;
@@ -508,7 +508,7 @@ static gboolean drive(gpointer user_data) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (!tab || tab->type != TAB_TYPE_EDITOR || strcmp(tab->title, "samename.txt") != 0) {
             continue;
         }

@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_EXPLORER_INTERNAL_H
-#define TOOLBOX_UI_GTK_EXPLORER_INTERNAL_H
+#ifndef WORKBENCH_UI_GTK_EXPLORER_INTERNAL_H
+#define WORKBENCH_UI_GTK_EXPLORER_INTERNAL_H
 
 /*
  * Declarations shared across the explorer sidebar feature: tree-store
@@ -141,4 +141,4 @@ gboolean on_explorer_popup_menu(GtkWidget *tree_view, gpointer user_data);
  * dialog module rather than the menu module. */
 void on_explorer_menu_properties(GtkMenuItem *item, gpointer user_data);
 
-#endif /* TOOLBOX_UI_GTK_EXPLORER_INTERNAL_H */
+#endif /* WORKBENCH_UI_GTK_EXPLORER_INTERNAL_H */

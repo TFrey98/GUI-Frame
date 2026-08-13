@@ -36,7 +36,7 @@ App *app_create(int argc, char **argv) {
     /* A failed open just means app->db_open stays false; the rest of the
      * app is expected to run fine with persistence unavailable, so this
      * isn't treated as a fatal error. */
-    app->db_open = (database_open("toolbox.db") == 0);
+    app->db_open = (database_open("workbench.db") == 0);
     if (app->db_open) {
         database_init_schema();
     }

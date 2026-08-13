@@ -109,7 +109,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -127,7 +127,7 @@ static GtkWidget *find_notebook(GtkWidget *window) {
 }
 
 static GtkWidget *object_panel_tree(GtkWidget *window) {
-    return find_by_data_key(window, "toolbox-object-panel-tree");
+    return find_by_data_key(window, "workbench-object-panel-tree");
 }
 
 static gboolean find_listener_row(GtkTreeModel *model, GtkTreeIter *out_iter) {
@@ -181,7 +181,7 @@ static int connection_pages(GtkWidget *notebook, GtkWidget **out, int max_out) {
     int count = 0;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_CONNECTION_TERMINAL) {
             if (out && count < max_out) {
                 out[count] = page;
@@ -265,7 +265,7 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_OPEN_DIALOG: {
-                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
                 if (!new_button) {
                     break; /* window may not have finished its initial build yet */
                 }
@@ -276,8 +276,8 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "New Listener dialog did not appear");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-                GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
+                GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+                GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
                 if (!name_entry || !callback_entry) {
                     fail(test, "could not find dialog fields");
                     return G_SOURCE_REMOVE;
@@ -344,8 +344,8 @@ static gboolean drive(gpointer user_data) {
             case STEP_WAIT_PAGE_CONNECTED: {
                 GtkWidget *pages[4];
                 int n = connection_pages(notebook, pages, 4);
-                if (n == 1 && label_text_is(pages[0], "toolbox-connection-state-label", "State: CONNECTED") &&
-                    label_text_is(pages[0], "toolbox-connection-control-label", "You have control")) {
+                if (n == 1 && label_text_is(pages[0], "workbench-connection-state-label", "State: CONNECTED") &&
+                    label_text_is(pages[0], "workbench-connection-control-label", "You have control")) {
                     test->step = STEP_SEND_FIRST_DATA;
                     test->step_elapsed_ms = 0;
                     continue;
@@ -426,7 +426,7 @@ static gboolean drive(gpointer user_data) {
             case STEP_WAIT_REOPENED_PAGE: {
                 GtkWidget *pages[4];
                 int n = connection_pages(notebook, pages, 4);
-                if (n == 1 && label_text_is(pages[0], "toolbox-connection-state-label", "State: CONNECTED")) {
+                if (n == 1 && label_text_is(pages[0], "workbench-connection-state-label", "State: CONNECTED")) {
                     test->step = STEP_SEND_SECOND_DATA;
                     test->step_elapsed_ms = 0;
                     continue;
@@ -461,7 +461,7 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "expected exactly one connection-terminal page before opening another");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *open_another = g_object_get_data(G_OBJECT(pages[0]), "toolbox-connection-open-another-button");
+                GtkWidget *open_another = g_object_get_data(G_OBJECT(pages[0]), "workbench-connection-open-another-button");
                 if (!open_another) {
                     fail(test, "could not find the Open Another View button");
                     return G_SOURCE_REMOVE;
@@ -475,8 +475,8 @@ static gboolean drive(gpointer user_data) {
             case STEP_WAIT_TWO_PAGES: {
                 GtkWidget *pages[4];
                 int n = connection_pages(notebook, pages, 4);
-                if (n == 2 && label_text_is(pages[0], "toolbox-connection-control-label", "You have control") &&
-                    label_text_is(pages[1], "toolbox-connection-control-label", "Read-only")) {
+                if (n == 2 && label_text_is(pages[0], "workbench-connection-control-label", "You have control") &&
+                    label_text_is(pages[1], "workbench-connection-control-label", "Read-only")) {
                     test->step = STEP_TAKE_CONTROL_SECOND;
                     test->step_elapsed_ms = 0;
                     continue;
@@ -487,7 +487,7 @@ static gboolean drive(gpointer user_data) {
             case STEP_TAKE_CONTROL_SECOND: {
                 GtkWidget *pages[4];
                 connection_pages(notebook, pages, 4);
-                GtkWidget *take_control = g_object_get_data(G_OBJECT(pages[1]), "toolbox-connection-take-control-button");
+                GtkWidget *take_control = g_object_get_data(G_OBJECT(pages[1]), "workbench-connection-take-control-button");
                 if (!take_control || !gtk_widget_get_sensitive(take_control)) {
                     fail(test, "expected the second page's Take Control button to be sensitive");
                     return G_SOURCE_REMOVE;
@@ -501,8 +501,8 @@ static gboolean drive(gpointer user_data) {
             case STEP_WAIT_CONTROL_SWAPPED: {
                 GtkWidget *pages[4];
                 int n = connection_pages(notebook, pages, 4);
-                if (n == 2 && label_text_is(pages[0], "toolbox-connection-control-label", "Read-only") &&
-                    label_text_is(pages[1], "toolbox-connection-control-label", "You have control")) {
+                if (n == 2 && label_text_is(pages[0], "workbench-connection-control-label", "Read-only") &&
+                    label_text_is(pages[1], "workbench-connection-control-label", "You have control")) {
                     test->history_before_disconnect = connection_history_len(test);
                     test->step = STEP_DISCONNECT_CLIENT;
                     test->step_elapsed_ms = 0;
@@ -552,10 +552,10 @@ static gboolean drive(gpointer user_data) {
                 }
                 gboolean both_disconnected_and_locked = TRUE;
                 for (int i = 0; i < n; i++) {
-                    if (!label_text_is(pages[i], "toolbox-connection-state-label", "State: DISCONNECTED")) {
+                    if (!label_text_is(pages[i], "workbench-connection-state-label", "State: DISCONNECTED")) {
                         both_disconnected_and_locked = FALSE;
                     }
-                    GtkWidget *take_control = g_object_get_data(G_OBJECT(pages[i]), "toolbox-connection-take-control-button");
+                    GtkWidget *take_control = g_object_get_data(G_OBJECT(pages[i]), "workbench-connection-take-control-button");
                     if (!take_control || gtk_widget_get_sensitive(take_control)) {
                         both_disconnected_and_locked = FALSE;
                     }

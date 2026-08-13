@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_HTTPS_WORKER_H
-#define TOOLBOX_HTTPS_WORKER_H
+#ifndef WORKBENCH_HTTPS_WORKER_H
+#define WORKBENCH_HTTPS_WORKER_H
 
 #include "event_queue.h"
 #include "tcp_worker.h"
@@ -31,4 +31,4 @@ int https_worker_start(TcpWorker *out, EventQueue *events, uint64_t listener_id,
                         uint16_t port, const char *url_path, const char *host_header, const char *cert_path,
                         const char *key_path);
 
-#endif /* TOOLBOX_HTTPS_WORKER_H */
+#endif /* WORKBENCH_HTTPS_WORKER_H */

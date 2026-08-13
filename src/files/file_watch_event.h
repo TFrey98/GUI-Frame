@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_WATCH_EVENT_H
-#define TOOLBOX_FILE_WATCH_EVENT_H
+#ifndef WORKBENCH_FILE_WATCH_EVENT_H
+#define WORKBENCH_FILE_WATCH_EVENT_H
 
 typedef enum FileWatchEventType {
     FILE_WATCH_CREATED,
@@ -23,4 +23,4 @@ typedef struct FileWatchEvent {
     char new_relative_path[4096];
 } FileWatchEvent;
 
-#endif /* TOOLBOX_FILE_WATCH_EVENT_H */
+#endif /* WORKBENCH_FILE_WATCH_EVENT_H */

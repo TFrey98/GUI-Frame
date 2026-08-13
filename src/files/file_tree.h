@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_TREE_H
-#define TOOLBOX_FILE_TREE_H
+#ifndef WORKBENCH_FILE_TREE_H
+#define WORKBENCH_FILE_TREE_H
 
 #include <stdbool.h>
 
@@ -63,4 +63,4 @@ int file_tree_child_count(const FileTree *tree, FileNodeId parent_id);
 const FileTreeNode *file_tree_get_child_at(const FileTree *tree, FileNodeId parent_id, int index);
 const FileTreeNode *file_tree_find(const FileTree *tree, FileNodeId id);
 
-#endif /* TOOLBOX_FILE_TREE_H */
+#endif /* WORKBENCH_FILE_TREE_H */

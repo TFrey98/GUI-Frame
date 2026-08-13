@@ -137,7 +137,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     if (!tree_view) {
         /* The window may not have finished its initial build on the
          * very first tick - wait rather than fail immediately. */
@@ -154,17 +154,17 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
 
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter)) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter)) {
         fail(test, "no top-level rows");
         goto done;
     }
-    if (!row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    if (!row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected first top-level row to be TOOLBOX");
         goto done;
     }
 
-    GtkTreeIter toolkit_iter = toolbox_iter;
+    GtkTreeIter toolkit_iter = workbench_iter;
     if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
         fail(test, "expected second top-level row to be Toolkit");
         goto done;
@@ -178,18 +178,18 @@ static gboolean drive(gpointer user_data) {
 
     /* TOOLBOX's own contents should already be populated with no click
      * needed - "load only the root initially." */
-    if (gtk_tree_model_iter_n_children(model, &toolbox_iter) != 2) {
+    if (gtk_tree_model_iter_n_children(model, &workbench_iter) != 2) {
         fail(test, "expected TOOLBOX to show its 2 fixture entries already");
         goto done;
     }
 
     GtkTreeIter afolder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "afolder", &afolder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "afolder", &afolder_iter)) {
         fail(test, "expected 'afolder' under TOOLBOX");
         goto done;
     }
     GtkTreeIter bfile_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "bfile.txt", &bfile_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "bfile.txt", &bfile_iter)) {
         fail(test, "expected 'bfile.txt' under TOOLBOX");
         goto done;
     }
@@ -210,13 +210,13 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* Refresh must not duplicate TOOLBOX's top-level rows. */
-    GtkWidget *refresh_button = find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-refresh-button");
+    GtkWidget *refresh_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-refresh-button");
     if (!refresh_button) {
         fail(test, "refresh button not found");
         goto done;
     }
     gtk_button_clicked(GTK_BUTTON(refresh_button));
-    if (gtk_tree_model_iter_n_children(model, &toolbox_iter) != 2) {
+    if (gtk_tree_model_iter_n_children(model, &workbench_iter) != 2) {
         fail(test, "expected TOOLBOX to still show exactly 2 entries after refresh (no duplicates)");
         goto done;
     }
@@ -231,7 +231,7 @@ static gboolean drive(gpointer user_data) {
         fail(test, "expected 'tool_a.sh' under Toolkit");
         goto done;
     }
-    if (find_child_by_name(model, &toolbox_iter, "tool_a.sh", &tool_iter)) {
+    if (find_child_by_name(model, &workbench_iter, "tool_a.sh", &tool_iter)) {
         fail(test, "Toolkit's fixture leaked into TOOLBOX");
         goto done;
     }

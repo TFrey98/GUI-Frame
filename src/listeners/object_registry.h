@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_OBJECT_REGISTRY_H
-#define TOOLBOX_OBJECT_REGISTRY_H
+#ifndef WORKBENCH_OBJECT_REGISTRY_H
+#define WORKBENCH_OBJECT_REGISTRY_H
 
 #include "managed_object.h"
 
@@ -72,4 +72,4 @@ const Listener *object_registry_get_listener_at(const ObjectRegistry *registry, 
 int object_registry_list_connections_for_listener(const ObjectRegistry *registry, uint64_t listener_id,
                                                     const Connection **out, int max_out);
 
-#endif /* TOOLBOX_OBJECT_REGISTRY_H */
+#endif /* WORKBENCH_OBJECT_REGISTRY_H */

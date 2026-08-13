@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_H
-#define TOOLBOX_UI_GTK_H
+#ifndef WORKBENCH_UI_GTK_H
+#define WORKBENCH_UI_GTK_H
 
 /* ui_gtk.c implements the platform_ui_* contract declared in
  * ../ui_platform.h - this header exists only for the conventional
@@ -9,4 +9,4 @@
  * never GTK-aware. */
 #include "ui/ui_platform.h"
 
-#endif /* TOOLBOX_UI_GTK_H */
+#endif /* WORKBENCH_UI_GTK_H */

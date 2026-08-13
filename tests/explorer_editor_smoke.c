@@ -115,7 +115,7 @@ static int tabs_of_type(GtkWidget *notebook, TabType type, GtkWidget **out, int 
     int count = 0;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == type) {
             if (out && count < max_out) {
                 out[count] = page;
@@ -127,7 +127,7 @@ static int tabs_of_type(GtkWidget *notebook, TabType type, GtkWidget **out, int 
 }
 
 static char *text_view_contents(GtkWidget *page) {
-    GtkWidget *view = g_object_get_data(G_OBJECT(page), "toolbox-editor-text-view");
+    GtkWidget *view = g_object_get_data(G_OBJECT(page), "workbench-editor-text-view");
     if (!view) {
         return NULL;
     }
@@ -163,7 +163,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GPtrArray *notebooks = g_ptr_array_new();
     if (window) {
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
@@ -185,8 +185,8 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
 
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
@@ -194,7 +194,7 @@ static gboolean drive(gpointer user_data) {
     /* Activating a text file row opens a real editor tab with the
      * right title and content. */
     GtkTreeIter text_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "notes.txt", &text_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "notes.txt", &text_iter)) {
         fail(test, "'notes.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -206,7 +206,7 @@ static gboolean drive(gpointer user_data) {
         fail(test, "activating notes.txt should open exactly one TAB_TYPE_EDITOR tab");
         goto done;
     }
-    Tab *notes_tab = g_object_get_data(G_OBJECT(editor_pages[0]), "toolbox-tab");
+    Tab *notes_tab = g_object_get_data(G_OBJECT(editor_pages[0]), "workbench-tab");
     if (!notes_tab || strcmp(notes_tab->title, "notes.txt") != 0) {
         fail(test, "notes.txt's editor tab should be titled 'notes.txt'");
         goto done;
@@ -228,7 +228,7 @@ static gboolean drive(gpointer user_data) {
     /* A file with an embedded NUL byte opens a binary-info tab, not a
      * garbled editor, with correct metadata. */
     GtkTreeIter binary_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "data.bin", &binary_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "data.bin", &binary_iter)) {
         fail(test, "'data.bin' row not found under TOOLBOX");
         goto done;
     }
@@ -252,7 +252,7 @@ static gboolean drive(gpointer user_data) {
 
     /* A directory row still just expands/collapses - no tab opens. */
     GtkTreeIter dir_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "subdir", &dir_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "subdir", &dir_iter)) {
         fail(test, "'subdir' row not found under TOOLBOX");
         goto done;
     }
@@ -278,7 +278,7 @@ static gboolean drive(gpointer user_data) {
     /* A chmod-read-only text file opens an editor tab showing the
      * read-only indicator, with its GtkTextView non-editable. */
     GtkTreeIter readonly_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "locked.txt", &readonly_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "locked.txt", &readonly_iter)) {
         fail(test, "'locked.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -288,7 +288,7 @@ static gboolean drive(gpointer user_data) {
     int all_editor_count = tabs_of_type(notebook, TAB_TYPE_EDITOR, all_editor_pages, 8);
     GtkWidget *locked_page = NULL;
     for (int i = 0; i < all_editor_count; i++) {
-        Tab *tab = g_object_get_data(G_OBJECT(all_editor_pages[i]), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(all_editor_pages[i]), "workbench-tab");
         if (tab && strcmp(tab->title, "locked.txt") == 0) {
             locked_page = all_editor_pages[i];
             break;
@@ -298,12 +298,12 @@ static gboolean drive(gpointer user_data) {
         fail(test, "activating locked.txt should open an editor tab");
         goto done;
     }
-    GtkWidget *read_only_label = g_object_get_data(G_OBJECT(locked_page), "toolbox-editor-read-only-label");
+    GtkWidget *read_only_label = g_object_get_data(G_OBJECT(locked_page), "workbench-editor-read-only-label");
     if (!read_only_label || !gtk_widget_get_visible(read_only_label)) {
         fail(test, "locked.txt's editor tab should show a visible read-only indicator");
         test->failed = TRUE;
     }
-    GtkWidget *text_view = g_object_get_data(G_OBJECT(locked_page), "toolbox-editor-text-view");
+    GtkWidget *text_view = g_object_get_data(G_OBJECT(locked_page), "workbench-editor-text-view");
     if (!text_view || gtk_text_view_get_editable(GTK_TEXT_VIEW(text_view))) {
         fail(test, "locked.txt's GtkTextView should not be editable");
         test->failed = TRUE;

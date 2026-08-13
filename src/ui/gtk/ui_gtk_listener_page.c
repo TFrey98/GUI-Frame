@@ -35,10 +35,10 @@ static void on_listener_restart_clicked(GtkButton *button, gpointer user_data) {
  * (so it never shows blank/stale text) and again every tick thereafter
  * (see on_tick) for as long as the tab stays open. */
 static void refresh_listener_page(GtkBackend *backend, GtkWidget *page, uint64_t listener_id) {
-    GtkWidget *endpoint_label = g_object_get_data(G_OBJECT(page), "toolbox-listener-endpoint-label");
-    GtkWidget *state_label = g_object_get_data(G_OBJECT(page), "toolbox-listener-state-label");
-    GtkWidget *stop_button = g_object_get_data(G_OBJECT(page), "toolbox-listener-stop-button");
-    GtkWidget *restart_button = g_object_get_data(G_OBJECT(page), "toolbox-listener-restart-button");
+    GtkWidget *endpoint_label = g_object_get_data(G_OBJECT(page), "workbench-listener-endpoint-label");
+    GtkWidget *state_label = g_object_get_data(G_OBJECT(page), "workbench-listener-state-label");
+    GtkWidget *stop_button = g_object_get_data(G_OBJECT(page), "workbench-listener-stop-button");
+    GtkWidget *restart_button = g_object_get_data(G_OBJECT(page), "workbench-listener-restart-button");
 
     const Listener *listener = object_registry_get_listener(backend->listener_system->registry, listener_id);
     if (!listener) {
@@ -94,15 +94,15 @@ GtkWidget *build_listener_page(GtkBackend *backend, Tab *tab) {
 
     /* Tagged on the page itself (not a global find-by-tag) so this
      * scales correctly once more than one listener tab is open at once. */
-    g_object_set_data(G_OBJECT(page), "toolbox-listener-endpoint-label", endpoint_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-listener-state-label", state_label);
-    g_object_set_data(G_OBJECT(page), "toolbox-listener-stop-button", stop_button);
-    g_object_set_data(G_OBJECT(page), "toolbox-listener-restart-button", restart_button);
+    g_object_set_data(G_OBJECT(page), "workbench-listener-endpoint-label", endpoint_label);
+    g_object_set_data(G_OBJECT(page), "workbench-listener-state-label", state_label);
+    g_object_set_data(G_OBJECT(page), "workbench-listener-stop-button", stop_button);
+    g_object_set_data(G_OBJECT(page), "workbench-listener-restart-button", restart_button);
 
     ListenerPageContext *ctx = g_new(ListenerPageContext, 1);
     ctx->backend = backend;
     ctx->listener_id = listener_id;
-    g_object_set_data_full(G_OBJECT(page), "toolbox-listener-page-context", ctx, g_free);
+    g_object_set_data_full(G_OBJECT(page), "workbench-listener-page-context", ctx, g_free);
 
     g_signal_connect(stop_button, "clicked", G_CALLBACK(on_listener_stop_clicked), ctx);
     g_signal_connect(restart_button, "clicked", G_CALLBACK(on_listener_restart_clicked), ctx);
@@ -118,7 +118,7 @@ static GtkWidget *find_listener_page_widget(GtkBackend *backend, uint64_t listen
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_LISTENER && listener_tab_id(tab) == listener_id) {
             return page;
         }
@@ -175,7 +175,7 @@ void refresh_all_listener_tabs(GtkBackend *backend) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_LISTENER) {
             refresh_listener_page(backend, page, listener_tab_id(tab));
         }

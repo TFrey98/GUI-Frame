@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_LINE_ACCUMULATOR_H
-#define TOOLBOX_LINE_ACCUMULATOR_H
+#ifndef WORKBENCH_LINE_ACCUMULATOR_H
+#define WORKBENCH_LINE_ACCUMULATOR_H
 
 #include <stddef.h>
 
@@ -30,4 +30,4 @@ void line_accumulator_destroy(LineAccumulator *acc);
 void line_accumulator_feed(LineAccumulator *acc, const char *data, size_t len,
                             void (*on_line)(const char *line, size_t len, void *user_data), void *user_data);
 
-#endif /* TOOLBOX_LINE_ACCUMULATOR_H */
+#endif /* WORKBENCH_LINE_ACCUMULATOR_H */

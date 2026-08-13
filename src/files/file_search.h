@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_SEARCH_H
-#define TOOLBOX_FILE_SEARCH_H
+#ifndef WORKBENCH_FILE_SEARCH_H
+#define WORKBENCH_FILE_SEARCH_H
 
 #include <stdbool.h>
 
@@ -28,4 +28,4 @@ typedef struct FileSearchMatch {
 int file_search_scan(const WorkspaceRoot *root, const char *query, bool case_sensitive, FileSearchMatch *out_matches,
                       int max_matches);
 
-#endif /* TOOLBOX_FILE_SEARCH_H */
+#endif /* WORKBENCH_FILE_SEARCH_H */

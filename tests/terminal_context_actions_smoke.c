@@ -104,7 +104,7 @@ static GtkWidget *open_menu_for_row(GtkWidget *tree_view, GtkTreeModel *model, G
     gtk_tree_path_free(path);
     gboolean handled = FALSE;
     g_signal_emit_by_name(tree_view, "popup-menu", &handled);
-    return g_object_get_data(G_OBJECT(tree_view), "toolbox-explorer-context-menu");
+    return g_object_get_data(G_OBJECT(tree_view), "workbench-explorer-context-menu");
 }
 
 static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
@@ -140,7 +140,7 @@ static int count_terminal_pages(GtkWidget *notebook) {
     int count = 0;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_TERMINAL) {
             count++;
         }
@@ -156,7 +156,7 @@ static GtkWidget *newest_terminal_page(GtkWidget *notebook) {
     GtkWidget *newest = NULL;
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_TERMINAL) {
             newest = page;
         }
@@ -168,7 +168,7 @@ static GtkWidget *find_editor_page(GtkWidget *notebook, const char *title) {
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
-        Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+        Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
         if (tab && tab->type == TAB_TYPE_EDITOR && strcmp(tab->title, title) == 0) {
             return page;
         }
@@ -190,7 +190,7 @@ static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
     GtkWindow *window = main_window();
-    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "toolbox-explorer-tree") : NULL;
+    GtkWidget *tree_view = window ? find_by_data_key(GTK_WIDGET(window), "workbench-explorer-tree") : NULL;
     GPtrArray *notebooks = g_ptr_array_new();
     if (window) {
         collect_by_type(GTK_WIDGET(window), notebooks, GTK_TYPE_NOTEBOOK);
@@ -211,8 +211,8 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter toolbox_iter;
-    if (!gtk_tree_model_get_iter_first(model, &toolbox_iter) || !row_name_is(model, &toolbox_iter, "TOOLBOX")) {
+    GtkTreeIter workbench_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
         fail(test, "expected TOOLBOX as the first top-level row");
         goto done;
     }
@@ -220,7 +220,7 @@ static gboolean drive(gpointer user_data) {
     /* "Open in Integrated Terminal" on a folder roots a new terminal
      * tab at the folder's real path. */
     GtkTreeIter folder_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "folder1", &folder_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "folder1", &folder_iter)) {
         fail(test, "'folder1' row not found under TOOLBOX");
         goto done;
     }
@@ -235,7 +235,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     GtkWidget *folder_terminal_page = newest_terminal_page(notebook);
-    Tab *folder_terminal_tab = g_object_get_data(G_OBJECT(folder_terminal_page), "toolbox-tab");
+    Tab *folder_terminal_tab = g_object_get_data(G_OBJECT(folder_terminal_page), "workbench-tab");
     TerminalSession *folder_session = folder_terminal_tab->backend_data;
     char expected_folder_path[4400];
     snprintf(expected_folder_path, sizeof(expected_folder_path), "%s/folder1", test->root.canonical_path);
@@ -247,7 +247,7 @@ static gboolean drive(gpointer user_data) {
     /* "Open in Terminal Directory" on an ordinary file roots a new
      * terminal tab at its parent (TOOLBOX itself, here). */
     GtkTreeIter plainfile_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "plainfile.txt", &plainfile_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "plainfile.txt", &plainfile_iter)) {
         fail(test, "'plainfile.txt' row not found under TOOLBOX");
         goto done;
     }
@@ -262,7 +262,7 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     GtkWidget *file_terminal_page = newest_terminal_page(notebook);
-    Tab *file_terminal_tab = g_object_get_data(G_OBJECT(file_terminal_page), "toolbox-tab");
+    Tab *file_terminal_tab = g_object_get_data(G_OBJECT(file_terminal_page), "workbench-tab");
     TerminalSession *file_session = file_terminal_tab->backend_data;
     if (strcmp(file_session->working_directory, test->root.canonical_path) != 0) {
         fail(test, "plainfile.txt's terminal should be rooted at TOOLBOX (its parent)");
@@ -273,7 +273,7 @@ static gboolean drive(gpointer user_data) {
      * editor tab double-click would; absent for a real binary
      * executable. */
     GtkTreeIter script_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "script.sh", &script_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "script.sh", &script_iter)) {
         fail(test, "'script.sh' row not found under TOOLBOX");
         goto done;
     }
@@ -296,7 +296,7 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeIter binary_iter;
-    if (!find_child_by_name(model, &toolbox_iter, "binary_exe", &binary_iter)) {
+    if (!find_child_by_name(model, &workbench_iter, "binary_exe", &binary_iter)) {
         fail(test, "'binary_exe' row not found under TOOLBOX");
         goto done;
     }
@@ -350,7 +350,7 @@ static gboolean drive(gpointer user_data) {
         fail(test, "script.sh's editor tab should remain open after Run in Terminal");
         goto done;
     }
-    GtkWidget *script_view = g_object_get_data(G_OBJECT(script_editor_page), "toolbox-editor-text-view");
+    GtkWidget *script_view = g_object_get_data(G_OBJECT(script_editor_page), "workbench-editor-text-view");
     if (!script_view || !gtk_text_view_get_editable(GTK_TEXT_VIEW(script_view))) {
         fail(test, "script.sh should remain editable after being run");
     }

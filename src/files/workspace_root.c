@@ -9,10 +9,10 @@
 
 /* Resolves <exe_dir>/files via /proc/self/exe (same approach as
  * toolkit_index.c's resolve_exe_relative_toolkit_dir()), creating it if
- * missing. Named "files" rather than "toolbox" - the executable itself
- * is named "toolbox", so a same-named sibling directory would collide
+ * missing. Named "files" rather than "workbench" - the executable itself
+ * is named "workbench", so a same-named sibling directory would collide
  * with it on every rebuild. */
-static bool resolve_exe_relative_toolbox_dir(char *dir_out, size_t dir_out_size) {
+static bool resolve_exe_relative_workbench_dir(char *dir_out, size_t dir_out_size) {
     char exe_path[4096];
     ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
     if (len <= 0) {
@@ -56,7 +56,7 @@ static bool populate_from_dir(WorkspaceRoot *out, const char *dir) {
 
 bool workspace_root_init(WorkspaceRoot *out) {
     char dir[4096];
-    if (!resolve_exe_relative_toolbox_dir(dir, sizeof(dir))) {
+    if (!resolve_exe_relative_workbench_dir(dir, sizeof(dir))) {
         return false;
     }
     return populate_from_dir(out, dir);

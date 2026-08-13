@@ -206,12 +206,12 @@ void on_export_database_clicked(GtkButton *button, gpointer user_data) {
     state->path_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(state->path_entry), "terminal_history_export");
     add_form_row(GTK_GRID(grid), 0, "File Name", state->path_entry);
-    g_object_set_data(G_OBJECT(state->path_entry), "toolbox-export-database-path-entry", state->path_entry);
+    g_object_set_data(G_OBJECT(state->path_entry), "workbench-export-database-path-entry", state->path_entry);
 
     GtkWidget *format_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     state->json_radio = gtk_radio_button_new_with_label(NULL, "JSON");
     GtkWidget *yaml_radio = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(state->json_radio), "YAML");
-    g_object_set_data(G_OBJECT(yaml_radio), "toolbox-export-database-yaml-radio", yaml_radio);
+    g_object_set_data(G_OBJECT(yaml_radio), "workbench-export-database-yaml-radio", yaml_radio);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(state->json_radio), TRUE);
     gtk_box_pack_start(GTK_BOX(format_box), state->json_radio, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(format_box), yaml_radio, FALSE, FALSE, 0);
@@ -220,7 +220,7 @@ void on_export_database_clicked(GtkButton *button, gpointer user_data) {
     state->error_label = add_error_row(GTK_GRID(grid), 2);
 
     g_signal_connect(dialog, "response", G_CALLBACK(on_export_database_response), state);
-    g_object_set_data_full(G_OBJECT(dialog), "toolbox-export-database-dialog-state", state, g_free);
+    g_object_set_data_full(G_OBJECT(dialog), "workbench-export-database-dialog-state", state, g_free);
 
     gtk_widget_show_all(dialog);
 }

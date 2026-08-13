@@ -267,23 +267,23 @@ static void open_new_listener_dialog(GtkBackend *backend, GtkWindow *parent) {
     g_signal_connect(state->type_combo, "changed", G_CALLBACK(on_listener_type_changed), state);
     g_signal_connect(dialog, "response", G_CALLBACK(on_listener_dialog_response), state);
 
-    g_object_set_data(G_OBJECT(state->name_entry), "toolbox-listener-name-entry", state->name_entry);
-    g_object_set_data(G_OBJECT(state->name_error), "toolbox-listener-name-error", state->name_error);
-    g_object_set_data(G_OBJECT(state->type_combo), "toolbox-listener-type-combo", state->type_combo);
-    g_object_set_data(G_OBJECT(state->bind_address_entry), "toolbox-listener-bind-address-entry",
+    g_object_set_data(G_OBJECT(state->name_entry), "workbench-listener-name-entry", state->name_entry);
+    g_object_set_data(G_OBJECT(state->name_error), "workbench-listener-name-error", state->name_error);
+    g_object_set_data(G_OBJECT(state->type_combo), "workbench-listener-type-combo", state->type_combo);
+    g_object_set_data(G_OBJECT(state->bind_address_entry), "workbench-listener-bind-address-entry",
                        state->bind_address_entry);
-    g_object_set_data(G_OBJECT(state->port_entry), "toolbox-listener-port-entry", state->port_entry);
-    g_object_set_data(G_OBJECT(state->callback_host_entry), "toolbox-listener-callback-host-entry",
+    g_object_set_data(G_OBJECT(state->port_entry), "workbench-listener-port-entry", state->port_entry);
+    g_object_set_data(G_OBJECT(state->callback_host_entry), "workbench-listener-callback-host-entry",
                        state->callback_host_entry);
-    g_object_set_data(G_OBJECT(state->url_path_entry), "toolbox-listener-url-path-entry", state->url_path_entry);
-    g_object_set_data(G_OBJECT(state->host_header_entry), "toolbox-listener-host-header-entry",
+    g_object_set_data(G_OBJECT(state->url_path_entry), "workbench-listener-url-path-entry", state->url_path_entry);
+    g_object_set_data(G_OBJECT(state->host_header_entry), "workbench-listener-host-header-entry",
                        state->host_header_entry);
-    g_object_set_data(G_OBJECT(state->cert_path_entry), "toolbox-listener-cert-path-entry", state->cert_path_entry);
-    g_object_set_data(G_OBJECT(state->key_path_entry), "toolbox-listener-key-path-entry", state->key_path_entry);
-    g_object_set_data(G_OBJECT(dialog), "toolbox-new-listener-dialog", dialog);
+    g_object_set_data(G_OBJECT(state->cert_path_entry), "workbench-listener-cert-path-entry", state->cert_path_entry);
+    g_object_set_data(G_OBJECT(state->key_path_entry), "workbench-listener-key-path-entry", state->key_path_entry);
+    g_object_set_data(G_OBJECT(dialog), "workbench-new-listener-dialog", dialog);
     /* Frees state automatically when the dialog is destroyed - same
      * ownership pattern TabLabelData uses on its event_box above. */
-    g_object_set_data_full(G_OBJECT(dialog), "toolbox-listener-dialog-state", state, g_free);
+    g_object_set_data_full(G_OBJECT(dialog), "workbench-listener-dialog-state", state, g_free);
 
     gtk_widget_show_all(dialog);
     /* show_all() above forces every child visible, including the

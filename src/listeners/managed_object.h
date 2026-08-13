@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_MANAGED_OBJECT_H
-#define TOOLBOX_MANAGED_OBJECT_H
+#ifndef WORKBENCH_MANAGED_OBJECT_H
+#define WORKBENCH_MANAGED_OBJECT_H
 
 #include "connection.h"
 #include "listener.h"
@@ -26,4 +26,4 @@ typedef struct ManagedObject {
 /* Returns listener.id or connection.id depending on obj->type. */
 uint64_t managed_object_id(const ManagedObject *obj);
 
-#endif /* TOOLBOX_MANAGED_OBJECT_H */
+#endif /* WORKBENCH_MANAGED_OBJECT_H */

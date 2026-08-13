@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_LISTENER_SYSTEM_H
-#define TOOLBOX_LISTENER_SYSTEM_H
+#ifndef WORKBENCH_LISTENER_SYSTEM_H
+#define WORKBENCH_LISTENER_SYSTEM_H
 
 #include "connection_manager.h"
 #include "event_queue.h"
@@ -40,4 +40,4 @@ void listener_system_destroy(ListenerSystem *system);
  * events processed. */
 int listener_system_pump(ListenerSystem *system, ListenerEvent *out, int max_out);
 
-#endif /* TOOLBOX_LISTENER_SYSTEM_H */
+#endif /* WORKBENCH_LISTENER_SYSTEM_H */

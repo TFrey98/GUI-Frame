@@ -255,7 +255,7 @@ static gboolean phase_cancel_clear_then_confirm(gpointer user_data) {
     }
 
     GtkWindow *window = main_window();
-    GtkWidget *clear_button = find_by_data_key(GTK_WIDGET(window), "toolbox-clear-database-button");
+    GtkWidget *clear_button = find_by_data_key(GTK_WIDGET(window), "workbench-clear-database-button");
     if (!clear_button) {
         fail(test, "Clear Database button not found");
         gtk_widget_destroy(GTK_WIDGET(window));
@@ -298,7 +298,7 @@ static gboolean phase_verify_export(gpointer user_data) {
     }
 
     GtkWindow *window = main_window();
-    GtkWidget *clear_button = find_by_data_key(GTK_WIDGET(window), "toolbox-clear-database-button");
+    GtkWidget *clear_button = find_by_data_key(GTK_WIDGET(window), "workbench-clear-database-button");
     if (!clear_button) {
         fail(test, "Clear Database button not found");
         goto done;
@@ -319,7 +319,7 @@ done : {
 static gboolean phase_export(gpointer user_data) {
     TestState *test = user_data;
     GtkWindow *window = main_window();
-    GtkWidget *export_button = find_by_data_key(GTK_WIDGET(window), "toolbox-export-database-button");
+    GtkWidget *export_button = find_by_data_key(GTK_WIDGET(window), "workbench-export-database-button");
     if (!export_button) {
         fail(test, "Export Database button not found");
         gtk_widget_destroy(GTK_WIDGET(window));
@@ -327,14 +327,14 @@ static gboolean phase_export(gpointer user_data) {
     }
     gtk_button_clicked(GTK_BUTTON(export_button));
 
-    GtkWidget *dialog = find_dialog_by_state_key("toolbox-export-database-dialog-state");
+    GtkWidget *dialog = find_dialog_by_state_key("workbench-export-database-dialog-state");
     if (!dialog) {
         fail(test, "Export Database dialog did not appear");
         gtk_widget_destroy(GTK_WIDGET(window));
         return G_SOURCE_REMOVE;
     }
-    GtkWidget *path_entry = find_by_data_key(dialog, "toolbox-export-database-path-entry");
-    GtkWidget *yaml_radio = find_by_data_key(dialog, "toolbox-export-database-yaml-radio");
+    GtkWidget *path_entry = find_by_data_key(dialog, "workbench-export-database-path-entry");
+    GtkWidget *yaml_radio = find_by_data_key(dialog, "workbench-export-database-yaml-radio");
     if (!path_entry || !yaml_radio) {
         fail(test, "Export Database path entry or YAML radio button not found");
         gtk_widget_destroy(GTK_WIDGET(window));
@@ -430,7 +430,7 @@ static gboolean phase_send_command(gpointer user_data) {
     }
 
     GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), 0);
-    Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
+    Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
     if (!view) {
         fail(test, "seeded terminal tab has no Terminal view attached");
         gtk_widget_destroy(GTK_WIDGET(window));
@@ -457,7 +457,7 @@ int main(void) {
     }
     test.app = app;
 
-    /* This app's toolbox.db is a single file shared by every App-backed
+    /* This app's workbench.db is a single file shared by every App-backed
      * test in this suite (all run with the same working directory) -
      * start from a clean slate so this test's row-count assertions don't
      * depend on ctest run order, the same precaution every explorer/editor

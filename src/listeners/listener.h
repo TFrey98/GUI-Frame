@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_LISTENER_H
-#define TOOLBOX_LISTENER_H
+#ifndef WORKBENCH_LISTENER_H
+#define WORKBENCH_LISTENER_H
 
 #include <stdint.h>
 #include <time.h>
@@ -53,4 +53,4 @@ typedef struct Listener {
     ListenerRuntime runtime;
 } Listener;
 
-#endif /* TOOLBOX_LISTENER_H */
+#endif /* WORKBENCH_LISTENER_H */

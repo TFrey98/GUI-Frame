@@ -118,36 +118,36 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     GtkWidget *bar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
     gtk_container_set_border_width(GTK_CONTAINER(bar), 6);
 
-    gtk_box_pack_start(GTK_BOX(bar), gtk_label_new("toolbox"), FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(bar), gtk_label_new("workbench"), FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(bar), gtk_label_new(NULL), TRUE, TRUE, 0);
 
     GtkWidget *save_all_button = gtk_button_new_with_label("Save All");
-    g_object_set_data(G_OBJECT(save_all_button), "toolbox-save-all-button", save_all_button);
+    g_object_set_data(G_OBJECT(save_all_button), "workbench-save-all-button", save_all_button);
     g_signal_connect(save_all_button, "clicked", G_CALLBACK(on_save_all_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), save_all_button, FALSE, FALSE, 0);
 
     GtkWidget *new_listener_button = gtk_button_new_with_label("+ New Listener");
-    g_object_set_data(G_OBJECT(new_listener_button), "toolbox-new-listener-button", new_listener_button);
+    g_object_set_data(G_OBJECT(new_listener_button), "workbench-new-listener-button", new_listener_button);
     g_signal_connect(new_listener_button, "clicked", G_CALLBACK(on_new_listener_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), new_listener_button, FALSE, FALSE, 0);
 
     GtkWidget *search_button = gtk_button_new_with_label("\xF0\x9F\x94\x8D Search");
-    g_object_set_data(G_OBJECT(search_button), "toolbox-search-open-button", search_button);
+    g_object_set_data(G_OBJECT(search_button), "workbench-search-open-button", search_button);
     g_signal_connect(search_button, "clicked", G_CALLBACK(on_search_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), search_button, FALSE, FALSE, 0);
 
     GtkWidget *export_database_button = gtk_button_new_with_label("Export Database");
-    g_object_set_data(G_OBJECT(export_database_button), "toolbox-export-database-button", export_database_button);
+    g_object_set_data(G_OBJECT(export_database_button), "workbench-export-database-button", export_database_button);
     g_signal_connect(export_database_button, "clicked", G_CALLBACK(on_export_database_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), export_database_button, FALSE, FALSE, 0);
 
     GtkWidget *clear_database_button = gtk_button_new_with_label("Clear Database");
-    g_object_set_data(G_OBJECT(clear_database_button), "toolbox-clear-database-button", clear_database_button);
+    g_object_set_data(G_OBJECT(clear_database_button), "workbench-clear-database-button", clear_database_button);
     g_signal_connect(clear_database_button, "clicked", G_CALLBACK(on_clear_database_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), clear_database_button, FALSE, FALSE, 0);
 
     backend->status_label = gtk_label_new("No listeners yet");
-    g_object_set_data(G_OBJECT(backend->status_label), "toolbox-listener-status-label", backend->status_label);
+    g_object_set_data(G_OBJECT(backend->status_label), "workbench-listener-status-label", backend->status_label);
     gtk_box_pack_start(GTK_BOX(bar), backend->status_label, FALSE, FALSE, 0);
 
     GtkWidget *sidebar_toggle = gtk_toggle_button_new_with_label("Sidebar");
@@ -161,7 +161,7 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     gtk_box_pack_start(GTK_BOX(bar), bottom_toggle, FALSE, FALSE, 0);
 
     GtkWidget *dark_mode_toggle = gtk_toggle_button_new_with_label("\xF0\x9F\x8C\x99 Dark Mode");
-    g_object_set_data(G_OBJECT(dark_mode_toggle), "toolbox-dark-mode-toggle", dark_mode_toggle);
+    g_object_set_data(G_OBJECT(dark_mode_toggle), "workbench-dark-mode-toggle", dark_mode_toggle);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dark_mode_toggle), backend->dark_mode);
     g_signal_connect(dark_mode_toggle, "toggled", G_CALLBACK(on_dark_mode_toggled), backend);
     gtk_box_pack_start(GTK_BOX(bar), dark_mode_toggle, FALSE, FALSE, 0);
@@ -290,7 +290,7 @@ void on_activate(GtkApplication *gtk_app, gpointer user_data) {
     gtk_theme_init(backend);
 
     GtkWidget *window = gtk_application_window_new(gtk_app);
-    gtk_window_set_title(GTK_WINDOW(window), "toolbox");
+    gtk_window_set_title(GTK_WINDOW(window), "workbench");
     gtk_window_set_default_size(GTK_WINDOW(window), 1100, 700);
     gtk_window_set_resizable(GTK_WINDOW(window), TRUE);
 

@@ -90,7 +90,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -100,7 +100,7 @@ static GtkWidget *find_new_listener_dialog(void) {
 }
 
 static GtkWidget *object_panel_tree(GtkWidget *window) {
-    return find_by_data_key(window, "toolbox-object-panel-tree");
+    return find_by_data_key(window, "workbench-object-panel-tree");
 }
 
 static gboolean find_row_by_name(GtkTreeModel *model, const char *name, GtkTreeIter *out_iter) {
@@ -214,7 +214,7 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_OPEN_DIALOG: {
-                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
                 if (!new_button) {
                     break; /* window may not have finished its initial build yet */
                 }
@@ -225,10 +225,10 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "New Listener dialog did not appear");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-                GtkWidget *type_combo = find_by_data_key(dialog, "toolbox-listener-type-combo");
-                GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
-                GtkWidget *url_path_entry = find_by_data_key(dialog, "toolbox-listener-url-path-entry");
+                GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+                GtkWidget *type_combo = find_by_data_key(dialog, "workbench-listener-type-combo");
+                GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
+                GtkWidget *url_path_entry = find_by_data_key(dialog, "workbench-listener-url-path-entry");
                 if (!name_entry || !type_combo || !callback_entry || !url_path_entry) {
                     fail(test, "could not find dialog fields");
                     return G_SOURCE_REMOVE;

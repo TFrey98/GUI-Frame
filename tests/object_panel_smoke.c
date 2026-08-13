@@ -82,7 +82,7 @@ static GtkWidget *find_new_listener_dialog(void) {
     GtkWidget *found = NULL;
     for (GList *l = toplevels; l; l = l->next) {
         GtkWidget *w = GTK_WIDGET(l->data);
-        if (g_object_get_data(G_OBJECT(w), "toolbox-new-listener-dialog")) {
+        if (g_object_get_data(G_OBJECT(w), "workbench-new-listener-dialog")) {
             found = w;
             break;
         }
@@ -92,7 +92,7 @@ static GtkWidget *find_new_listener_dialog(void) {
 }
 
 static GtkTreeModel *object_panel_model(GtkWidget *window) {
-    GtkWidget *tree_view = find_by_data_key(window, "toolbox-object-panel-tree");
+    GtkWidget *tree_view = find_by_data_key(window, "workbench-object-panel-tree");
     if (!tree_view) {
         return NULL;
     }
@@ -170,7 +170,7 @@ static gboolean drive(gpointer user_data) {
 
         switch (test->step) {
             case STEP_OPEN_DIALOG: {
-                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "toolbox-new-listener-button");
+                GtkWidget *new_button = find_by_data_key(GTK_WIDGET(window), "workbench-new-listener-button");
                 if (!new_button) {
                     /* The window may not have finished its initial build on
                      * the very first tick - wait rather than fail immediately. */
@@ -183,8 +183,8 @@ static gboolean drive(gpointer user_data) {
                     fail(test, "New Listener dialog did not appear");
                     return G_SOURCE_REMOVE;
                 }
-                GtkWidget *name_entry = find_by_data_key(dialog, "toolbox-listener-name-entry");
-                GtkWidget *callback_entry = find_by_data_key(dialog, "toolbox-listener-callback-host-entry");
+                GtkWidget *name_entry = find_by_data_key(dialog, "workbench-listener-name-entry");
+                GtkWidget *callback_entry = find_by_data_key(dialog, "workbench-listener-callback-host-entry");
                 if (!name_entry || !callback_entry) {
                     fail(test, "could not find dialog fields");
                     return G_SOURCE_REMOVE;

@@ -25,8 +25,8 @@ static void remove_terminal_entry(GtkBackend *backend, Terminal *view) {
  * once called. The listener-running/modified-editor confirmation that
  * can intercept *before* this runs lives in ui_gtk_tab_close.c. */
 void close_tab_page(GtkWidget *page) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
-    Workspace *workspace = g_object_get_data(G_OBJECT(page), "toolbox-workspace");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+    Workspace *workspace = g_object_get_data(G_OBJECT(page), "workbench-workspace");
     GtkWidget *notebook = gtk_widget_get_ancestor(page, GTK_TYPE_NOTEBOOK);
 
     /* Captured before workspace_close_tab, which destroys *tab - tab_id and
@@ -35,8 +35,8 @@ void close_tab_page(GtkWidget *page) {
     int page_num = gtk_notebook_page_num(GTK_NOTEBOOK(notebook), page);
 
     if (tab->type == TAB_TYPE_TERMINAL) {
-        GtkBackend *backend = g_object_get_data(G_OBJECT(page), "toolbox-backend");
-        Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
+        GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
+        Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
         if (view) {
             remove_terminal_entry(backend, view);
             terminal_destroy(view);
@@ -57,8 +57,8 @@ void close_tab_page(GtkWidget *page) {
 }
 
 void update_tab_label_text(GtkWidget *page) {
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
-    GtkWidget *label = g_object_get_data(G_OBJECT(page), "toolbox-tab-label-widget");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+    GtkWidget *label = g_object_get_data(G_OBJECT(page), "workbench-tab-label-widget");
     if (!tab || !label) {
         return;
     }
@@ -78,7 +78,7 @@ void update_tab_label_text(GtkWidget *page) {
  * from a background tick (LISTENER_EVENT_STARTED can land at any time;
  * it shouldn't yank focus away from whatever the user is doing). */
 /* Switches the notebook to page and grabs keyboard focus for its
- * Terminal view, if it has one - "toolbox-view" tags both terminal
+ * Terminal view, if it has one - "workbench-view" tags both terminal
  * kinds (local shell and connection-backed) identically, so this one
  * tag-based check covers both. Shared by add_tab_page's own focus
  * branch and the focus-or-open helpers below. */
@@ -88,7 +88,7 @@ void focus_page(GtkBackend *backend, GtkWidget *page) {
         return;
     }
     gtk_notebook_set_current_page(GTK_NOTEBOOK(backend->notebook), index);
-    Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
+    Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
     if (view) {
         gtk_widget_grab_focus(terminal_get_widget(view));
     }
@@ -114,9 +114,9 @@ void add_tab_page(GtkBackend *backend, Tab *tab, gboolean focus) {
         gtk_box_pack_start(GTK_BOX(page), gtk_label_new(tab->title), FALSE, FALSE, 0);
     }
 
-    g_object_set_data(G_OBJECT(page), "toolbox-tab", tab);
-    g_object_set_data(G_OBJECT(page), "toolbox-workspace", workspace);
-    g_object_set_data(G_OBJECT(page), "toolbox-backend", backend);
+    g_object_set_data(G_OBJECT(page), "workbench-tab", tab);
+    g_object_set_data(G_OBJECT(page), "workbench-workspace", workspace);
+    g_object_set_data(G_OBJECT(page), "workbench-backend", backend);
 
     GtkWidget *label = build_tab_label(tab, page);
 
@@ -145,13 +145,13 @@ void on_notebook_switch_page(GtkNotebook *notebook, GtkWidget *page, guint page_
     (void)notebook;
     (void)page_num;
     Workspace *workspace = user_data;
-    Tab *tab = g_object_get_data(G_OBJECT(page), "toolbox-tab");
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     if (!tab) {
         return;
     }
     workspace_set_active_tab(workspace, tab->id);
     if (tab->type == TAB_TYPE_TERMINAL) {
-        Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
+        Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
         if (view) {
             gtk_widget_grab_focus(terminal_get_widget(view));
         }

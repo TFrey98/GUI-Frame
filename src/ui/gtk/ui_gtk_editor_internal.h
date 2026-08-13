@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_UI_GTK_EDITOR_INTERNAL_H
-#define TOOLBOX_UI_GTK_EDITOR_INTERNAL_H
+#ifndef WORKBENCH_UI_GTK_EDITOR_INTERNAL_H
+#define WORKBENCH_UI_GTK_EDITOR_INTERNAL_H
 
 /*
  * Declarations shared across the editor feature: the page widget/Save/
@@ -88,4 +88,4 @@ void editor_handle_external_delete(GtkBackend *backend, const WorkspaceRoot *roo
  * does. */
 void editor_handle_external_modification(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path);
 
-#endif /* TOOLBOX_UI_GTK_EDITOR_INTERNAL_H */
+#endif /* WORKBENCH_UI_GTK_EDITOR_INTERNAL_H */

@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_FILE_WATCHER_H
-#define TOOLBOX_FILE_WATCHER_H
+#ifndef WORKBENCH_FILE_WATCHER_H
+#define WORKBENCH_FILE_WATCHER_H
 
 #include "file_watch_event.h"
 #include "workspace_root.h"
@@ -40,4 +40,4 @@ void file_watcher_watch_directory(FileWatcher *watcher, const char *absolute_dir
  * 1 if an event was popped into *out. */
 int file_watcher_try_pop_event(FileWatcher *watcher, FileWatchEvent *out);
 
-#endif /* TOOLBOX_FILE_WATCHER_H */
+#endif /* WORKBENCH_FILE_WATCHER_H */

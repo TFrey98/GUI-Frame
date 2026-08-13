@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(toolbox C)
+project(workbench C)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -18,7 +18,7 @@ pkg_check_modules(OPENSSL REQUIRED openssl)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-add_library(toolbox_core STATIC
+add_library(workbench_core STATIC
     src/app/app.c
     src/files/workspace_root.c
     src/files/file_tree.c
@@ -80,7 +80,7 @@ add_library(toolbox_core STATIC
     src/terminal/pty_worker.c
 )
 
-target_include_directories(toolbox_core PUBLIC
+target_include_directories(workbench_core PUBLIC
     src
     src/app
     src/files
@@ -96,14 +96,14 @@ target_include_directories(toolbox_core PUBLIC
     ${OPENSSL_INCLUDE_DIRS}
 )
 
-target_compile_options(toolbox_core PUBLIC
+target_compile_options(workbench_core PUBLIC
     ${GTK_CFLAGS_OTHER}
     ${VTE_CFLAGS_OTHER}
     -Wall
     -Wextra
 )
 
-target_link_libraries(toolbox_core PUBLIC
+target_link_libraries(workbench_core PUBLIC
     ${GTK_LIBRARIES}
     ${VTE_LIBRARIES}
     ${SQLITE3_LIBRARIES}
@@ -111,17 +111,17 @@ target_link_libraries(toolbox_core PUBLIC
     Threads::Threads
 )
 
-add_executable(toolbox src/main.c)
-target_link_libraries(toolbox PRIVATE toolbox_core)
+add_executable(workbench src/main.c)
+target_link_libraries(workbench PRIVATE workbench_core)
 
-add_custom_command(TARGET toolbox POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:toolbox>/toolkit"
-    COMMENT "Ensuring toolkit/ exists next to the toolbox executable"
+add_custom_command(TARGET workbench POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:workbench>/toolkit"
+    COMMENT "Ensuring toolkit/ exists next to the workbench executable"
 )
 
-add_custom_command(TARGET toolbox POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:toolbox>/files"
-    COMMENT "Ensuring files/ (the file workspace root) exists next to the toolbox executable"
+add_custom_command(TARGET workbench POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:workbench>/files"
+    COMMENT "Ensuring files/ (the file workspace root) exists next to the workbench executable"
 )
 
 enable_testing()
