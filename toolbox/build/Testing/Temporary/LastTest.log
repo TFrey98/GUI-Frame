@@ -1,10 +1,10 @@
-Start testing: Aug 11 15:58 UTC
+Start testing: Aug 13 17:28 UTC
 ----------------------------------------------------------
-1/43 Testing: lifecycle_smoke
-1/43 Test: lifecycle_smoke
+1/49 Testing: lifecycle_smoke
+1/49 Test: lifecycle_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/lifecycle_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"lifecycle_smoke" start time: Aug 11 15:58 UTC
+"lifecycle_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 lifecycle_smoke: iteration 0 ok
@@ -14,18 +14,18 @@ lifecycle_smoke: iteration 3 ok
 lifecycle_smoke: iteration 4 ok
 lifecycle_smoke: 5 iterations completed cleanly
 <end of output>
-Test time =   0.94 sec
+Test time =   0.91 sec
 ----------------------------------------------------------
 Test Passed.
-"lifecycle_smoke" end time: Aug 11 15:58 UTC
+"lifecycle_smoke" end time: Aug 13 17:28 UTC
 "lifecycle_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/43 Testing: layout_smoke
-2/43 Test: layout_smoke
+2/49 Testing: layout_smoke
+2/49 Test: layout_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/layout_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"layout_smoke" start time: Aug 11 15:58 UTC
+"layout_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 layout_smoke: iteration 0 ok
@@ -36,63 +36,63 @@ layout_smoke: 3 iterations completed cleanly
 Test time =   0.68 sec
 ----------------------------------------------------------
 Test Passed.
-"layout_smoke" end time: Aug 11 15:59 UTC
+"layout_smoke" end time: Aug 13 17:28 UTC
 "layout_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/43 Testing: tabs_smoke
-3/43 Test: tabs_smoke
+3/49 Testing: tabs_smoke
+3/49 Test: tabs_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/tabs_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"tabs_smoke" start time: Aug 11 15:59 UTC
+"tabs_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 tabs_smoke: create/select/rename/close all verified
 <end of output>
-Test time =   0.31 sec
+Test time =   0.26 sec
 ----------------------------------------------------------
 Test Passed.
-"tabs_smoke" end time: Aug 11 15:59 UTC
+"tabs_smoke" end time: Aug 13 17:28 UTC
 "tabs_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/43 Testing: terminal_smoke
-4/43 Test: terminal_smoke
+4/49 Testing: terminal_smoke
+4/49 Test: terminal_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_smoke" start time: Aug 11 15:59 UTC
+"terminal_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 terminal_smoke: shell spawn, echo round-trip, and live resize all verified
 <end of output>
-Test time =   1.04 sec
+Test time =   1.05 sec
 ----------------------------------------------------------
 Test Passed.
-"terminal_smoke" end time: Aug 11 15:59 UTC
+"terminal_smoke" end time: Aug 13 17:28 UTC
 "terminal_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-5/43 Testing: multi_terminal_smoke
-5/43 Test: multi_terminal_smoke
+5/49 Testing: multi_terminal_smoke
+5/49 Test: multi_terminal_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/multi_terminal_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"multi_terminal_smoke" start time: Aug 11 15:59 UTC
+"multi_terminal_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 multi_terminal_smoke: independent tabs, selective close, and shell-exit handling all verified
 <end of output>
-Test time =   2.69 sec
+Test time =   2.70 sec
 ----------------------------------------------------------
 Test Passed.
-"multi_terminal_smoke" end time: Aug 11 15:59 UTC
+"multi_terminal_smoke" end time: Aug 13 17:28 UTC
 "multi_terminal_smoke" time elapsed: 00:00:02
 ----------------------------------------------------------
 
-6/43 Testing: terminal_session_test
-6/43 Test: terminal_session_test
+6/49 Testing: terminal_session_test
+6/49 Test: terminal_session_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_session_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_session_test" start time: Aug 11 15:59 UTC
+"terminal_session_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 terminal_session_test: session identity verified independent of any GTK widget
@@ -100,15 +100,15 @@ terminal_session_test: session identity verified independent of any GTK widget
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"terminal_session_test" end time: Aug 11 15:59 UTC
+"terminal_session_test" end time: Aug 13 17:28 UTC
 "terminal_session_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/43 Testing: toolkit_index_test
-7/43 Test: toolkit_index_test
+7/49 Testing: toolkit_index_test
+7/49 Test: toolkit_index_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/toolkit_index_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"toolkit_index_test" start time: Aug 11 15:59 UTC
+"toolkit_index_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 toolkit_index_test: non-recursive single-level scan verified
@@ -116,15 +116,15 @@ toolkit_index_test: non-recursive single-level scan verified
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"toolkit_index_test" end time: Aug 11 15:59 UTC
+"toolkit_index_test" end time: Aug 13 17:28 UTC
 "toolkit_index_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-8/43 Testing: event_queue_stress_test
-8/43 Test: event_queue_stress_test
+8/49 Testing: event_queue_stress_test
+8/49 Test: event_queue_stress_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/event_queue_stress_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"event_queue_stress_test" start time: Aug 11 15:59 UTC
+"event_queue_stress_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 event_queue_stress_test: 8000 events from 8 producers verified complete and in order
@@ -132,15 +132,15 @@ event_queue_stress_test: 8000 events from 8 producers verified complete and in o
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"event_queue_stress_test" end time: Aug 11 15:59 UTC
+"event_queue_stress_test" end time: Aug 13 17:28 UTC
 "event_queue_stress_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-9/43 Testing: byte_buffer_test
-9/43 Test: byte_buffer_test
+9/49 Testing: byte_buffer_test
+9/49 Test: byte_buffer_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/byte_buffer_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"byte_buffer_test" start time: Aug 11 15:59 UTC
+"byte_buffer_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 byte_buffer_test: interleaved append/consume/peek/discard round-tripped byte-for-byte, including under concurrent access
@@ -148,15 +148,15 @@ byte_buffer_test: interleaved append/consume/peek/discard round-tripped byte-for
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"byte_buffer_test" end time: Aug 11 15:59 UTC
+"byte_buffer_test" end time: Aug 13 17:28 UTC
 "byte_buffer_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-10/43 Testing: object_registry_test
-10/43 Test: object_registry_test
+10/49 Testing: object_registry_test
+10/49 Test: object_registry_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_registry_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"object_registry_test" start time: Aug 11 15:59 UTC
+"object_registry_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 object_registry_test: id allocation, queries, and non-cascading removal verified
@@ -164,15 +164,15 @@ object_registry_test: id allocation, queries, and non-cascading removal verified
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"object_registry_test" end time: Aug 11 15:59 UTC
+"object_registry_test" end time: Aug 13 17:28 UTC
 "object_registry_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-11/43 Testing: object_predicates_test
-11/43 Test: object_predicates_test
+11/49 Testing: object_predicates_test
+11/49 Test: object_predicates_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_predicates_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"object_predicates_test" start time: Aug 11 15:59 UTC
+"object_predicates_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 object_predicates_test: full Listener/Connection state matrix verified
@@ -180,15 +180,15 @@ object_predicates_test: full Listener/Connection state matrix verified
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"object_predicates_test" end time: Aug 11 15:59 UTC
+"object_predicates_test" end time: Aug 13 17:28 UTC
 "object_predicates_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-12/43 Testing: listener_config_validate_test
-12/43 Test: listener_config_validate_test
+12/49 Testing: listener_config_validate_test
+12/49 Test: listener_config_validate_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_config_validate_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"listener_config_validate_test" start time: Aug 11 15:59 UTC
+"listener_config_validate_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 listener_config_validate_test: field-level and uniqueness validation verified
@@ -196,15 +196,15 @@ listener_config_validate_test: field-level and uniqueness validation verified
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"listener_config_validate_test" end time: Aug 11 15:59 UTC
+"listener_config_validate_test" end time: Aug 13 17:28 UTC
 "listener_config_validate_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-13/43 Testing: listener_manager_test
-13/43 Test: listener_manager_test
+13/49 Testing: listener_manager_test
+13/49 Test: listener_manager_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_manager_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"listener_manager_test" start time: Aug 11 15:59 UTC
+"listener_manager_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 listener_manager_test: full state machine transitions and events verified
@@ -212,171 +212,171 @@ listener_manager_test: full state machine transitions and events verified
 Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"listener_manager_test" end time: Aug 11 15:59 UTC
+"listener_manager_test" end time: Aug 13 17:28 UTC
 "listener_manager_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-14/43 Testing: reverse_tcp_test
-14/43 Test: reverse_tcp_test
+14/49 Testing: reverse_tcp_test
+14/49 Test: reverse_tcp_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/reverse_tcp_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"reverse_tcp_test" start time: Aug 11 15:59 UTC
+"reverse_tcp_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 reverse_tcp_test: real accept/connect, port-conflict failure, and clean stop all verified
 <end of output>
-Test time =   0.02 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"reverse_tcp_test" end time: Aug 11 15:59 UTC
+"reverse_tcp_test" end time: Aug 13 17:28 UTC
 "reverse_tcp_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-15/43 Testing: connection_io_test
-15/43 Test: connection_io_test
+15/49 Testing: connection_io_test
+15/49 Test: connection_io_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/connection_io_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"connection_io_test" start time: Aug 11 15:59 UTC
+"connection_io_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 connection_io_test: bidirectional data and disconnect-from-either-end both verified
 <end of output>
-Test time =   0.03 sec
+Test time =   0.04 sec
 ----------------------------------------------------------
 Test Passed.
-"connection_io_test" end time: Aug 11 15:59 UTC
+"connection_io_test" end time: Aug 13 17:28 UTC
 "connection_io_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-16/43 Testing: new_listener_dialog_smoke
-16/43 Test: new_listener_dialog_smoke
+16/49 Testing: new_listener_dialog_smoke
+16/49 Test: new_listener_dialog_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/new_listener_dialog_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"new_listener_dialog_smoke" start time: Aug 11 15:59 UTC
+"new_listener_dialog_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 new_listener_dialog_smoke: modal defaults, inline validation, and successful creation all verified
 <end of output>
-Test time =   1.38 sec
+Test time =   1.34 sec
 ----------------------------------------------------------
 Test Passed.
-"new_listener_dialog_smoke" end time: Aug 11 15:59 UTC
+"new_listener_dialog_smoke" end time: Aug 13 17:28 UTC
 "new_listener_dialog_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-17/43 Testing: listener_console_tab_smoke
-17/43 Test: listener_console_tab_smoke
+17/49 Testing: listener_console_tab_smoke
+17/49 Test: listener_console_tab_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/listener_console_tab_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"listener_console_tab_smoke" start time: Aug 11 15:59 UTC
+"listener_console_tab_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 listener_console_tab_smoke: tab auto-open, Stop/Restart, and close-leaves-it-running all verified
 <end of output>
-Test time =   0.58 sec
+Test time =   0.85 sec
 ----------------------------------------------------------
 Test Passed.
-"listener_console_tab_smoke" end time: Aug 11 15:59 UTC
+"listener_console_tab_smoke" end time: Aug 13 17:28 UTC
 "listener_console_tab_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-18/43 Testing: object_panel_smoke
-18/43 Test: object_panel_smoke
+18/49 Testing: object_panel_smoke
+18/49 Test: object_panel_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/object_panel_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"object_panel_smoke" start time: Aug 11 15:59 UTC
+"object_panel_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 object_panel_smoke: listener row, live connection row, and disconnect-but-retain all verified
 <end of output>
-Test time =   1.42 sec
+Test time =   1.48 sec
 ----------------------------------------------------------
 Test Passed.
-"object_panel_smoke" end time: Aug 11 15:59 UTC
+"object_panel_smoke" end time: Aug 13 17:28 UTC
 "object_panel_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-19/43 Testing: connection_terminal_smoke
-19/43 Test: connection_terminal_smoke
+19/49 Testing: connection_terminal_smoke
+19/49 Test: connection_terminal_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/connection_terminal_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"connection_terminal_smoke" start time: Aug 11 15:59 UTC
+"connection_terminal_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 connection_terminal_smoke: detach-on-close, reopen-and-resume, single-writer, and disconnected-read-only all verified
 <end of output>
-Test time =   1.50 sec
+Test time =   1.57 sec
 ----------------------------------------------------------
 Test Passed.
-"connection_terminal_smoke" end time: Aug 11 15:59 UTC
+"connection_terminal_smoke" end time: Aug 13 17:28 UTC
 "connection_terminal_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-20/43 Testing: context_menu_smoke
-20/43 Test: context_menu_smoke
+20/49 Testing: context_menu_smoke
+20/49 Test: context_menu_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/context_menu_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"context_menu_smoke" start time: Aug 11 15:59 UTC
+"context_menu_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:09.427: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:29.299: no trigger event for menu popup
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:09.630: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:29.500: no trigger event for menu popup
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:09.656: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:29.523: no trigger event for menu popup
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:10.033: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:29.902: no trigger event for menu popup
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:10.234: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:30.104: no trigger event for menu popup
 
-(context_menu_smoke:61018): Gtk-WARNING **: 15:59:10.256: no trigger event for menu popup
+(context_menu_smoke:137432): Gtk-WARNING **: 17:28:30.123: no trigger event for menu popup
 context_menu_smoke: menu sensitivities, guarded remove, and close-running-tab confirmation all verified
 <end of output>
-Test time =   1.48 sec
+Test time =   1.55 sec
 ----------------------------------------------------------
 Test Passed.
-"context_menu_smoke" end time: Aug 11 15:59 UTC
+"context_menu_smoke" end time: Aug 13 17:28 UTC
 "context_menu_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-21/43 Testing: http_listener_smoke
-21/43 Test: http_listener_smoke
+21/49 Testing: http_listener_smoke
+21/49 Test: http_listener_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/http_listener_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"http_listener_smoke" start time: Aug 11 15:59 UTC
+"http_listener_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 http_listener_smoke: matching path, identical connection lifecycle, and non-matching path rejection all verified
 <end of output>
-Test time =   1.56 sec
+Test time =   1.52 sec
 ----------------------------------------------------------
 Test Passed.
-"http_listener_smoke" end time: Aug 11 15:59 UTC
+"http_listener_smoke" end time: Aug 13 17:28 UTC
 "http_listener_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-22/43 Testing: https_listener_smoke
-22/43 Test: https_listener_smoke
+22/49 Testing: https_listener_smoke
+22/49 Test: https_listener_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/https_listener_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"https_listener_smoke" start time: Aug 11 15:59 UTC
+"https_listener_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 https_listener_smoke: TLS handshake, matching path, identical connection lifecycle, and bad-cert-path START_FAILED all verified
 <end of output>
-Test time =   1.89 sec
+Test time =   2.70 sec
 ----------------------------------------------------------
 Test Passed.
-"https_listener_smoke" end time: Aug 11 15:59 UTC
-"https_listener_smoke" time elapsed: 00:00:01
+"https_listener_smoke" end time: Aug 13 17:28 UTC
+"https_listener_smoke" time elapsed: 00:00:02
 ----------------------------------------------------------
 
-23/43 Testing: workspace_root_test
-23/43 Test: workspace_root_test
+23/49 Testing: workspace_root_test
+23/49 Test: workspace_root_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/workspace_root_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"workspace_root_test" start time: Aug 11 15:59 UTC
+"workspace_root_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 workspace_root_test: path containment verified (traversal, absolute, symlink escape, prefix-matching mistake all rejected; valid and not-yet-existing paths resolve correctly)
@@ -384,15 +384,15 @@ workspace_root_test: path containment verified (traversal, absolute, symlink esc
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"workspace_root_test" end time: Aug 11 15:59 UTC
+"workspace_root_test" end time: Aug 13 17:28 UTC
 "workspace_root_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-24/43 Testing: file_tree_test
-24/43 Test: file_tree_test
+24/49 Testing: file_tree_test
+24/49 Test: file_tree_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_tree_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_tree_test" start time: Aug 11 15:59 UTC
+"file_tree_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_tree_test: sorted non-recursive scans, refresh-without-leaking, permission errors, and non-expandable symlinks all verified
@@ -400,31 +400,31 @@ file_tree_test: sorted non-recursive scans, refresh-without-leaking, permission 
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"file_tree_test" end time: Aug 11 15:59 UTC
+"file_tree_test" end time: Aug 13 17:28 UTC
 "file_tree_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-25/43 Testing: explorer_sidebar_smoke
-25/43 Test: explorer_sidebar_smoke
+25/49 Testing: explorer_sidebar_smoke
+25/49 Test: explorer_sidebar_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/explorer_sidebar_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"explorer_sidebar_smoke" start time: Aug 11 15:59 UTC
+"explorer_sidebar_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 explorer_sidebar_smoke: merged TOOLBOX/Toolkit roots, eager root load, lazy subfolder expand, refresh-without-duplicating, and source isolation all verified
 <end of output>
-Test time =   0.22 sec
+Test time =   0.24 sec
 ----------------------------------------------------------
 Test Passed.
-"explorer_sidebar_smoke" end time: Aug 11 15:59 UTC
+"explorer_sidebar_smoke" end time: Aug 13 17:28 UTC
 "explorer_sidebar_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-26/43 Testing: file_operations_test
-26/43 Test: file_operations_test
+26/49 Testing: file_operations_test
+26/49 Test: file_operations_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_operations_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_operations_test" start time: Aug 11 15:59 UTC
+"file_operations_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_operations_test: create/rename/delete/copy/move semantics, duplicate/invalid-name rejection, recursive-copy/delete symlink safety, cross-root move, and containment all verified
@@ -432,45 +432,45 @@ file_operations_test: create/rename/delete/copy/move semantics, duplicate/invali
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"file_operations_test" end time: Aug 11 15:59 UTC
+"file_operations_test" end time: Aug 13 17:28 UTC
 "file_operations_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-27/43 Testing: explorer_operations_smoke
-27/43 Test: explorer_operations_smoke
+27/49 Testing: explorer_operations_smoke
+27/49 Test: explorer_operations_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/explorer_operations_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"explorer_operations_smoke" start time: Aug 11 15:59 UTC
+"explorer_operations_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.474: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.120: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.483: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.158: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.492: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.223: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.499: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.257: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.508: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.276: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.554: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.338: no trigger event for menu popup
 
-(explorer_operations_smoke:61706): Gtk-WARNING **: 15:59:14.574: no trigger event for menu popup
+(explorer_operations_smoke:138129): Gtk-WARNING **: 17:28:35.359: no trigger event for menu popup
 explorer_operations_smoke: toolbar create, context-menu create/rename/delete (immediate and confirmed), refresh-preserves-expansion, and the TOOLBOX root's restricted menu all verified
 <end of output>
-Test time =   0.51 sec
+Test time =   0.56 sec
 ----------------------------------------------------------
 Test Passed.
-"explorer_operations_smoke" end time: Aug 11 15:59 UTC
+"explorer_operations_smoke" end time: Aug 13 17:28 UTC
 "explorer_operations_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-28/43 Testing: file_classify_test
-28/43 Test: file_classify_test
+28/49 Testing: file_classify_test
+28/49 Test: file_classify_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_classify_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_classify_test" start time: Aug 11 15:59 UTC
+"file_classify_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_classify_test: text/binary/empty/directory/nonexistent/executable-script classification all verified
@@ -478,15 +478,15 @@ file_classify_test: text/binary/empty/directory/nonexistent/executable-script cl
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"file_classify_test" end time: Aug 11 15:59 UTC
+"file_classify_test" end time: Aug 13 17:28 UTC
 "file_classify_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-29/43 Testing: editor_document_test
-29/43 Test: editor_document_test
+29/49 Testing: editor_document_test
+29/49 Test: editor_document_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/editor_document_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"editor_document_test" start time: Aug 11 15:59 UTC
+"editor_document_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 editor_document_test: text load, metadata-only load, large-file truncation/read-only-forcing, and nonexistent/outside-root rejection all verified
@@ -494,31 +494,31 @@ editor_document_test: text load, metadata-only load, large-file truncation/read-
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"editor_document_test" end time: Aug 11 15:59 UTC
+"editor_document_test" end time: Aug 13 17:28 UTC
 "editor_document_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-30/43 Testing: explorer_editor_smoke
-30/43 Test: explorer_editor_smoke
+30/49 Testing: explorer_editor_smoke
+30/49 Test: explorer_editor_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/explorer_editor_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"explorer_editor_smoke" start time: Aug 11 15:59 UTC
+"explorer_editor_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 explorer_editor_smoke: text-file editor open, no-duplicate-tab, binary-info tab, directory expand/collapse (no tab), and read-only indicator/non-editable text view all verified
 <end of output>
-Test time =   0.23 sec
+Test time =   0.26 sec
 ----------------------------------------------------------
 Test Passed.
-"explorer_editor_smoke" end time: Aug 11 15:59 UTC
+"explorer_editor_smoke" end time: Aug 13 17:28 UTC
 "explorer_editor_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-31/43 Testing: editor_document_save_test
-31/43 Test: editor_document_save_test
+31/49 Testing: editor_document_save_test
+31/49 Test: editor_document_save_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/editor_document_save_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"editor_document_save_test" start time: Aug 11 15:59 UTC
+"editor_document_save_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 editor_document_save_test: in-place save, permission preservation, read-only rejection, Save As (success/already-exists/invalid-name/outside-workspace), and failed-save-preserves-original all verified
@@ -526,153 +526,153 @@ editor_document_save_test: in-place save, permission preservation, read-only rej
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"editor_document_save_test" end time: Aug 11 15:59 UTC
+"editor_document_save_test" end time: Aug 13 17:28 UTC
 "editor_document_save_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-32/43 Testing: editor_save_smoke
-32/43 Test: editor_save_smoke
+32/49 Testing: editor_save_smoke
+32/49 Test: editor_save_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/editor_save_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"editor_save_smoke" start time: Aug 11 15:59 UTC
+"editor_save_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 editor_save_smoke: modified dot, Save, Save As, Revert, and Save All (with a reported per-file failure) all verified
 <end of output>
-Test time =   1.49 sec
+Test time =   1.81 sec
 ----------------------------------------------------------
 Test Passed.
-"editor_save_smoke" end time: Aug 11 15:59 UTC
+"editor_save_smoke" end time: Aug 13 17:28 UTC
 "editor_save_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-33/43 Testing: editor_close_confirmation_smoke
-33/43 Test: editor_close_confirmation_smoke
+33/49 Testing: editor_close_confirmation_smoke
+33/49 Test: editor_close_confirmation_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/editor_close_confirmation_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"editor_close_confirmation_smoke" start time: Aug 11 15:59 UTC
+"editor_close_confirmation_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(editor_close_confirmation_smoke:62041): Gtk-WARNING **: 15:59:16.832: no trigger event for menu popup
+(editor_close_confirmation_smoke:138559): Gtk-WARNING **: 17:28:37.898: no trigger event for menu popup
 
-(editor_close_confirmation_smoke:62041): Gtk-WARNING **: 15:59:16.846: no trigger event for menu popup
+(editor_close_confirmation_smoke:138559): Gtk-WARNING **: 17:28:37.912: no trigger event for menu popup
 
-(editor_close_confirmation_smoke:62041): Gtk-WARNING **: 15:59:16.881: no trigger event for menu popup
+(editor_close_confirmation_smoke:138559): Gtk-WARNING **: 17:28:37.948: no trigger event for menu popup
 editor_close_confirmation_smoke: close Save/Discard/Cancel, Close Others/Close All, rename-sync, and quit-confirmation Cancel all verified
 <end of output>
 Test time =   0.53 sec
 ----------------------------------------------------------
 Test Passed.
-"editor_close_confirmation_smoke" end time: Aug 11 15:59 UTC
+"editor_close_confirmation_smoke" end time: Aug 13 17:28 UTC
 "editor_close_confirmation_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-34/43 Testing: terminal_context_actions_smoke
-34/43 Test: terminal_context_actions_smoke
+34/49 Testing: terminal_context_actions_smoke
+34/49 Test: terminal_context_actions_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_context_actions_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_context_actions_smoke" start time: Aug 11 15:59 UTC
+"terminal_context_actions_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.271: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.304: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.301: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.370: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.344: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.400: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.380: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.448: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.407: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.473: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.456: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.506: no trigger event for menu popup
 
-(terminal_context_actions_smoke:62250): Gtk-WARNING **: 15:59:17.489: no trigger event for menu popup
+(terminal_context_actions_smoke:138695): Gtk-WARNING **: 17:28:38.524: no trigger event for menu popup
 terminal_context_actions_smoke: Open in Integrated Terminal, Open in Terminal Directory, Open as Text presence/absence, Copy Path/Copy Relative Path, and script-remains-editable-after-run all verified
 <end of output>
-Test time =   0.59 sec
+Test time =   0.52 sec
 ----------------------------------------------------------
 Test Passed.
-"terminal_context_actions_smoke" end time: Aug 11 15:59 UTC
+"terminal_context_actions_smoke" end time: Aug 13 17:28 UTC
 "terminal_context_actions_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-35/43 Testing: terminal_run_command_smoke
-35/43 Test: terminal_run_command_smoke
+35/49 Testing: terminal_run_command_smoke
+35/49 Test: terminal_run_command_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_run_command_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"terminal_run_command_smoke" start time: Aug 11 15:59 UTC
+"terminal_run_command_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(terminal_run_command_smoke:62721): Gtk-WARNING **: 15:59:17.827: no trigger event for menu popup
+(terminal_run_command_smoke:139187): Gtk-WARNING **: 17:28:38.837: no trigger event for menu popup
 
-(terminal_run_command_smoke:62721): Gtk-WARNING **: 15:59:17.864: no trigger event for menu popup
+(terminal_run_command_smoke:139187): Gtk-WARNING **: 17:28:39.066: no trigger event for menu popup
 
-(terminal_run_command_smoke:62721): Gtk-WARNING **: 15:59:17.885: no trigger event for menu popup
-terminal_run_command_smoke: Run with Arguments (new terminal - argv/cwd/env all reached the real process), outside-workspace working-directory rejection, and reuse-existing-terminal all verified
-<end of output>
-Test time =   0.46 sec
-----------------------------------------------------------
-Test Passed.
-"terminal_run_command_smoke" end time: Aug 11 15:59 UTC
-"terminal_run_command_smoke" time elapsed: 00:00:00
-----------------------------------------------------------
-
-36/43 Testing: toolkit_interaction_smoke
-36/43 Test: toolkit_interaction_smoke
-Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/toolkit_interaction_smoke"
-Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"toolkit_interaction_smoke" start time: Aug 11 15:59 UTC
-Output:
-----------------------------------------------------------
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.329: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.342: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.358: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.397: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.430: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.472: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.506: no trigger event for menu popup
-
-(toolkit_interaction_smoke:62928): Gtk-WARNING **: 15:59:18.547: no trigger event for menu popup
-toolkit_interaction_smoke: Toolkit New Folder/Rename/Delete, double-click open (text + binary), Properties, Copy Path/Copy Relative Path, Open in Integrated Terminal, Run in Terminal, and FILES/Toolkit tab independence all verified
+(terminal_run_command_smoke:139187): Gtk-WARNING **: 17:28:39.126: no trigger event for menu popup
+terminal_run_command_smoke: Run with Arguments (new terminal - argv/cwd/env all reached the real process, and both the run command and its output were captured), outside-workspace working-directory rejection, and reuse-existing-terminal (capture verified too) all verified
 <end of output>
 Test time =   0.61 sec
 ----------------------------------------------------------
 Test Passed.
-"toolkit_interaction_smoke" end time: Aug 11 15:59 UTC
+"terminal_run_command_smoke" end time: Aug 13 17:28 UTC
+"terminal_run_command_smoke" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/49 Testing: toolkit_interaction_smoke
+36/49 Test: toolkit_interaction_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/toolkit_interaction_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"toolkit_interaction_smoke" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.479: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.497: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.524: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.568: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.599: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.640: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.674: no trigger event for menu popup
+
+(toolkit_interaction_smoke:139400): Gtk-WARNING **: 17:28:39.700: no trigger event for menu popup
+toolkit_interaction_smoke: Toolkit New Folder/Rename/Delete, double-click open (text + binary), Properties, Copy Path/Copy Relative Path, Open in Integrated Terminal, Run in Terminal, and FILES/Toolkit tab independence all verified
+<end of output>
+Test time =   0.60 sec
+----------------------------------------------------------
+Test Passed.
+"toolkit_interaction_smoke" end time: Aug 13 17:28 UTC
 "toolkit_interaction_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-37/43 Testing: file_watch_queue_test
-37/43 Test: file_watch_queue_test
+37/49 Testing: file_watch_queue_test
+37/49 Test: file_watch_queue_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_watch_queue_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_watch_queue_test" start time: Aug 11 15:59 UTC
+"file_watch_queue_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_watch_queue_test: FIFO order, empty-queue behavior, and concurrent stress all verified
 <end of output>
-Test time =   0.04 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"file_watch_queue_test" end time: Aug 11 15:59 UTC
+"file_watch_queue_test" end time: Aug 13 17:28 UTC
 "file_watch_queue_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-38/43 Testing: file_watcher_test
-38/43 Test: file_watcher_test
+38/49 Testing: file_watcher_test
+38/49 Test: file_watcher_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_watcher_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_watcher_test" start time: Aug 11 15:59 UTC
+"file_watcher_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_watcher_test: real create/write-close/rename/delete events all verified via inotify
@@ -680,79 +680,79 @@ file_watcher_test: real create/write-close/rename/delete events all verified via
 Test time =   0.34 sec
 ----------------------------------------------------------
 Test Passed.
-"file_watcher_test" end time: Aug 11 15:59 UTC
+"file_watcher_test" end time: Aug 13 17:28 UTC
 "file_watcher_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-39/43 Testing: file_watch_explorer_smoke
-39/43 Test: file_watch_explorer_smoke
+39/49 Testing: file_watch_explorer_smoke
+39/49 Test: file_watch_explorer_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_watch_explorer_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_watch_explorer_smoke" start time: Aug 11 15:59 UTC
+"file_watch_explorer_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_watch_explorer_smoke: external create/delete/rename all reflected in the explorer tree with no manual refresh
 <end of output>
-Test time =   0.95 sec
+Test time =   1.12 sec
 ----------------------------------------------------------
 Test Passed.
-"file_watch_explorer_smoke" end time: Aug 11 15:59 UTC
-"file_watch_explorer_smoke" time elapsed: 00:00:00
+"file_watch_explorer_smoke" end time: Aug 13 17:28 UTC
+"file_watch_explorer_smoke" time elapsed: 00:00:01
 ----------------------------------------------------------
 
-40/43 Testing: file_watch_conflict_smoke
-40/43 Test: file_watch_conflict_smoke
+40/49 Testing: file_watch_conflict_smoke
+40/49 Test: file_watch_conflict_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_watch_conflict_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_watch_conflict_smoke" start time: Aug 11 15:59 UTC
+"file_watch_conflict_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_watch_conflict_smoke: silent reload, Reload/Keep/Compare conflict responses, deleted-from-disk banner, and no-spurious-conflict-after-save all verified
 <end of output>
-Test time =   4.66 sec
+Test time =   4.02 sec
 ----------------------------------------------------------
 Test Passed.
-"file_watch_conflict_smoke" end time: Aug 11 15:59 UTC
+"file_watch_conflict_smoke" end time: Aug 13 17:28 UTC
 "file_watch_conflict_smoke" time elapsed: 00:00:04
 ----------------------------------------------------------
 
-41/43 Testing: explorer_clipboard_smoke
-41/43 Test: explorer_clipboard_smoke
+41/49 Testing: explorer_clipboard_smoke
+41/49 Test: explorer_clipboard_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/explorer_clipboard_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"explorer_clipboard_smoke" start time: Aug 11 15:59 UTC
+"explorer_clipboard_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:24.941: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.620: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:24.955: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.674: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:24.985: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.705: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:25.008: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.726: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:25.041: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.759: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:25.057: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.792: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:25.092: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.827: no trigger event for menu popup
 
-(explorer_clipboard_smoke:63579): Gtk-WARNING **: 15:59:25.125: no trigger event for menu popup
+(explorer_clipboard_smoke:140091): Gtk-WARNING **: 17:28:45.858: no trigger event for menu popup
 explorer_clipboard_smoke: Copy+Paste (with auto-rename collision), Cut+Paste (with open-tab tracking and clipboard consumption), Paste toolbar sensitivity, Cut/Copy/Paste menu gating, a cross-root Copy, and the self-nesting paste guard all verified
 <end of output>
-Test time =   0.65 sec
+Test time =   0.72 sec
 ----------------------------------------------------------
 Test Passed.
-"explorer_clipboard_smoke" end time: Aug 11 15:59 UTC
+"explorer_clipboard_smoke" end time: Aug 13 17:28 UTC
 "explorer_clipboard_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-42/43 Testing: file_search_test
-42/43 Test: file_search_test
+42/49 Testing: file_search_test
+42/49 Test: file_search_test
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/file_search_test"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"file_search_test" start time: Aug 11 15:59 UTC
+"file_search_test" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 file_search_test: file/folder name matching, case-sensitivity, recursion-into-matched-folders, symlink safety, max_matches, and empty-query behavior all verified
@@ -760,24 +760,120 @@ file_search_test: file/folder name matching, case-sensitivity, recursion-into-ma
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"file_search_test" end time: Aug 11 15:59 UTC
+"file_search_test" end time: Aug 13 17:28 UTC
 "file_search_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-43/43 Testing: explorer_search_smoke
-43/43 Test: explorer_search_smoke
+43/49 Testing: explorer_search_smoke
+43/49 Test: explorer_search_smoke
 Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/explorer_search_smoke"
 Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
-"explorer_search_smoke" start time: Aug 11 15:59 UTC
+"explorer_search_smoke" start time: Aug 13 17:28 UTC
 Output:
 ----------------------------------------------------------
 explorer_search_smoke: opening the search window, cross-root file/folder name matches with correct display text and status wording, file-result open and folder-result reveal-in-explorer (including on-demand ancestor loading), Match Case, singleton-window behavior, and closing with the main window all verified
 <end of output>
-Test time =   0.26 sec
+Test time =   0.25 sec
 ----------------------------------------------------------
 Test Passed.
-"explorer_search_smoke" end time: Aug 11 15:59 UTC
+"explorer_search_smoke" end time: Aug 13 17:28 UTC
 "explorer_search_smoke" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 11 15:59 UTC
+44/49 Testing: pty_worker_test
+44/49 Test: pty_worker_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/pty_worker_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"pty_worker_test" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+pty_worker_test: echo round-trip, forced stop, natural exit status, and cross-worker fd isolation all verified
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"pty_worker_test" end time: Aug 13 17:28 UTC
+"pty_worker_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/49 Testing: line_accumulator_test
+45/49 Test: line_accumulator_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/line_accumulator_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"line_accumulator_test" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+line_accumulator_test: single/split/multi-line, CRLF (including split), lone CR, partial-buffering, backspace/DEL erasing, control-byte dropping, and empty-line suppression all verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"line_accumulator_test" end time: Aug 13 17:28 UTC
+"line_accumulator_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/49 Testing: ansi_strip_test
+46/49 Test: ansi_strip_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/ansi_strip_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"ansi_strip_test" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+ansi_strip_test: plain passthrough, SGR color codes, OSC (BEL and ST terminated), simple escapes, cross-call split sequences, and reset all verified
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ansi_strip_test" end time: Aug 13 17:28 UTC
+"ansi_strip_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/49 Testing: database_terminal_capture_test
+47/49 Test: database_terminal_capture_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/database_terminal_capture_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"database_terminal_capture_test" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+database_terminal_capture_test: schema init, insert, byte-exact binary round-trip, and clear-resets-id-sequence all verified
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"database_terminal_capture_test" end time: Aug 13 17:28 UTC
+"database_terminal_capture_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/49 Testing: terminal_history_capture_test
+48/49 Test: terminal_history_capture_test
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/terminal_history_capture_test"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"terminal_history_capture_test" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+terminal_history_capture_test: in-memory append always happens, database persistence only when the capture window is open, and ANSI escape codes are stripped for the database while staying intact in-memory for display, all verified
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"terminal_history_capture_test" end time: Aug 13 17:28 UTC
+"terminal_history_capture_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/49 Testing: database_export_clear_smoke
+49/49 Test: database_export_clear_smoke
+Command: "/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/database_export_clear_smoke"
+Directory: /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests
+"database_export_clear_smoke" start time: Aug 13 17:28 UTC
+Output:
+----------------------------------------------------------
+database_export_clear_smoke: capture-on-type, Export Database (JSON), and Clear Database (Cancel then confirm) all verified
+<end of output>
+Test time =   1.47 sec
+----------------------------------------------------------
+Test Passed.
+"database_export_clear_smoke" end time: Aug 13 17:28 UTC
+"database_export_clear_smoke" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Aug 13 17:28 UTC

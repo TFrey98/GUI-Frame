@@ -1,6 +1,7 @@
 #ifndef TOOLBOX_CONNECTION_H
 #define TOOLBOX_CONNECTION_H
 
+#include <stdbool.h>
 #include <stdint.h>
 #include <time.h>
 
@@ -31,6 +32,17 @@ typedef struct Connection {
                      * worker thread is doing I/O with it) frees it, never this registry;
                      * see connection_worker.c's own comment for why. */
     TerminalHistory *history; /* everything received; retained even after DISCONNECTED */
+
+    /* True from the moment the writer view submits a line (Enter) until
+     * it starts typing the next one - the "command sent, awaiting
+     * response" window. Received bytes are only persisted to the
+     * database (still always fed into `history` for display/replay)
+     * while this is true, so a fast typist's own echoed keystrokes -
+     * indistinguishable from real output at the byte level - never reach
+     * the database no matter how many arrive in one drain. See
+     * ui_gtk_connection_terminal.c's commit handler for where this
+     * flips. */
+    bool capturing_output;
 } Connection;
 
 #endif /* TOOLBOX_CONNECTION_H */

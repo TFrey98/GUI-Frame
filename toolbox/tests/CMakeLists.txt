@@ -127,6 +127,24 @@ target_link_libraries(file_search_test PRIVATE toolbox_core)
 add_executable(explorer_search_smoke explorer_search_smoke.c)
 target_link_libraries(explorer_search_smoke PRIVATE toolbox_core)
 
+add_executable(pty_worker_test pty_worker_test.c)
+target_link_libraries(pty_worker_test PRIVATE toolbox_core)
+
+add_executable(line_accumulator_test line_accumulator_test.c)
+target_link_libraries(line_accumulator_test PRIVATE toolbox_core)
+
+add_executable(ansi_strip_test ansi_strip_test.c)
+target_link_libraries(ansi_strip_test PRIVATE toolbox_core)
+
+add_executable(database_terminal_capture_test database_terminal_capture_test.c)
+target_link_libraries(database_terminal_capture_test PRIVATE toolbox_core)
+
+add_executable(terminal_history_capture_test terminal_history_capture_test.c)
+target_link_libraries(terminal_history_capture_test PRIVATE toolbox_core)
+
+add_executable(database_export_clear_smoke database_export_clear_smoke.c)
+target_link_libraries(database_export_clear_smoke PRIVATE toolbox_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -255,3 +273,21 @@ set_tests_properties(file_search_test PROPERTIES TIMEOUT 15)
 
 add_test(NAME explorer_search_smoke COMMAND explorer_search_smoke)
 set_tests_properties(explorer_search_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME pty_worker_test COMMAND pty_worker_test)
+set_tests_properties(pty_worker_test PROPERTIES TIMEOUT 30)
+
+add_test(NAME line_accumulator_test COMMAND line_accumulator_test)
+set_tests_properties(line_accumulator_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME ansi_strip_test COMMAND ansi_strip_test)
+set_tests_properties(ansi_strip_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME database_terminal_capture_test COMMAND database_terminal_capture_test)
+set_tests_properties(database_terminal_capture_test PROPERTIES TIMEOUT 15)
+
+add_test(NAME terminal_history_capture_test COMMAND terminal_history_capture_test)
+set_tests_properties(terminal_history_capture_test PROPERTIES TIMEOUT 15)
+
+add_test(NAME database_export_clear_smoke COMMAND database_export_clear_smoke)
+set_tests_properties(database_export_clear_smoke PROPERTIES TIMEOUT 30)

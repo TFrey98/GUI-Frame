@@ -73,6 +73,10 @@ static gboolean on_tick(gpointer user_data) {
     }
     refresh_all_listener_tabs(backend);
     refresh_all_connection_terminal_pages(backend);
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        terminal_pump_pty_output(entry->view);
+    }
     refresh_object_panel(backend);
     drain_and_apply_watcher(backend, backend->file_watcher, EXPLORER_SOURCE_FILES);
     drain_and_apply_watcher(backend, backend->toolkit_watcher, EXPLORER_SOURCE_TOOLKIT);
@@ -131,6 +135,16 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     g_object_set_data(G_OBJECT(search_button), "toolbox-search-open-button", search_button);
     g_signal_connect(search_button, "clicked", G_CALLBACK(on_search_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), search_button, FALSE, FALSE, 0);
+
+    GtkWidget *export_database_button = gtk_button_new_with_label("Export Database");
+    g_object_set_data(G_OBJECT(export_database_button), "toolbox-export-database-button", export_database_button);
+    g_signal_connect(export_database_button, "clicked", G_CALLBACK(on_export_database_clicked), backend);
+    gtk_box_pack_start(GTK_BOX(bar), export_database_button, FALSE, FALSE, 0);
+
+    GtkWidget *clear_database_button = gtk_button_new_with_label("Clear Database");
+    g_object_set_data(G_OBJECT(clear_database_button), "toolbox-clear-database-button", clear_database_button);
+    g_signal_connect(clear_database_button, "clicked", G_CALLBACK(on_clear_database_clicked), backend);
+    gtk_box_pack_start(GTK_BOX(bar), clear_database_button, FALSE, FALSE, 0);
 
     backend->status_label = gtk_label_new("No listeners yet");
     g_object_set_data(G_OBJECT(backend->status_label), "toolbox-listener-status-label", backend->status_label);

@@ -31,6 +31,8 @@ add_library(toolbox_core STATIC
     src/core/workspace.c
     src/core/tab.c
     src/core/terminal_session.c
+    src/core/line_accumulator.c
+    src/core/ansi_strip.c
     src/ui/workbench.c
     src/db/database.c
     src/tools/tool_registry.c
@@ -73,7 +75,9 @@ add_library(toolbox_core STATIC
     src/ui/gtk/ui_gtk_editor_conflicts.c
     src/ui/gtk/ui_gtk_theme.c
     src/ui/gtk/ui_gtk_search.c
+    src/ui/gtk/ui_gtk_database_dialogs.c
     src/ui/gtk/terminal_vte.c
+    src/terminal/pty_worker.c
 )
 
 target_include_directories(toolbox_core PUBLIC

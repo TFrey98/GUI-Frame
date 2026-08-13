@@ -98,7 +98,8 @@ uint64_t object_registry_add_connection(ObjectRegistry *registry, uint64_t liste
     obj->connection.connected_at = time(NULL);
     obj->connection.socket_fd = socket_fd;
     obj->connection.tls = tls;
-    obj->connection.history = terminal_history_create();
+    obj->connection.history = terminal_history_create("connection", obj->connection.id);
+    obj->connection.capturing_output = false;
 
     registry->objects[registry->count++] = obj;
     return obj->connection.id;

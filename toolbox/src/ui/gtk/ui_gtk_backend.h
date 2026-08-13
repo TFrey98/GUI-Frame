@@ -154,6 +154,10 @@ const char *editor_save_error_message(EditorSaveResult result);
 /* --- ui_gtk_listener_dialog.c (New Listener dialog) --------------------- */
 void on_new_listener_clicked(GtkButton *button, gpointer user_data);
 
+/* --- ui_gtk_database_dialogs.c (Export/Clear Database) ------------------ */
+void on_export_database_clicked(GtkButton *button, gpointer user_data);
+void on_clear_database_clicked(GtkButton *button, gpointer user_data);
+
 /* --- ui_gtk_run_dialog.c (Run with Arguments dialog) -------------------- */
 /* Triggered from the explorer's context menu, but unconditionally just
  * shows a dialog - lives in its own module, declared here since it has

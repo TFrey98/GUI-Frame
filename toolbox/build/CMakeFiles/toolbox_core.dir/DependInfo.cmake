@@ -9,6 +9,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/app/app.c" "CMakeFiles/toolbox_core.dir/src/app/app.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/app/app.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/core/ansi_strip.c" "CMakeFiles/toolbox_core.dir/src/core/ansi_strip.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/core/ansi_strip.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/core/line_accumulator.c" "CMakeFiles/toolbox_core.dir/src/core/line_accumulator.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/core/line_accumulator.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/core/tab.c" "CMakeFiles/toolbox_core.dir/src/core/tab.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/core/tab.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/core/terminal_session.c" "CMakeFiles/toolbox_core.dir/src/core/terminal_session.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/core/terminal_session.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/core/workspace.c" "CMakeFiles/toolbox_core.dir/src/core/workspace.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/core/workspace.c.o.d"
@@ -34,11 +36,13 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/object_registry.c" "CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/object_registry.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/tcp_worker.c" "CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/tcp_worker.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/listeners/terminal_history.c" "CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/listeners/terminal_history.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/terminal/pty_worker.c" "CMakeFiles/toolbox_core.dir/src/terminal/pty_worker.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/terminal/pty_worker.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/tools/tool_registry.c" "CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/tools/tool_registry.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/tools/toolkit_index.c" "CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/tools/toolkit_index.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/terminal_vte.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk_connection_terminal.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.o.d"
+  "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk_database_dialogs.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_database_dialogs.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_database_dialogs.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk_dialogs.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_dialogs.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_dialogs.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk_editor.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor.c.o.d"
   "/home/taylor.frey/Desktop/GUI Frame/toolbox/src/ui/gtk/ui_gtk_editor_conflicts.c" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_conflicts.c.o" "gcc" "CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_editor_conflicts.c.o.d"

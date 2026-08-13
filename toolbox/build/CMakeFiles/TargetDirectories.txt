@@ -46,6 +46,12 @@
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_clipboard_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/file_search_test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/explorer_search_smoke.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/pty_worker_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/line_accumulator_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/ansi_strip_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/database_terminal_capture_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/terminal_history_capture_test.dir
+/home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/database_export_clear_smoke.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/test.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/edit_cache.dir
 /home/taylor.frey/Desktop/GUI Frame/toolbox/build/tests/CMakeFiles/rebuild_cache.dir

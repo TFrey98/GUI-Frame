@@ -61,7 +61,7 @@ static void drain_worker_incoming(ConnectionManager *manager, WorkerEntry *entry
     unsigned char chunk[4096];
     size_t n;
     while ((n = byte_buffer_consume(entry->worker.incoming, chunk, sizeof(chunk))) > 0) {
-        terminal_history_append(connection->history, chunk, n);
+        terminal_history_append(connection->history, chunk, n, connection->capturing_output);
     }
 }
 

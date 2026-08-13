@@ -751,4 +751,6 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_tabs_internal.h \
- /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_terminal_internal.h
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/ui_gtk_terminal_internal.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/db/database.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/line_accumulator.h

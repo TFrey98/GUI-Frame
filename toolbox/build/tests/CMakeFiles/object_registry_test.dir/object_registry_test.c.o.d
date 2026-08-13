@@ -29,6 +29,7 @@ tests/CMakeFiles/object_registry_test.dir/object_registry_test.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/object_registry.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/managed_object.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \

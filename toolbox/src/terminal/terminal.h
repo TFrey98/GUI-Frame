@@ -55,4 +55,13 @@ void terminal_feed_output(Terminal *terminal, const char *data, size_t length);
 typedef void (*TerminalCommitHandler)(const char *data, size_t length, void *user_data);
 void terminal_set_commit_handler(Terminal *terminal, TerminalCommitHandler handler, void *user_data);
 
+/* Call once per GUI tick for every live PTY-backed (local shell/command)
+ * terminal. Drains newly received bytes into the terminal's own capture
+ * history (persisted to the database) and feeds them to the display; also
+ * notices a child that has exited since the last call and reports it the
+ * same way a live "child-exited" signal used to (session marked exited,
+ * "[Process exited]" fed to the display). A no-op for terminals with no
+ * spawned child (e.g. connection-backed display-only terminals). */
+void terminal_pump_pty_output(Terminal *terminal);
+
 #endif /* TOOLBOX_TERMINAL_H */

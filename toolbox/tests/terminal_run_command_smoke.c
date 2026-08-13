@@ -9,6 +9,8 @@
  * live shell), plus that a working directory outside the workspace is
  * rejected inline with nothing spawned.
  */
+#define _GNU_SOURCE /* memmem() */
+
 #include <dirent.h>
 #include <gtk/gtk.h>
 #include <stdio.h>
@@ -18,6 +20,7 @@
 
 #include "app/app.h"
 #include "core/tab.h"
+#include "db/database.h"
 #include "files/file_operations.h"
 #include "files/workspace_root.h"
 #include "test_gtk_utils.h"
@@ -39,9 +42,11 @@ typedef enum Step {
     STEP_WAIT_UI,
     STEP_SUBMIT_NEW_TERMINAL_RUN,
     STEP_WAIT_NEW_TERMINAL_SENTINEL,
+    STEP_WAIT_NEW_TERMINAL_CAPTURE,
     STEP_VALIDATE_REJECTION,
     STEP_SUBMIT_REUSE_RUN,
     STEP_WAIT_REUSE_SENTINEL,
+    STEP_WAIT_REUSE_CAPTURE,
 } Step;
 
 typedef struct TestState {
@@ -194,6 +199,31 @@ static void write_file_bytes(const char *path, const char *content, size_t len) 
     }
 }
 
+typedef struct EventSearch {
+    const char *direction;
+    const char *needle;
+    gboolean found;
+} EventSearch;
+
+static void look_for_event(uint64_t id, const char *terminal_kind, uint64_t terminal_id, const char *direction,
+                            int64_t captured_at, const void *data, size_t data_len, void *user_data) {
+    (void)id;
+    (void)terminal_kind;
+    (void)terminal_id;
+    (void)captured_at;
+    EventSearch *search = user_data;
+    if (strcmp(direction, search->direction) == 0 && data_len >= strlen(search->needle) &&
+        memmem(data, data_len, search->needle, strlen(search->needle)) != NULL) {
+        search->found = TRUE;
+    }
+}
+
+static gboolean event_was_captured(const char *direction, const char *needle) {
+    EventSearch search = {.direction = direction, .needle = needle, .found = FALSE};
+    database_for_each_terminal_event(look_for_event, &search);
+    return search.found;
+}
+
 static gboolean drive(gpointer user_data) {
     TestState *test = user_data;
 
@@ -276,6 +306,25 @@ static gboolean drive(gpointer user_data) {
                 }
                 if (!strstr(content, "MARKER:hello world")) {
                     fail(test, "runner.sh should have seen the MARKER environment override");
+                }
+                test->step = STEP_WAIT_NEW_TERMINAL_CAPTURE;
+                test->step_elapsed_ms = 0;
+                continue;
+            }
+
+            case STEP_WAIT_NEW_TERMINAL_CAPTURE: {
+                /* Run with Arguments (new terminal) spawns the process
+                 * directly as argv - never "typed" through commit/
+                 * terminal_send - so without terminal_run_command()'s own
+                 * capture call, neither the command it ran nor that
+                 * command's real terminal output (the unredirected
+                 * STDOUT-MARKER echo, as opposed to the sentinel file
+                 * above) would ever reach the database. */
+                if (!event_was_captured("input", "runner.sh")) {
+                    break; /* keep polling - the tick-driven capture may not have landed yet */
+                }
+                if (!event_was_captured("output", "STDOUT-MARKER:visible-in-terminal:--flag")) {
+                    break;
                 }
                 test->step = STEP_VALIDATE_REJECTION;
                 test->step_elapsed_ms = 0;
@@ -394,6 +443,24 @@ static gboolean drive(gpointer user_data) {
                 if (!strstr(content, "MARKER:second run")) {
                     fail(test, "the reused terminal should have seen the MARKER environment override");
                 }
+                test->step = STEP_WAIT_REUSE_CAPTURE;
+                test->step_elapsed_ms = 0;
+                continue;
+            }
+
+            case STEP_WAIT_REUSE_CAPTURE: {
+                /* Reuse goes through terminal_send()/the commit-based
+                 * capture path already fixed earlier - this just confirms
+                 * it still works for a script run this way, and (via the
+                 * per-invocation $* marker) that it's this run's own
+                 * output being captured, not a leftover match from the
+                 * new-terminal run above. */
+                if (!event_was_captured("input", "reused")) {
+                    break;
+                }
+                if (!event_was_captured("output", "STDOUT-MARKER:visible-in-terminal:reused")) {
+                    break;
+                }
                 test->done = TRUE;
                 gtk_widget_destroy(GTK_WIDGET(window));
                 return G_SOURCE_REMOVE;
@@ -449,7 +516,18 @@ static void write_fixtures(const WorkspaceRoot *root) {
         "  echo \"PWD:$(pwd)\"\n"
         "  echo \"ARGS:$*\"\n"
         "  echo \"MARKER:$MARKER\"\n"
-        "} > \"$SENTINEL\"\n";
+        "} > \"$SENTINEL\"\n"
+        /* Unlike the block above (redirected to the sentinel file, so the
+         * test can assert on real spawned-process argv/cwd/env without
+         * scraping terminal text), this one is deliberately NOT
+         * redirected - it's real terminal output, there specifically to
+         * verify Run in Terminal/Run with Arguments' output gets captured
+         * into the database the same way typed-command output does. $*
+         * (the received args) makes each invocation's echo distinct, so
+         * the new-terminal and reuse-terminal runs can each be verified
+         * independently rather than one check trivially matching the
+         * other's already-captured output. */
+        "echo \"STDOUT-MARKER:visible-in-terminal:$*\"\n";
     write_file_bytes(path, script, strlen(script));
     chmod(path, 0755);
 }
@@ -466,6 +544,11 @@ int main(void) {
     test.root = *app_get_file_workspace_root(app);
     clear_workspace_root(&test.root);
     write_fixtures(&test.root);
+
+    /* toolbox.db is shared across every App-backed test in this suite -
+     * start from a clean slate so the capture assertions below can't pass
+     * by matching a leftover row from an earlier test run. */
+    database_clear_terminal_events();
 
     snprintf(test.sentinel_new, sizeof(test.sentinel_new), "/tmp/toolbox_run_cmd_smoke_%d_new", (int)getpid());
     snprintf(test.sentinel_reuse, sizeof(test.sentinel_reuse), "/tmp/toolbox_run_cmd_smoke_%d_reuse", (int)getpid());
@@ -493,6 +576,7 @@ int main(void) {
     }
 
     g_print("terminal_run_command_smoke: Run with Arguments (new terminal - argv/cwd/env all reached the real "
-            "process), outside-workspace working-directory rejection, and reuse-existing-terminal all verified\n");
+            "process, and both the run command and its output were captured), outside-workspace working-directory "
+            "rejection, and reuse-existing-terminal (capture verified too) all verified\n");
     return 0;
 }

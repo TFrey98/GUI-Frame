@@ -13,6 +13,7 @@
 #include <vte/vte.h>
 
 #include "app/app.h"
+#include "terminal/terminal.h"
 #include "test_gtk_utils.h"
 
 static gboolean g_test_passed = FALSE;
@@ -61,8 +62,16 @@ static gboolean text_contains(VteTerminal *vte, const char *needle) {
     return found;
 }
 
+/* The app now owns the pty itself (see terminal_vte.c) instead of letting
+ * VTE spawn/own it, so vte_terminal_feed_child() has nothing to write to -
+ * go through the same terminal_send() path a real keystroke takes, via
+ * the Terminal* the app attaches to the terminal's containing page
+ * ("toolbox-view", the same convention ui_gtk_terminal.c's own
+ * active_terminal_page() uses). */
 static void send(VteTerminal *vte, const char *command) {
-    vte_terminal_feed_child(vte, command, (gssize)strlen(command));
+    GtkWidget *page = gtk_widget_get_parent(GTK_WIDGET(vte));
+    Terminal *view = g_object_get_data(G_OBJECT(page), "toolbox-view");
+    terminal_send(view, command, strlen(command));
 }
 
 static gboolean phase_e_finish(gpointer user_data) {

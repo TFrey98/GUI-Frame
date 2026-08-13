@@ -711,6 +711,84 @@ explorer_search_smoke/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/build
 .PHONY : explorer_search_smoke/fast
 
+#=============================================================================
+# Target rules for targets named pty_worker_test
+
+# Build rule for target.
+pty_worker_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pty_worker_test
+.PHONY : pty_worker_test
+
+# fast build rule for target.
+pty_worker_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/pty_worker_test.dir/build.make tests/CMakeFiles/pty_worker_test.dir/build
+.PHONY : pty_worker_test/fast
+
+#=============================================================================
+# Target rules for targets named line_accumulator_test
+
+# Build rule for target.
+line_accumulator_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 line_accumulator_test
+.PHONY : line_accumulator_test
+
+# fast build rule for target.
+line_accumulator_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/line_accumulator_test.dir/build.make tests/CMakeFiles/line_accumulator_test.dir/build
+.PHONY : line_accumulator_test/fast
+
+#=============================================================================
+# Target rules for targets named ansi_strip_test
+
+# Build rule for target.
+ansi_strip_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ansi_strip_test
+.PHONY : ansi_strip_test
+
+# fast build rule for target.
+ansi_strip_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ansi_strip_test.dir/build.make tests/CMakeFiles/ansi_strip_test.dir/build
+.PHONY : ansi_strip_test/fast
+
+#=============================================================================
+# Target rules for targets named database_terminal_capture_test
+
+# Build rule for target.
+database_terminal_capture_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database_terminal_capture_test
+.PHONY : database_terminal_capture_test
+
+# fast build rule for target.
+database_terminal_capture_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_terminal_capture_test.dir/build.make tests/CMakeFiles/database_terminal_capture_test.dir/build
+.PHONY : database_terminal_capture_test/fast
+
+#=============================================================================
+# Target rules for targets named terminal_history_capture_test
+
+# Build rule for target.
+terminal_history_capture_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 terminal_history_capture_test
+.PHONY : terminal_history_capture_test
+
+# fast build rule for target.
+terminal_history_capture_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_history_capture_test.dir/build.make tests/CMakeFiles/terminal_history_capture_test.dir/build
+.PHONY : terminal_history_capture_test/fast
+
+#=============================================================================
+# Target rules for targets named database_export_clear_smoke
+
+# Build rule for target.
+database_export_clear_smoke: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 database_export_clear_smoke
+.PHONY : database_export_clear_smoke
+
+# fast build rule for target.
+database_export_clear_smoke/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_export_clear_smoke.dir/build.make tests/CMakeFiles/database_export_clear_smoke.dir/build
+.PHONY : database_export_clear_smoke/fast
+
 src/app/app.o: src/app/app.c.o
 .PHONY : src/app/app.o
 
@@ -734,6 +812,54 @@ src/app/app.s: src/app/app.c.s
 src/app/app.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/app/app.c.s
 .PHONY : src/app/app.c.s
+
+src/core/ansi_strip.o: src/core/ansi_strip.c.o
+.PHONY : src/core/ansi_strip.o
+
+# target to build an object file
+src/core/ansi_strip.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/ansi_strip.c.o
+.PHONY : src/core/ansi_strip.c.o
+
+src/core/ansi_strip.i: src/core/ansi_strip.c.i
+.PHONY : src/core/ansi_strip.i
+
+# target to preprocess a source file
+src/core/ansi_strip.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/ansi_strip.c.i
+.PHONY : src/core/ansi_strip.c.i
+
+src/core/ansi_strip.s: src/core/ansi_strip.c.s
+.PHONY : src/core/ansi_strip.s
+
+# target to generate assembly for a file
+src/core/ansi_strip.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/ansi_strip.c.s
+.PHONY : src/core/ansi_strip.c.s
+
+src/core/line_accumulator.o: src/core/line_accumulator.c.o
+.PHONY : src/core/line_accumulator.o
+
+# target to build an object file
+src/core/line_accumulator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/line_accumulator.c.o
+.PHONY : src/core/line_accumulator.c.o
+
+src/core/line_accumulator.i: src/core/line_accumulator.c.i
+.PHONY : src/core/line_accumulator.i
+
+# target to preprocess a source file
+src/core/line_accumulator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/line_accumulator.c.i
+.PHONY : src/core/line_accumulator.c.i
+
+src/core/line_accumulator.s: src/core/line_accumulator.c.s
+.PHONY : src/core/line_accumulator.s
+
+# target to generate assembly for a file
+src/core/line_accumulator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/core/line_accumulator.c.s
+.PHONY : src/core/line_accumulator.c.s
 
 src/core/tab.o: src/core/tab.c.o
 .PHONY : src/core/tab.o
@@ -1359,6 +1485,30 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox.dir/build.make CMakeFiles/toolbox.dir/src/main.c.s
 .PHONY : src/main.c.s
 
+src/terminal/pty_worker.o: src/terminal/pty_worker.c.o
+.PHONY : src/terminal/pty_worker.o
+
+# target to build an object file
+src/terminal/pty_worker.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/terminal/pty_worker.c.o
+.PHONY : src/terminal/pty_worker.c.o
+
+src/terminal/pty_worker.i: src/terminal/pty_worker.c.i
+.PHONY : src/terminal/pty_worker.i
+
+# target to preprocess a source file
+src/terminal/pty_worker.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/terminal/pty_worker.c.i
+.PHONY : src/terminal/pty_worker.c.i
+
+src/terminal/pty_worker.s: src/terminal/pty_worker.c.s
+.PHONY : src/terminal/pty_worker.s
+
+# target to generate assembly for a file
+src/terminal/pty_worker.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/terminal/pty_worker.c.s
+.PHONY : src/terminal/pty_worker.c.s
+
 src/tools/tool_registry.o: src/tools/tool_registry.c.o
 .PHONY : src/tools/tool_registry.o
 
@@ -1478,6 +1628,30 @@ src/ui/gtk/ui_gtk_connection_terminal.s: src/ui/gtk/ui_gtk_connection_terminal.c
 src/ui/gtk/ui_gtk_connection_terminal.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_connection_terminal.c.s
 .PHONY : src/ui/gtk/ui_gtk_connection_terminal.c.s
+
+src/ui/gtk/ui_gtk_database_dialogs.o: src/ui/gtk/ui_gtk_database_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.o
+
+# target to build an object file
+src/ui/gtk/ui_gtk_database_dialogs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_database_dialogs.c.o
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.c.o
+
+src/ui/gtk/ui_gtk_database_dialogs.i: src/ui/gtk/ui_gtk_database_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.i
+
+# target to preprocess a source file
+src/ui/gtk/ui_gtk_database_dialogs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_database_dialogs.c.i
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.c.i
+
+src/ui/gtk/ui_gtk_database_dialogs.s: src/ui/gtk/ui_gtk_database_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.s
+
+# target to generate assembly for a file
+src/ui/gtk/ui_gtk_database_dialogs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/toolbox_core.dir/build.make CMakeFiles/toolbox_core.dir/src/ui/gtk/ui_gtk_database_dialogs.c.s
+.PHONY : src/ui/gtk/ui_gtk_database_dialogs.c.s
 
 src/ui/gtk/ui_gtk_dialogs.o: src/ui/gtk/ui_gtk_dialogs.c.o
 .PHONY : src/ui/gtk/ui_gtk_dialogs.o
@@ -2064,10 +2238,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... ansi_strip_test"
 	@echo "... byte_buffer_test"
 	@echo "... connection_io_test"
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
+	@echo "... database_export_clear_smoke"
+	@echo "... database_terminal_capture_test"
 	@echo "... editor_close_confirmation_smoke"
 	@echo "... editor_document_save_test"
 	@echo "... editor_document_test"
@@ -2090,6 +2267,7 @@ help:
 	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
+	@echo "... line_accumulator_test"
 	@echo "... listener_config_validate_test"
 	@echo "... listener_console_tab_smoke"
 	@echo "... listener_manager_test"
@@ -2098,9 +2276,11 @@ help:
 	@echo "... object_panel_smoke"
 	@echo "... object_predicates_test"
 	@echo "... object_registry_test"
+	@echo "... pty_worker_test"
 	@echo "... reverse_tcp_test"
 	@echo "... tabs_smoke"
 	@echo "... terminal_context_actions_smoke"
+	@echo "... terminal_history_capture_test"
 	@echo "... terminal_run_command_smoke"
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
@@ -2112,6 +2292,12 @@ help:
 	@echo "... src/app/app.o"
 	@echo "... src/app/app.i"
 	@echo "... src/app/app.s"
+	@echo "... src/core/ansi_strip.o"
+	@echo "... src/core/ansi_strip.i"
+	@echo "... src/core/ansi_strip.s"
+	@echo "... src/core/line_accumulator.o"
+	@echo "... src/core/line_accumulator.i"
+	@echo "... src/core/line_accumulator.s"
 	@echo "... src/core/tab.o"
 	@echo "... src/core/tab.i"
 	@echo "... src/core/tab.s"
@@ -2190,6 +2376,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/terminal/pty_worker.o"
+	@echo "... src/terminal/pty_worker.i"
+	@echo "... src/terminal/pty_worker.s"
 	@echo "... src/tools/tool_registry.o"
 	@echo "... src/tools/tool_registry.i"
 	@echo "... src/tools/tool_registry.s"
@@ -2205,6 +2394,9 @@ help:
 	@echo "... src/ui/gtk/ui_gtk_connection_terminal.o"
 	@echo "... src/ui/gtk/ui_gtk_connection_terminal.i"
 	@echo "... src/ui/gtk/ui_gtk_connection_terminal.s"
+	@echo "... src/ui/gtk/ui_gtk_database_dialogs.o"
+	@echo "... src/ui/gtk/ui_gtk_database_dialogs.i"
+	@echo "... src/ui/gtk/ui_gtk_database_dialogs.s"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.o"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.i"
 	@echo "... src/ui/gtk/ui_gtk_dialogs.s"

@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "database.h"
+#include "line_accumulator.h"
+
 /* --- Connection terminal view -----------------------------------------
  * A TerminalView bound to a connection_id rather than a locally spawned
  * shell: no PTY, no terminal_start_shell() - retained history plus live
@@ -37,6 +40,7 @@ typedef struct ConnectionPageContext {
     size_t history_offset; /* how much of TerminalHistory has been fed so far */
     Terminal *view;
     gboolean is_writer;
+    LineAccumulator *input_lines; /* buffers typed bytes into "final input after Enter" rows for capture */
 } ConnectionPageContext;
 
 static void destroy_connection_page_context(gpointer data) {
@@ -45,7 +49,23 @@ static void destroy_connection_page_context(gpointer data) {
      * when the page is finalized. The registry owns the Connection and its
      * history; this page owns only its presentation-side Terminal. */
     terminal_destroy(ctx->view);
+    line_accumulator_destroy(ctx->input_lines);
     g_free(ctx);
+}
+
+/* Fires once line_accumulator_feed (below) finds a complete submitted
+ * line - i.e. right after Enter. Records the "input" row, then opens the
+ * output-capture window on the shared Connection (see connection.h's
+ * capturing_output comment) so the response that follows is what gets
+ * persisted, not the echo of what was just typed. */
+static void flush_connection_input_line(const char *line, size_t len, void *user_data) {
+    ConnectionPageContext *ctx = user_data;
+    database_record_terminal_event("connection", ctx->connection_id, "input", line, len);
+    Connection *connection =
+        object_registry_get_connection_mut(ctx->backend->listener_system->registry, ctx->connection_id);
+    if (connection) {
+        connection->capturing_output = true;
+    }
 }
 
 /* The TerminalCommitHandler - fires with whatever the user typed,
@@ -57,11 +77,17 @@ static void on_connection_commit(const char *data, size_t length, void *user_dat
     if (!ctx->is_writer) {
         return;
     }
-    const Connection *connection =
-        object_registry_get_connection(ctx->backend->listener_system->registry, ctx->connection_id);
+    Connection *connection =
+        object_registry_get_connection_mut(ctx->backend->listener_system->registry, ctx->connection_id);
     if (!connection || connection->state != CONNECTION_STATE_CONNECTED) {
         return;
     }
+    /* Typing again closes the previous command's output-capture window
+     * (if flush_connection_input_line doesn't immediately reopen it
+     * below) - see terminal_vte.c's on_commit for the identical local-
+     * terminal reasoning. */
+    connection->capturing_output = false;
+    line_accumulator_feed(ctx->input_lines, data, length, flush_connection_input_line, ctx);
     connection_manager_send(ctx->backend->listener_system->connection_manager, ctx->connection_id, data, length);
 }
 
@@ -208,6 +234,7 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     ctx->history_offset = 0;
     ctx->view = view;
     ctx->is_writer = !already_open;
+    ctx->input_lines = line_accumulator_create();
     g_object_set_data_full(G_OBJECT(page), "toolbox-connection-page-context", ctx, destroy_connection_page_context);
 
     terminal_set_commit_handler(view, on_connection_commit, ctx);

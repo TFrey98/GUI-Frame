@@ -37,6 +37,9 @@ App *app_create(int argc, char **argv) {
      * app is expected to run fine with persistence unavailable, so this
      * isn't treated as a fatal error. */
     app->db_open = (database_open("toolbox.db") == 0);
+    if (app->db_open) {
+        database_init_schema();
+    }
 
     /* Registries must exist before workbench_create, since building the
      * initial UI (sidebar tree, etc.) reads from them. */

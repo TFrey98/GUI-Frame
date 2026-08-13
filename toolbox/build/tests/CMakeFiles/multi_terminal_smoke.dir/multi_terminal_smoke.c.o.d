@@ -737,4 +737,6 @@ tests/CMakeFiles/multi_terminal_smoke.dir/multi_terminal_smoke.c.o: \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/terminal_history.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/app/../listeners/listener_manager.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/tests/test_gtk_utils.h

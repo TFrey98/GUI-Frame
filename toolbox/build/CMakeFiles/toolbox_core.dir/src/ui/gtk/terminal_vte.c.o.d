@@ -42,9 +42,16 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/strings.h /usr/include/vte-2.91/vte/vte.h \
- /usr/include/glib-2.0/glib.h /usr/include/glib-2.0/glib/galloca.h \
- /usr/include/glib-2.0/glib/gtypes.h \
+ /usr/include/strings.h /usr/include/x86_64-linux-gnu/sys/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctls.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctls.h \
+ /usr/include/asm-generic/ioctls.h /usr/include/linux/ioctl.h \
+ /usr/include/x86_64-linux-gnu/asm/ioctl.h \
+ /usr/include/asm-generic/ioctl.h \
+ /usr/include/x86_64-linux-gnu/bits/ioctl-types.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
+ /usr/include/vte-2.91/vte/vte.h /usr/include/glib-2.0/glib.h \
+ /usr/include/glib-2.0/glib/galloca.h /usr/include/glib-2.0/glib/gtypes.h \
  /usr/lib/x86_64-linux-gnu/glib-2.0/include/glibconfig.h \
  /usr/include/glib-2.0/glib/gmacros.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/limits.h \
@@ -724,7 +731,13 @@ CMakeFiles/toolbox_core.dir/src/ui/gtk/terminal_vte.c.o: \
  /usr/include/vte-2.91/vte/vtetypebuiltins-gtk3.h \
  /usr/include/vte-2.91/vte/vteversion.h \
  /usr/include/vte-2.91/vte/vtedeprecated.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/byte_buffer.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/db/database.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/core/line_accumulator.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/pty_worker.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdatomic.h \
+ /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/terminal_history.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/ui/gtk/terminal_vte.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/terminal.h \
- /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/terminal/../core/terminal_session.h

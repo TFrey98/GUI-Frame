@@ -728,6 +728,114 @@ explorer_search_smoke/fast:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/explorer_search_smoke.dir/build.make tests/CMakeFiles/explorer_search_smoke.dir/build
 .PHONY : explorer_search_smoke/fast
 
+# Convenience name for target.
+tests/CMakeFiles/pty_worker_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/pty_worker_test.dir/rule
+.PHONY : tests/CMakeFiles/pty_worker_test.dir/rule
+
+# Convenience name for target.
+pty_worker_test: tests/CMakeFiles/pty_worker_test.dir/rule
+.PHONY : pty_worker_test
+
+# fast build rule for target.
+pty_worker_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/pty_worker_test.dir/build.make tests/CMakeFiles/pty_worker_test.dir/build
+.PHONY : pty_worker_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/line_accumulator_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/line_accumulator_test.dir/rule
+.PHONY : tests/CMakeFiles/line_accumulator_test.dir/rule
+
+# Convenience name for target.
+line_accumulator_test: tests/CMakeFiles/line_accumulator_test.dir/rule
+.PHONY : line_accumulator_test
+
+# fast build rule for target.
+line_accumulator_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/line_accumulator_test.dir/build.make tests/CMakeFiles/line_accumulator_test.dir/build
+.PHONY : line_accumulator_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/ansi_strip_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/ansi_strip_test.dir/rule
+.PHONY : tests/CMakeFiles/ansi_strip_test.dir/rule
+
+# Convenience name for target.
+ansi_strip_test: tests/CMakeFiles/ansi_strip_test.dir/rule
+.PHONY : ansi_strip_test
+
+# fast build rule for target.
+ansi_strip_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ansi_strip_test.dir/build.make tests/CMakeFiles/ansi_strip_test.dir/build
+.PHONY : ansi_strip_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/database_terminal_capture_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/database_terminal_capture_test.dir/rule
+.PHONY : tests/CMakeFiles/database_terminal_capture_test.dir/rule
+
+# Convenience name for target.
+database_terminal_capture_test: tests/CMakeFiles/database_terminal_capture_test.dir/rule
+.PHONY : database_terminal_capture_test
+
+# fast build rule for target.
+database_terminal_capture_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_terminal_capture_test.dir/build.make tests/CMakeFiles/database_terminal_capture_test.dir/build
+.PHONY : database_terminal_capture_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/terminal_history_capture_test.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/terminal_history_capture_test.dir/rule
+.PHONY : tests/CMakeFiles/terminal_history_capture_test.dir/rule
+
+# Convenience name for target.
+terminal_history_capture_test: tests/CMakeFiles/terminal_history_capture_test.dir/rule
+.PHONY : terminal_history_capture_test
+
+# fast build rule for target.
+terminal_history_capture_test/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_history_capture_test.dir/build.make tests/CMakeFiles/terminal_history_capture_test.dir/build
+.PHONY : terminal_history_capture_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/database_export_clear_smoke.dir/rule:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/database_export_clear_smoke.dir/rule
+.PHONY : tests/CMakeFiles/database_export_clear_smoke.dir/rule
+
+# Convenience name for target.
+database_export_clear_smoke: tests/CMakeFiles/database_export_clear_smoke.dir/rule
+.PHONY : database_export_clear_smoke
+
+# fast build rule for target.
+database_export_clear_smoke/fast:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_export_clear_smoke.dir/build.make tests/CMakeFiles/database_export_clear_smoke.dir/build
+.PHONY : database_export_clear_smoke/fast
+
+ansi_strip_test.o: ansi_strip_test.c.o
+.PHONY : ansi_strip_test.o
+
+# target to build an object file
+ansi_strip_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ansi_strip_test.dir/build.make tests/CMakeFiles/ansi_strip_test.dir/ansi_strip_test.c.o
+.PHONY : ansi_strip_test.c.o
+
+ansi_strip_test.i: ansi_strip_test.c.i
+.PHONY : ansi_strip_test.i
+
+# target to preprocess a source file
+ansi_strip_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ansi_strip_test.dir/build.make tests/CMakeFiles/ansi_strip_test.dir/ansi_strip_test.c.i
+.PHONY : ansi_strip_test.c.i
+
+ansi_strip_test.s: ansi_strip_test.c.s
+.PHONY : ansi_strip_test.s
+
+# target to generate assembly for a file
+ansi_strip_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/ansi_strip_test.dir/build.make tests/CMakeFiles/ansi_strip_test.dir/ansi_strip_test.c.s
+.PHONY : ansi_strip_test.c.s
+
 byte_buffer_test.o: byte_buffer_test.c.o
 .PHONY : byte_buffer_test.o
 
@@ -823,6 +931,54 @@ context_menu_smoke.s: context_menu_smoke.c.s
 context_menu_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/context_menu_smoke.dir/build.make tests/CMakeFiles/context_menu_smoke.dir/context_menu_smoke.c.s
 .PHONY : context_menu_smoke.c.s
+
+database_export_clear_smoke.o: database_export_clear_smoke.c.o
+.PHONY : database_export_clear_smoke.o
+
+# target to build an object file
+database_export_clear_smoke.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_export_clear_smoke.dir/build.make tests/CMakeFiles/database_export_clear_smoke.dir/database_export_clear_smoke.c.o
+.PHONY : database_export_clear_smoke.c.o
+
+database_export_clear_smoke.i: database_export_clear_smoke.c.i
+.PHONY : database_export_clear_smoke.i
+
+# target to preprocess a source file
+database_export_clear_smoke.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_export_clear_smoke.dir/build.make tests/CMakeFiles/database_export_clear_smoke.dir/database_export_clear_smoke.c.i
+.PHONY : database_export_clear_smoke.c.i
+
+database_export_clear_smoke.s: database_export_clear_smoke.c.s
+.PHONY : database_export_clear_smoke.s
+
+# target to generate assembly for a file
+database_export_clear_smoke.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_export_clear_smoke.dir/build.make tests/CMakeFiles/database_export_clear_smoke.dir/database_export_clear_smoke.c.s
+.PHONY : database_export_clear_smoke.c.s
+
+database_terminal_capture_test.o: database_terminal_capture_test.c.o
+.PHONY : database_terminal_capture_test.o
+
+# target to build an object file
+database_terminal_capture_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_terminal_capture_test.dir/build.make tests/CMakeFiles/database_terminal_capture_test.dir/database_terminal_capture_test.c.o
+.PHONY : database_terminal_capture_test.c.o
+
+database_terminal_capture_test.i: database_terminal_capture_test.c.i
+.PHONY : database_terminal_capture_test.i
+
+# target to preprocess a source file
+database_terminal_capture_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_terminal_capture_test.dir/build.make tests/CMakeFiles/database_terminal_capture_test.dir/database_terminal_capture_test.c.i
+.PHONY : database_terminal_capture_test.c.i
+
+database_terminal_capture_test.s: database_terminal_capture_test.c.s
+.PHONY : database_terminal_capture_test.s
+
+# target to generate assembly for a file
+database_terminal_capture_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/database_terminal_capture_test.dir/build.make tests/CMakeFiles/database_terminal_capture_test.dir/database_terminal_capture_test.c.s
+.PHONY : database_terminal_capture_test.c.s
 
 editor_close_confirmation_smoke.o: editor_close_confirmation_smoke.c.o
 .PHONY : editor_close_confirmation_smoke.o
@@ -1352,6 +1508,30 @@ lifecycle_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/lifecycle_smoke.dir/build.make tests/CMakeFiles/lifecycle_smoke.dir/lifecycle_smoke.c.s
 .PHONY : lifecycle_smoke.c.s
 
+line_accumulator_test.o: line_accumulator_test.c.o
+.PHONY : line_accumulator_test.o
+
+# target to build an object file
+line_accumulator_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/line_accumulator_test.dir/build.make tests/CMakeFiles/line_accumulator_test.dir/line_accumulator_test.c.o
+.PHONY : line_accumulator_test.c.o
+
+line_accumulator_test.i: line_accumulator_test.c.i
+.PHONY : line_accumulator_test.i
+
+# target to preprocess a source file
+line_accumulator_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/line_accumulator_test.dir/build.make tests/CMakeFiles/line_accumulator_test.dir/line_accumulator_test.c.i
+.PHONY : line_accumulator_test.c.i
+
+line_accumulator_test.s: line_accumulator_test.c.s
+.PHONY : line_accumulator_test.s
+
+# target to generate assembly for a file
+line_accumulator_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/line_accumulator_test.dir/build.make tests/CMakeFiles/line_accumulator_test.dir/line_accumulator_test.c.s
+.PHONY : line_accumulator_test.c.s
+
 listener_config_validate_test.o: listener_config_validate_test.c.o
 .PHONY : listener_config_validate_test.o
 
@@ -1544,6 +1724,30 @@ object_registry_test.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_registry_test.dir/build.make tests/CMakeFiles/object_registry_test.dir/object_registry_test.c.s
 .PHONY : object_registry_test.c.s
 
+pty_worker_test.o: pty_worker_test.c.o
+.PHONY : pty_worker_test.o
+
+# target to build an object file
+pty_worker_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/pty_worker_test.dir/build.make tests/CMakeFiles/pty_worker_test.dir/pty_worker_test.c.o
+.PHONY : pty_worker_test.c.o
+
+pty_worker_test.i: pty_worker_test.c.i
+.PHONY : pty_worker_test.i
+
+# target to preprocess a source file
+pty_worker_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/pty_worker_test.dir/build.make tests/CMakeFiles/pty_worker_test.dir/pty_worker_test.c.i
+.PHONY : pty_worker_test.c.i
+
+pty_worker_test.s: pty_worker_test.c.s
+.PHONY : pty_worker_test.s
+
+# target to generate assembly for a file
+pty_worker_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/pty_worker_test.dir/build.make tests/CMakeFiles/pty_worker_test.dir/pty_worker_test.c.s
+.PHONY : pty_worker_test.c.s
+
 reverse_tcp_test.o: reverse_tcp_test.c.o
 .PHONY : reverse_tcp_test.o
 
@@ -1615,6 +1819,30 @@ terminal_context_actions_smoke.s: terminal_context_actions_smoke.c.s
 terminal_context_actions_smoke.c.s:
 	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_context_actions_smoke.dir/build.make tests/CMakeFiles/terminal_context_actions_smoke.dir/terminal_context_actions_smoke.c.s
 .PHONY : terminal_context_actions_smoke.c.s
+
+terminal_history_capture_test.o: terminal_history_capture_test.c.o
+.PHONY : terminal_history_capture_test.o
+
+# target to build an object file
+terminal_history_capture_test.c.o:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_history_capture_test.dir/build.make tests/CMakeFiles/terminal_history_capture_test.dir/terminal_history_capture_test.c.o
+.PHONY : terminal_history_capture_test.c.o
+
+terminal_history_capture_test.i: terminal_history_capture_test.c.i
+.PHONY : terminal_history_capture_test.i
+
+# target to preprocess a source file
+terminal_history_capture_test.c.i:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_history_capture_test.dir/build.make tests/CMakeFiles/terminal_history_capture_test.dir/terminal_history_capture_test.c.i
+.PHONY : terminal_history_capture_test.c.i
+
+terminal_history_capture_test.s: terminal_history_capture_test.c.s
+.PHONY : terminal_history_capture_test.s
+
+# target to generate assembly for a file
+terminal_history_capture_test.c.s:
+	cd "/home/taylor.frey/Desktop/GUI Frame/toolbox/build" && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/terminal_history_capture_test.dir/build.make tests/CMakeFiles/terminal_history_capture_test.dir/terminal_history_capture_test.c.s
+.PHONY : terminal_history_capture_test.c.s
 
 terminal_run_command_smoke.o: terminal_run_command_smoke.c.o
 .PHONY : terminal_run_command_smoke.o
@@ -1769,10 +1997,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... ansi_strip_test"
 	@echo "... byte_buffer_test"
 	@echo "... connection_io_test"
 	@echo "... connection_terminal_smoke"
 	@echo "... context_menu_smoke"
+	@echo "... database_export_clear_smoke"
+	@echo "... database_terminal_capture_test"
 	@echo "... editor_close_confirmation_smoke"
 	@echo "... editor_document_save_test"
 	@echo "... editor_document_test"
@@ -1795,6 +2026,7 @@ help:
 	@echo "... https_listener_smoke"
 	@echo "... layout_smoke"
 	@echo "... lifecycle_smoke"
+	@echo "... line_accumulator_test"
 	@echo "... listener_config_validate_test"
 	@echo "... listener_console_tab_smoke"
 	@echo "... listener_manager_test"
@@ -1803,15 +2035,20 @@ help:
 	@echo "... object_panel_smoke"
 	@echo "... object_predicates_test"
 	@echo "... object_registry_test"
+	@echo "... pty_worker_test"
 	@echo "... reverse_tcp_test"
 	@echo "... tabs_smoke"
 	@echo "... terminal_context_actions_smoke"
+	@echo "... terminal_history_capture_test"
 	@echo "... terminal_run_command_smoke"
 	@echo "... terminal_session_test"
 	@echo "... terminal_smoke"
 	@echo "... toolkit_index_test"
 	@echo "... toolkit_interaction_smoke"
 	@echo "... workspace_root_test"
+	@echo "... ansi_strip_test.o"
+	@echo "... ansi_strip_test.i"
+	@echo "... ansi_strip_test.s"
 	@echo "... byte_buffer_test.o"
 	@echo "... byte_buffer_test.i"
 	@echo "... byte_buffer_test.s"
@@ -1824,6 +2061,12 @@ help:
 	@echo "... context_menu_smoke.o"
 	@echo "... context_menu_smoke.i"
 	@echo "... context_menu_smoke.s"
+	@echo "... database_export_clear_smoke.o"
+	@echo "... database_export_clear_smoke.i"
+	@echo "... database_export_clear_smoke.s"
+	@echo "... database_terminal_capture_test.o"
+	@echo "... database_terminal_capture_test.i"
+	@echo "... database_terminal_capture_test.s"
 	@echo "... editor_close_confirmation_smoke.o"
 	@echo "... editor_close_confirmation_smoke.i"
 	@echo "... editor_close_confirmation_smoke.s"
@@ -1890,6 +2133,9 @@ help:
 	@echo "... lifecycle_smoke.o"
 	@echo "... lifecycle_smoke.i"
 	@echo "... lifecycle_smoke.s"
+	@echo "... line_accumulator_test.o"
+	@echo "... line_accumulator_test.i"
+	@echo "... line_accumulator_test.s"
 	@echo "... listener_config_validate_test.o"
 	@echo "... listener_config_validate_test.i"
 	@echo "... listener_config_validate_test.s"
@@ -1914,6 +2160,9 @@ help:
 	@echo "... object_registry_test.o"
 	@echo "... object_registry_test.i"
 	@echo "... object_registry_test.s"
+	@echo "... pty_worker_test.o"
+	@echo "... pty_worker_test.i"
+	@echo "... pty_worker_test.s"
 	@echo "... reverse_tcp_test.o"
 	@echo "... reverse_tcp_test.i"
 	@echo "... reverse_tcp_test.s"
@@ -1923,6 +2172,9 @@ help:
 	@echo "... terminal_context_actions_smoke.o"
 	@echo "... terminal_context_actions_smoke.i"
 	@echo "... terminal_context_actions_smoke.s"
+	@echo "... terminal_history_capture_test.o"
+	@echo "... terminal_history_capture_test.i"
+	@echo "... terminal_history_capture_test.s"
 	@echo "... terminal_run_command_smoke.o"
 	@echo "... terminal_run_command_smoke.i"
 	@echo "... terminal_run_command_smoke.s"

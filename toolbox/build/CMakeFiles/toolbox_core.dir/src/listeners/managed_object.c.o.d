@@ -3,6 +3,7 @@ CMakeFiles/toolbox_core.dir/src/listeners/managed_object.c.o: \
  /usr/include/stdc-predef.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/managed_object.h \
  /home/taylor.frey/Desktop/GUI\ Frame/toolbox/src/listeners/connection.h \
+ /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
