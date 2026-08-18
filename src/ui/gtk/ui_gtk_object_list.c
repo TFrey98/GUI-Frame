@@ -204,9 +204,15 @@ static void on_object_panel_row_activated(GtkTreeView *tree_view, GtkTreePath *p
     }
 }
 
-GtkWidget *build_bottom_panel(GtkBackend *backend) {
+/* The built-in Objects tab: listeners -> connections, straight off the
+ * ObjectRegistry. Stays a separate, hard-coded implementation rather
+ * than routing through the generic manifest-driven system in
+ * ui_gtk_tool_panel.c on purpose - a manifest updating shouldn't be
+ * able to break this baked-in feature, and the notebook it lives
+ * alongside (build_bottom_panel below) is what gives both a unified
+ * look. */
+static GtkWidget *build_object_panel_page(GtkBackend *backend) {
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_size_request(box, -1, 160);
     gtk_container_set_border_width(GTK_CONTAINER(box), 8);
 
     backend->object_panel_store = gtk_tree_store_new(OBJECT_PANEL_COL_COUNT,
@@ -244,5 +250,18 @@ GtkWidget *build_bottom_panel(GtkBackend *backend) {
 
     gtk_box_pack_start(GTK_BOX(box), scroller, TRUE, TRUE, 0);
     return box;
+}
+
+/* The bottom panel itself: a notebook whose page 0 is always the
+ * built-in Objects tab above; ui_gtk_tool_panel.c appends further pages
+ * for manifest-declared tool tabs as they're launched. */
+GtkWidget *build_bottom_panel(GtkBackend *backend) {
+    backend->bottom_panel_notebook = gtk_notebook_new();
+    gtk_widget_set_size_request(backend->bottom_panel_notebook, -1, 160);
+
+    GtkWidget *objects_page = build_object_panel_page(backend);
+    gtk_notebook_append_page(GTK_NOTEBOOK(backend->bottom_panel_notebook), objects_page, gtk_label_new("Objects"));
+
+    return backend->bottom_panel_notebook;
 }
 /* --- end Bottom object panel --------------------------------------------- */

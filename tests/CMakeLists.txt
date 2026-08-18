@@ -145,6 +145,15 @@ target_link_libraries(terminal_history_capture_test PRIVATE workbench_core)
 add_executable(database_export_clear_smoke database_export_clear_smoke.c)
 target_link_libraries(database_export_clear_smoke PRIVATE workbench_core)
 
+add_executable(json_parser_test json_parser_test.c)
+target_link_libraries(json_parser_test PRIVATE workbench_core)
+
+add_executable(tool_panel_manifest_test tool_panel_manifest_test.c)
+target_link_libraries(tool_panel_manifest_test PRIVATE workbench_core)
+
+add_executable(tool_panel_smoke tool_panel_smoke.c)
+target_link_libraries(tool_panel_smoke PRIVATE workbench_core)
+
 add_test(NAME lifecycle_smoke COMMAND lifecycle_smoke)
 set_tests_properties(lifecycle_smoke PROPERTIES TIMEOUT 30)
 
@@ -291,3 +300,12 @@ set_tests_properties(terminal_history_capture_test PROPERTIES TIMEOUT 15)
 
 add_test(NAME database_export_clear_smoke COMMAND database_export_clear_smoke)
 set_tests_properties(database_export_clear_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME json_parser_test COMMAND json_parser_test)
+set_tests_properties(json_parser_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME tool_panel_manifest_test COMMAND tool_panel_manifest_test)
+set_tests_properties(tool_panel_manifest_test PROPERTIES TIMEOUT 10)
+
+add_test(NAME tool_panel_smoke COMMAND tool_panel_smoke)
+set_tests_properties(tool_panel_smoke PROPERTIES TIMEOUT 30)

@@ -24,6 +24,8 @@ void *platform_ui_create(Workbench *workbench) {
     backend->explorer_drag_source = EXPLORER_SOURCE_FILES;
     backend->explorer_drag_relative_path[0] = '\0';
     backend->last_listener_id = 0;
+    backend->bottom_panel_notebook = NULL;
+    backend->tool_panel_tabs = g_ptr_array_new();
     backend->status_label = NULL;
     backend->next_listener_number = 1;
     backend->tick_source_id = 0;
@@ -69,6 +71,19 @@ void platform_ui_destroy(void *backend_ptr) {
         g_free(entry);
     }
     g_ptr_array_free(backend->terminal_entries, TRUE);
+
+    /* Same "whatever's left when the window closes" cleanup as
+     * terminal_entries above - individually-closed tool panel tabs
+     * already freed their own entry in on_tool_panel_close_clicked. The
+     * GtkListStore/page widget are owned by the window's widget tree
+     * (long gone by this point), so only the plain C-owned title and
+     * struct itself need freeing here. */
+    for (guint i = 0; i < backend->tool_panel_tabs->len; i++) {
+        ToolPanelTab *tab_panel = g_ptr_array_index(backend->tool_panel_tabs, i);
+        g_free(tab_panel->title);
+        g_free(tab_panel);
+    }
+    g_ptr_array_free(backend->tool_panel_tabs, TRUE);
 
     file_tree_destroy(backend->file_tree);
     file_watcher_destroy(backend->file_watcher);

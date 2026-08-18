@@ -13,7 +13,10 @@
  * each, deduping by new_relative_path within this one batch (keeping
  * only the last event for a given path) - the doc's "a single save may
  * cause several filesystem notifications," a second debounce layer
- * beyond IN_CLOSE_WRITE alone. */
+ * beyond IN_CLOSE_WRITE alone. For the toolkit watcher specifically,
+ * every surviving event also reaches tool_panel_handle_watch_event -
+ * the sidebar and any open tool panel tabs both react to the same
+ * drained batch rather than competing to pop the same queue twice. */
 static void drain_and_apply_watcher(GtkBackend *backend, FileWatcher *watcher, int source) {
     if (!watcher) {
         return;
@@ -34,6 +37,9 @@ static void drain_and_apply_watcher(GtkBackend *backend, FileWatcher *watcher, i
         }
         if (!superseded) {
             apply_file_watch_event(backend, source, &events[i]);
+            if (source == EXPLORER_SOURCE_TOOLKIT) {
+                tool_panel_handle_watch_event(backend, &events[i]);
+            }
         }
     }
 }
@@ -80,6 +86,7 @@ static gboolean on_tick(gpointer user_data) {
     refresh_object_panel(backend);
     drain_and_apply_watcher(backend, backend->file_watcher, EXPLORER_SOURCE_FILES);
     drain_and_apply_watcher(backend, backend->toolkit_watcher, EXPLORER_SOURCE_TOOLKIT);
+    tool_panel_sync_running_state(backend);
 
     if (backend->last_listener_id != 0 && backend->status_label) {
         const Listener *listener =

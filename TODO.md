@@ -2,6 +2,8 @@
 
 ## Bottom Panel: Tabbed, Manifest-Driven Tool Objects
 
+**Done** — implemented in `src/tools/json_parser.*`, `src/tools/tool_panel_manifest.*`, and `src/ui/gtk/ui_gtk_tool_panel.c`, wired into `ui_gtk_object_list.c`/`ui_gtk_window.c`/`ui_gtk_terminal.c`. Covered by `tests/json_parser_test.c`, `tests/tool_panel_manifest_test.c`, and `tests/tool_panel_smoke.c` (52/52 tests passing).
+
 The bottom panel (`build_bottom_panel` in [ui_gtk_object_list.c](src/ui/gtk/ui_gtk_object_list.c)) is currently a single, non-tabbed tree view hard-wired to show Listeners → Connections from the `ObjectRegistry`. The next major feature makes it tabbed and extensible: any tool run from the `toolkit/` sidebar can declare, via a manifest file, its own bottom-panel tab showing whatever "objects" that tool produces (e.g. scan results, findings, discovered hosts) — without the app needing to know about that tool type ahead of time. This turns the bottom panel from a single built-in view into a general per-tool reporting surface, while keeping the existing Listener/Connection panel as the trusted, unchanged built-in tab.
 
 - **Data channel**: a tool writes structured records to a data file; the app watches it via the existing FileWatcher and re-renders. No new IPC/socket surface.

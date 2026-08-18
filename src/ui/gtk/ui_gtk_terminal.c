@@ -152,6 +152,17 @@ void run_command_in_new_terminal(GtkBackend *backend, const TerminalLaunchReques
 
     workspace_add_tab(workspace, tab);
     add_tab_page(backend, tab, TRUE);
+
+    /* Opt-in bottom-panel tab: a sibling "<executable>.manifest.json" is
+     * only ever found (and only ever resolves its data_file) for a
+     * script that actually lives under the toolkit root - see
+     * tool_panel_manifest_load's own containment check - so this is a
+     * silent no-op for every other kind of "Run in Terminal" launch. */
+    ToolPanelManifest manifest;
+    const WorkspaceRoot *toolkit_root = workbench_get_toolkit_workspace_root(backend->workbench);
+    if (tool_panel_manifest_load(toolkit_root, request->executable, &manifest)) {
+        open_tool_panel_tab_for_launch(backend, tab->id, &manifest);
+    }
 }
 
 static GtkWidget *active_terminal_page(GtkBackend *backend) {

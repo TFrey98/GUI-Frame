@@ -37,6 +37,8 @@ add_library(workbench_core STATIC
     src/db/database.c
     src/tools/tool_registry.c
     src/tools/toolkit_index.c
+    src/tools/json_parser.c
+    src/tools/tool_panel_manifest.c
     src/listeners/event_queue.c
     src/listeners/byte_buffer.c
     src/listeners/managed_object.c
@@ -76,6 +78,7 @@ add_library(workbench_core STATIC
     src/ui/gtk/ui_gtk_theme.c
     src/ui/gtk/ui_gtk_search.c
     src/ui/gtk/ui_gtk_database_dialogs.c
+    src/ui/gtk/ui_gtk_tool_panel.c
     src/ui/gtk/terminal_vte.c
     src/terminal/pty_worker.c
 )

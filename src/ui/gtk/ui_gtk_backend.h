@@ -28,6 +28,7 @@
 #include "files/file_watcher.h"
 #include "listeners/listener_system.h"
 #include "listeners/object_predicates.h"
+#include "tools/tool_panel_manifest.h"
 #include "tools/toolkit_index.h"
 #include "ui/workbench.h"
 #include "terminal_vte.h"
@@ -42,6 +43,27 @@ typedef struct TerminalEntry {
     Terminal *view;
     TerminalSession *session; /* not owned - the Tab owns it */
 } TerminalEntry;
+
+/* One manifest-driven bottom-panel tab, created by
+ * open_tool_panel_tab_for_launch() right after the tool that declared it
+ * is launched via "Run in Terminal" into a *new* terminal tab. Tracks
+ * everything needed to keep it in sync each tick: which terminal owns
+ * it (to notice when that tool's process exits), which file to re-read
+ * on a matching FileWatchEvent, and the GtkListStore backing its page.
+ * store/page_widget are owned by the bottom panel notebook's widget
+ * tree; title and the struct itself are plain C-owned and freed in
+ * platform_ui_destroy/tool_panel_tab_close. */
+typedef struct ToolPanelTab {
+    uint64_t terminal_tab_id;
+    char *title;
+    char data_file_absolute_path[4096];
+    char data_file_toolkit_relative_path[4096]; /* matches FileWatchEvent.new_relative_path */
+    ToolPanelColumn columns[TOOL_PANEL_MANIFEST_MAX_COLUMNS];
+    int column_count;
+    GtkListStore *store;
+    GtkWidget *page_widget;
+    gboolean stopped; /* true once the owning terminal's process has exited */
+} ToolPanelTab;
 
 /* Single-item explorer clipboard - matches this app's own single-
  * selection tree (nothing anywhere lets a user select more than one row
@@ -76,7 +98,9 @@ typedef struct GtkBackend {
     GtkWidget *status_label;         /* shows last_listener_id's name + state, via on_tick */
     int next_listener_number;        /* feeds the default "Listener N" name, mirrors
                                        * next_terminal_number above */
-    GtkTreeStore *object_panel_store; /* bottom panel: listeners -> connections, see refresh_object_panel */
+    GtkTreeStore *object_panel_store; /* bottom panel "Objects" tab: listeners -> connections, see refresh_object_panel */
+    GtkWidget *bottom_panel_notebook; /* the bottom panel itself; page 0 is always the built-in Objects tab */
+    GPtrArray *tool_panel_tabs;       /* ToolPanelTab*, see ui_gtk_tool_panel.c */
     guint tick_source_id;
     FileTree *file_tree;             /* backs the "TOOLBOX" root in the merged explorer sidebar */
     GtkTreeStore *explorer_store;    /* merged explorer sidebar: TOOLBOX (files/) + Toolkit (toolkit/) */
@@ -180,5 +204,27 @@ const char *connection_state_name(ConnectionState state);
 void popup_object_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTreePath *path, GdkEventButton *event);
 gboolean on_object_panel_button_press(GtkWidget *tree_view, GdkEventButton *event, gpointer user_data);
 gboolean on_object_panel_popup_menu(GtkWidget *tree_view, gpointer user_data);
+
+/* --- ui_gtk_tool_panel.c (manifest-driven bottom-panel tabs) ------------ */
+/* Called right after a tool is launched via run_command_in_new_terminal()
+ * when a sibling manifest was found for it (see tool_panel_manifest_load
+ * in tools/tool_panel_manifest.h) - builds the tab's GtkListStore/
+ * GtkTreeView from manifest->columns, appends it as a new page of
+ * backend->bottom_panel_notebook, and starts watching its data file's
+ * directory. terminal_tab_id is the Tab that owns the tool's process,
+ * used afterward to notice when it exits. */
+void open_tool_panel_tab_for_launch(GtkBackend *backend, uint64_t terminal_tab_id,
+                                     const ToolPanelManifest *manifest);
+/* Called from on_tick for every FileWatchEvent drained from
+ * backend->toolkit_watcher; re-reads and resyncs whichever tool panel
+ * tab (if any) the event's path belongs to. A no-op if no active tab's
+ * data file matches. */
+void tool_panel_handle_watch_event(GtkBackend *backend, const FileWatchEvent *event);
+/* Called once per tick; marks any tool panel tab "(stopped)" the first
+ * time its owning terminal's TerminalSession.running flips to 0. Tabs
+ * persist after their tool exits (same "state changes, row doesn't
+ * disappear" convention as listener/connection rows) - the user closes
+ * them manually via the tab's own close button. */
+void tool_panel_sync_running_state(GtkBackend *backend);
 
 #endif /* WORKBENCH_UI_GTK_BACKEND_H */
