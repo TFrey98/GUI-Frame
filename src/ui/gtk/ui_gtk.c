@@ -19,7 +19,6 @@ void *platform_ui_create(Workbench *workbench) {
     backend->explorer_clipboard.mode = EXPLORER_CLIPBOARD_NONE;
     backend->explorer_clipboard.source = EXPLORER_SOURCE_FILES;
     backend->explorer_clipboard.relative_path[0] = '\0';
-    backend->explorer_paste_button = NULL;
     backend->explorer_drag_active = FALSE;
     backend->explorer_drag_source = EXPLORER_SOURCE_FILES;
     backend->explorer_drag_relative_path[0] = '\0';

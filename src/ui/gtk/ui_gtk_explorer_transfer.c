@@ -6,8 +6,8 @@
 #include <sys/stat.h>
 
 /* --- Explorer clipboard / drag-and-drop ------------------------------------
- * Cut/Copy/Paste (ui_gtk_explorer_menu.c builds the menu items and
- * ui_gtk_explorer_sidebar.c's toolbar Paste button both call into this
+ * Cut/Copy/Paste (ui_gtk_explorer_menu.c's context menu items and
+ * ui_gtk_explorer_sidebar.c's Ctrl+C/X/V handler both call into this
  * file) and in-app drag-and-drop (move only). Both ultimately funnel
  * through perform_explorer_move()/perform_explorer_copy() below, so
  * drag-and-drop's own correctness is covered by construction through
@@ -184,9 +184,6 @@ void explorer_set_clipboard(GtkBackend *backend, ExplorerClipboardMode mode, int
     backend->explorer_clipboard.source = source;
     snprintf(backend->explorer_clipboard.relative_path, sizeof(backend->explorer_clipboard.relative_path), "%s",
              relative_path ? relative_path : "");
-    if (backend->explorer_paste_button) {
-        gtk_widget_set_sensitive(backend->explorer_paste_button, mode != EXPLORER_CLIPBOARD_NONE);
-    }
 }
 
 void perform_explorer_paste(GtkBackend *backend, GtkTreeIter *dest_parent_iter) {

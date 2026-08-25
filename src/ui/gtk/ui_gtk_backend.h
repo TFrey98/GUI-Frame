@@ -108,7 +108,6 @@ typedef struct GtkBackend {
     GtkCellRenderer *explorer_name_renderer;
     GtkTreeRowReference *explorer_editing_row; /* the row currently in inline create/rename, if any */
     ExplorerClipboard explorer_clipboard;      /* see ExplorerClipboard's own comment */
-    GtkWidget *explorer_paste_button;          /* toolbar Paste button; sensitivity mirrors the clipboard's mode */
 
     /* The row currently being drag-and-dropped, if any - stashed in
      * on_explorer_drag_begin, read back in on_explorer_drag_data_received.

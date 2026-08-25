@@ -266,9 +266,12 @@ GtkWidget *build_editor_page(GtkBackend *backend, Tab *tab) {
      * would otherwise force them visible regardless - the same
      * "show_all forces every child visible" gotcha the New Listener
      * dialog already documents. */
-    GtkWidget *save_button = gtk_button_new_with_label("Save");
-    GtkWidget *save_as_button = gtk_button_new_with_label("Save As");
-    GtkWidget *revert_button = gtk_button_new_with_label("Revert");
+    GtkWidget *save_button = gtk_button_new_from_icon_name("document-save", GTK_ICON_SIZE_BUTTON);
+    GtkWidget *save_as_button = gtk_button_new_from_icon_name("document-save-as", GTK_ICON_SIZE_BUTTON);
+    GtkWidget *revert_button = gtk_button_new_from_icon_name("document-revert", GTK_ICON_SIZE_BUTTON);
+    gtk_widget_set_tooltip_text(save_button, "Save");
+    gtk_widget_set_tooltip_text(save_as_button, "Save As");
+    gtk_widget_set_tooltip_text(revert_button, "Revert");
     g_signal_connect(save_button, "clicked", G_CALLBACK(on_editor_save_clicked), ctx);
     g_signal_connect(save_as_button, "clicked", G_CALLBACK(on_editor_save_as_clicked), ctx);
     g_signal_connect(revert_button, "clicked", G_CALLBACK(on_editor_revert_clicked), ctx);

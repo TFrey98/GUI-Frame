@@ -174,12 +174,53 @@ static void on_explorer_collapse_all_clicked(GtkButton *button, gpointer user_da
     gtk_tree_view_collapse_all(GTK_TREE_VIEW(backend->explorer_tree_view));
 }
 
-static void on_explorer_paste_clicked(GtkButton *button, gpointer user_data) {
-    (void)button;
+/* Ctrl+C/Ctrl+X's shared setup - a permanent root (relative_path == "")
+ * can't be cut/copied, same restriction the context menu enforces by
+ * simply not offering Cut/Copy on root rows. */
+static void explorer_clipboard_set_from_selection(GtkBackend *backend, ExplorerClipboardMode mode) {
+    GtkTreeSelection *selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(backend->explorer_tree_view));
+    GtkTreeModel *model;
+    GtkTreeIter selected;
+    if (!gtk_tree_selection_get_selected(selection, &model, &selected)) {
+        return;
+    }
+    gchar *relative_path = NULL;
+    int source = EXPLORER_SOURCE_FILES;
+    gtk_tree_model_get(model, &selected, EXPLORER_COL_PATH, &relative_path, EXPLORER_COL_SOURCE, &source, -1);
+    if (relative_path && relative_path[0] != '\0') {
+        explorer_set_clipboard(backend, mode, source, relative_path);
+    }
+    g_free(relative_path);
+}
+
+/* Ctrl+C/Ctrl+X/Ctrl+V on the explorer tree - same operations the
+ * context menu (Cut/Copy/Paste) already offers, funneled through the
+ * same explorer_set_clipboard()/perform_explorer_paste(). Scoped to
+ * the tree view itself (rather than
+ * a window-level shortcut like Ctrl+S) so it doesn't steal Ctrl+C/V
+ * from the editor's text view or a terminal. */
+static gboolean on_explorer_tree_key_press(GtkWidget *tree_view, GdkEventKey *event, gpointer user_data) {
+    (void)tree_view;
     GtkBackend *backend = user_data;
-    GtkTreeIter parent_iter;
-    explorer_target_parent_from_selection(backend, &parent_iter);
-    perform_explorer_paste(backend, &parent_iter);
+    if (!(event->state & GDK_CONTROL_MASK)) {
+        return FALSE;
+    }
+    switch (gdk_keyval_to_lower(event->keyval)) {
+    case GDK_KEY_c:
+        explorer_clipboard_set_from_selection(backend, EXPLORER_CLIPBOARD_COPY);
+        return TRUE;
+    case GDK_KEY_x:
+        explorer_clipboard_set_from_selection(backend, EXPLORER_CLIPBOARD_CUT);
+        return TRUE;
+    case GDK_KEY_v: {
+        GtkTreeIter parent_iter;
+        explorer_target_parent_from_selection(backend, &parent_iter);
+        perform_explorer_paste(backend, &parent_iter);
+        return TRUE;
+    }
+    default:
+        return FALSE;
+    }
 }
 
 /* Shared by every inline edit (both a pending New File/Folder commit
@@ -307,28 +348,24 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     gtk_box_pack_start(GTK_BOX(header), title, TRUE, TRUE, 0);
 
     GtkWidget *toolbar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
-    GtkWidget *new_file_button = gtk_button_new_with_label("New File");
-    GtkWidget *new_folder_button = gtk_button_new_with_label("New Folder");
+    GtkWidget *new_file_button = gtk_button_new_from_icon_name("document-new", GTK_ICON_SIZE_BUTTON);
+    GtkWidget *new_folder_button = gtk_button_new_from_icon_name("folder-new", GTK_ICON_SIZE_BUTTON);
     GtkWidget *refresh_button = gtk_button_new_with_label("\xE2\x86\xBB"); /* refresh: ↻ */
     GtkWidget *collapse_all_button = gtk_button_new_with_label("Collapse All");
-    GtkWidget *paste_button = gtk_button_new_with_label("Paste");
+    gtk_widget_set_tooltip_text(new_file_button, "New File");
+    gtk_widget_set_tooltip_text(new_folder_button, "New Folder");
     gtk_button_set_relief(GTK_BUTTON(new_file_button), GTK_RELIEF_NONE);
     gtk_button_set_relief(GTK_BUTTON(new_folder_button), GTK_RELIEF_NONE);
     gtk_button_set_relief(GTK_BUTTON(refresh_button), GTK_RELIEF_NONE);
     gtk_button_set_relief(GTK_BUTTON(collapse_all_button), GTK_RELIEF_NONE);
-    gtk_button_set_relief(GTK_BUTTON(paste_button), GTK_RELIEF_NONE);
-    gtk_widget_set_sensitive(paste_button, FALSE); /* enabled by explorer_set_clipboard() once Cut/Copy sets something */
     g_object_set_data(G_OBJECT(new_file_button), "workbench-explorer-new-file-button", new_file_button);
     g_object_set_data(G_OBJECT(new_folder_button), "workbench-explorer-new-folder-button", new_folder_button);
     g_object_set_data(G_OBJECT(refresh_button), "workbench-explorer-refresh-button", refresh_button);
     g_object_set_data(G_OBJECT(collapse_all_button), "workbench-explorer-collapse-all-button", collapse_all_button);
-    g_object_set_data(G_OBJECT(paste_button), "workbench-explorer-paste-button", paste_button);
     gtk_box_pack_start(GTK_BOX(toolbar), new_file_button, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(toolbar), new_folder_button, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(toolbar), refresh_button, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(toolbar), collapse_all_button, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(toolbar), paste_button, FALSE, FALSE, 0);
-    backend->explorer_paste_button = paste_button;
 
     GtkTreeStore *store = gtk_tree_store_new(EXPLORER_COL_COUNT,
         G_TYPE_STRING,  /* icon name */
@@ -394,6 +431,7 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     g_signal_connect(tree_view, "row-activated", G_CALLBACK(on_explorer_row_activated), backend);
     g_signal_connect(tree_view, "button-press-event", G_CALLBACK(on_explorer_button_press), backend);
     g_signal_connect(tree_view, "popup-menu", G_CALLBACK(on_explorer_popup_menu), backend);
+    g_signal_connect(tree_view, "key-press-event", G_CALLBACK(on_explorer_tree_key_press), backend);
     g_signal_connect(text_renderer, "edited", G_CALLBACK(on_explorer_name_edited), backend);
     g_signal_connect(text_renderer, "editing-canceled", G_CALLBACK(on_explorer_name_editing_canceled), backend);
 
@@ -410,7 +448,6 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     g_signal_connect(new_folder_button, "clicked", G_CALLBACK(on_explorer_new_folder_clicked), backend);
     g_signal_connect(refresh_button, "clicked", G_CALLBACK(on_explorer_refresh_clicked), backend);
     g_signal_connect(collapse_all_button, "clicked", G_CALLBACK(on_explorer_collapse_all_clicked), backend);
-    g_signal_connect(paste_button, "clicked", G_CALLBACK(on_explorer_paste_clicked), backend);
 
     gtk_box_pack_start(GTK_BOX(box), header, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);

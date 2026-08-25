@@ -128,7 +128,8 @@ static GtkWidget *build_top_bar(GtkBackend *backend, GtkWidget *sidebar, GtkWidg
     gtk_box_pack_start(GTK_BOX(bar), gtk_label_new("workbench"), FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(bar), gtk_label_new(NULL), TRUE, TRUE, 0);
 
-    GtkWidget *save_all_button = gtk_button_new_with_label("Save All");
+    GtkWidget *save_all_button = gtk_button_new_from_icon_name("document-save", GTK_ICON_SIZE_BUTTON);
+    gtk_widget_set_tooltip_text(save_all_button, "Save All");
     g_object_set_data(G_OBJECT(save_all_button), "workbench-save-all-button", save_all_button);
     g_signal_connect(save_all_button, "clicked", G_CALLBACK(on_save_all_clicked), backend);
     gtk_box_pack_start(GTK_BOX(bar), save_all_button, FALSE, FALSE, 0);
@@ -293,6 +294,11 @@ static gboolean on_window_key_press(GtkWidget *window, GdkEventKey *event, gpoin
 
 void on_activate(GtkApplication *gtk_app, gpointer user_data) {
     GtkBackend *backend = user_data;
+
+    /* GTK only exposes tooltip delay as a single process-wide setting
+     * (there's no per-widget hover delay), so this affects every
+     * tooltip in the app, not just the new icon buttons'. */
+    g_object_set(gtk_settings_get_default(), "gtk-tooltip-timeout", 3000, NULL);
 
     gtk_theme_init(backend);
 

@@ -1,15 +1,16 @@
 /*
  * Exercises Step 7's checkpoint end-to-end in the real app: Copy+Paste
  * (duplicate with correct content, original untouched, auto-renamed on
- * a same-folder collision); Cut+Paste (moved, clipboard consumed - the
- * toolbar Paste button goes insensitive again after one paste - and an
- * open editor tab for the cut file keeps tracking it at its new path);
- * the toolbar Paste button starting insensitive and enabling after
- * Copy/Cut; Paste offered on a directory row but never a plain file
- * row; Cut/Copy never offered on the permanent roots; a cross-root case
- * (Toolkit -> TOOLBOX) proving file_copy()'s cross-root path works end
- * to end through the real UI; and pasting a folder into its own
- * subfolder rejected with an error rather than corrupting anything.
+ * a same-folder collision, pasted via Ctrl+V rather than the context
+ * menu); Cut+Paste (moved, clipboard consumed - the Paste menu item
+ * goes insensitive again after one paste - and an open editor tab for
+ * the cut file keeps tracking it at its new path); the Paste menu item
+ * starting insensitive and enabling after Copy/Cut; Paste offered on a
+ * directory row but never a plain file row; Cut/Copy never offered on
+ * the permanent roots; a cross-root case (Toolkit -> TOOLBOX) proving
+ * file_copy()'s cross-root path works end to end through the real UI;
+ * and pasting a folder into its own subfolder rejected with an error
+ * rather than corrupting anything.
  */
 #include <dirent.h>
 #include <gtk/gtk.h>
@@ -128,6 +129,21 @@ static GtkWidget *find_menu_item(GtkWidget *menu, const char *label) {
     return result;
 }
 
+/* Drives the tree view's own "key-press-event" handler directly (same
+ * shortcut path a real Ctrl+V/C/X keystroke takes) rather than
+ * synthesizing a real X11 key event - matches open_menu_for_row's own
+ * "emit the signal directly" approach for popup-menu above. */
+static gboolean send_ctrl_keypress(GtkWidget *widget, guint keyval) {
+    GdkEventKey event;
+    memset(&event, 0, sizeof(event));
+    event.type = GDK_KEY_PRESS;
+    event.state = GDK_CONTROL_MASK;
+    event.keyval = keyval;
+    gboolean handled = FALSE;
+    g_signal_emit_by_name(widget, "key-press-event", &event, &handled);
+    return handled;
+}
+
 static gboolean click_menu_item(GtkWidget *menu, const char *label) {
     GtkWidget *item = find_menu_item(menu, label);
     if (!item) {
@@ -217,18 +233,9 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    GtkWidget *paste_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-paste-button");
-    if (!paste_button) {
-        fail(test, "Paste toolbar button not found");
-        goto done;
-    }
-    if (gtk_widget_get_sensitive(paste_button)) {
-        fail(test, "the Paste toolbar button should start insensitive - nothing has been Cut/Copied yet");
-        goto done;
-    }
-
     /* Cut/Copy are never offered on the permanent TOOLBOX root; Paste is
-     * (it's a directory). */
+     * (it's a directory), but starts insensitive - nothing has been
+     * Cut/Copied yet. */
     GtkWidget *menu = open_menu_for_row(tree_view, model, &workbench_iter);
     if (!menu) {
         fail(test, "TOOLBOX root context menu did not appear");
@@ -238,8 +245,13 @@ static gboolean drive(gpointer user_data) {
         fail(test, "the TOOLBOX root's context menu must not offer Cut/Copy");
         goto done;
     }
-    if (!find_menu_item(menu, "Paste")) {
+    GtkWidget *paste_item = find_menu_item(menu, "Paste");
+    if (!paste_item) {
         fail(test, "the TOOLBOX root's context menu should offer Paste");
+        goto done;
+    }
+    if (gtk_widget_get_sensitive(paste_item)) {
+        fail(test, "the Paste menu item should start insensitive - nothing has been Cut/Copied yet");
         goto done;
     }
     gtk_menu_popdown(GTK_MENU(menu));
@@ -264,15 +276,26 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    if (!gtk_widget_get_sensitive(paste_button)) {
-        fail(test, "the Paste toolbar button should become sensitive right after Copy");
+    /* Paste becomes sensitive right after Copy - checked via TOOLBOX
+     * root's own Paste menu item, since a file's context menu never
+     * offers Paste at all (checked above). Opening that menu reselects
+     * TOOLBOX root, so copysrc.txt is explicitly reselected below. */
+    menu = open_menu_for_row(tree_view, model, &workbench_iter);
+    paste_item = menu ? find_menu_item(menu, "Paste") : NULL;
+    if (!paste_item || !gtk_widget_get_sensitive(paste_item)) {
+        fail(test, "the Paste menu item should become sensitive right after Copy");
         goto done;
     }
+    gtk_menu_popdown(GTK_MENU(menu));
 
-    /* Toolbar Paste with copysrc.txt still selected (a file) targets its
-     * parent - TOOLBOX - which already has a 'copysrc.txt', so this
-     * exercises the auto-rename-on-collision path. */
-    gtk_button_clicked(GTK_BUTTON(paste_button));
+    /* Ctrl+V with copysrc.txt reselected (a file) targets its parent -
+     * TOOLBOX - which already has a 'copysrc.txt', so this exercises the
+     * auto-rename-on-collision path. */
+    gtk_tree_selection_select_iter(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view)), &copysrc_iter);
+    if (!send_ctrl_keypress(tree_view, GDK_KEY_v)) {
+        fail(test, "Ctrl+V on the explorer tree was not handled");
+        goto done;
+    }
 
     char copysrc_path[4400], copysrc_copy_path[4400];
     snprintf(copysrc_path, sizeof(copysrc_path), "%s/copysrc.txt", test->files_root.canonical_path);
@@ -291,10 +314,13 @@ static gboolean drive(gpointer user_data) {
         fail(test, "the pasted copy should have the original's content");
         goto done;
     }
-    if (!gtk_widget_get_sensitive(paste_button)) {
+    menu = open_menu_for_row(tree_view, model, &workbench_iter);
+    paste_item = menu ? find_menu_item(menu, "Paste") : NULL;
+    if (!paste_item || !gtk_widget_get_sensitive(paste_item)) {
         fail(test, "Copy mode should stay pasteable more than once - the clipboard isn't consumed");
         goto done;
     }
+    gtk_menu_popdown(GTK_MENU(menu));
 
     /* Cut+Paste: open cutsrc.txt as an editor tab first, cut it, paste
      * it into destfolder, and confirm the open tab keeps tracking it at
@@ -346,10 +372,18 @@ static gboolean drive(gpointer user_data) {
         fail(test, "Cut+Paste should create 'destfolder/cutsrc.txt'");
         goto done;
     }
-    if (gtk_widget_get_sensitive(paste_button)) {
+    /* Checked via TOOLBOX root's own Paste item, not destfolder's - the
+     * Cut just moved cutsrc.txt out of TOOLBOX root, which refreshes
+     * TOOLBOX root's own children (its old parent) and rebuilds the
+     * destfolder row itself, making the destfolder_iter captured above
+     * stale. */
+    menu = open_menu_for_row(tree_view, model, &workbench_iter);
+    paste_item = menu ? find_menu_item(menu, "Paste") : NULL;
+    if (!paste_item || gtk_widget_get_sensitive(paste_item)) {
         fail(test, "a Cut's clipboard should be consumed after one successful paste");
         goto done;
     }
+    gtk_menu_popdown(GTK_MENU(menu));
 
     Tab *cutsrc_tab = g_object_get_data(G_OBJECT(cutsrc_page), "workbench-tab");
     EditorDocument *cutsrc_doc = cutsrc_tab->backend_data;
@@ -535,7 +569,8 @@ int main(void) {
     }
 
     g_print("explorer_clipboard_smoke: Copy+Paste (with auto-rename collision), Cut+Paste (with open-tab tracking "
-            "and clipboard consumption), Paste toolbar sensitivity, Cut/Copy/Paste menu gating, a cross-root Copy, "
+            "and clipboard consumption), Ctrl+V paste, Paste menu item sensitivity, Cut/Copy/Paste menu gating, a "
+            "cross-root Copy, "
             "and the self-nesting paste guard all verified\n");
     return 0;
 }
