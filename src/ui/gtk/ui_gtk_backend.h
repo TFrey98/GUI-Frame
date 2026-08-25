@@ -33,6 +33,14 @@
 #include "ui/workbench.h"
 #include "terminal_vte.h"
 
+/* Where a terminal's page currently lives - TERMINAL_DOCKED (a child of
+ * backend->notebook), TERMINAL_UNDOCKED (closed to the Objects panel -
+ * held via TerminalEntry's own extra ref, no window at all), or
+ * TERMINAL_POPPED_OUT (a child of TerminalEntry.popout_window). See
+ * TerminalEntry's own comment for why this is tracked explicitly rather
+ * than queried live from the widget tree. */
+typedef enum TerminalDockState { TERMINAL_DOCKED, TERMINAL_UNDOCKED, TERMINAL_POPPED_OUT } TerminalDockState;
+
 /* Tracks a live terminal tab's View+Session pair independent of the GTK
  * widget tree. The notebook and its pages are owned by the window and are
  * gone by the time platform_ui_destroy runs (the window closes and GTK
@@ -42,6 +50,27 @@
 typedef struct TerminalEntry {
     Terminal *view;
     TerminalSession *session; /* not owned - the Tab owns it */
+    /* The notebook page (a GtkScrolledWindow wrapping view's widget) -
+     * always alive for as long as this entry exists, wherever it
+     * currently lives. A terminal tab's x only ever undocks this (see
+     * undock_terminal_tab() in ui_gtk_terminal.c): an extra ref keeps it
+     * alive outside the notebook so focus_or_reopen_terminal_tab() can
+     * re-dock the exact same page later. Only destroy_terminal_object()
+     * ever actually destroys it. */
+    GtkWidget *page;
+    /* Deliberately tracked here rather than queried live via
+     * gtk_widget_get_parent(page) at shutdown - by the time
+     * platform_ui_destroy runs, the main window (and every page that
+     * was still docked in it, or every popout window on_window_destroy
+     * already closed) has already been destroyed, so page would be a
+     * dangling pointer for either of those; this flag is the only safe
+     * way left to tell them apart from a genuinely still-alive,
+     * TERMINAL_UNDOCKED page at that point. */
+    TerminalDockState dock_state;
+    /* Non-NULL only while dock_state == TERMINAL_POPPED_OUT - the
+     * standalone window page is currently a child of. Owns page's
+     * container ref while set. */
+    GtkWidget *popout_window;
 } TerminalEntry;
 
 /* One manifest-driven bottom-panel tab, created by
@@ -135,8 +164,21 @@ enum {
     OBJECT_PANEL_COL_ENDPOINT,
     OBJECT_PANEL_COL_STATE,
     OBJECT_PANEL_COL_ID,
+    OBJECT_PANEL_COL_KIND, /* an ObjectPanelKind value - see below */
     OBJECT_PANEL_COL_COUNT
 };
+
+/* Which kind of row a top-level object panel row is - Listener and
+ * Terminal rows sit at the same tree depth (1), so depth alone can't
+ * tell them apart the way it already distinguishes a Connection (always
+ * depth 2, always a Listener's child). Connection rows carry this too,
+ * for the sync passes' own (kind, id) matching - see find_top_level_row
+ * and refresh_object_panel in ui_gtk_object_list.c. */
+typedef enum ObjectPanelKind {
+    OBJECT_PANEL_KIND_LISTENER,
+    OBJECT_PANEL_KIND_CONNECTION,
+    OBJECT_PANEL_KIND_TERMINAL
+} ObjectPanelKind;
 
 /* Which WorkspaceRoot a row/path belongs to - used well beyond the
  * explorer widget itself (search results, the file watcher's two

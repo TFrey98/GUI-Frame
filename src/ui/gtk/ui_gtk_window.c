@@ -242,6 +242,24 @@ static void on_window_destroy(GtkWidget *window, gpointer user_data) {
     if (backend->search_window) {
         gtk_widget_destroy(backend->search_window);
     }
+
+    /* Same orphan risk as the search window above, once per popped-out
+     * terminal (see pop_out_terminal_tab, ui_gtk_terminal.c) - each is
+     * its own gtk_application_add_window()-registered top-level too.
+     * No extraction dance needed here (unlike the popout window's own
+     * delete-event handler) - the whole app is closing, so page is
+     * destroyed right along with it; marking dock_state DOCKED (reusing
+     * its "already destroyed by some container's own teardown" meaning
+     * - see TerminalEntry's own comment) stops platform_ui_destroy's
+     * later shutdown loop from touching this now-dangling page again. */
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (entry->dock_state == TERMINAL_POPPED_OUT) {
+            gtk_widget_destroy(entry->popout_window);
+            entry->popout_window = NULL;
+            entry->dock_state = TERMINAL_DOCKED;
+        }
+    }
 }
 
 /* Always blocks the *immediate* default close (returns TRUE) -

@@ -16,7 +16,7 @@ typedef struct MenuItemContext {
 } MenuItemContext;
 
 static void add_object_menu_item(GtkWidget *menu, const char *label, gboolean sensitive, GCallback callback,
-                                  MenuItemContext *ctx) {
+                                  gpointer ctx) {
     GtkWidget *item = gtk_menu_item_new_with_label(label);
     gtk_widget_set_sensitive(item, sensitive);
     g_signal_connect(item, "activate", callback, ctx);
@@ -138,12 +138,90 @@ static void on_menu_remove(GtkMenuItem *item, gpointer user_data) {
     gtk_widget_show_all(dialog);
 }
 
+/* --- Terminal object context menu ---------------------------------------
+ * A local-shell terminal isn't a ManagedObject (that abstraction is
+ * Listener/Connection-only - see managed_object.h), so it gets its own
+ * small two-item menu rather than routing through object_can_*: Open
+ * re-docks/focuses the tab, Close is the only thing that actually ends
+ * the session (see destroy_terminal_object's own comment). */
+typedef struct TerminalMenuContext {
+    GtkBackend *backend;
+    uint64_t session_id;
+} TerminalMenuContext;
+
+static void on_terminal_menu_open(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    TerminalMenuContext *ctx = user_data;
+    focus_or_reopen_terminal_tab(ctx->backend, ctx->session_id);
+}
+
+static void on_terminal_close_confirm_response(GtkDialog *dialog, gint response_id, gpointer user_data) {
+    TerminalMenuContext *ctx = user_data;
+    if (response_id == GTK_RESPONSE_YES) {
+        destroy_terminal_object(ctx->backend, ctx->session_id);
+    }
+    gtk_widget_destroy(GTK_WIDGET(dialog));
+    g_free(ctx);
+}
+
+/* Only confirms when the shell is still running - an already-exited
+ * terminal has nothing left to lose, so Close ends it immediately, same
+ * "state-derived confirmation" convention on_menu_remove already uses
+ * for a running listener/connected connection. */
+static void on_terminal_menu_close(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    TerminalMenuContext *ctx = user_data;
+    TerminalEntry *entry = find_terminal_entry_by_session_id(ctx->backend, ctx->session_id);
+    if (!entry || !entry->session->running) {
+        destroy_terminal_object(ctx->backend, ctx->session_id);
+        return;
+    }
+
+    TerminalMenuContext *confirm_ctx = g_new(TerminalMenuContext, 1);
+    confirm_ctx->backend = ctx->backend;
+    confirm_ctx->session_id = ctx->session_id;
+
+    GtkWindow *parent = gtk_application_get_active_window(ctx->backend->gtk_app);
+    GtkWidget *dialog = gtk_message_dialog_new(parent, GTK_DIALOG_MODAL, GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
+                                                 "This terminal has a running shell. Close it anyway?");
+    gtk_dialog_add_button(GTK_DIALOG(dialog), "Close", GTK_RESPONSE_YES);
+    gtk_dialog_add_button(GTK_DIALOG(dialog), "Cancel", GTK_RESPONSE_CANCEL);
+    g_signal_connect(dialog, "response", G_CALLBACK(on_terminal_close_confirm_response), confirm_ctx);
+    gtk_widget_show_all(dialog);
+}
+
+static void popup_terminal_context_menu(GtkBackend *backend, GtkWidget *tree_view, uint64_t session_id,
+                                         GdkEventButton *event) {
+    TerminalMenuContext *ctx = g_new(TerminalMenuContext, 1);
+    ctx->backend = backend;
+    ctx->session_id = session_id;
+
+    GtkWidget *menu = gtk_menu_new();
+    g_object_set_data_full(G_OBJECT(menu), "workbench-menu-context", ctx, g_free);
+    g_object_set_data(G_OBJECT(tree_view), "workbench-object-context-menu", menu);
+
+    add_object_menu_item(menu, "Open", TRUE, G_CALLBACK(on_terminal_menu_open), ctx);
+    gtk_menu_shell_append(GTK_MENU_SHELL(menu), gtk_separator_menu_item_new());
+    add_object_menu_item(menu, "Close", TRUE, G_CALLBACK(on_terminal_menu_close), ctx);
+
+    gtk_widget_show_all(menu);
+    if (event) {
+        gtk_menu_popup_at_pointer(GTK_MENU(menu), (GdkEvent *)event);
+    } else {
+        gtk_menu_popup_at_widget(GTK_MENU(menu), tree_view, GDK_GRAVITY_CENTER, GDK_GRAVITY_CENTER, NULL);
+    }
+}
+/* --- end Terminal object context menu ------------------------------------ */
+
 /* Resolves path's ManagedObject, builds the six-item menu, and pops it
  * up - at event's pointer position for a mouse right-click, or centered
  * on tree_view for the keyboard "popup-menu" signal (event NULL there).
  * Tags the built menu on tree_view itself so it stays discoverable
  * after this call returns - tests read the menu this way; a real user
- * never needs to. */
+ * never needs to. A depth-1 Terminal row (told apart from a Listener by
+ * OBJECT_PANEL_COL_KIND - see find_top_level_row's own comment in
+ * ui_gtk_object_list.c) is dispatched to popup_terminal_context_menu
+ * above instead - it isn't a ManagedObject. */
 void popup_object_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTreePath *path, GdkEventButton *event) {
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     GtkTreeIter iter;
@@ -151,8 +229,14 @@ void popup_object_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkTre
         return;
     }
     guint64 id = 0;
-    gtk_tree_model_get(model, &iter, OBJECT_PANEL_COL_ID, &id, -1);
+    int kind = OBJECT_PANEL_KIND_LISTENER;
+    gtk_tree_model_get(model, &iter, OBJECT_PANEL_COL_ID, &id, OBJECT_PANEL_COL_KIND, &kind, -1);
     int depth = gtk_tree_path_get_depth(path);
+
+    if (depth == 1 && kind == OBJECT_PANEL_KIND_TERMINAL) {
+        popup_terminal_context_menu(backend, tree_view, id, event);
+        return;
+    }
 
     ManagedObject obj;
     if (depth == 1) {

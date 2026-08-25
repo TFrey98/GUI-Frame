@@ -57,16 +57,31 @@ void platform_ui_destroy(void *backend_ptr) {
         g_source_remove(backend->tick_source_id);
     }
 
-    /* Individually-closed tabs already removed and freed their entry in
-     * on_tab_close_clicked; this covers whatever's left when the whole
-     * window closes without every tab being closed first. The View holds
-     * its own widget reference (see terminal_create's g_object_ref_sink),
-     * so it's still safe to destroy here even though the window - and
-     * therefore backend->notebook - is long gone by this point. */
+    /* Every terminal still tracked at shutdown, wherever it lived - a
+     * terminal's x only ever undocks it (see close_tab_page's
+     * TAB_TYPE_TERMINAL branch), so most of what's left here was never
+     * explicitly closed via the Objects panel's own Close action either.
+     * The View holds its own widget reference (see terminal_create's
+     * g_object_ref_sink), so it's still safe to destroy here even though
+     * the window - and therefore backend->notebook - is long gone by
+     * this point; any popout window is gone too, on_window_destroy
+     * already closed those directly. An undocked entry's page carries
+     * one further extra ref (taken when it was undocked, to survive its
+     * former container's own teardown) that only this loop is left to
+     * drop. */
     for (guint i = 0; i < backend->terminal_entries->len; i++) {
         TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
         terminal_destroy(entry->view);
         terminal_session_destroy(entry->session);
+        /* A docked (or popped-out, now-closed-by-on_window_destroy)
+         * entry's page was already destroyed by its container's own
+         * teardown (dangling by now - see TerminalEntry.dock_state's
+         * own comment) - only an undocked entry's extra ref is still
+         * ours to drop. */
+        if (entry->dock_state == TERMINAL_UNDOCKED) {
+            gtk_widget_destroy(entry->page);
+            g_object_unref(entry->page);
+        }
         g_free(entry);
     }
     g_ptr_array_free(backend->terminal_entries, TRUE);

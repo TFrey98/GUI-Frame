@@ -10,42 +10,36 @@
  * ui_gtk_listener_page.c - all built on add_tab_page()/focus_page()/
  * close_tab_page() here. */
 
-static void remove_terminal_entry(GtkBackend *backend, Terminal *view) {
-    for (guint i = 0; i < backend->terminal_entries->len; i++) {
-        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
-        if (entry->view == view) {
-            g_ptr_array_remove_index_fast(backend->terminal_entries, i);
-            g_free(entry);
-            return;
-        }
-    }
-}
-
 /* The actual close logic - shared by every tab type/state, unconditional
  * once called. The listener-running/modified-editor confirmation that
- * can intercept *before* this runs lives in ui_gtk_tab_close.c. */
+ * can intercept *before* this runs lives in ui_gtk_tab_close.c.
+ *
+ * TAB_TYPE_TERMINAL is the one exception to "close destroys the tab's
+ * backend_data": a terminal's x only ever undocks its page from the
+ * notebook, keeping the shell process, Terminal view, TerminalSession,
+ * and Tab all alive in backend->terminal_entries - accidentally closing
+ * a terminal tab (or Close Others/Close All, or quitting with one still
+ * open) can never lose the session. The bottom Objects panel picks it
+ * up as soon as it's undocked (see refresh_object_panel); only its own
+ * Close action (destroy_terminal_object, ui_gtk_terminal.c) actually
+ * ends the session. */
 void close_tab_page(GtkWidget *page) {
     Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
     Workspace *workspace = g_object_get_data(G_OBJECT(page), "workbench-workspace");
     GtkWidget *notebook = gtk_widget_get_ancestor(page, GTK_TYPE_NOTEBOOK);
+
+    if (tab->type == TAB_TYPE_TERMINAL) {
+        GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
+        undock_terminal_tab(backend, page);
+        return;
+    }
 
     /* Captured before workspace_close_tab, which destroys *tab - tab_id and
      * page_num must survive that call for the workspace/notebook cleanup below. */
     uint64_t tab_id = tab->id;
     int page_num = gtk_notebook_page_num(GTK_NOTEBOOK(notebook), page);
 
-    if (tab->type == TAB_TYPE_TERMINAL) {
-        GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
-        Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
-        if (view) {
-            remove_terminal_entry(backend, view);
-            terminal_destroy(view);
-        }
-        if (tab->backend_data) {
-            terminal_session_destroy((TerminalSession *)tab->backend_data);
-            tab->backend_data = NULL;
-        }
-    } else if (tab->type == TAB_TYPE_EDITOR || tab->type == TAB_TYPE_BINARY_INFO) {
+    if (tab->type == TAB_TYPE_EDITOR || tab->type == TAB_TYPE_BINARY_INFO) {
         editor_document_destroy((EditorDocument *)tab->backend_data);
         tab->backend_data = NULL;
     }

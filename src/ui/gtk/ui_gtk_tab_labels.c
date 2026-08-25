@@ -1,5 +1,6 @@
 #include "ui_gtk_backend.h"
 #include "ui_gtk_tabs_internal.h"
+#include "ui_gtk_terminal_internal.h"
 
 /* --- Tab label: rename, close button, context menu ------------------------
  * The tab label widget's own interactive behavior - double-click to
@@ -119,7 +120,14 @@ GtkWidget *build_tab_label(Tab *tab, GtkWidget *page) {
     return box;
 }
 
-/* --- Tab label right-click menu: Close / Close Others / Close All ----- */
+/* --- Tab label right-click menu: Pop Out / Close / Close Others / Close All --- */
+
+static void on_tab_context_pop_out(GtkMenuItem *item, gpointer user_data) {
+    (void)item;
+    GtkWidget *page = user_data;
+    GtkBackend *backend = g_object_get_data(G_OBJECT(page), "workbench-backend");
+    pop_out_terminal_tab(backend, page);
+}
 
 static void on_tab_context_close(GtkMenuItem *item, gpointer user_data) {
     (void)item;
@@ -160,9 +168,20 @@ static void on_tab_context_close_all(GtkMenuItem *item, gpointer user_data) {
  * accepts NULL there, same convention popup_object_context_menu/
  * popup_explorer_context_menu already established. Tags the built menu
  * on page itself so it stays discoverable after this call returns -
- * tests read the menu this way, a real user never needs to. */
+ * tests read the menu this way, a real user never needs to. Pop Out
+ * only ever appears for TAB_TYPE_TERMINAL - terminals only ever
+ * originate docked in the main workbench, so it's the only tab type
+ * with somewhere else to go (see pop_out_terminal_tab's own comment). */
 static void popup_tab_context_menu(GtkWidget *page, GdkEventButton *event) {
     GtkWidget *menu = gtk_menu_new();
+
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+    if (tab->type == TAB_TYPE_TERMINAL) {
+        GtkWidget *pop_out_item = gtk_menu_item_new_with_label("Pop Out");
+        g_signal_connect(pop_out_item, "activate", G_CALLBACK(on_tab_context_pop_out), page);
+        gtk_menu_shell_append(GTK_MENU_SHELL(menu), pop_out_item);
+        gtk_menu_shell_append(GTK_MENU_SHELL(menu), gtk_separator_menu_item_new());
+    }
 
     GtkWidget *close_item = gtk_menu_item_new_with_label("Close");
     GtkWidget *close_others_item = gtk_menu_item_new_with_label("Close Others");

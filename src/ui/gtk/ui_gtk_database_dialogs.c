@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "database.h"
 
@@ -69,6 +70,26 @@ static void append_quoted_bytes(GString *out, const void *data, size_t len) {
     g_string_append_c(out, '"');
 }
 
+/* Appends captured_at (seconds since the Unix epoch, as stored in the
+ * database) as a quoted "YYYY-MM-DD HH:MM:SS" local 24-hour timestamp -
+ * readable in the export rather than a raw epoch integer. localtime_r()
+ * is safe here since export_database_to_file() only ever runs on the
+ * GTK main thread. Falls back to the raw integer (still quoted, so the
+ * export's column type stays consistent either way) on the essentially
+ * impossible localtime_r()/strftime() failure. */
+static void append_captured_at(GString *out, int64_t captured_at) {
+    time_t t = (time_t)captured_at;
+    struct tm tm_buf;
+    char formatted[32];
+    if (localtime_r(&t, &tm_buf) != NULL && strftime(formatted, sizeof(formatted), "%Y-%m-%d %H:%M:%S", &tm_buf) > 0) {
+        g_string_append_c(out, '"');
+        g_string_append(out, formatted);
+        g_string_append_c(out, '"');
+    } else {
+        g_string_append_printf(out, "\"%lld\"", (long long)captured_at);
+    }
+}
+
 static void export_row_cb(uint64_t id, const char *terminal_kind, uint64_t terminal_id, const char *direction,
                            int64_t captured_at, const void *data, size_t data_len, void *user_data) {
     ExportBuildContext *ctx = user_data;
@@ -85,7 +106,8 @@ static void export_row_cb(uint64_t id, const char *terminal_kind, uint64_t termi
         g_string_append_printf(ctx->out, ",\"terminal_id\":%llu", (unsigned long long)terminal_id);
         g_string_append(ctx->out, ",\"direction\":");
         append_quoted_bytes(ctx->out, direction, strlen(direction));
-        g_string_append_printf(ctx->out, ",\"captured_at\":%lld", (long long)captured_at);
+        g_string_append(ctx->out, ",\"captured_at\":");
+        append_captured_at(ctx->out, captured_at);
         g_string_append(ctx->out, ",\"data\":");
         append_quoted_bytes(ctx->out, data, data_len);
         g_string_append(ctx->out, "}");
@@ -96,7 +118,9 @@ static void export_row_cb(uint64_t id, const char *terminal_kind, uint64_t termi
         g_string_append_printf(ctx->out, "\n  terminal_id: %llu\n", (unsigned long long)terminal_id);
         g_string_append(ctx->out, "  direction: ");
         append_quoted_bytes(ctx->out, direction, strlen(direction));
-        g_string_append_printf(ctx->out, "\n  captured_at: %lld\n", (long long)captured_at);
+        g_string_append(ctx->out, "\n  captured_at: ");
+        append_captured_at(ctx->out, captured_at);
+        g_string_append_c(ctx->out, '\n');
         g_string_append(ctx->out, "  data: ");
         append_quoted_bytes(ctx->out, data, data_len);
         g_string_append_c(ctx->out, '\n');

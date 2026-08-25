@@ -54,17 +54,31 @@ void gtk_theme_init(GtkBackend *backend) {
 /* Mirrors refresh_all_connection_terminal_pages' "walk every notebook
  * page" pattern - "workbench-view" is tagged identically by
  * build_terminal_page and build_connection_terminal_page, so this one
- * loop reaches every open terminal regardless of kind. */
+ * loop reaches every open terminal regardless of kind. A
+ * TAB_TYPE_CONNECTION_TERMINAL page is never tracked in
+ * terminal_entries and never leaves the notebook, so this alone is
+ * still enough to cover it fully. */
 static void apply_theme_to_open_terminals(GtkBackend *backend) {
-    if (!backend->notebook) {
-        return;
+    if (backend->notebook) {
+        int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
+        for (int i = 0; i < n; i++) {
+            GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
+            Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
+            if (view) {
+                terminal_apply_theme(view, backend->dark_mode);
+            }
+        }
     }
-    int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(backend->notebook));
-    for (int i = 0; i < n; i++) {
-        GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(backend->notebook), i);
-        Terminal *view = g_object_get_data(G_OBJECT(page), "workbench-view");
-        if (view) {
-            terminal_apply_theme(view, backend->dark_mode);
+
+    /* The notebook walk above only reaches a *docked* local-shell
+     * terminal - one that's undocked (Objects panel only) or popped out
+     * into its own window (see TerminalDockState) is missed by it, and
+     * nothing re-applies theme on redock either, so it'd otherwise show
+     * a stale palette until the next dark-mode toggle after that. */
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (entry->dock_state != TERMINAL_DOCKED) {
+            terminal_apply_theme(entry->view, backend->dark_mode);
         }
     }
 }

@@ -60,6 +60,7 @@ static void sync_listener_row(GtkTreeStore *store, GtkTreeIter *iter, const List
         OBJECT_PANEL_COL_ENDPOINT, endpoint,
         OBJECT_PANEL_COL_STATE, listener_state_name(listener->runtime.state),
         OBJECT_PANEL_COL_ID, (guint64)listener->id,
+        OBJECT_PANEL_COL_KIND, (int)OBJECT_PANEL_KIND_LISTENER,
         -1);
 }
 
@@ -71,6 +72,21 @@ static void sync_connection_row(GtkTreeStore *store, GtkTreeIter *iter, const Co
         OBJECT_PANEL_COL_ENDPOINT, endpoint,
         OBJECT_PANEL_COL_STATE, connection_state_name(connection->state),
         OBJECT_PANEL_COL_ID, (guint64)connection->id,
+        OBJECT_PANEL_COL_KIND, (int)OBJECT_PANEL_KIND_CONNECTION,
+        -1);
+}
+
+/* Shared by the Objects panel row for a local-shell terminal. A
+ * terminal never "disconnects" the way a Connection does - RUNNING/
+ * EXITED just mirrors TerminalSession.running, set once the child
+ * process actually exits (see terminal_session_mark_exited). */
+static void sync_terminal_row(GtkTreeStore *store, GtkTreeIter *iter, const TerminalEntry *entry) {
+    gtk_tree_store_set(store, iter,
+        OBJECT_PANEL_COL_NAME, entry->session->title,
+        OBJECT_PANEL_COL_ENDPOINT, entry->session->working_directory,
+        OBJECT_PANEL_COL_STATE, entry->session->running ? "RUNNING" : "EXITED",
+        OBJECT_PANEL_COL_ID, (guint64)entry->session->id,
+        OBJECT_PANEL_COL_KIND, (int)OBJECT_PANEL_KIND_TERMINAL,
         -1);
 }
 
@@ -129,20 +145,62 @@ static void sync_connections_for_listener(GtkTreeStore *store, GtkTreeIter *list
     }
 }
 
+/* Top-level rows are matched by (kind, id) together, never id alone -
+ * a Listener and a Terminal both start numbering their ids from 1
+ * independently, so id alone could match a Terminal row to a
+ * same-numbered Listener (or vice versa). Connections never call this -
+ * depth 2 already unambiguously means CONNECTION, matched within its
+ * own parent by sync_connections_for_listener above. */
+static gboolean find_top_level_row(GtkTreeStore *store, ObjectPanelKind kind, guint64 id, GtkTreeIter *out) {
+    GtkTreeIter existing;
+    if (!gtk_tree_model_get_iter_first(GTK_TREE_MODEL(store), &existing)) {
+        return FALSE;
+    }
+    do {
+        guint64 existing_id = 0;
+        int existing_kind = OBJECT_PANEL_KIND_LISTENER;
+        gtk_tree_model_get(GTK_TREE_MODEL(store), &existing, OBJECT_PANEL_COL_ID, &existing_id,
+                            OBJECT_PANEL_COL_KIND, &existing_kind, -1);
+        if (existing_id == id && existing_kind == (int)kind) {
+            if (out) {
+                *out = existing;
+            }
+            return TRUE;
+        }
+    } while (gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &existing));
+    return FALSE;
+}
+
 /* Called every tick (see on_tick) to keep the bottom panel's tree in sync
- * with the registry without ever clearing it - see the section comment.
- * Same bidirectional two-pass shape as sync_connections_for_listener,
- * one level up. */
+ * with the registry (listeners -> connections) and
+ * backend->terminal_entries (local-shell terminals) without ever
+ * clearing it - see the section comment. Same bidirectional two-pass
+ * shape as sync_connections_for_listener, one level up; Listener and
+ * Terminal rows share the same top level, told apart by
+ * OBJECT_PANEL_COL_KIND (see find_top_level_row). */
 void refresh_object_panel(GtkBackend *backend) {
     GtkTreeStore *store = backend->object_panel_store;
     ObjectRegistry *registry = backend->listener_system->registry;
-    int count = object_registry_listener_count(registry);
+    int listener_count = object_registry_listener_count(registry);
 
     GtkTreeIter iter;
     gboolean has_row = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(store), &iter);
     while (has_row) {
         guint64 id = 0;
-        gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, OBJECT_PANEL_COL_ID, &id, -1);
+        int kind = OBJECT_PANEL_KIND_LISTENER;
+        gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, OBJECT_PANEL_COL_ID, &id, OBJECT_PANEL_COL_KIND, &kind, -1);
+
+        if (kind == OBJECT_PANEL_KIND_TERMINAL) {
+            TerminalEntry *entry = find_terminal_entry_by_session_id(backend, id);
+            if (entry) {
+                sync_terminal_row(store, &iter, entry);
+                has_row = gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);
+            } else {
+                has_row = gtk_tree_store_remove(store, &iter);
+            }
+            continue;
+        }
+
         const Listener *listener = object_registry_get_listener(registry, id);
         if (listener) {
             sync_listener_row(store, &iter, listener);
@@ -153,21 +211,9 @@ void refresh_object_panel(GtkBackend *backend) {
         }
     }
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < listener_count; i++) {
         const Listener *listener = object_registry_get_listener_at(registry, i);
-        gboolean found = FALSE;
-        GtkTreeIter existing;
-        if (gtk_tree_model_get_iter_first(GTK_TREE_MODEL(store), &existing)) {
-            do {
-                guint64 id = 0;
-                gtk_tree_model_get(GTK_TREE_MODEL(store), &existing, OBJECT_PANEL_COL_ID, &id, -1);
-                if (id == listener->id) {
-                    found = TRUE;
-                    break;
-                }
-            } while (gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &existing));
-        }
-        if (found) {
+        if (find_top_level_row(store, OBJECT_PANEL_KIND_LISTENER, listener->id, NULL)) {
             continue;
         }
         GtkTreeIter new_iter;
@@ -175,14 +221,26 @@ void refresh_object_panel(GtkBackend *backend) {
         sync_listener_row(store, &new_iter, listener);
         sync_connections_for_listener(store, &new_iter, registry, listener->id);
     }
+
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (find_top_level_row(store, OBJECT_PANEL_KIND_TERMINAL, entry->session->id, NULL)) {
+            continue;
+        }
+        GtkTreeIter new_iter;
+        gtk_tree_store_append(store, &new_iter, NULL);
+        sync_terminal_row(store, &new_iter, entry);
+    }
 }
 
 /* workspace_open_object: dispatches a bottom-panel row double-click by
- * type/state - specifically by tree depth here, since the object panel
- * only ever has two levels (listeners at depth 1, their connections at
- * depth 2). State-driven behavior (read-only vs interactive) lives
- * inside the connection page itself, not in this dispatch - opening is
- * always allowed regardless of state (object_can_open_terminal is
+ * type/state. A Connection is always depth 2 (a Listener's own child,
+ * the object panel's only nesting) so depth alone identifies it; a
+ * Listener and a Terminal both sit at depth 1, told apart by
+ * OBJECT_PANEL_COL_KIND (see find_top_level_row's own comment).
+ * State-driven behavior (read-only vs interactive) lives inside the
+ * connection page itself, not in this dispatch - opening is always
+ * allowed regardless of state (object_can_open_terminal is
  * unconditionally true for a Connection). */
 static void on_object_panel_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column,
                                            gpointer user_data) {
@@ -194,13 +252,16 @@ static void on_object_panel_row_activated(GtkTreeView *tree_view, GtkTreePath *p
         return;
     }
     guint64 id = 0;
-    gtk_tree_model_get(model, &iter, OBJECT_PANEL_COL_ID, &id, -1);
+    int kind = OBJECT_PANEL_KIND_LISTENER;
+    gtk_tree_model_get(model, &iter, OBJECT_PANEL_COL_ID, &id, OBJECT_PANEL_COL_KIND, &kind, -1);
 
     int depth = gtk_tree_path_get_depth(path);
-    if (depth == 1) {
-        focus_or_open_listener_tab(backend, id);
-    } else if (depth == 2) {
+    if (depth == 2) {
         open_or_focus_connection_terminal(backend, id);
+    } else if (kind == OBJECT_PANEL_KIND_TERMINAL) {
+        focus_or_reopen_terminal_tab(backend, id);
+    } else {
+        focus_or_open_listener_tab(backend, id);
     }
 }
 
@@ -217,9 +278,10 @@ static GtkWidget *build_object_panel_page(GtkBackend *backend) {
 
     backend->object_panel_store = gtk_tree_store_new(OBJECT_PANEL_COL_COUNT,
         G_TYPE_STRING,  /* name */
-        G_TYPE_STRING,  /* endpoint */
+        G_TYPE_STRING,  /* endpoint / working directory */
         G_TYPE_STRING,  /* state */
-        G_TYPE_UINT64   /* object id */
+        G_TYPE_UINT64,  /* object id */
+        G_TYPE_INT      /* ObjectPanelKind */
     );
 
     GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(backend->object_panel_store));
@@ -234,7 +296,7 @@ static GtkWidget *build_object_panel_page(GtkBackend *backend) {
         int column;
     } columns[] = {
         {"Name", OBJECT_PANEL_COL_NAME},
-        {"Endpoint", OBJECT_PANEL_COL_ENDPOINT},
+        {"Detail", OBJECT_PANEL_COL_ENDPOINT}, /* a Listener/Connection's endpoint, or a Terminal's working directory */
         {"State", OBJECT_PANEL_COL_STATE},
     };
     for (size_t i = 0; i < sizeof(columns) / sizeof(columns[0]); i++) {

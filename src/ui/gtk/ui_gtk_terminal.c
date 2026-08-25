@@ -68,15 +68,19 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
     }
     tab->backend_data = session;
 
-    TerminalEntry *entry = g_new(TerminalEntry, 1);
-    entry->view = view;
-    entry->session = session;
-    g_ptr_array_add(backend->terminal_entries, entry);
-
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
     g_object_set_data(G_OBJECT(scroller), "workbench-view", view);
     g_object_set_data(G_OBJECT(scroller), "workbench-backend", backend);
+
+    TerminalEntry *entry = g_new(TerminalEntry, 1);
+    entry->view = view;
+    entry->session = session;
+    entry->page = scroller;
+    entry->dock_state = TERMINAL_DOCKED; /* add_tab_page docks it immediately after this returns */
+    entry->popout_window = NULL;
+    g_ptr_array_add(backend->terminal_entries, entry);
+
     return scroller;
 }
 
@@ -220,3 +224,235 @@ void run_command_in_active_terminal(GtkBackend *backend, const TerminalLaunchReq
     terminal_send(view, line->str, line->len);
     g_string_free(line, TRUE);
 }
+
+/* --- Terminal object lifecycle (undock-not-destroy, Objects panel) ----- */
+
+TerminalEntry *find_terminal_entry_by_session_id(GtkBackend *backend, uint64_t session_id) {
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (entry->session->id == session_id) {
+            return entry;
+        }
+    }
+    return NULL;
+}
+
+static TerminalEntry *find_terminal_entry_by_page(GtkBackend *backend, GtkWidget *page) {
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (entry->page == page) {
+            return entry;
+        }
+    }
+    return NULL;
+}
+
+/* Drops entry's own bookkeeping (never its page/view/session - the
+ * caller decides those separately, either keeping them alive for a
+ * later re-dock or destroying them outright). Matches by view pointer,
+ * same as the pre-undo-able-close version of this function used to. */
+static void remove_terminal_entry(GtkBackend *backend, Terminal *view) {
+    for (guint i = 0; i < backend->terminal_entries->len; i++) {
+        TerminalEntry *entry = g_ptr_array_index(backend->terminal_entries, i);
+        if (entry->view == view) {
+            g_ptr_array_remove_index_fast(backend->terminal_entries, i);
+            g_free(entry);
+            return;
+        }
+    }
+}
+
+/* Called from ui_gtk_tabs.c's close_tab_page for TAB_TYPE_TERMINAL - a
+ * terminal tab's x undocks rather than destroys (see close_tab_page's
+ * own comment). A no-op if page isn't a currently-tracked terminal page
+ * (shouldn't happen, but matches close_tab_page's existing page_num
+ * >= 0 guard style rather than assuming). */
+void undock_terminal_tab(GtkBackend *backend, GtkWidget *page) {
+    int page_num = gtk_notebook_page_num(GTK_NOTEBOOK(backend->notebook), page);
+    if (page_num < 0) {
+        return;
+    }
+    TerminalEntry *entry = find_terminal_entry_by_page(backend, page);
+    if (entry) {
+        entry->dock_state = TERMINAL_UNDOCKED;
+    }
+    g_object_ref(page); /* survive the notebook's own remove-page teardown */
+    gtk_notebook_remove_page(GTK_NOTEBOOK(backend->notebook), page_num);
+}
+
+/* Shared re-dock tail for TERMINAL_UNDOCKED and TERMINAL_POPPED_OUT -
+ * both converge here holding exactly one ref on entry->page with no
+ * container owning it, then hand that ref to the notebook. The old tab
+ * label (docked case) or popout toolbar (popped-out case) is gone by
+ * now, so a fresh label is built the same way add_tab_page does. */
+static void redock_terminal_entry(GtkBackend *backend, TerminalEntry *entry) {
+    if (entry->dock_state == TERMINAL_POPPED_OUT) {
+        GtkWidget *popout_window = entry->popout_window;
+        GtkWidget *container = gtk_widget_get_parent(entry->page);
+        g_object_ref(entry->page); /* survive removal until the notebook re-adds it below */
+        gtk_container_remove(GTK_CONTAINER(container), entry->page);
+        entry->popout_window = NULL;
+        gtk_widget_destroy(popout_window); /* now just the empty toolbar/box - page already extracted */
+    }
+    /* else TERMINAL_UNDOCKED: already holds this same kind of extra ref
+     * (taken when it was undocked), so both branches now converge on
+     * "page is ownerless, held only by our one extra ref" before the
+     * shared docking below, which hands that ref to the notebook. */
+
+    Tab *tab = g_object_get_data(G_OBJECT(entry->page), "workbench-tab");
+    GtkWidget *label = build_tab_label(tab, entry->page);
+    gtk_notebook_append_page(GTK_NOTEBOOK(backend->notebook), entry->page, label);
+    g_object_unref(entry->page); /* the notebook now owns the ref */
+    entry->dock_state = TERMINAL_DOCKED;
+    gtk_widget_show_all(entry->page);
+    focus_page(backend, entry->page);
+}
+
+void focus_or_reopen_terminal_tab(GtkBackend *backend, uint64_t session_id) {
+    TerminalEntry *entry = find_terminal_entry_by_session_id(backend, session_id);
+    if (!entry) {
+        return;
+    }
+    switch (entry->dock_state) {
+    case TERMINAL_DOCKED:
+        focus_page(backend, entry->page);
+        return;
+    case TERMINAL_POPPED_OUT:
+        /* Bring the existing standalone window forward rather than
+         * forcing it back into the notebook - popping back in is its
+         * own deliberate action (the "Pop In" button), not implied by
+         * "open". */
+        gtk_window_present(GTK_WINDOW(entry->popout_window));
+        return;
+    case TERMINAL_UNDOCKED:
+        redock_terminal_entry(backend, entry);
+        return;
+    }
+}
+
+typedef struct TerminalPopoutContext {
+    GtkBackend *backend;
+    uint64_t session_id;
+} TerminalPopoutContext;
+
+static void on_terminal_popout_pop_in_clicked(GtkButton *button, gpointer user_data) {
+    (void)button;
+    TerminalPopoutContext *ctx = user_data;
+    TerminalEntry *entry = find_terminal_entry_by_session_id(ctx->backend, ctx->session_id);
+    if (entry) {
+        redock_terminal_entry(ctx->backend, entry);
+    }
+}
+
+/* The popout window's own x - same "closing never destroys the session"
+ * policy a terminal tab's x already follows (see undock_terminal_tab):
+ * this only ever demotes the terminal back to Objects-panel-only
+ * tracking, never ends it. Runs on delete-event (not destroy) so the
+ * live page can be pulled out *before* GTK tears the window down with
+ * it still inside - returning FALSE afterward lets the now-empty window
+ * close normally. */
+static gboolean on_terminal_popout_delete_event(GtkWidget *window, GdkEvent *event, gpointer user_data) {
+    (void)event;
+    TerminalPopoutContext *ctx = user_data;
+    TerminalEntry *entry = find_terminal_entry_by_session_id(ctx->backend, ctx->session_id);
+    if (entry && entry->dock_state == TERMINAL_POPPED_OUT) {
+        GtkWidget *container = gtk_widget_get_parent(entry->page);
+        g_object_ref(entry->page); /* survive removal - now held only by this extra ref, like any undocked entry */
+        gtk_container_remove(GTK_CONTAINER(container), entry->page);
+        entry->popout_window = NULL;
+        entry->dock_state = TERMINAL_UNDOCKED;
+    }
+    (void)window;
+    return FALSE;
+}
+
+/* Called from the tab's own right-click menu ("Pop Out", ui_gtk_tab_labels.c,
+ * TAB_TYPE_TERMINAL only) - only valid while docked. Moves page into a
+ * new standalone GtkWindow, same ref-before-remove dance
+ * undock_terminal_tab uses but reparenting into a real window instead
+ * of nowhere. */
+void pop_out_terminal_tab(GtkBackend *backend, GtkWidget *page) {
+    TerminalEntry *entry = find_terminal_entry_by_page(backend, page);
+    if (!entry || entry->dock_state != TERMINAL_DOCKED) {
+        return;
+    }
+    int page_num = gtk_notebook_page_num(GTK_NOTEBOOK(backend->notebook), page);
+    if (page_num < 0) {
+        return;
+    }
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+
+    g_object_ref(page); /* survive removal until the popout window's own box re-adds it below */
+    gtk_notebook_remove_page(GTK_NOTEBOOK(backend->notebook), page_num);
+
+    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title(GTK_WINDOW(window), tab->title);
+    gtk_window_set_default_size(GTK_WINDOW(window), 640, 420);
+    g_object_set_data(G_OBJECT(window), "workbench-terminal-popout-window", window);
+    /* No set_transient_for (unlike the Search window) - a popped-out
+     * terminal is meant to behave as a fully independent window, not a
+     * utility peer of the main one. gtk_application_add_window() still
+     * shares the app's own "quit once every window is gone" bookkeeping
+     * - see ui_gtk_search.c's own comment on why that matters. */
+    gtk_application_add_window(backend->gtk_app, GTK_WINDOW(window));
+
+    TerminalPopoutContext *ctx = g_new(TerminalPopoutContext, 1);
+    ctx->backend = backend;
+    ctx->session_id = entry->session->id;
+    g_object_set_data_full(G_OBJECT(window), "workbench-terminal-popout-context", ctx, g_free);
+    g_signal_connect(window, "delete-event", G_CALLBACK(on_terminal_popout_delete_event), ctx);
+
+    GtkWidget *toolbar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_container_set_border_width(GTK_CONTAINER(toolbar), 4);
+    GtkWidget *pop_in_button = gtk_button_new_with_label("Pop In");
+    g_signal_connect(pop_in_button, "clicked", G_CALLBACK(on_terminal_popout_pop_in_clicked), ctx);
+    gtk_box_pack_end(GTK_BOX(toolbar), pop_in_button, FALSE, FALSE, 0);
+
+    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(box), page, TRUE, TRUE, 0);
+    g_object_unref(page); /* the box now owns the ref taken above */
+    gtk_container_add(GTK_CONTAINER(window), box);
+
+    entry->popout_window = window;
+    entry->dock_state = TERMINAL_POPPED_OUT;
+
+    gtk_widget_show_all(window);
+    gtk_widget_grab_focus(terminal_get_widget(entry->view));
+}
+
+void destroy_terminal_object(GtkBackend *backend, uint64_t session_id) {
+    TerminalEntry *entry = find_terminal_entry_by_session_id(backend, session_id);
+    if (!entry) {
+        return;
+    }
+    Terminal *view = entry->view;
+    GtkWidget *page = entry->page;
+    Tab *tab = g_object_get_data(G_OBJECT(page), "workbench-tab");
+    Workspace *workspace = g_object_get_data(G_OBJECT(page), "workbench-workspace");
+
+    /* Docked/popped-out: take our own ref before removing so page
+     * survives its current container's teardown, matching the ref
+     * undock_terminal_tab()/pop_out_terminal_tab() already take for
+     * their own transitions. TERMINAL_UNDOCKED already holds it. */
+    if (entry->dock_state == TERMINAL_DOCKED) {
+        int page_num = gtk_notebook_page_num(GTK_NOTEBOOK(backend->notebook), page);
+        g_object_ref(page);
+        gtk_notebook_remove_page(GTK_NOTEBOOK(backend->notebook), page_num);
+    } else if (entry->dock_state == TERMINAL_POPPED_OUT) {
+        GtkWidget *popout_window = entry->popout_window;
+        g_object_ref(page);
+        gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(page)), page);
+        gtk_widget_destroy(popout_window);
+    }
+
+    remove_terminal_entry(backend, view); /* frees entry itself */
+    terminal_destroy(view);
+    terminal_session_destroy((TerminalSession *)tab->backend_data);
+    tab->backend_data = NULL;
+    workspace_close_tab(workspace, tab->id);
+
+    gtk_widget_destroy(page);
+    g_object_unref(page);
+}
+/* --- end Terminal object lifecycle -------------------------------------- */

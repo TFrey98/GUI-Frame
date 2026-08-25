@@ -52,6 +52,9 @@ target_link_libraries(listener_console_tab_smoke PRIVATE workbench_core)
 add_executable(object_panel_smoke object_panel_smoke.c)
 target_link_libraries(object_panel_smoke PRIVATE workbench_core)
 
+add_executable(terminal_object_panel_smoke terminal_object_panel_smoke.c)
+target_link_libraries(terminal_object_panel_smoke PRIVATE workbench_core)
+
 add_executable(connection_terminal_smoke connection_terminal_smoke.c)
 target_link_libraries(connection_terminal_smoke PRIVATE workbench_core)
 
@@ -207,6 +210,9 @@ set_tests_properties(listener_console_tab_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME object_panel_smoke COMMAND object_panel_smoke)
 set_tests_properties(object_panel_smoke PROPERTIES TIMEOUT 30)
+
+add_test(NAME terminal_object_panel_smoke COMMAND terminal_object_panel_smoke)
+set_tests_properties(terminal_object_panel_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME connection_terminal_smoke COMMAND connection_terminal_smoke)
 set_tests_properties(connection_terminal_smoke PROPERTIES TIMEOUT 30)
