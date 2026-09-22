@@ -315,3 +315,8 @@ set_tests_properties(tool_panel_manifest_test PROPERTIES TIMEOUT 10)
 
 add_test(NAME tool_panel_smoke COMMAND tool_panel_smoke)
 set_tests_properties(tool_panel_smoke PROPERTIES TIMEOUT 30)
+
+add_executable(explorer_sidebar_shrink_smoke explorer_sidebar_shrink_smoke.c)
+target_link_libraries(explorer_sidebar_shrink_smoke PRIVATE workbench_core)
+add_test(NAME explorer_sidebar_shrink_smoke COMMAND explorer_sidebar_shrink_smoke)
+set_tests_properties(explorer_sidebar_shrink_smoke PROPERTIES TIMEOUT 30)

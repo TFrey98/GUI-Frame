@@ -339,7 +339,9 @@ static void on_explorer_name_editing_canceled(GtkCellRenderer *renderer, gpointe
 
 GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_widget_set_size_request(box, 240, -1);
+    /* Deliberately no width size request: that would be a hard floor the
+     * user could never drag past. The sidebar's starting width comes from
+     * the GtkPaned position set in build_main_window() instead. */
     gtk_container_set_border_width(GTK_CONTAINER(box), 8);
 
     GtkWidget *header = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 4);
@@ -423,9 +425,19 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     GtkCellRenderer *text_renderer = gtk_cell_renderer_text_new();
     gtk_tree_view_column_pack_start(column, text_renderer, TRUE);
     gtk_tree_view_column_add_attribute(column, text_renderer, "text", EXPLORER_COL_NAME);
+    /* Deliberately NOT ellipsizing. Setting ellipsize makes
+     * GtkCellRendererText stop requesting its text width altogether -
+     * both minimum and natural collapse to a few characters - which would
+     * also destroy the panel's ability to size itself to its contents.
+     * The row keeps asking for its full width; the scrolled window below
+     * is what stops that from becoming a floor. */
     g_object_set(text_renderer, "editable", FALSE, NULL);
     backend->explorer_name_renderer = text_renderer;
 
+    /* AUTOSIZE rather than the default GROW_ONLY, which never gives width
+     * back - once one long name had been shown, the column stayed that
+     * wide even after the row was collapsed away. */
+    gtk_tree_view_column_set_sizing(column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
     gtk_tree_view_append_column(GTK_TREE_VIEW(tree_view), column);
     g_signal_connect(tree_view, "row-expanded", G_CALLBACK(on_explorer_row_expanded), backend);
     g_signal_connect(tree_view, "row-activated", G_CALLBACK(on_explorer_row_activated), backend);
@@ -441,7 +453,18 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     explorer_enable_drag_and_drop(backend, tree_view);
 
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    /* GTK_POLICY_NEVER horizontally forced the scroller to be at least as
+     * wide as the tree view's content, which is how a long filename ended
+     * up setting a minimum width for the panel, the paned and ultimately
+     * the window. AUTOMATIC lets it scroll instead.
+     *
+     * propagate-natural-width keeps the useful half of the old behaviour:
+     * the panel still *prefers* to be wide enough for its contents. Only
+     * the minimum is decoupled, so the user can always drag narrower and
+     * have names ellipsize. */
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_propagate_natural_width(GTK_SCROLLED_WINDOW(scroller), TRUE);
+    gtk_scrolled_window_set_min_content_width(GTK_SCROLLED_WINDOW(scroller), 0);
     gtk_container_add(GTK_CONTAINER(scroller), tree_view);
 
     g_signal_connect(new_file_button, "clicked", G_CALLBACK(on_explorer_new_file_clicked), backend);

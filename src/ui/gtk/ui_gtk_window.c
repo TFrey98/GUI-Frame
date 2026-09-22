@@ -200,7 +200,12 @@ static GtkWidget *build_workbench_layout(GtkBackend *backend) {
     backend->next_terminal_number = 2;
 
     GtkWidget *hpaned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_paned_pack1(GTK_PANED(hpaned), sidebar, FALSE, FALSE);
+    /* shrink=TRUE on the sidebar: GtkPaned's "shrink" child property is
+     * what decides whether the handle may be dragged past a child's
+     * minimum size request. With it FALSE the explorer's contents set a
+     * floor the user could not drag through; with it TRUE the panel can
+     * always be made narrower and its contents simply clip. */
+    gtk_paned_pack1(GTK_PANED(hpaned), sidebar, FALSE, TRUE);
     gtk_paned_pack2(GTK_PANED(hpaned), backend->notebook, TRUE, FALSE);
     gtk_paned_set_position(GTK_PANED(hpaned), 220);
 
