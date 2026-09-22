@@ -86,10 +86,15 @@ cmake --build "$BUILD_DIR" -j"$(nproc)"
 echo "==> Packaging"
 ( cd "$BUILD_DIR" && cpack )
 
+# Clear previous packages first, so dist/ only ever holds the build that
+# just ran. A stale .deb sitting beside the new one is easy to install by
+# mistake - the filenames differ only by build stamp - and it also means
+# the fresh package can be identified by name rather than by timestamp.
 mkdir -p "$DIST_DIR"
+find "$DIST_DIR" -maxdepth 1 -name '*.deb' -delete
 find "$BUILD_DIR" -maxdepth 1 -name '*.deb' -exec mv -f {} "$DIST_DIR/" \;
 
-DEB="$(find "$DIST_DIR" -maxdepth 1 -name '*.deb' -newermt '-2 minutes' | head -n1)"
+DEB="$(find "$DIST_DIR" -maxdepth 1 -name '*.deb' | head -n1)"
 
 echo
 echo "Built: ${DEB}"
@@ -126,6 +131,7 @@ else
     echo
     echo "Send testers that one file. They install it with:"
     echo "    sudo apt install ./$(basename "$DEB")"
+    echo "(the leading ./ matters - without it apt looks for a repository package)"
     echo "then launch 'Workbench' from the applications menu, or run 'workbench'."
     echo
     echo "Or re-run with --publish to stage it in release/ for distribution via git."

@@ -11,6 +11,11 @@ directory you saved it in:
 sudo apt install ./workbench_*_amd64.deb
 ```
 
+**The leading `./` matters.** Without it, `apt` treats the argument as a
+package name to look up in the software repositories and fails with
+`E: Unable to locate package workbench_...deb`. Any path works — `./file.deb`,
+`/full/path/file.deb` — it just needs to contain a slash.
+
 `apt` pulls in GTK3, VTE, SQLite3 and OpenSSL for you — there is nothing
 else to install. Launch **Workbench** from the applications menu, or run
 `workbench` from a shell.
