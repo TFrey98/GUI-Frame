@@ -55,8 +55,8 @@ GtkWidget *find_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const c
  * dedups against any already-open tab for the same (root,
  * relative_path) pair, and opens (or silently declines, via
  * show_explorer_error()) accordingly. executable/read_only come from
- * the caller's already-known bits (FileTreeNode for FILES,
- * explorer_toolkit_file_flags() for Toolkit). */
+ * the caller's already-known bits (FileTreeNode for Files,
+ * explorer_tools_file_flags() for Tools). */
 void open_or_focus_file_tab(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_path,
                              bool executable, bool read_only);
 

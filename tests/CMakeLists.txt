@@ -16,8 +16,8 @@ target_link_libraries(multi_terminal_smoke PRIVATE workbench_core)
 add_executable(terminal_session_test terminal_session_test.c)
 target_link_libraries(terminal_session_test PRIVATE workbench_core)
 
-add_executable(toolkit_index_test toolkit_index_test.c)
-target_link_libraries(toolkit_index_test PRIVATE workbench_core)
+add_executable(tools_index_test tools_index_test.c)
+target_link_libraries(tools_index_test PRIVATE workbench_core)
 
 add_executable(event_queue_stress_test event_queue_stress_test.c)
 target_link_libraries(event_queue_stress_test PRIVATE workbench_core)
@@ -106,8 +106,8 @@ target_link_libraries(terminal_context_actions_smoke PRIVATE workbench_core)
 add_executable(terminal_run_command_smoke terminal_run_command_smoke.c)
 target_link_libraries(terminal_run_command_smoke PRIVATE workbench_core)
 
-add_executable(toolkit_interaction_smoke toolkit_interaction_smoke.c)
-target_link_libraries(toolkit_interaction_smoke PRIVATE workbench_core)
+add_executable(tools_interaction_smoke tools_interaction_smoke.c)
+target_link_libraries(tools_interaction_smoke PRIVATE workbench_core)
 
 add_executable(file_watch_queue_test file_watch_queue_test.c)
 target_link_libraries(file_watch_queue_test PRIVATE workbench_core)
@@ -175,8 +175,8 @@ set_tests_properties(multi_terminal_smoke PROPERTIES TIMEOUT 30)
 add_test(NAME terminal_session_test COMMAND terminal_session_test)
 set_tests_properties(terminal_session_test PROPERTIES TIMEOUT 10)
 
-add_test(NAME toolkit_index_test COMMAND toolkit_index_test)
-set_tests_properties(toolkit_index_test PROPERTIES TIMEOUT 10)
+add_test(NAME tools_index_test COMMAND tools_index_test)
+set_tests_properties(tools_index_test PROPERTIES TIMEOUT 10)
 
 add_test(NAME event_queue_stress_test COMMAND event_queue_stress_test)
 set_tests_properties(event_queue_stress_test PROPERTIES TIMEOUT 30)
@@ -265,8 +265,8 @@ set_tests_properties(terminal_context_actions_smoke PROPERTIES TIMEOUT 30)
 add_test(NAME terminal_run_command_smoke COMMAND terminal_run_command_smoke)
 set_tests_properties(terminal_run_command_smoke PROPERTIES TIMEOUT 30)
 
-add_test(NAME toolkit_interaction_smoke COMMAND toolkit_interaction_smoke)
-set_tests_properties(toolkit_interaction_smoke PROPERTIES TIMEOUT 30)
+add_test(NAME tools_interaction_smoke COMMAND tools_interaction_smoke)
+set_tests_properties(tools_interaction_smoke PROPERTIES TIMEOUT 30)
 
 add_test(NAME file_watch_queue_test COMMAND file_watch_queue_test)
 set_tests_properties(file_watch_queue_test PROPERTIES TIMEOUT 10)

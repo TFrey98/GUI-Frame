@@ -43,7 +43,7 @@ static const char *require_string(const JsonValue *object, const char *key) {
     return out;
 }
 
-/* Splits toolkit-root-relative path into its parent directory (may be
+/* Splits tools-root-relative path into its parent directory (may be
  * "" if path has no '/') - out_dir must be at least as large as path. */
 static void relative_dirname(const char *path, char *out_dir, size_t out_size) {
     const char *slash = strrchr(path, '/');
@@ -79,16 +79,16 @@ static bool parse_columns(const JsonValue *columns, ToolPanelManifest *out) {
 }
 
 /* Resolves data_file (as declared, relative to the manifest's own
- * directory) against toolkit_root, writing the containment-checked
+ * directory) against tools_root, writing the containment-checked
  * absolute path into out->data_file_absolute_path. script_absolute_path
- * must already resolve inside toolkit_root - callers are expected to
+ * must already resolve inside tools_root - callers are expected to
  * have verified that themselves before ever calling us (every launch
  * path already resolves the script through workspace_root_resolve_path
  * first). */
-static bool resolve_data_file(const WorkspaceRoot *toolkit_root, const char *script_absolute_path,
+static bool resolve_data_file(const WorkspaceRoot *tools_root, const char *script_absolute_path,
                                const char *data_file, ToolPanelManifest *out) {
-    size_t root_len = strlen(toolkit_root->canonical_path);
-    if (strncmp(script_absolute_path, toolkit_root->canonical_path, root_len) != 0 ||
+    size_t root_len = strlen(tools_root->canonical_path);
+    if (strncmp(script_absolute_path, tools_root->canonical_path, root_len) != 0 ||
         script_absolute_path[root_len] != '/') {
         return false;
     }
@@ -104,11 +104,11 @@ static bool resolve_data_file(const WorkspaceRoot *toolkit_root, const char *scr
         return false;
     }
 
-    return workspace_root_resolve_path(toolkit_root, combined, out->data_file_absolute_path,
+    return workspace_root_resolve_path(tools_root, combined, out->data_file_absolute_path,
                                         sizeof(out->data_file_absolute_path));
 }
 
-bool tool_panel_manifest_load(const WorkspaceRoot *toolkit_root, const char *script_absolute_path,
+bool tool_panel_manifest_load(const WorkspaceRoot *tools_root, const char *script_absolute_path,
                                ToolPanelManifest *out) {
     char manifest_path[4200];
     int written = snprintf(manifest_path, sizeof(manifest_path), "%s.manifest.json", script_absolute_path);
@@ -137,7 +137,7 @@ bool tool_panel_manifest_load(const WorkspaceRoot *toolkit_root, const char *scr
         ToolPanelManifest candidate = {0};
         snprintf(candidate.title, sizeof(candidate.title), "%s", title);
         if (parse_columns(columns, &candidate) &&
-            resolve_data_file(toolkit_root, script_absolute_path, data_file, &candidate)) {
+            resolve_data_file(tools_root, script_absolute_path, data_file, &candidate)) {
             *out = candidate;
             ok = true;
         }

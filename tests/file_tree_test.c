@@ -1,6 +1,6 @@
 /*
  * Exercises FileTree - the stable-id-backed, single-level-lazy-loading
- * tree model behind the "TOOLBOX" root of the merged explorer sidebar:
+ * tree model behind the "Files" root of the merged explorer sidebar:
  * sorted (dirs-first-then-alpha) non-recursive scans, refresh not
  * duplicating or leaking orphaned grandchildren, an unreadable
  * directory producing a synthetic error node instead of failing, and a

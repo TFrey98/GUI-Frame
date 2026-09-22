@@ -23,9 +23,10 @@ SQLite database that captures terminal activity for later export.
   created next to the built binary) with create/rename/move/delete,
   drag-and-drop, live filesystem-change watching, and a built-in text
   editor with save/save-as/revert and unsaved-change confirmation.
-- **Toolkit sidebar** — `toolkit/` (also created next to the binary) is
-  indexed at startup; its top-level contents show up alongside the file
-  explorer for quick access to scripts/tools.
+- **Tools sidebar** — `tools/` (also created next to the binary) is
+  indexed at startup; its top-level contents show up in the explorer
+  sidebar under **Tools**, alongside the **Files** workspace root, for
+  quick access to runnable scripts.
 - **Run in Terminal** — run a file (with optional arguments/environment
   overrides) in a fresh terminal tab or an already-open one; the command
   and its output are captured the same way typed commands are.
@@ -50,14 +51,14 @@ workbench/
 │   │                          # TerminalHistory
 │   ├── terminal/              # Terminal abstraction + PtyWorker (owns the
 │   │                           # pty for local shell terminals)
-│   ├── tools/                  # Built-in tool registry / toolkit/ indexer
+│   ├── tools/                  # Built-in tool registry / tools/ indexer
 │   └── ui/
 │       ├── workbench.c          # Platform-neutral seam
 │       └── gtk/                  # GTK+VTE backend 
 ├── packaging/             # .desktop entry, icons, Debian maintainer scripts
 ├── package.sh             # one-command release build -> dist/*.deb
 ├── tests/                 # ~53 unit/integration/GTK-driven smoke tests
-└── toolkit/                # Auto-created next to the built binary; its
+└── tools/                  # Auto-created next to the built binary; its
                              # top-level contents (not subfolders) are
                              # indexed at startup and shown in the sidebar
 ```
@@ -119,7 +120,7 @@ one upgrades in place. To uninstall: `sudo apt remove workbench`.
 
 ## Where data is stored
 
-`files/`, `toolkit/`, and `workbench.db` live next to the executable
+`files/`, `tools/`, and `workbench.db` live next to the executable
 whenever that directory is writable — so a development build keeps
 everything in `build/`, exactly as before, and the test suite resolves
 the same roots it always has.
@@ -129,10 +130,15 @@ the per-user XDG data directory instead, created on first launch:
 
 ```
 ~/.local/share/workbench/
-├── files/          # the sandboxed file-explorer workspace root
-├── toolkit/        # indexed at startup, shown in the sidebar
+├── files/          # shown as "Files" - the sandboxed editor workspace
+├── tools/          # shown as "Tools" - indexed at startup, run in a terminal
 └── workbench.db    # captured terminal activity
 ```
+
+`tools/` was called `toolkit/` up to `0.1.0~beta`. An install carrying
+the old name gets it renamed in place on first launch, contents intact;
+if a `tools/` directory already exists with files in it, the migration is
+skipped and the old `toolkit/` is left untouched rather than merged.
 
 Set `XDG_DATA_HOME` to relocate that. `sudo apt remove workbench` leaves
 it in place — testers keep their data across beta upgrades, and can wipe

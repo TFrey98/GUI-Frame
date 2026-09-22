@@ -29,7 +29,7 @@ void *platform_ui_create(Workbench *workbench) {
     backend->next_listener_number = 1;
     backend->tick_source_id = 0;
     backend->file_watcher = file_watcher_create(workbench_get_file_workspace_root(workbench));
-    backend->toolkit_watcher = file_watcher_create(workbench_get_toolkit_workspace_root(workbench));
+    backend->tools_watcher = file_watcher_create(workbench_get_tools_workspace_root(workbench));
     backend->css_provider = NULL;
     backend->dark_mode = FALSE;
     backend->search_window = NULL;
@@ -101,7 +101,7 @@ void platform_ui_destroy(void *backend_ptr) {
 
     file_tree_destroy(backend->file_tree);
     file_watcher_destroy(backend->file_watcher);
-    file_watcher_destroy(backend->toolkit_watcher);
+    file_watcher_destroy(backend->tools_watcher);
     if (backend->explorer_editing_row) {
         gtk_tree_row_reference_free(backend->explorer_editing_row);
     }

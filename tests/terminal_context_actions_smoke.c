@@ -212,8 +212,8 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
@@ -221,7 +221,7 @@ static gboolean drive(gpointer user_data) {
      * tab at the folder's real path. */
     GtkTreeIter folder_iter;
     if (!find_child_by_name(model, &workbench_iter, "folder1", &folder_iter)) {
-        fail(test, "'folder1' row not found under TOOLBOX");
+        fail(test, "'folder1' row not found under Files");
         goto done;
     }
     int terminals_before = count_terminal_pages(notebook);
@@ -245,10 +245,10 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* "Open in Terminal Directory" on an ordinary file roots a new
-     * terminal tab at its parent (TOOLBOX itself, here). */
+     * terminal tab at its parent (Files itself, here). */
     GtkTreeIter plainfile_iter;
     if (!find_child_by_name(model, &workbench_iter, "plainfile.txt", &plainfile_iter)) {
-        fail(test, "'plainfile.txt' row not found under TOOLBOX");
+        fail(test, "'plainfile.txt' row not found under Files");
         goto done;
     }
     terminals_before = count_terminal_pages(notebook);
@@ -265,7 +265,7 @@ static gboolean drive(gpointer user_data) {
     Tab *file_terminal_tab = g_object_get_data(G_OBJECT(file_terminal_page), "workbench-tab");
     TerminalSession *file_session = file_terminal_tab->backend_data;
     if (strcmp(file_session->working_directory, test->root.canonical_path) != 0) {
-        fail(test, "plainfile.txt's terminal should be rooted at TOOLBOX (its parent)");
+        fail(test, "plainfile.txt's terminal should be rooted at Files (its parent)");
         goto done;
     }
 
@@ -274,7 +274,7 @@ static gboolean drive(gpointer user_data) {
      * executable. */
     GtkTreeIter script_iter;
     if (!find_child_by_name(model, &workbench_iter, "script.sh", &script_iter)) {
-        fail(test, "'script.sh' row not found under TOOLBOX");
+        fail(test, "'script.sh' row not found under Files");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &script_iter);
@@ -297,7 +297,7 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeIter binary_iter;
     if (!find_child_by_name(model, &workbench_iter, "binary_exe", &binary_iter)) {
-        fail(test, "'binary_exe' row not found under TOOLBOX");
+        fail(test, "'binary_exe' row not found under Files");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &binary_iter);

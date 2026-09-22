@@ -1,8 +1,8 @@
 /*
  * Exercises Step 8's checkpoint end-to-end in the real app: the top bar
  * Search button opens the search window; a query (Enter, and separately
- * the Search button) returns file/folder name matches from both TOOLBOX
- * and Toolkit with the correct "<root>/relative_path" display text and
+ * the Search button) returns file/folder name matches from both Files
+ * and Tools with the correct "<root>/relative_path" display text and
  * status-label wording (including the zero-match case); activating a
  * file result opens it as an editor tab; activating a folder result
  * reveals/selects it in the main explorer tree, loading not-yet-
@@ -35,7 +35,7 @@ typedef struct TestState {
                                 * window's disappearance rather than touching the (possibly by
                                 * then destroyed) main window's own widgets. */
     WorkspaceRoot files_root;
-    WorkspaceRoot toolkit_root;
+    WorkspaceRoot tools_root;
 } TestState;
 
 static GtkWidget *find_by_data_key(GtkWidget *widget, const char *key) {
@@ -267,8 +267,8 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* Enter-triggered, case-insensitive by default: a file directly
-     * under TOOLBOX, a nested folder under TOOLBOX (inside an
-     * unexpanded "container" folder), and a file under Toolkit all
+     * under Files, a nested folder under Files (inside an
+     * unexpanded "container" folder), and a file under Tools all
      * match by name. */
     gtk_entry_set_text(GTK_ENTRY(entry), "needle");
     g_signal_emit_by_name(entry, "activate");
@@ -278,11 +278,11 @@ static gboolean drive(gpointer user_data) {
         fail(test, "searching 'needle' should return exactly 3 matches");
         goto done;
     }
-    if (!results_contain(model, "TOOLBOX/needlefile.txt") ||
-        !results_contain(model, "TOOLBOX/container/needlefolder") ||
-        !results_contain(model, "Toolkit/needlebeta.txt")) {
-        fail(test, "expected matches for TOOLBOX/needlefile.txt, TOOLBOX/container/needlefolder, and "
-                   "Toolkit/needlebeta.txt");
+    if (!results_contain(model, "Files/needlefile.txt") ||
+        !results_contain(model, "Files/container/needlefolder") ||
+        !results_contain(model, "Tools/needlebeta.txt")) {
+        fail(test, "expected matches for Files/needlefile.txt, Files/container/needlefolder, and "
+                   "Tools/needlebeta.txt");
         goto done;
     }
     if (strcmp(gtk_label_get_text(GTK_LABEL(status_label)),
@@ -301,8 +301,8 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    if (!activate_result(results_tree, model, "TOOLBOX/needlefile.txt")) {
-        fail(test, "the 'TOOLBOX/needlefile.txt' result row was not found to activate");
+    if (!activate_result(results_tree, model, "Files/needlefile.txt")) {
+        fail(test, "the 'Files/needlefile.txt' result row was not found to activate");
         goto done;
     }
     if (!find_editor_page(notebook, "needlefile.txt")) {
@@ -322,12 +322,12 @@ static gboolean drive(gpointer user_data) {
     GtkTreeModel *explorer_model = gtk_tree_view_get_model(GTK_TREE_VIEW(explorer_tree));
     GtkTreeIter workbench_iter, container_iter;
     if (!gtk_tree_model_get_iter_first(explorer_model, &workbench_iter) ||
-        !explorer_row_name_is(explorer_model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+        !explorer_row_name_is(explorer_model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
     if (!explorer_find_child(explorer_model, &workbench_iter, "container", &container_iter)) {
-        fail(test, "'container' row not found under TOOLBOX");
+        fail(test, "'container' row not found under Files");
         goto done;
     }
     gboolean container_loaded_before = FALSE;
@@ -337,8 +337,8 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    if (!activate_result(results_tree, model, "TOOLBOX/container/needlefolder")) {
-        fail(test, "the 'TOOLBOX/container/needlefolder' result row was not found to activate");
+    if (!activate_result(results_tree, model, "Files/container/needlefolder")) {
+        fail(test, "the 'Files/container/needlefolder' result row was not found to activate");
         goto done;
     }
 
@@ -433,7 +433,7 @@ static void write_file_bytes(const char *path, const char *content, size_t len) 
     }
 }
 
-static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *toolkit_root) {
+static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *tools_root) {
     char path[4400];
 
     snprintf(path, sizeof(path), "%s/needlefile.txt", files_root->canonical_path);
@@ -447,7 +447,7 @@ static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot 
     snprintf(path, sizeof(path), "%s/container/needlefolder", files_root->canonical_path);
     mkdir(path, 0755);
 
-    snprintf(path, sizeof(path), "%s/needlebeta.txt", toolkit_root->canonical_path);
+    snprintf(path, sizeof(path), "%s/needlebeta.txt", tools_root->canonical_path);
     write_file_bytes(path, "irrelevant content\n", strlen("irrelevant content\n"));
 }
 
@@ -461,10 +461,10 @@ int main(void) {
         return 1;
     }
     test.files_root = *app_get_file_workspace_root(app);
-    test.toolkit_root = *app_get_toolkit_workspace_root(app);
+    test.tools_root = *app_get_tools_workspace_root(app);
     clear_workspace_root(&test.files_root);
-    clear_workspace_root(&test.toolkit_root);
-    write_fixtures(&test.files_root, &test.toolkit_root);
+    clear_workspace_root(&test.tools_root);
+    write_fixtures(&test.files_root, &test.tools_root);
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 

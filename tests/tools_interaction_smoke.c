@@ -1,14 +1,14 @@
 /*
- * Exercises full parity between the explorer's "Toolkit" section and
- * its "TOOLBOX" section, reported directly by the user as a bug
+ * Exercises full parity between the explorer's "Tools" section and
+ * its "Files" section, reported directly by the user as a bug
  * ("anything that populates in the file explorer panel should be able
- * to be interacted with"): New Folder/Rename/Delete via Toolkit's own
- * context menu actually write to toolkit/; double-click opens a text
+ * to be interacted with"): New Folder/Rename/Delete via Tools's own
+ * context menu actually write to tools/; double-click opens a text
  * fixture as an editor tab and a binary fixture as binary-info;
  * Properties reports correct fields; Copy Path/Copy Relative Path copy
  * the right strings; Open in Integrated Terminal roots a new terminal
- * at the real toolkit/ path; Run in Terminal is offered and spawns; and
- * a FILES-sourced and a Toolkit-sourced tab for files that happen to
+ * at the real tools/ path; Run in Terminal is offered and spawns; and
+ * a Files-sourced and a Tools-sourced tab for files that happen to
  * share the same relative path stay genuinely independent (proving
  * find_file_tab()'s root-aware matching - the collision
  * EditorDocument.root exists to prevent).
@@ -45,7 +45,7 @@ typedef struct TestState {
     gboolean failed;
     gboolean done;
     WorkspaceRoot files_root;
-    WorkspaceRoot toolkit_root;
+    WorkspaceRoot tools_root;
 } TestState;
 
 static GtkWidget *find_by_data_key(GtkWidget *widget, const char *key) {
@@ -76,7 +76,7 @@ static GtkWindow *main_window(void) {
 }
 
 static void fail(TestState *test, const char *msg) {
-    fprintf(stderr, "toolkit_interaction_smoke: %s\n", msg);
+    fprintf(stderr, "tools_interaction_smoke: %s\n", msg);
     test->failed = TRUE;
 }
 
@@ -279,39 +279,39 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter workbench_iter, toolkit_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    GtkTreeIter workbench_iter, tools_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
-    toolkit_iter = workbench_iter;
-    if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
-        fail(test, "expected Toolkit as the second top-level row");
+    tools_iter = workbench_iter;
+    if (!gtk_tree_model_iter_next(model, &tools_iter) || !row_name_is(model, &tools_iter, "Tools")) {
+        fail(test, "expected Tools as the second top-level row");
         goto done;
     }
 
-    /* New Folder via Toolkit's own context menu actually writes to
-     * toolkit/. */
-    GtkWidget *menu = open_menu_for_row(tree_view, model, &toolkit_iter);
+    /* New Folder via Tools's own context menu actually writes to
+     * tools/. */
+    GtkWidget *menu = open_menu_for_row(tree_view, model, &tools_iter);
     if (!menu || !click_menu_item(menu, "New Folder")) {
-        fail(test, "could not click 'New Folder' on the Toolkit root");
+        fail(test, "could not click 'New Folder' on the Tools root");
         goto done;
     }
     GtkTreeIter pending;
-    if (!find_pending_child(model, &toolkit_iter, &pending)) {
-        fail(test, "no pending blank row appeared under Toolkit after New Folder");
+    if (!find_pending_child(model, &tools_iter, &pending)) {
+        fail(test, "no pending blank row appeared under Tools after New Folder");
         goto done;
     }
     commit_row(tree_view, model, &pending, "newtool");
     char newtool_path[4400];
-    snprintf(newtool_path, sizeof(newtool_path), "%s/newtool", test->toolkit_root.canonical_path);
+    snprintf(newtool_path, sizeof(newtool_path), "%s/newtool", test->tools_root.canonical_path);
     if (!path_exists(newtool_path)) {
-        fail(test, "'newtool' was not created on disk under toolkit/");
+        fail(test, "'newtool' was not created on disk under tools/");
         goto done;
     }
     GtkTreeIter newtool_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "newtool", &newtool_iter)) {
-        fail(test, "'newtool' row not found under Toolkit");
+    if (!find_child_by_name(model, &tools_iter, "newtool", &newtool_iter)) {
+        fail(test, "'newtool' row not found under Tools");
         goto done;
     }
 
@@ -323,14 +323,14 @@ static gboolean drive(gpointer user_data) {
     }
     commit_row(tree_view, model, &newtool_iter, "renamedtool");
     char renamedtool_path[4400];
-    snprintf(renamedtool_path, sizeof(renamedtool_path), "%s/renamedtool", test->toolkit_root.canonical_path);
+    snprintf(renamedtool_path, sizeof(renamedtool_path), "%s/renamedtool", test->tools_root.canonical_path);
     if (path_exists(newtool_path) || !path_exists(renamedtool_path)) {
         fail(test, "renaming newtool -> renamedtool did not take effect on disk");
         goto done;
     }
     GtkTreeIter renamedtool_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "renamedtool", &renamedtool_iter)) {
-        fail(test, "'renamedtool' row not found under Toolkit after rename");
+    if (!find_child_by_name(model, &tools_iter, "renamedtool", &renamedtool_iter)) {
+        fail(test, "'renamedtool' row not found under Tools after rename");
         goto done;
     }
 
@@ -347,8 +347,8 @@ static gboolean drive(gpointer user_data) {
 
     /* Double-click opens a text fixture as an editor tab. */
     GtkTreeIter existing_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "existing.txt", &existing_iter)) {
-        fail(test, "'existing.txt' row not found under Toolkit");
+    if (!find_child_by_name(model, &tools_iter, "existing.txt", &existing_iter)) {
+        fail(test, "'existing.txt' row not found under Tools");
         goto done;
     }
     GtkTreePath *existing_path = gtk_tree_model_get_path(model, &existing_iter);
@@ -361,15 +361,15 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
     gchar *existing_text = editor_buffer_text(existing_page);
-    if (!existing_text || strcmp(existing_text, "toolkit existing content\n") != 0) {
+    if (!existing_text || strcmp(existing_text, "tools existing content\n") != 0) {
         fail(test, "'existing.txt' editor tab should show the file's real content");
     }
     g_free(existing_text);
 
     /* Double-click opens a binary fixture as binary-info. */
     GtkTreeIter binary_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "binary.dat", &binary_iter)) {
-        fail(test, "'binary.dat' row not found under Toolkit");
+    if (!find_child_by_name(model, &tools_iter, "binary.dat", &binary_iter)) {
+        fail(test, "'binary.dat' row not found under Tools");
         goto done;
     }
     GtkTreePath *binary_path = gtk_tree_model_get_path(model, &binary_iter);
@@ -383,8 +383,8 @@ static gboolean drive(gpointer user_data) {
 
     /* Properties reports correct fields (script.sh is executable). */
     GtkTreeIter script_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "script.sh", &script_iter)) {
-        fail(test, "'script.sh' row not found under Toolkit");
+    if (!find_child_by_name(model, &tools_iter, "script.sh", &script_iter)) {
+        fail(test, "'script.sh' row not found under Tools");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &script_iter);
@@ -424,9 +424,9 @@ static gboolean drive(gpointer user_data) {
     }
     gchar *copied_path = gtk_clipboard_wait_for_text(clipboard);
     char expected_path[4400];
-    snprintf(expected_path, sizeof(expected_path), "%s/existing.txt", test->toolkit_root.canonical_path);
+    snprintf(expected_path, sizeof(expected_path), "%s/existing.txt", test->tools_root.canonical_path);
     if (!copied_path || strcmp(copied_path, expected_path) != 0) {
-        fail(test, "'Copy Path' should copy existing.txt's real resolved toolkit path");
+        fail(test, "'Copy Path' should copy existing.txt's real resolved tools path");
     }
     g_free(copied_path);
 
@@ -441,29 +441,29 @@ static gboolean drive(gpointer user_data) {
     }
     g_free(copied_relative);
 
-    /* Open in Integrated Terminal (on the Toolkit root) roots a new
-     * terminal tab at the real toolkit/ path. */
+    /* Open in Integrated Terminal (on the Tools root) roots a new
+     * terminal tab at the real tools/ path. */
     int terminals_before = count_pages_of_type(notebook, TAB_TYPE_TERMINAL);
-    menu = open_menu_for_row(tree_view, model, &toolkit_iter);
+    menu = open_menu_for_row(tree_view, model, &tools_iter);
     if (!menu || !click_menu_item(menu, "Open in Integrated Terminal")) {
-        fail(test, "could not click 'Open in Integrated Terminal' on the Toolkit root");
+        fail(test, "could not click 'Open in Integrated Terminal' on the Tools root");
         goto done;
     }
     if (count_pages_of_type(notebook, TAB_TYPE_TERMINAL) != terminals_before + 1) {
         fail(test, "'Open in Integrated Terminal' should open exactly one new terminal tab");
         goto done;
     }
-    GtkWidget *toolkit_terminal_page = newest_page_of_type(notebook, TAB_TYPE_TERMINAL);
-    Tab *toolkit_terminal_tab = g_object_get_data(G_OBJECT(toolkit_terminal_page), "workbench-tab");
-    TerminalSession *toolkit_session = toolkit_terminal_tab->backend_data;
-    if (strcmp(toolkit_session->working_directory, test->toolkit_root.canonical_path) != 0) {
-        fail(test, "the new terminal's working directory should be toolkit/'s real path");
+    GtkWidget *tools_terminal_page = newest_page_of_type(notebook, TAB_TYPE_TERMINAL);
+    Tab *tools_terminal_tab = g_object_get_data(G_OBJECT(tools_terminal_page), "workbench-tab");
+    TerminalSession *tools_session = tools_terminal_tab->backend_data;
+    if (strcmp(tools_session->working_directory, test->tools_root.canonical_path) != 0) {
+        fail(test, "the new terminal's working directory should be tools/'s real path");
     }
 
-    /* Run in Terminal is offered for an executable Toolkit row and
+    /* Run in Terminal is offered for an executable Tools row and
      * spawns a new terminal (terminal_run_command_smoke.c already
      * proves argv/cwd/env actually reach the process - this just
-     * proves Toolkit rows can trigger it at all). */
+     * proves Tools rows can trigger it at all). */
     terminals_before = count_pages_of_type(notebook, TAB_TYPE_TERMINAL);
     menu = open_menu_for_row(tree_view, model, &script_iter);
     if (!menu || !find_menu_item(menu, "Run in Terminal")) {
@@ -481,30 +481,30 @@ static gboolean drive(gpointer user_data) {
         fail(test, "'Run in Terminal' should open exactly one new terminal tab");
     }
 
-    /* A FILES-sourced and a Toolkit-sourced file that happen to share
+    /* A Files-sourced and a Tools-sourced file that happen to share
      * the same relative path stay genuinely independent tabs - proving
      * find_file_tab()'s root-aware matching. */
-    GtkTreeIter files_samename_iter, toolkit_samename_iter;
+    GtkTreeIter files_samename_iter, tools_samename_iter;
     if (!find_child_by_name(model, &workbench_iter, "samename.txt", &files_samename_iter) ||
-        !find_child_by_name(model, &toolkit_iter, "samename.txt", &toolkit_samename_iter)) {
-        fail(test, "'samename.txt' row not found under both TOOLBOX and Toolkit");
+        !find_child_by_name(model, &tools_iter, "samename.txt", &tools_samename_iter)) {
+        fail(test, "'samename.txt' row not found under both Files and Tools");
         goto done;
     }
     GtkTreePath *files_samename_path = gtk_tree_model_get_path(model, &files_samename_iter);
     gtk_tree_view_row_activated(GTK_TREE_VIEW(tree_view), files_samename_path,
                                  gtk_tree_view_get_column(GTK_TREE_VIEW(tree_view), 0));
     gtk_tree_path_free(files_samename_path);
-    GtkTreePath *toolkit_samename_path = gtk_tree_model_get_path(model, &toolkit_samename_iter);
-    gtk_tree_view_row_activated(GTK_TREE_VIEW(tree_view), toolkit_samename_path,
+    GtkTreePath *tools_samename_path = gtk_tree_model_get_path(model, &tools_samename_iter);
+    gtk_tree_view_row_activated(GTK_TREE_VIEW(tree_view), tools_samename_path,
                                  gtk_tree_view_get_column(GTK_TREE_VIEW(tree_view), 0));
-    gtk_tree_path_free(toolkit_samename_path);
+    gtk_tree_path_free(tools_samename_path);
 
     if (count_pages_of_type(notebook, TAB_TYPE_EDITOR) < 2) {
         fail(test, "both samename.txt files should have opened as separate editor tabs");
         goto done;
     }
     int samename_editor_count = 0;
-    gboolean saw_files_content = FALSE, saw_toolkit_content = FALSE;
+    gboolean saw_files_content = FALSE, saw_tools_content = FALSE;
     int n = gtk_notebook_get_n_pages(GTK_NOTEBOOK(notebook));
     for (int i = 0; i < n; i++) {
         GtkWidget *page = gtk_notebook_get_nth_page(GTK_NOTEBOOK(notebook), i);
@@ -516,15 +516,15 @@ static gboolean drive(gpointer user_data) {
         gchar *content = editor_buffer_text(page);
         if (content && strcmp(content, "files samename\n") == 0) {
             saw_files_content = TRUE;
-        } else if (content && strcmp(content, "toolkit samename\n") == 0) {
-            saw_toolkit_content = TRUE;
+        } else if (content && strcmp(content, "tools samename\n") == 0) {
+            saw_tools_content = TRUE;
         }
         g_free(content);
     }
     if (samename_editor_count != 2) {
-        fail(test, "expected exactly two independent samename.txt editor tabs (FILES and Toolkit)");
+        fail(test, "expected exactly two independent samename.txt editor tabs (Files and Tools)");
     }
-    if (!saw_files_content || !saw_toolkit_content) {
+    if (!saw_files_content || !saw_tools_content) {
         fail(test, "the two samename.txt tabs should each show their own root's distinct content");
     }
 
@@ -540,12 +540,12 @@ done:
 }
 
 /* Every GTK smoke test binary lives in the same build/tests/ directory,
- * so workspace_root_init()'s (and toolkit_index's) exe-relative
- * resolution finds the *same* physical files/ and toolkit/ directories
+ * so workspace_root_init()'s (and tools_index's) exe-relative
+ * resolution finds the *same* physical files/ and tools/ directories
  * for all of them - clearing any pre-existing top-level entries from
  * both keeps this test's assertions correct regardless of ctest run
  * order, same precaution every explorer/terminal smoke test already
- * established for files/, now extended to toolkit/ too. */
+ * established for files/, now extended to tools/ too. */
 static void clear_workspace_root(const WorkspaceRoot *root) {
     DIR *dir = opendir(root->canonical_path);
     if (!dir) {
@@ -561,23 +561,23 @@ static void clear_workspace_root(const WorkspaceRoot *root) {
     closedir(dir);
 }
 
-static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *toolkit_root) {
+static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *tools_root) {
     char path[4400];
 
-    snprintf(path, sizeof(path), "%s/existing.txt", toolkit_root->canonical_path);
-    write_file_bytes(path, "toolkit existing content\n", strlen("toolkit existing content\n"));
+    snprintf(path, sizeof(path), "%s/existing.txt", tools_root->canonical_path);
+    write_file_bytes(path, "tools existing content\n", strlen("tools existing content\n"));
 
-    snprintf(path, sizeof(path), "%s/script.sh", toolkit_root->canonical_path);
+    snprintf(path, sizeof(path), "%s/script.sh", tools_root->canonical_path);
     const char *script = "#!/bin/sh\necho hi\n";
     write_file_bytes(path, script, strlen(script));
     chmod(path, 0755);
 
-    snprintf(path, sizeof(path), "%s/binary.dat", toolkit_root->canonical_path);
+    snprintf(path, sizeof(path), "%s/binary.dat", tools_root->canonical_path);
     char binary_content[6] = {'a', 'b', '\0', 'c', 'd', 'e'};
     write_file_bytes(path, binary_content, sizeof(binary_content));
 
-    snprintf(path, sizeof(path), "%s/samename.txt", toolkit_root->canonical_path);
-    write_file_bytes(path, "toolkit samename\n", strlen("toolkit samename\n"));
+    snprintf(path, sizeof(path), "%s/samename.txt", tools_root->canonical_path);
+    write_file_bytes(path, "tools samename\n", strlen("tools samename\n"));
 
     snprintf(path, sizeof(path), "%s/samename.txt", files_root->canonical_path);
     write_file_bytes(path, "files samename\n", strlen("files samename\n"));
@@ -589,14 +589,14 @@ int main(void) {
     TestState test = {0};
     App *app = app_create(0, NULL);
     if (!app) {
-        fprintf(stderr, "toolkit_interaction_smoke: app_create failed\n");
+        fprintf(stderr, "tools_interaction_smoke: app_create failed\n");
         return 1;
     }
     test.files_root = *app_get_file_workspace_root(app);
-    test.toolkit_root = *app_get_toolkit_workspace_root(app);
+    test.tools_root = *app_get_tools_workspace_root(app);
     clear_workspace_root(&test.files_root);
-    clear_workspace_root(&test.toolkit_root);
-    write_fixtures(&test.files_root, &test.toolkit_root);
+    clear_workspace_root(&test.tools_root);
+    write_fixtures(&test.files_root, &test.tools_root);
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
@@ -607,16 +607,16 @@ int main(void) {
         return 1;
     }
     if (status != 0) {
-        fprintf(stderr, "toolkit_interaction_smoke: app exited with status %d\n", status);
+        fprintf(stderr, "tools_interaction_smoke: app exited with status %d\n", status);
         return 1;
     }
     if (!test.done) {
-        fprintf(stderr, "toolkit_interaction_smoke: test did not complete\n");
+        fprintf(stderr, "tools_interaction_smoke: test did not complete\n");
         return 1;
     }
 
-    g_print("toolkit_interaction_smoke: Toolkit New Folder/Rename/Delete, double-click open (text + binary), "
+    g_print("tools_interaction_smoke: Tools New Folder/Rename/Delete, double-click open (text + binary), "
             "Properties, Copy Path/Copy Relative Path, Open in Integrated Terminal, Run in Terminal, and "
-            "FILES/Toolkit tab independence all verified\n");
+            "Files/Tools tab independence all verified\n");
     return 0;
 }

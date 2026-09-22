@@ -7,7 +7,7 @@
  * the cut file keeps tracking it at its new path); the Paste menu item
  * starting insensitive and enabling after Copy/Cut; Paste offered on a
  * directory row but never a plain file row; Cut/Copy never offered on
- * the permanent roots; a cross-root case (Toolkit -> TOOLBOX) proving
+ * the permanent roots; a cross-root case (Tools -> Files) proving
  * file_copy()'s cross-root path works end to end through the real UI;
  * and pasting a folder into its own subfolder rejected with an error
  * rather than corrupting anything.
@@ -44,7 +44,7 @@ typedef struct TestState {
     gboolean failed;
     gboolean done;
     WorkspaceRoot files_root;
-    WorkspaceRoot toolkit_root;
+    WorkspaceRoot tools_root;
 } TestState;
 
 static GtkWidget *find_by_data_key(GtkWidget *widget, const char *key) {
@@ -222,32 +222,32 @@ static gboolean drive(gpointer user_data) {
     }
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-    GtkTreeIter workbench_iter, toolkit_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    GtkTreeIter workbench_iter, tools_iter;
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
-    toolkit_iter = workbench_iter;
-    if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
-        fail(test, "expected Toolkit as the second top-level row");
+    tools_iter = workbench_iter;
+    if (!gtk_tree_model_iter_next(model, &tools_iter) || !row_name_is(model, &tools_iter, "Tools")) {
+        fail(test, "expected Tools as the second top-level row");
         goto done;
     }
 
-    /* Cut/Copy are never offered on the permanent TOOLBOX root; Paste is
+    /* Cut/Copy are never offered on the permanent Files root; Paste is
      * (it's a directory), but starts insensitive - nothing has been
      * Cut/Copied yet. */
     GtkWidget *menu = open_menu_for_row(tree_view, model, &workbench_iter);
     if (!menu) {
-        fail(test, "TOOLBOX root context menu did not appear");
+        fail(test, "Files root context menu did not appear");
         goto done;
     }
     if (find_menu_item(menu, "Cut") || find_menu_item(menu, "Copy")) {
-        fail(test, "the TOOLBOX root's context menu must not offer Cut/Copy");
+        fail(test, "the Files root's context menu must not offer Cut/Copy");
         goto done;
     }
     GtkWidget *paste_item = find_menu_item(menu, "Paste");
     if (!paste_item) {
-        fail(test, "the TOOLBOX root's context menu should offer Paste");
+        fail(test, "the Files root's context menu should offer Paste");
         goto done;
     }
     if (gtk_widget_get_sensitive(paste_item)) {
@@ -259,7 +259,7 @@ static gboolean drive(gpointer user_data) {
     /* A plain file's context menu offers Cut/Copy, never Paste. */
     GtkTreeIter copysrc_iter;
     if (!find_child_by_name(model, &workbench_iter, "copysrc.txt", &copysrc_iter)) {
-        fail(test, "'copysrc.txt' row not found under TOOLBOX");
+        fail(test, "'copysrc.txt' row not found under Files");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &copysrc_iter);
@@ -276,10 +276,10 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    /* Paste becomes sensitive right after Copy - checked via TOOLBOX
+    /* Paste becomes sensitive right after Copy - checked via Files
      * root's own Paste menu item, since a file's context menu never
      * offers Paste at all (checked above). Opening that menu reselects
-     * TOOLBOX root, so copysrc.txt is explicitly reselected below. */
+     * Files root, so copysrc.txt is explicitly reselected below. */
     menu = open_menu_for_row(tree_view, model, &workbench_iter);
     paste_item = menu ? find_menu_item(menu, "Paste") : NULL;
     if (!paste_item || !gtk_widget_get_sensitive(paste_item)) {
@@ -289,7 +289,7 @@ static gboolean drive(gpointer user_data) {
     gtk_menu_popdown(GTK_MENU(menu));
 
     /* Ctrl+V with copysrc.txt reselected (a file) targets its parent -
-     * TOOLBOX - which already has a 'copysrc.txt', so this exercises the
+     * Files - which already has a 'copysrc.txt', so this exercises the
      * auto-rename-on-collision path. */
     gtk_tree_selection_select_iter(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view)), &copysrc_iter);
     if (!send_ctrl_keypress(tree_view, GDK_KEY_v)) {
@@ -327,7 +327,7 @@ static gboolean drive(gpointer user_data) {
      * its new path. */
     GtkTreeIter cutsrc_iter;
     if (!find_child_by_name(model, &workbench_iter, "cutsrc.txt", &cutsrc_iter)) {
-        fail(test, "'cutsrc.txt' row not found under TOOLBOX");
+        fail(test, "'cutsrc.txt' row not found under Files");
         goto done;
     }
     GtkTreePath *cutsrc_path_obj = gtk_tree_model_get_path(model, &cutsrc_iter);
@@ -348,7 +348,7 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeIter destfolder_iter;
     if (!find_child_by_name(model, &workbench_iter, "destfolder", &destfolder_iter)) {
-        fail(test, "'destfolder' row not found under TOOLBOX");
+        fail(test, "'destfolder' row not found under Files");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &destfolder_iter);
@@ -372,9 +372,9 @@ static gboolean drive(gpointer user_data) {
         fail(test, "Cut+Paste should create 'destfolder/cutsrc.txt'");
         goto done;
     }
-    /* Checked via TOOLBOX root's own Paste item, not destfolder's - the
-     * Cut just moved cutsrc.txt out of TOOLBOX root, which refreshes
-     * TOOLBOX root's own children (its old parent) and rebuilds the
+    /* Checked via Files root's own Paste item, not destfolder's - the
+     * Cut just moved cutsrc.txt out of Files root, which refreshes
+     * Files root's own children (its old parent) and rebuilds the
      * destfolder row itself, making the destfolder_iter captured above
      * stale. */
     menu = open_menu_for_row(tree_view, model, &workbench_iter);
@@ -392,16 +392,16 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    /* Cross-root: Copy a Toolkit file, Paste it into TOOLBOX's
+    /* Cross-root: Copy a Tools file, Paste it into Files's
      * destfolder - proves file_copy()'s cross-root path end to end. */
-    GtkTreeIter toolkitfile_iter;
-    if (!find_child_by_name(model, &toolkit_iter, "toolkitfile.txt", &toolkitfile_iter)) {
-        fail(test, "'toolkitfile.txt' row not found under Toolkit");
+    GtkTreeIter toolsfile_iter;
+    if (!find_child_by_name(model, &tools_iter, "toolsfile.txt", &toolsfile_iter)) {
+        fail(test, "'toolsfile.txt' row not found under Tools");
         goto done;
     }
-    menu = open_menu_for_row(tree_view, model, &toolkitfile_iter);
+    menu = open_menu_for_row(tree_view, model, &toolsfile_iter);
     if (!menu || !click_menu_item(menu, "Copy")) {
-        fail(test, "could not click 'Copy' on toolkitfile.txt");
+        fail(test, "could not click 'Copy' on toolsfile.txt");
         goto done;
     }
 
@@ -415,23 +415,23 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    char toolkitfile_src_path[4400], toolkitfile_dest_path[4400];
-    snprintf(toolkitfile_src_path, sizeof(toolkitfile_src_path), "%s/toolkitfile.txt",
-              test->toolkit_root.canonical_path);
-    snprintf(toolkitfile_dest_path, sizeof(toolkitfile_dest_path), "%s/destfolder/toolkitfile.txt",
+    char toolsfile_src_path[4400], toolsfile_dest_path[4400];
+    snprintf(toolsfile_src_path, sizeof(toolsfile_src_path), "%s/toolsfile.txt",
+              test->tools_root.canonical_path);
+    snprintf(toolsfile_dest_path, sizeof(toolsfile_dest_path), "%s/destfolder/toolsfile.txt",
               test->files_root.canonical_path);
-    if (!path_exists(toolkitfile_src_path)) {
-        fail(test, "cross-root Copy+Paste must leave the original Toolkit file untouched");
+    if (!path_exists(toolsfile_src_path)) {
+        fail(test, "cross-root Copy+Paste must leave the original Tools file untouched");
         goto done;
     }
-    if (!path_exists(toolkitfile_dest_path)) {
-        fail(test, "cross-root Copy+Paste should create 'destfolder/toolkitfile.txt' under TOOLBOX");
+    if (!path_exists(toolsfile_dest_path)) {
+        fail(test, "cross-root Copy+Paste should create 'destfolder/toolsfile.txt' under Files");
         goto done;
     }
-    char toolkitfile_contents[64] = {0};
-    if (read_file_contents(toolkitfile_dest_path, toolkitfile_contents, sizeof(toolkitfile_contents)) != 0 ||
-        strcmp(toolkitfile_contents, "toolkit content\n") != 0) {
-        fail(test, "the cross-root pasted copy should have the Toolkit original's content");
+    char toolsfile_contents[64] = {0};
+    if (read_file_contents(toolsfile_dest_path, toolsfile_contents, sizeof(toolsfile_contents)) != 0 ||
+        strcmp(toolsfile_contents, "tools content\n") != 0) {
+        fail(test, "the cross-root pasted copy should have the Tools original's content");
         goto done;
     }
 
@@ -439,7 +439,7 @@ static gboolean drive(gpointer user_data) {
      * not a hang or a corrupted recursive copy. */
     GtkTreeIter selffolder_iter;
     if (!find_child_by_name(model, &workbench_iter, "selffolder", &selffolder_iter)) {
-        fail(test, "'selffolder' row not found under TOOLBOX");
+        fail(test, "'selffolder' row not found under Files");
         goto done;
     }
     GtkTreePath *selffolder_path_obj = gtk_tree_model_get_path(model, &selffolder_iter);
@@ -515,7 +515,7 @@ static void write_file_bytes(const char *path, const char *content, size_t len) 
     }
 }
 
-static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *toolkit_root) {
+static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot *tools_root) {
     char path[4400];
 
     snprintf(path, sizeof(path), "%s/copysrc.txt", files_root->canonical_path);
@@ -532,8 +532,8 @@ static void write_fixtures(const WorkspaceRoot *files_root, const WorkspaceRoot 
     snprintf(path, sizeof(path), "%s/selffolder/inner", files_root->canonical_path);
     mkdir(path, 0755);
 
-    snprintf(path, sizeof(path), "%s/toolkitfile.txt", toolkit_root->canonical_path);
-    write_file_bytes(path, "toolkit content\n", strlen("toolkit content\n"));
+    snprintf(path, sizeof(path), "%s/toolsfile.txt", tools_root->canonical_path);
+    write_file_bytes(path, "tools content\n", strlen("tools content\n"));
 }
 
 int main(void) {
@@ -546,10 +546,10 @@ int main(void) {
         return 1;
     }
     test.files_root = *app_get_file_workspace_root(app);
-    test.toolkit_root = *app_get_toolkit_workspace_root(app);
+    test.tools_root = *app_get_tools_workspace_root(app);
     clear_workspace_root(&test.files_root);
-    clear_workspace_root(&test.toolkit_root);
-    write_fixtures(&test.files_root, &test.toolkit_root);
+    clear_workspace_root(&test.tools_root);
+    write_fixtures(&test.files_root, &test.tools_root);
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 

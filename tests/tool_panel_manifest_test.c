@@ -1,9 +1,9 @@
 /*
- * Exercises tool_panel_manifest_load() against a fixture toolkit root:
+ * Exercises tool_panel_manifest_load() against a fixture tools root:
  * no manifest present, a valid manifest, malformed JSON, a manifest
  * missing a required field, and a data_file value that attempts to
- * escape the toolkit root - the last of which must be rejected the same
- * way every other toolkit/files path in this app is sandboxed.
+ * escape the tools root - the last of which must be rejected the same
+ * way every other tools/files path in this app is sandboxed.
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,8 +37,8 @@ int main(void) {
         return 1;
     }
 
-    WorkspaceRoot toolkit_root;
-    if (!workspace_root_init_at(&toolkit_root, root_dir)) {
+    WorkspaceRoot tools_root;
+    if (!workspace_root_init_at(&tools_root, root_dir)) {
         fprintf(stderr, "tool_panel_manifest_test: workspace_root_init_at failed\n");
         return 1;
     }
@@ -50,7 +50,7 @@ int main(void) {
     ToolPanelManifest manifest;
 
     /* No manifest file at all - not an error, just "no panel tab". */
-    if (tool_panel_manifest_load(&toolkit_root, script_path, &manifest)) {
+    if (tool_panel_manifest_load(&tools_root, script_path, &manifest)) {
         fail("a script with no sibling manifest should return false");
     }
 
@@ -61,7 +61,7 @@ int main(void) {
                "{ \"panel\": { \"title\": \"Scan Results\", \"data_file\": \"scan.out.jsonl\", "
                "\"columns\": [ {\"key\": \"host\", \"label\": \"Host\"}, {\"key\": \"port\", \"label\": \"Port\"} ] "
                "} }");
-    if (!tool_panel_manifest_load(&toolkit_root, script_path, &manifest)) {
+    if (!tool_panel_manifest_load(&tools_root, script_path, &manifest)) {
         fail("a valid manifest should load successfully");
     } else {
         if (strcmp(manifest.title, "Scan Results") != 0) {
@@ -74,12 +74,12 @@ int main(void) {
         char expected_data_file[4300];
         snprintf(expected_data_file, sizeof(expected_data_file), "%s/scan.out.jsonl", root_dir);
         if (strcmp(manifest.data_file_absolute_path, expected_data_file) != 0) {
-            fail("data_file should resolve relative to the manifest's own directory, inside the toolkit root");
+            fail("data_file should resolve relative to the manifest's own directory, inside the tools root");
         }
     }
 
     /* A manifest for a script nested one directory deep - data_file
-     * should resolve relative to that subdirectory, not the toolkit
+     * should resolve relative to that subdirectory, not the tools
      * root itself. */
     char subdir[4300];
     snprintf(subdir, sizeof(subdir), "%s/nested", root_dir);
@@ -92,7 +92,7 @@ int main(void) {
     write_file(nested_manifest_path,
                "{ \"panel\": { \"title\": \"Nested\", \"data_file\": \"out.jsonl\", "
                "\"columns\": [ {\"key\": \"a\", \"label\": \"A\"} ] } }");
-    if (!tool_panel_manifest_load(&toolkit_root, nested_script, &manifest)) {
+    if (!tool_panel_manifest_load(&tools_root, nested_script, &manifest)) {
         fail("a valid manifest for a nested script should load successfully");
     } else {
         char expected_nested_data_file[4500];
@@ -109,7 +109,7 @@ int main(void) {
     char bad_json_manifest[4400];
     snprintf(bad_json_manifest, sizeof(bad_json_manifest), "%s.manifest.json", bad_json_script);
     write_file(bad_json_manifest, "{ this is not valid json");
-    if (tool_panel_manifest_load(&toolkit_root, bad_json_script, &manifest)) {
+    if (tool_panel_manifest_load(&tools_root, bad_json_script, &manifest)) {
         fail("malformed JSON should fail to load");
     }
 
@@ -120,11 +120,11 @@ int main(void) {
     char missing_field_manifest[4400];
     snprintf(missing_field_manifest, sizeof(missing_field_manifest), "%s.manifest.json", missing_field_script);
     write_file(missing_field_manifest, "{ \"panel\": { \"title\": \"No Columns\", \"data_file\": \"out.jsonl\" } }");
-    if (tool_panel_manifest_load(&toolkit_root, missing_field_script, &manifest)) {
+    if (tool_panel_manifest_load(&tools_root, missing_field_script, &manifest)) {
         fail("a manifest missing panel.columns should fail to load");
     }
 
-    /* data_file attempting to escape the toolkit root. */
+    /* data_file attempting to escape the tools root. */
     char escape_script[4300];
     snprintf(escape_script, sizeof(escape_script), "%s/escape.sh", root_dir);
     write_file(escape_script, "#!/bin/sh\n");
@@ -132,8 +132,8 @@ int main(void) {
     snprintf(escape_manifest, sizeof(escape_manifest), "%s.manifest.json", escape_script);
     write_file(escape_manifest, "{ \"panel\": { \"title\": \"Escape\", \"data_file\": \"../../etc/passwd\", "
                                  "\"columns\": [ {\"key\": \"a\", \"label\": \"A\"} ] } }");
-    if (tool_panel_manifest_load(&toolkit_root, escape_script, &manifest)) {
-        fail("a data_file containing '..' should be rejected, not resolved outside the toolkit root");
+    if (tool_panel_manifest_load(&tools_root, escape_script, &manifest)) {
+        fail("a data_file containing '..' should be rejected, not resolved outside the tools root");
     }
 
     if (status == 0) {

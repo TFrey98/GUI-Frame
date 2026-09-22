@@ -112,12 +112,12 @@ static void on_tool_panel_close_clicked(GtkButton *button, gpointer user_data) {
 
 void open_tool_panel_tab_for_launch(GtkBackend *backend, uint64_t terminal_tab_id,
                                      const ToolPanelManifest *manifest) {
-    const WorkspaceRoot *toolkit_root = workbench_get_toolkit_workspace_root(backend->workbench);
-    size_t root_len = strlen(toolkit_root->canonical_path);
+    const WorkspaceRoot *tools_root = workbench_get_tools_workspace_root(backend->workbench);
+    size_t root_len = strlen(tools_root->canonical_path);
     /* tool_panel_manifest_load() already guarantees data_file_absolute_path
-     * resolves inside toolkit_root - this is just a defensive re-check,
+     * resolves inside tools_root - this is just a defensive re-check,
      * never expected to actually fail. */
-    if (strncmp(manifest->data_file_absolute_path, toolkit_root->canonical_path, root_len) != 0 ||
+    if (strncmp(manifest->data_file_absolute_path, tools_root->canonical_path, root_len) != 0 ||
         manifest->data_file_absolute_path[root_len] != '/') {
         return;
     }
@@ -127,8 +127,8 @@ void open_tool_panel_tab_for_launch(GtkBackend *backend, uint64_t terminal_tab_i
     tab_panel->title = g_strdup(manifest->title);
     g_strlcpy(tab_panel->data_file_absolute_path, manifest->data_file_absolute_path,
               sizeof(tab_panel->data_file_absolute_path));
-    g_strlcpy(tab_panel->data_file_toolkit_relative_path, manifest->data_file_absolute_path + root_len + 1,
-              sizeof(tab_panel->data_file_toolkit_relative_path));
+    g_strlcpy(tab_panel->data_file_tools_relative_path, manifest->data_file_absolute_path + root_len + 1,
+              sizeof(tab_panel->data_file_tools_relative_path));
     tab_panel->column_count = manifest->column_count;
     memcpy(tab_panel->columns, manifest->columns, sizeof(tab_panel->columns));
     tab_panel->stopped = FALSE;
@@ -180,7 +180,7 @@ void open_tool_panel_tab_for_launch(GtkBackend *backend, uint64_t terminal_tab_i
     }
     /* Idempotent - see FileWatcher's own doc comment - so this is safe
      * even if another tool panel tab already watches the same directory. */
-    file_watcher_watch_directory(backend->toolkit_watcher, data_dir);
+    file_watcher_watch_directory(backend->tools_watcher, data_dir);
 
     refresh_tool_panel_tab(tab_panel);
 }
@@ -191,7 +191,7 @@ void tool_panel_handle_watch_event(GtkBackend *backend, const FileWatchEvent *ev
     }
     for (guint i = 0; i < backend->tool_panel_tabs->len; i++) {
         ToolPanelTab *tab_panel = g_ptr_array_index(backend->tool_panel_tabs, i);
-        if (strcmp(tab_panel->data_file_toolkit_relative_path, event->new_relative_path) == 0) {
+        if (strcmp(tab_panel->data_file_tools_relative_path, event->new_relative_path) == 0) {
             refresh_tool_panel_tab(tab_panel);
         }
     }

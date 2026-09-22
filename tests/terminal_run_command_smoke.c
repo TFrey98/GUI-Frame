@@ -246,7 +246,7 @@ static gboolean drive(gpointer user_data) {
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
                 GtkTreeIter workbench_iter;
                 if (!gtk_tree_model_get_iter_first(model, &workbench_iter) ||
-                    !row_name_is(model, &workbench_iter, "TOOLBOX")) {
+                    !row_name_is(model, &workbench_iter, "Files")) {
                     break;
                 }
                 test->step = STEP_SUBMIT_NEW_TERMINAL_RUN;
@@ -259,7 +259,7 @@ static gboolean drive(gpointer user_data) {
                 GtkTreeIter workbench_iter, script_iter;
                 gtk_tree_model_get_iter_first(model, &workbench_iter);
                 if (!find_child_by_name(model, &workbench_iter, "runner.sh", &script_iter)) {
-                    fail(test, "'runner.sh' row not found under TOOLBOX");
+                    fail(test, "'runner.sh' row not found under Files");
                     return G_SOURCE_REMOVE;
                 }
                 GtkWidget *menu = open_menu_for_row(tree_view, model, &script_iter);

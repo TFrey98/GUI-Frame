@@ -7,9 +7,9 @@
 /* --- ui_gtk_editor_tabs.c: open-or-focus dedup for editor/binary-info tabs --- */
 
 /* Matches on (root, relative_path) rather than relative_path alone -
- * the app now has more than one root (files/ and toolkit/), and a
- * relative_path match alone could collide if a TOOLBOX file and a
- * Toolkit file ever happened to share the same relative path. Pointer
+ * the app now has more than one root (files/ and tools/), and a
+ * relative_path match alone could collide if a Files file and a
+ * Tools file ever happened to share the same relative path. Pointer
  * equality on root is safe and correct: both roots are long-lived
  * values owned by App, never copied or relocated. Promoted (was
  * static) - ui_gtk_editor_conflicts.c's external-change handlers need

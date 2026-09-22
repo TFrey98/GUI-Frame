@@ -30,9 +30,9 @@ static void on_explorer_refresh_clicked(GtkButton *button, gpointer user_data) {
 /* Double-click (or Enter) on a row toggles a directory row - unchanged
  * for either source. A non-directory row of *either* source instead
  * opens (or focuses) an editor/binary-info tab via
- * open_or_focus_file_tab() - FILES supplies its already-cached
- * FileTreeNode bits, Toolkit stats them fresh via
- * explorer_toolkit_file_flags() since ToolkitEntry tracks neither. */
+ * open_or_focus_file_tab() - Files supplies its already-cached
+ * FileTreeNode bits, Tools stats them fresh via
+ * explorer_tools_file_flags() since ToolsIndexEntry tracks neither. */
 static void on_explorer_row_activated(GtkTreeView *tree_view, GtkTreePath *path, GtkTreeViewColumn *column,
                                        gpointer user_data) {
     (void)column;
@@ -71,7 +71,7 @@ static void on_explorer_row_activated(GtkTreeView *tree_view, GtkTreePath *path,
         char resolved[4096];
         bool executable = false, read_only = true;
         if (workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
-            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+            explorer_tools_file_flags(resolved, &executable, &read_only);
         }
         open_or_focus_file_tab(backend, root, relative_path, executable, read_only);
     }
@@ -103,7 +103,7 @@ void start_new_entry(GtkBackend *backend, GtkTreeIter *parent_iter, gboolean is_
         EXPLORER_COL_PATH, "",
         EXPLORER_COL_IS_DIR, is_folder,
         EXPLORER_COL_LOADED, TRUE,
-        EXPLORER_COL_SOURCE, source, /* inherits parent's source - a new row under Toolkit stays Toolkit-sourced */
+        EXPLORER_COL_SOURCE, source, /* inherits parent's source - a new row under Tools stays Tools-sourced */
         EXPLORER_COL_NODE_ID, EXPLORER_PENDING_CREATE_ID,
         -1);
 
@@ -129,7 +129,7 @@ void start_new_entry(GtkBackend *backend, GtkTreeIter *parent_iter, gboolean is_
 
 /* A selected directory row (either source) is the target directly; a
  * selected file row targets its parent; nothing selected defaults to
- * the TOOLBOX root - same convention VS Code's own toolbar New File/
+ * the Files root - same convention VS Code's own toolbar New File/
  * Folder uses. */
 static void explorer_target_parent_from_selection(GtkBackend *backend, GtkTreeIter *out_parent_iter) {
     GtkTreeView *tree_view = GTK_TREE_VIEW(backend->explorer_tree_view);
@@ -382,7 +382,7 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     gtk_tree_store_append(store, &files_root, NULL);
     gtk_tree_store_set(store, &files_root,
         EXPLORER_COL_ICON, "folder",
-        EXPLORER_COL_NAME, "TOOLBOX",
+        EXPLORER_COL_NAME, "Files",
         EXPLORER_COL_PATH, "",
         EXPLORER_COL_IS_DIR, TRUE,
         EXPLORER_COL_LOADED, FALSE,
@@ -390,15 +390,15 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
         EXPLORER_COL_NODE_ID, (guint64)FILE_TREE_ROOT_ID,
         -1);
 
-    GtkTreeIter toolkit_root;
-    gtk_tree_store_append(store, &toolkit_root, NULL);
-    gtk_tree_store_set(store, &toolkit_root,
+    GtkTreeIter tools_root;
+    gtk_tree_store_append(store, &tools_root, NULL);
+    gtk_tree_store_set(store, &tools_root,
         EXPLORER_COL_ICON, "folder",
-        EXPLORER_COL_NAME, "Toolkit",
+        EXPLORER_COL_NAME, "Tools",
         EXPLORER_COL_PATH, "",
         EXPLORER_COL_IS_DIR, TRUE,
         EXPLORER_COL_LOADED, FALSE,
-        EXPLORER_COL_SOURCE, EXPLORER_SOURCE_TOOLKIT,
+        EXPLORER_COL_SOURCE, EXPLORER_SOURCE_TOOLS,
         EXPLORER_COL_NODE_ID, (guint64)0,
         -1);
 
@@ -406,7 +406,7 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
      * immediate children are populated eagerly here; everything deeper
      * stays lazy, loaded only once its own row is expanded. */
     load_row_children(backend, store, &files_root);
-    load_row_children(backend, store, &toolkit_root);
+    load_row_children(backend, store, &tools_root);
 
     GtkWidget *tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     g_object_unref(store); /* the tree view holds its own reference */
@@ -458,9 +458,9 @@ GtkWidget *build_explorer_sidebar(GtkBackend *backend) {
     gtk_tree_view_expand_row(GTK_TREE_VIEW(tree_view), files_path, FALSE);
     gtk_tree_path_free(files_path);
 
-    GtkTreePath *toolkit_path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &toolkit_root);
-    gtk_tree_view_expand_row(GTK_TREE_VIEW(tree_view), toolkit_path, FALSE);
-    gtk_tree_path_free(toolkit_path);
+    GtkTreePath *tools_path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &tools_root);
+    gtk_tree_view_expand_row(GTK_TREE_VIEW(tree_view), tools_path, FALSE);
+    gtk_tree_path_free(tools_path);
 
     return box;
 }

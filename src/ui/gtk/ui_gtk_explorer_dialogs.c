@@ -39,7 +39,7 @@ void on_explorer_menu_properties(GtkMenuItem *item, gpointer user_data) {
         char resolved[4096];
         if (relative_path && relative_path[0] != '\0' &&
             workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
-            explorer_toolkit_file_flags(resolved, &stat_executable, &stat_read_only);
+            explorer_tools_file_flags(resolved, &stat_executable, &stat_read_only);
         }
         read_only = stat_read_only;
         executable = stat_executable;

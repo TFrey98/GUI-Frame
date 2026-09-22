@@ -29,7 +29,7 @@ FileOperationResult file_rename(const WorkspaceRoot *root, const char *old_relat
 
 /* Resolves src/dest through their own (possibly different) roots
  * independently - a copy can cross two different WorkspaceRoots (e.g.
- * files/ <-> toolkit/), not just rename within one. Rejects an existing
+ * files/ <-> tools/), not just rename within one. Rejects an existing
  * destination (no silent overwrite, same discipline file_rename already
  * has). Recursively copies a directory; never follows a symlink into
  * copying its target's content - a symlink entry is recreated via

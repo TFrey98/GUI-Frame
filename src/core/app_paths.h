@@ -34,4 +34,21 @@ bool app_paths_data_subdir(const char *name, char *out, size_t out_size);
  * whose owner (sqlite, an exporter) creates them on first write. */
 bool app_paths_data_file(const char *name, char *out, size_t out_size);
 
+/*
+ * One-time migration for a data subdirectory that has been renamed
+ * between releases - call before app_paths_data_subdir() creates the new
+ * one, so an existing install keeps its contents.
+ *
+ * Renames <data_dir>/legacy_name to <data_dir>/name when legacy_name
+ * exists and name either doesn't, or exists but is empty (the case where
+ * something already created the new directory before this ran; rmdir()
+ * refuses a non-empty one, which is exactly the safety check wanted).
+ * A name that already holds real content is left completely alone.
+ *
+ * Returns true only when a rename actually happened. Nothing here is
+ * fatal - having no legacy directory is the normal case on a fresh
+ * install.
+ */
+bool app_paths_rename_legacy_subdir(const char *legacy_name, const char *name);
+
 #endif /* WORKBENCH_APP_PATHS_H */

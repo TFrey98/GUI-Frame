@@ -20,7 +20,7 @@ typedef struct EditorDocument {
     DocumentId id;
 
     /* Which root relative_path resolves against - the app now has more
-     * than one (files/ and toolkit/), so this is what lets
+     * than one (files/ and tools/), so this is what lets
      * find_file_tab() disambiguate two same-named relative paths from
      * different roots, and lets Save/Revert resolve correctly without
      * the GTK layer needing to separately track "which source was this

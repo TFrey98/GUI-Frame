@@ -23,6 +23,6 @@ void app_destroy(App *app);
 ListenerSystem *app_get_listener_system(const App *app);
 
 const WorkspaceRoot *app_get_file_workspace_root(const App *app);
-const WorkspaceRoot *app_get_toolkit_workspace_root(const App *app);
+const WorkspaceRoot *app_get_tools_workspace_root(const App *app);
 
 #endif /* WORKBENCH_APP_H */

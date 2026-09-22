@@ -40,7 +40,7 @@ const char *connection_state_name(ConnectionState state) {
 /* --- Bottom object panel -----------------------------------------------
  * Tree from the registry: listeners -> their connections. Refreshed every
  * tick (see on_tick/refresh_object_panel) rather than on a manual action
- * like the Toolkit sidebar's refresh button, so connections appear live
+ * like the Tools sidebar's refresh button, so connections appear live
  * as they connect. That live-refresh
  * requirement is why this syncs rows in place instead of the sidebar's
  * clear-and-repopulate: clearing every 100ms would collapse any row the

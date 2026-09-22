@@ -44,7 +44,7 @@ add_library(workbench_core STATIC
     src/ui/workbench.c
     src/db/database.c
     src/tools/tool_registry.c
-    src/tools/toolkit_index.c
+    src/tools/tools_index.c
     src/tools/json_parser.c
     src/tools/tool_panel_manifest.c
     src/listeners/event_queue.c
@@ -126,8 +126,8 @@ add_executable(workbench src/main.c)
 target_link_libraries(workbench PRIVATE workbench_core)
 
 add_custom_command(TARGET workbench POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:workbench>/toolkit"
-    COMMENT "Ensuring toolkit/ exists next to the workbench executable"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:workbench>/tools"
+    COMMENT "Ensuring tools/ exists next to the workbench executable"
 )
 
 add_custom_command(TARGET workbench POST_BUILD
@@ -146,7 +146,7 @@ endif()
 # Installation
 #
 # An installed binary lives in a read-only /usr/bin, so it does NOT get the
-# files/ and toolkit/ directories the POST_BUILD steps above create next to a
+# files/ and tools/ directories the POST_BUILD steps above create next to a
 # development build. app_paths.c detects that and puts both (plus workbench.db)
 # under ~/.local/share/workbench instead, created on first launch.
 # ---------------------------------------------------------------------------
