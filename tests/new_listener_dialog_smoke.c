@@ -171,8 +171,6 @@ static gboolean run_scenario(gpointer user_data) {
     gtk_dialog_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
     CHECK(find_new_listener_dialog() == NULL, "dialog should have closed after a valid submission");
 
-    install_close_confirmation_answers();
-
     g_timeout_add(POLL_INTERVAL_MS, poll_for_running, test);
     return G_SOURCE_REMOVE;
 }
@@ -182,6 +180,8 @@ int main(void) {
 
     TestState test = {0};
     App *app = app_create(0, NULL);
+
+    install_close_confirmation_answers();
 
     g_timeout_add(150, run_scenario, &test);
 

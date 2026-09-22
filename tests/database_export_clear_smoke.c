@@ -183,7 +183,6 @@ static gboolean response_was_captured(void) {
 static gboolean wait_until(TestState *test, gboolean (*predicate)(void), const char *timeout_message,
                             GSourceFunc next) {
     if (predicate()) {
-        install_close_confirmation_answers();
         g_timeout_add(STEP_INTERVAL_MS, next, test);
         return TRUE;
     }
@@ -452,6 +451,8 @@ int main(void) {
 
     TestState test = {0};
     App *app = app_create(0, NULL);
+
+    install_close_confirmation_answers();
     if (!app) {
         fprintf(stderr, "database_export_clear_smoke: app_create failed\n");
         return 1;

@@ -75,8 +75,6 @@ static gboolean send_command(gpointer user_data) {
     static const char command[] = "echo hello-from-workbench\n";
     terminal_send(view, command, strlen(command));
 
-    install_close_confirmation_answers();
-
     g_timeout_add(600, check_output, vte);
     return G_SOURCE_REMOVE;
 }
@@ -85,6 +83,8 @@ int main(void) {
     g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR);
 
     App *app = app_create(0, NULL);
+
+    install_close_confirmation_answers();
     g_timeout_add(400, send_command, NULL);
 
     int status = app_run(app);

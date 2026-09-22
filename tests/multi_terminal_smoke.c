@@ -16,6 +16,15 @@
 #include "terminal/terminal.h"
 #include "test_gtk_utils.h"
 
+/* Each phase waits for the shell to produce something. A single check
+ * after a fixed delay makes the test a race against how fast the shell
+ * happens to be: when it loses, it reports the app as broken rather than
+ * itself as early. These phases re-check on an interval instead, and only
+ * fail once the deadline passes - the delay stops being a guess that has
+ * to be right and becomes an upper bound that only a real fault reaches. */
+#define POLL_MS 50
+#define POLL_DEADLINE_MS 6000
+
 static gboolean g_test_passed = FALSE;
 static GtkWindow *g_window = NULL;
 
@@ -76,9 +85,14 @@ static void send(VteTerminal *vte, const char *command) {
 
 static gboolean phase_e_finish(gpointer user_data) {
     GtkNotebook *notebook = GTK_NOTEBOOK(user_data);
+    static int waited = 0;
 
     VteTerminal *survivor = terminal_for_page(notebook, 1);
     if (!survivor || !text_contains(survivor, "marker-4")) {
+        waited += POLL_MS;
+        if (waited < POLL_DEADLINE_MS) {
+            return G_SOURCE_CONTINUE;
+        }
         FAIL("surviving terminal did not respond after its sibling's shell exited");
     }
     if (gtk_notebook_get_n_pages(notebook) != 2) {
@@ -92,9 +106,14 @@ static gboolean phase_e_finish(gpointer user_data) {
 
 static gboolean phase_d_verify_exit(gpointer user_data) {
     GtkNotebook *notebook = GTK_NOTEBOOK(user_data);
+    static int waited = 0;
 
     VteTerminal *exited = terminal_for_page(notebook, 0);
     if (!exited || !text_contains(exited, "[Process exited]")) {
+        waited += POLL_MS;
+        if (waited < POLL_DEADLINE_MS) {
+            return G_SOURCE_CONTINUE;
+        }
         FAIL("expected [Process exited] after the shell ran `exit`");
     }
 
@@ -105,14 +124,13 @@ static gboolean phase_d_verify_exit(gpointer user_data) {
     }
     send(survivor, "echo marker-4\n");
 
-    install_close_confirmation_answers();
-
-    g_timeout_add(500, phase_e_finish, notebook);
+    g_timeout_add(POLL_MS, phase_e_finish, notebook);
     return G_SOURCE_REMOVE;
 }
 
 static gboolean phase_c_trigger_exit(gpointer user_data) {
     GtkNotebook *notebook = GTK_NOTEBOOK(user_data);
+    static int waited = 0;
 
     if (gtk_notebook_get_current_page(notebook) < 0) {
         FAIL("no active tab after closing the previously-active tab");
@@ -120,27 +138,43 @@ static gboolean phase_c_trigger_exit(gpointer user_data) {
 
     VteTerminal *term_a = terminal_for_page(notebook, 0);
     VteTerminal *term_c = terminal_for_page(notebook, 1);
-    if (!term_a || !text_contains(term_a, "marker-1")) {
-        FAIL("Terminal 1's output was lost after closing Terminal 2");
-    }
-    if (!term_c || !text_contains(term_c, "marker-3")) {
+    if (!term_a || !term_c || !text_contains(term_a, "marker-1") ||
+        !text_contains(term_c, "marker-3")) {
+        waited += POLL_MS;
+        if (waited < POLL_DEADLINE_MS) {
+            return G_SOURCE_CONTINUE;
+        }
+        if (!term_a || !text_contains(term_a, "marker-1")) {
+            FAIL("Terminal 1's output was lost after closing Terminal 2");
+        }
         FAIL("Terminal 3's output was lost after closing Terminal 2");
     }
 
     send(term_a, "exit\n");
 
-    g_timeout_add(700, phase_d_verify_exit, notebook);
+    g_timeout_add(POLL_MS, phase_d_verify_exit, notebook);
     return G_SOURCE_REMOVE;
 }
 
 static gboolean phase_b_close_middle(gpointer user_data) {
     GtkNotebook *notebook = GTK_NOTEBOOK(user_data);
+    static int waited = 0;
 
     VteTerminal *term0 = terminal_for_page(notebook, 0);
     VteTerminal *term1 = terminal_for_page(notebook, 1);
     VteTerminal *term2 = terminal_for_page(notebook, 2);
     if (!term0 || !term1 || !term2) {
         FAIL("expected 3 independent terminal widgets");
+    }
+    /* Wait for all three echoes before judging cross-talk: a tab that has
+     * simply not answered yet looks exactly like one that lost its
+     * output. */
+    if (!text_contains(term0, "marker-1") || !text_contains(term1, "marker-2") ||
+        !text_contains(term2, "marker-3")) {
+        waited += POLL_MS;
+        if (waited < POLL_DEADLINE_MS) {
+            return G_SOURCE_CONTINUE;
+        }
     }
     if (!text_contains(term0, "marker-1") || text_contains(term0, "marker-2") ||
         text_contains(term0, "marker-3")) {
@@ -169,7 +203,7 @@ static gboolean phase_b_close_middle(gpointer user_data) {
         FAIL("expected 2 tabs after closing Terminal 2");
     }
 
-    g_timeout_add(300, phase_c_trigger_exit, notebook);
+    g_timeout_add(POLL_MS, phase_c_trigger_exit, notebook);
     return G_SOURCE_REMOVE;
 }
 
@@ -215,7 +249,7 @@ static gboolean phase_a_create_and_use(gpointer user_data) {
     send(term1, "echo marker-2\n");
     send(term2, "echo marker-3\n");
 
-    g_timeout_add(700, phase_b_close_middle, notebook);
+    g_timeout_add(POLL_MS, phase_b_close_middle, notebook);
     return G_SOURCE_REMOVE;
 }
 
@@ -223,6 +257,8 @@ int main(void) {
     g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR);
 
     App *app = app_create(0, NULL);
+
+    install_close_confirmation_answers();
     g_timeout_add(400, phase_a_create_and_use, NULL);
 
     int status = app_run(app);
