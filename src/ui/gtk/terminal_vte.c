@@ -67,6 +67,12 @@ static void flush_input_line(const char *line, size_t len, void *user_data) {
     if (terminal->session) {
         database_record_terminal_event("local", terminal->session->id, "input", line, len);
     }
+    /* Hand the line straight to the capture window: the shell is about to
+     * echo it back, and this is what lets that echo be recognised and
+     * trimmed rather than recorded as part of the response. */
+    if (terminal->history) {
+        terminal_history_begin_capture(terminal->history, line, len);
+    }
     terminal->capturing_output = TRUE;
 }
 
@@ -89,6 +95,7 @@ static void on_commit(VteTerminal *vte, gchar *text, guint size, gpointer user_d
          * being mistaken for output, regardless of how many characters
          * land in a single drain. */
         terminal->capturing_output = FALSE;
+        terminal_history_end_capture(terminal->history);
         line_accumulator_feed(terminal->input_lines, text, size, flush_input_line, terminal);
         pty_worker_send(&terminal->pty_worker, text, size);
         return;
@@ -204,6 +211,7 @@ void terminal_destroy(Terminal *terminal) {
         terminal->pty_active = FALSE;
     }
     if (terminal->history) {
+        terminal_history_end_capture(terminal->history);
         terminal_history_destroy(terminal->history);
     }
     if (terminal->input_lines) {
@@ -334,6 +342,7 @@ int terminal_send(Terminal *terminal, const char *data, size_t length) {
      * their behalf, and closes any still-open output-capture window from
      * a previous command the same way a real keystroke would. */
     terminal->capturing_output = FALSE;
+    terminal_history_end_capture(terminal->history);
     line_accumulator_feed(terminal->input_lines, data, length, flush_input_line, terminal);
     pty_worker_send(&terminal->pty_worker, data, length);
     return 0;
@@ -358,9 +367,18 @@ void terminal_pump_pty_output(Terminal *terminal) {
 
     unsigned char buf[4096];
     size_t n;
+    gboolean drained_any = FALSE;
     while ((n = byte_buffer_consume(terminal->pty_worker.incoming, buf, sizeof(buf))) > 0) {
         terminal_history_append(terminal->history, buf, n, terminal->capturing_output);
         terminal_feed_output(terminal, (const char *)buf, n);
+        drained_any = TRUE;
+    }
+    /* Write through the complete lines of an open capture window each
+     * time output is drained, so a running command's output reaches the
+     * database as it is produced. The unterminated tail stays held back -
+     * see terminal_history_flush_capture. */
+    if (drained_any && terminal->capturing_output) {
+        terminal_history_flush_capture(terminal->history);
     }
 
     if (!terminal->exit_handled && atomic_load(terminal->pty_worker.exited)) {
@@ -368,6 +386,7 @@ void terminal_pump_pty_output(Terminal *terminal) {
         if (terminal->session) {
             terminal_session_mark_exited(terminal->session, status);
         }
+        terminal_history_end_capture(terminal->history);
         static const char message[] = "\r\n[Process exited]\r\n";
         vte_terminal_feed(terminal->widget, message, (gssize)strlen(message));
         terminal->exit_handled = TRUE;

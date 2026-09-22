@@ -148,6 +148,10 @@ static void count_output_row(uint64_t id, const char *terminal_kind, uint64_t te
     }
 }
 
+/* The typed-but-never-submitted text, shared between the phase that types
+ * it and the one that checks it never became output. */
+#define PARTIAL_FRAGMENT_NEEDLE "partial-fragment-no-newline-yet"
+
 static int output_row_count(void) {
     int count = 0;
     database_for_each_terminal_event(count_output_row, &count);
@@ -366,12 +370,18 @@ static gboolean phase_wait_for_response(gpointer user_data) {
 
 /* The actual regression check: a multi-character burst of typed-but-not-
  * yet-submitted text (simulating a fast typist, whose echoed keystrokes
- * can land in a single drain well past 1 byte) must produce zero new
- * "output" rows, since Enter was never pressed. */
+ * can land in a single drain well past 1 byte) must never be recorded as
+ * output, since Enter was never pressed.
+ *
+ * Asserted by searching for the typed text rather than by counting rows.
+ * A keystroke is what closes the previous command's capture window, and
+ * closing it writes that command's response - so typing legitimately adds
+ * a row. The question is whether the typing itself got in. */
 static gboolean phase_verify_no_premature_output(gpointer user_data) {
     TestState *test = user_data;
-    if (output_row_count() != test->output_baseline) {
-        fail(test, "typing without pressing Enter must not add any \"output\" rows (fast-typing echo leaked "
+    g_response_needle = PARTIAL_FRAGMENT_NEEDLE;
+    if (response_was_captured()) {
+        fail(test, "typed-but-not-submitted text reached an \"output\" row (fast-typing echo leaked "
                     "into capture)");
         GtkWindow *window = main_window();
         if (window) {
@@ -396,7 +406,7 @@ static gboolean phase_send_partial_fragment(gpointer user_data) {
     /* No trailing newline - Enter is never pressed here, so this must
      * stay purely echo: multiple characters, well past the old "skip if
      * <=1 byte" heuristic's blind spot, arriving in one drain. */
-    static const char partial[] = "echo partial-fragment-no-newline-yet";
+    static const char partial[] = "echo " PARTIAL_FRAGMENT_NEEDLE;
     terminal_send(test->view, partial, strlen(partial));
 
     g_timeout_add(STEP_INTERVAL_MS, phase_verify_no_premature_output, test);

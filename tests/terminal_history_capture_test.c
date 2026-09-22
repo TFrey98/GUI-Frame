@@ -136,6 +136,86 @@ int main(void) {
         }
     }
 
+    /* --- capture window: echo and trailing prompt trimmed ------------
+     *
+     * These are the bytes a real bash actually sends, taken from a live
+     * terminal rather than imagined. On Enter the line editor redraws the
+     * whole line - prompt and command - then pads the rest of the row and
+     * backspaces the cursor over the padding, and after the response it
+     * draws the next prompt with no newline after it. Everything except
+     * the response has to be trimmed off. */
+    int rows_before = count_rows();
+
+    static const char submitted[] = "echo hello";
+    /* Narrow terminal: the prompt has been truncated to "<ient-14e9:~$".
+     * Nothing about the trimming may depend on that, which is the whole
+     * point - prompt length follows the working directory, so it is not
+     * something the app can predict or bound. */
+    static const char narrow_window[] =
+        "\r<ient-14e9:~$ echo hello   \b\b\b\r\nhello\r\ntaylor.frey@client-14e9:~$ ";
+    static const char expected_response[] = "hello\r\n";
+
+    terminal_history_begin_capture(history, submitted, strlen(submitted));
+    terminal_history_append(history, narrow_window, strlen(narrow_window), true);
+    if (count_rows() != rows_before) {
+        fprintf(stderr, "%s: nothing should reach the database while a capture window is still open\n",
+                TEST_NAME);
+        status = 1;
+    }
+    terminal_history_end_capture(history);
+    if (count_rows() != rows_before + 1) {
+        fprintf(stderr, "%s: closing a capture window should write exactly one output row, got %d\n",
+                TEST_NAME, g_row_count - rows_before);
+        status = 1;
+    } else {
+        CapturedRow *row = &g_rows[rows_before];
+        if (row->data_len != strlen(expected_response) ||
+            memcmp(row->data, expected_response, row->data_len) != 0) {
+            fprintf(stderr,
+                    "%s: expected the captured response to be just \"hello\", with the echoed command and "
+                    "the following prompt trimmed, got \"%.*s\"\n",
+                    TEST_NAME, (int)row->data_len, row->data);
+            status = 1;
+        }
+    }
+
+    /* The same command at full width, where the prompt is not truncated,
+     * must record byte-for-byte the same response. */
+    rows_before = count_rows();
+    static const char wide_window[] =
+        "\recho hello\r\nhello\r\ntaylor.frey@client-14e9:~$ ";
+    terminal_history_begin_capture(history, submitted, strlen(submitted));
+    terminal_history_append(history, wide_window, strlen(wide_window), true);
+    terminal_history_end_capture(history);
+    if (count_rows() != rows_before + 1) {
+        fprintf(stderr, "%s: a full-width capture window should also write one row\n", TEST_NAME);
+        status = 1;
+    } else {
+        CapturedRow *row = &g_rows[rows_before];
+        if (row->data_len != strlen(expected_response) ||
+            memcmp(row->data, expected_response, row->data_len) != 0) {
+            fprintf(stderr,
+                    "%s: a narrow and a wide terminal must record the same response; wide gave \"%.*s\"\n",
+                    TEST_NAME, (int)row->data_len, row->data);
+            status = 1;
+        }
+    }
+
+    /* A command that prints nothing leaves only its echo and the next
+     * prompt, so it should record no output row at all rather than a row
+     * holding the prompt. */
+    rows_before = count_rows();
+    static const char silent[] = "cd /tmp";
+    static const char silent_window[] = "\rcd /tmp\r\ntaylor.frey@client-14e9:/tmp$ ";
+    terminal_history_begin_capture(history, silent, strlen(silent));
+    terminal_history_append(history, silent_window, strlen(silent_window), true);
+    terminal_history_end_capture(history);
+    if (count_rows() != rows_before) {
+        fprintf(stderr, "%s: a command that printed nothing should record no output row, got %d extra\n",
+                TEST_NAME, g_row_count - rows_before);
+        status = 1;
+    }
+
     terminal_history_destroy(history);
     database_close();
     unlink(db_path);
@@ -143,8 +223,9 @@ int main(void) {
 
     if (status == 0) {
         printf("%s: in-memory append always happens, database persistence only when the capture window is "
-               "open, and ANSI escape codes are stripped for the database while staying intact in-memory for "
-               "display, all verified\n",
+               "open, ANSI escape codes are stripped for the database while staying intact in-memory for "
+               "display, and a closed capture window records the response alone - no echoed command, no "
+               "prompt, the same whether or not the prompt was truncated - all verified\n",
                TEST_NAME);
     }
     return status;
