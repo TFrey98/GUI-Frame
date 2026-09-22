@@ -29,6 +29,11 @@
  * characters land in one drain, never reaches the database; only the
  * response that follows a command does. */
 
+/* How long the terminal size must hold still before the pty is told about
+ * it. Long enough to swallow a drag's stream of allocations, short enough
+ * that a released drag feels immediate. */
+#define WINSIZE_SETTLE_MS 120
+
 struct Terminal {
     VteTerminal *widget;
     TerminalSession *session; /* not owned - the owning Tab holds it */
@@ -47,6 +52,9 @@ struct Terminal {
     gboolean capturing_output;
     glong last_columns;
     glong last_rows;
+    /* Coalesces a drag's stream of size-allocations into one winsize
+     * update - see on_size_allocate. 0 when nothing is pending. */
+    guint winsize_flush_id;
 };
 
 /* Fires once line_accumulator_feed (below) finds a complete submitted
@@ -90,23 +98,20 @@ static void on_commit(VteTerminal *vte, gchar *text, guint size, gpointer user_d
     }
 }
 
-/* VTE recomputes its own column/row count in its (RUN_FIRST) default
- * "size-allocate" handler before any externally-connected handler like
- * this one runs, so vte_terminal_get_column_count()/get_row_count()
- * already reflect the new size by the time this fires. Only relevant
- * once a pty is actually attached - resizing an empty/display-only
- * terminal has nothing to forward. */
-static void on_size_allocate(GtkWidget *widget, GdkRectangle *allocation, gpointer user_data) {
-    (void)widget;
-    (void)allocation;
+/* Sends the terminal's current size to the pty, once the size has settled.
+ * TIOCSWINSZ makes the kernel raise SIGWINCH on the foreground process
+ * group, and the shell redraws its prompt in response. */
+static gboolean flush_winsize(gpointer user_data) {
     Terminal *terminal = user_data;
+    terminal->winsize_flush_id = 0;
+
     if (!terminal->pty_active) {
-        return;
+        return G_SOURCE_REMOVE;
     }
     glong columns = vte_terminal_get_column_count(terminal->widget);
     glong rows = vte_terminal_get_row_count(terminal->widget);
     if (columns == terminal->last_columns && rows == terminal->last_rows) {
-        return;
+        return G_SOURCE_REMOVE;
     }
     terminal->last_columns = columns;
     terminal->last_rows = rows;
@@ -116,6 +121,34 @@ static void on_size_allocate(GtkWidget *widget, GdkRectangle *allocation, gpoint
     ws.ws_col = (unsigned short)columns;
     ws.ws_row = (unsigned short)rows;
     ioctl(terminal->pty_worker.master_fd, TIOCSWINSZ, &ws);
+    return G_SOURCE_REMOVE;
+}
+
+/* VTE recomputes its own column/row count in its (RUN_FIRST) default
+ * "size-allocate" handler before any externally-connected handler like
+ * this one runs, so vte_terminal_get_column_count()/get_row_count()
+ * already reflect the new size by the time this fires. Only relevant
+ * once a pty is actually attached - resizing an empty/display-only
+ * terminal has nothing to forward.
+ *
+ * The update is deferred rather than sent here, and the timer restarted
+ * on every allocation, so a drag sends one winsize when it settles
+ * instead of one per motion event. Dragging a pane edge produces a
+ * continuous stream of allocations, and signalling each one walks the
+ * shell through a redraw per step; those redraws do not all land in
+ * place, and the leftovers accumulate as rows pushed into the scrollback
+ * - which reads as blank rows piling up above the prompt. */
+static void on_size_allocate(GtkWidget *widget, GdkRectangle *allocation, gpointer user_data) {
+    (void)widget;
+    (void)allocation;
+    Terminal *terminal = user_data;
+    if (!terminal->pty_active) {
+        return;
+    }
+    if (terminal->winsize_flush_id != 0) {
+        g_source_remove(terminal->winsize_flush_id);
+    }
+    terminal->winsize_flush_id = g_timeout_add(WINSIZE_SETTLE_MS, flush_winsize, terminal);
 }
 
 Terminal *terminal_create(void) {
@@ -132,6 +165,7 @@ Terminal *terminal_create(void) {
     terminal->capturing_output = FALSE;
     terminal->last_columns = 0;
     terminal->last_rows = 0;
+    terminal->winsize_flush_id = 0;
     /* Rewrapping has to be off because this terminal does not own its pty.
      * VTE is a display surface fed with bytes while the shell is driven
      * separately, so on a resize VTE would reflow its buffer and move the
@@ -160,6 +194,10 @@ void terminal_destroy(Terminal *terminal) {
     }
     g_signal_handlers_disconnect_by_func(terminal->widget, G_CALLBACK(on_commit), terminal);
     g_signal_handlers_disconnect_by_func(terminal->widget, G_CALLBACK(on_size_allocate), terminal);
+    if (terminal->winsize_flush_id != 0) {
+        g_source_remove(terminal->winsize_flush_id);
+        terminal->winsize_flush_id = 0;
+    }
     if (terminal->pty_active) {
         pty_worker_signal_stop(&terminal->pty_worker);
         pty_worker_join(&terminal->pty_worker);

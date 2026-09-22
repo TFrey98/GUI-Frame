@@ -33,6 +33,8 @@
 
 typedef struct TestState {
     int tick;
+    gboolean pressed_enter;
+    double buffer_rows_before; /* scrollback extent before any resizing */
     int sweep_index;
     int sweep[MAX_SWEEP];
     int sweep_len;
@@ -156,6 +158,19 @@ static gboolean drive(gpointer data) {
         return G_SOURCE_REMOVE;
     }
 
+    /* Reproduce the report literally: press Enter for a second prompt
+     * line, then start dragging. */
+    if (!test->pressed_enter) {
+        g_signal_emit_by_name(vte, "commit", "\r", 1);
+        test->pressed_enter = TRUE;
+        return G_SOURCE_CONTINUE;
+    }
+    if (test->buffer_rows_before == 0.0) {
+        GtkAdjustment *vadj = gtk_scrollable_get_vadjustment(GTK_SCROLLABLE(vte));
+        test->buffer_rows_before = gtk_adjustment_get_upper(vadj);
+        return G_SOURCE_CONTINUE;
+    }
+
     if (test->sweep_index < test->sweep_len) {
         gtk_paned_set_position(GTK_PANED(paned), test->sweep[test->sweep_index++]);
         return G_SOURCE_CONTINUE;
@@ -163,6 +178,24 @@ static gboolean drive(gpointer data) {
     if (test->sweep_index < test->sweep_len + TRAILING_TICKS) {
         test->sweep_index++;
         return G_SOURCE_CONTINUE;
+    }
+
+    /* Resizing moves no text, so it must not lengthen the buffer. Each
+     * intermediate size used to be signalled to the shell separately,
+     * walking it through a redraw per step whose leftovers were pushed
+     * into the scrollback - seen as blank rows piling up above the
+     * prompt. A couple of rows of slack keeps this off a knife edge; the
+     * fault added dozens. */
+    GtkAdjustment *vadj = gtk_scrollable_get_vadjustment(GTK_SCROLLABLE(vte));
+    double grew_by = gtk_adjustment_get_upper(vadj) - test->buffer_rows_before;
+    if (grew_by > 2.0) {
+        char msg[256];
+        snprintf(msg, sizeof(msg),
+                 "the terminal buffer grew by %d rows while only being resized - blank rows are "
+                 "accumulating above the prompt",
+                 (int)grew_by);
+        fail(test, msg);
+        return G_SOURCE_REMOVE;
     }
 
     char sample[128];
