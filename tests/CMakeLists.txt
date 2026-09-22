@@ -320,3 +320,8 @@ add_executable(explorer_sidebar_shrink_smoke explorer_sidebar_shrink_smoke.c)
 target_link_libraries(explorer_sidebar_shrink_smoke PRIVATE workbench_core)
 add_test(NAME explorer_sidebar_shrink_smoke COMMAND explorer_sidebar_shrink_smoke)
 set_tests_properties(explorer_sidebar_shrink_smoke PROPERTIES TIMEOUT 30)
+
+add_executable(terminal_resize_redraw_smoke terminal_resize_redraw_smoke.c)
+target_link_libraries(terminal_resize_redraw_smoke PRIVATE workbench_core)
+add_test(NAME terminal_resize_redraw_smoke COMMAND terminal_resize_redraw_smoke)
+set_tests_properties(terminal_resize_redraw_smoke PROPERTIES TIMEOUT 60)

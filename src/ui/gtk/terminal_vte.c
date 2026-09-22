@@ -132,6 +132,23 @@ Terminal *terminal_create(void) {
     terminal->capturing_output = FALSE;
     terminal->last_columns = 0;
     terminal->last_rows = 0;
+    /* Rewrapping has to be off because this terminal does not own its pty.
+     * VTE is a display surface fed with bytes while the shell is driven
+     * separately, so on a resize VTE would reflow its buffer and move the
+     * cursor with no way to tell the shell, whose own SIGWINCH redraw then
+     * lands relative to a position that no longer holds. Dragging a pane
+     * edge scattered fragments of the prompt across the screen.
+     *
+     * The cost is that existing scrollback keeps the wrap points it was
+     * written with instead of reflowing to the new width. That is the
+     * right trade here: the live screen stays correct, and the lines that
+     * do not reflow are already-finished output.
+     *
+     * Deprecated since VTE 0.58 with no replacement - the API exists
+     * precisely for embedders in this position. */
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    vte_terminal_set_rewrap_on_resize(terminal->widget, FALSE);
+    G_GNUC_END_IGNORE_DEPRECATIONS
     g_signal_connect(terminal->widget, "commit", G_CALLBACK(on_commit), terminal);
     g_signal_connect(terminal->widget, "size-allocate", G_CALLBACK(on_size_allocate), terminal);
     return terminal;
