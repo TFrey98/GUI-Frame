@@ -26,7 +26,10 @@ SQLite database that captures terminal activity for later export.
 - **Tools sidebar** — `tools/` (also created next to the binary) is
   indexed at startup; its top-level contents show up in the explorer
   sidebar under **Tools**, alongside the **Files** workspace root, for
-  quick access to runnable scripts.
+  quick access to runnable scripts. `tools/` is for offensive capability
+  — things that act on a target. The supporting, management and
+  networking side is the workbench's own job, so a tool does not carry
+  its own copy of it.
 - **Run in Terminal** — run a file (with optional arguments/environment
   overrides) in a fresh terminal tab or an already-open one; the command
   and its output are captured the same way typed commands are.

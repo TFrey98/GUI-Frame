@@ -6,6 +6,29 @@ they look likely, and only then do they move into `TODO.md`, which is
 where worked-out designs live (see the bottom-panel entry there for the
 level of detail that means).
 
+## The boundary
+
+Settled, and most decisions below fall out of it:
+
+**`tools/` holds offensive capability. The workbench owns everything that
+supports it.**
+
+A tool is something that acts on a target — scans, exploits, enumerates,
+delivers a payload. Everything around that is the app's job: the network
+paths a tool runs over, the listeners it calls back to, the terminals it
+runs in, the capture of what it did, the storage and export of results,
+and the management of all of the above.
+
+That means proxychains, tunnels, port forwards, SOCKS proxies and route
+mapping are **workbench features, not tools**. A tool should be able to
+assume it already has a path to the target, rather than each tool
+carrying its own copy of the networking and each author solving it again.
+
+It also gives the manifest system a cleaner job. A tool declares the
+objects it produces — hosts, findings, ports — and the workbench renders,
+stores and exports them. The tool brings capability and results; the
+workbench brings plumbing.
+
 ## Where 0.1.0 leaves off
 
 Worth stating, because most of what follows either reuses these seams or
@@ -116,20 +139,27 @@ everything a red teamer does *through* a foothold once they have one.
 
 ### The decision underneath all of it
 
-Each item below can be built two ways, and it is worth picking a default
-rather than deciding case by case:
+Ownership is not in question — per the boundary above, all of this is the
+workbench's. What is open is only *how* the workbench implements it:
 
-- **Drive external tools.** Run `proxychains4`, `ssh -D`, `socat` in a
-  managed terminal and track them as objects. Cheap, familiar to users,
-  inherits their existing config — but the app is then only as reliable
-  as its parsing of someone else's output.
+- **Shell out to established tools.** Drive `proxychains4`, `ssh -D`,
+  `socat` from a managed terminal. Cheap, inherits configurations people
+  already have, and matches what they would have typed — but the app is
+  then only as reliable as its parsing of someone else's output, and a
+  tunnel's real state is a guess.
 - **Implement natively.** Own the SOCKS server, the port forward, the
-  tunnel. More work, but it makes tunnels first-class objects with real
-  state, and it keeps the dependency discipline the project has held so
-  far.
+  tunnel. More work, but state becomes something the app knows rather
+  than infers, which is what makes tunnels real objects instead of
+  decorated process handles. It also keeps the dependency discipline.
 
-A reasonable split: drive external tools first to learn what the workflow
-wants, implement natively where the object model earns it.
+Note this is an internal choice, invisible from `tools/` either way: a
+tool asks for a path to a target and gets one. That is what lets the
+answer change later without breaking anything that was written against
+it.
+
+A reasonable split: shell out first to learn what the workflow actually
+wants, implement natively where the object model earns it — starting with
+anything whose live state a user has to trust.
 
 ### proxychains
 
@@ -153,24 +183,38 @@ wants, implement natively where the object model earns it.
 
 ### Other candidates
 
-Unsorted, no commitment:
+No commitment, but sorted by the boundary rather than left unsorted:
+
+**Workbench** — supporting, management, networking:
 
 - Port forwarding over an established reverse connection (pivoting
   through a foothold rather than through SSH).
 - A SOCKS5 proxy served over an existing connection.
-- Host and route discovery, feeding the same map as tunnels.
 - Credential and loot storage — `workbench.db` already exists and already
   has an export path.
-- Listener templates and payload generation, so a listener and the thing
-  that calls back to it are configured together.
 - File transfer over a connection, reusing the explorer transfer code.
 - Session notes and tagging, for the write-up afterwards.
+- Listener templates, so a listener and the thing that calls back to it
+  are configured together.
+
+**`tools/`** — offensive capability, needing only a manifest:
+
+- Host and route discovery. The scanning is a tool; the map it feeds is
+  the workbench's, built from the objects the tool reports.
+- Payload generation. The generator is capability; the listener it is
+  paired with is not.
+
+The split is not always obvious, and these two are the useful examples of
+why: each pairs a tool that acts on a target with workbench plumbing that
+holds the result.
 
 ### Open questions
 
-- How much of this belongs in the app versus in `tools/` scripts with
-  manifests? The manifest system was built precisely so tools could add
-  their own panels — some of the above may not need app changes at all.
+- What does a tool ask for, concretely, when it wants a path to a target?
+  An environment variable, a wrapper the workbench puts around the
+  command, a proxy declared in its manifest? The boundary says the
+  workbench owns the path; it does not yet say what the tool sees of it,
+  and that interface is the thing worth getting right first.
 - Tunnels and proxies have credentials attached. `workbench.db` is
   currently a plain, exportable SQLite file, which is the right call for
   captured output and the wrong one for secrets.
