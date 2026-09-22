@@ -135,11 +135,6 @@ the per-user XDG data directory instead, created on first launch:
 └── workbench.db    # captured terminal activity
 ```
 
-`tools/` was called `toolkit/` up to `0.1.0~beta`. An install carrying
-the old name gets it renamed in place on first launch, contents intact;
-if a `tools/` directory already exists with files in it, the migration is
-skipped and the old `toolkit/` is left untouched rather than merged.
-
 Set `XDG_DATA_HOME` to relocate that. `sudo apt remove workbench` leaves
 it in place — testers keep their data across beta upgrades, and can wipe
 it by deleting the directory. The resolution order lives in

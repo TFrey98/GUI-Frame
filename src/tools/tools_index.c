@@ -72,15 +72,8 @@ int tools_scan_directory(const char *dir_path, ToolsIndexEntry *out, int max_ent
 /* Resolves <data_dir>/tools, creating it if missing. The data dir is the
  * exe dir for a development build - matching where CMake's POST_BUILD
  * step creates it - and the per-user XDG data dir for an installed one.
- * See app_paths.h. Returned string is owned by the caller.
- *
- * The directory was called "toolkit" up to 0.1.0~beta, when it was too
- * easily confused with the sidebar's other root; anyone carrying one
- * forward gets it renamed in place on first launch rather than silently
- * losing access to its contents. */
+ * See app_paths.h. Returned string is owned by the caller. */
 static char *resolve_tools_dir(void) {
-    app_paths_rename_legacy_subdir("toolkit", "tools");
-
     char dir[4096];
     if (!app_paths_data_subdir("tools", dir, sizeof(dir))) {
         return NULL;
