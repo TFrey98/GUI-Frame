@@ -57,6 +57,7 @@ workbench/
 │       └── gtk/                  # GTK+VTE backend 
 ├── packaging/             # .desktop entry, icons, Debian maintainer scripts
 ├── package.sh             # one-command release build -> dist/*.deb
+├── release/               # the published .deb testers install (tracked)
 ├── tests/                 # ~53 unit/integration/GTK-driven smoke tests
 └── tools/                  # Auto-created next to the built binary; its
                              # top-level contents (not subfolders) are
@@ -103,20 +104,39 @@ The `~beta` suffix sorts *before* the plain version under dpkg's version
 ordering, so a tester running `0.1.0~beta` is correctly upgraded by a
 later `0.1.0`.
 
-### What testers do
-
-Send them the one `.deb` file. On Ubuntu/Debian (including WSL2 Ubuntu):
+Add `--publish` to also copy the package into `release/`, which is
+tracked in git — that directory is how testers get it:
 
 ```sh
-sudo apt install ./workbench_0.1.0~beta_amd64.deb
+./package.sh --publish
+git add -A release
+git commit -m "Release 0.1.0~beta"
+git push
+```
+
+`release/` holds exactly one `.deb`: `--publish` deletes any previous
+package before copying the new one in, so the working tree never
+accumulates stale versions and there is never a question about which file
+to take. `dist/` stays gitignored — it is scratch build output, and
+`release/` is the one published artifact.
+
+### What testers do
+
+Point them at [`release/`](release/), which has its own install guide.
+They can either download the `.deb` directly from GitHub, or — if they
+have the repo cloned — just pull:
+
+```sh
+git pull
+sudo apt install ./release/workbench_0.1.0~beta_amd64.deb
 ```
 
 `apt` pulls in GTK3, VTE, SQLite3, and OpenSSL automatically — nothing
 else to install. **Workbench** then appears in the applications menu, or
 runs as `workbench` from a shell.
 
-To send a new beta, just send the new `.deb`; installing it over the old
-one upgrades in place. To uninstall: `sudo apt remove workbench`.
+Installing a newer package over an older one upgrades it in place. To
+uninstall: `sudo apt remove workbench`.
 
 ## Where data is stored
 

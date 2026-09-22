@@ -6,17 +6,37 @@
 #   ./package.sh 0.2.0        -> version 0.2.0, still a ~beta package
 #   ./package.sh 1.0.0 ""     -> a final (non-beta) 1.0.0 package
 #
+# Add --publish to also copy the .deb into release/, which is tracked in
+# git and is how testers get it:
+#
+#   ./package.sh --publish
+#   ./package.sh --publish 0.2.0
+#
 # The build tree lives in build-release/ so it never disturbs the
-# incremental Debug tree in build/ that you develop against.
+# incremental Debug tree in build/ that you develop against. dist/ is
+# ignored scratch output; release/ is the single published artifact.
 
 set -euo pipefail
 
 cd "$(dirname "$0")"
 
+# --publish may appear anywhere; everything else stays positional.
+PUBLISH=0
+ARGS=()
+for arg in "$@"; do
+    if [ "$arg" = "--publish" ]; then
+        PUBLISH=1
+    else
+        ARGS+=("$arg")
+    fi
+done
+set -- ${ARGS[@]+"${ARGS[@]}"}
+
 VERSION="${1:-0.1.0}"
 SUFFIX="${2-beta}"
 BUILD_DIR="build-release"
 DIST_DIR="dist"
+RELEASE_DIR="release"
 
 require() {
     command -v "$1" >/dev/null 2>&1 || {
@@ -57,7 +77,32 @@ echo
 echo "Built: ${DEB}"
 echo
 echo "Depends: $(dpkg-deb -f "$DEB" Depends)"
-echo
-echo "Send testers that one file. They install it with:"
-echo "    sudo apt install ./$(basename "$DEB")"
-echo "then launch 'Workbench' from the applications menu, or run 'workbench'."
+
+if [ "$PUBLISH" -eq 1 ]; then
+    # Exactly one .deb is ever tracked: drop any previous version first, so
+    # the working tree never accumulates stale packages and there is no
+    # ambiguity about which file testers should take.
+    mkdir -p "$RELEASE_DIR"
+    find "$RELEASE_DIR" -maxdepth 1 -name '*.deb' -delete
+    cp "$DEB" "$RELEASE_DIR/"
+
+    PUBLISHED="$RELEASE_DIR/$(basename "$DEB")"
+    echo
+    echo "==> Published to ${PUBLISHED}"
+    echo
+    echo "Commit and push it to make the release live:"
+    echo "    git add -A ${RELEASE_DIR}"
+    echo "    git commit -m \"Release $(dpkg-deb -f "$DEB" Version)\""
+    echo "    git push"
+    echo
+    echo "Testers then run:"
+    echo "    git pull"
+    echo "    sudo apt install ./${PUBLISHED}"
+else
+    echo
+    echo "Send testers that one file. They install it with:"
+    echo "    sudo apt install ./$(basename "$DEB")"
+    echo "then launch 'Workbench' from the applications menu, or run 'workbench'."
+    echo
+    echo "Or re-run with --publish to stage it in release/ for distribution via git."
+fi
