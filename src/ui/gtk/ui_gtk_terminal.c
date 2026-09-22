@@ -2,6 +2,8 @@
 #include "ui_gtk_tabs_internal.h"
 #include "ui_gtk_terminal_internal.h"
 
+#include <vte/vte.h>
+
 #include <stdio.h>
 #include <string.h>
 
@@ -70,6 +72,13 @@ GtkWidget *build_terminal_page(GtkBackend *backend, Tab *tab) {
 
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
+
+    /* See MIN_TERMINAL_COLUMNS: stops the divider from squeezing the
+     * terminal until the shell's prompt no longer fits on one line. */
+    glong terminal_char_width = vte_terminal_get_char_width(VTE_TERMINAL(terminal_get_widget(view)));
+    if (terminal_char_width > 0) {
+        gtk_widget_set_size_request(scroller, (gint)(MIN_TERMINAL_COLUMNS * terminal_char_width), -1);
+    }
     g_object_set_data(G_OBJECT(scroller), "workbench-view", view);
     g_object_set_data(G_OBJECT(scroller), "workbench-backend", backend);
 

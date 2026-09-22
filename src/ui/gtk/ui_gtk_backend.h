@@ -1,6 +1,18 @@
 #ifndef WORKBENCH_UI_GTK_BACKEND_H
 #define WORKBENCH_UI_GTK_BACKEND_H
 
+/* Narrower than this, a terminal stops being usable: a typical shell
+ * prompt no longer fits on one line, so it wraps and the terminal reads
+ * as having spontaneously added a line. VTE asks for only a couple of
+ * columns of its own, so without a floor the pane divider can squeeze a
+ * terminal down to nothing - at the far end of its travel the terminal
+ * was 26 columns against a 27-character prompt.
+ *
+ * Held in columns rather than pixels and converted using the font's own
+ * character width, so it means the same thing at any font size or scale
+ * factor. */
+#define MIN_TERMINAL_COLUMNS 40
+
 /*
  * The one header every .c file under src/ui/gtk/ includes: GtkBackend
  * itself, the struct/enum types embedded in it or referenced across

@@ -325,3 +325,8 @@ add_executable(terminal_resize_redraw_smoke terminal_resize_redraw_smoke.c)
 target_link_libraries(terminal_resize_redraw_smoke PRIVATE workbench_core)
 add_test(NAME terminal_resize_redraw_smoke COMMAND terminal_resize_redraw_smoke)
 set_tests_properties(terminal_resize_redraw_smoke PROPERTIES TIMEOUT 60)
+
+add_executable(terminal_minimum_width_smoke terminal_minimum_width_smoke.c)
+target_link_libraries(terminal_minimum_width_smoke PRIVATE workbench_core)
+add_test(NAME terminal_minimum_width_smoke COMMAND terminal_minimum_width_smoke)
+set_tests_properties(terminal_minimum_width_smoke PROPERTIES TIMEOUT 30)

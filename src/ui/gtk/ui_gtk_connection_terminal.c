@@ -2,6 +2,8 @@
 #include "ui_gtk_tabs_internal.h"
 #include "ui_gtk_terminal_internal.h"
 
+#include <vte/vte.h>
+
 #include <stdio.h>
 #include <string.h>
 
@@ -215,6 +217,13 @@ GtkWidget *build_connection_terminal_page(GtkBackend *backend, Tab *tab) {
     terminal_apply_theme(view, backend->dark_mode);
     GtkWidget *scroller = gtk_scrolled_window_new(NULL, NULL);
     gtk_container_add(GTK_CONTAINER(scroller), terminal_get_widget(view));
+
+    /* See MIN_TERMINAL_COLUMNS: stops the divider from squeezing the
+     * terminal until the shell's prompt no longer fits on one line. */
+    glong terminal_char_width = vte_terminal_get_char_width(VTE_TERMINAL(terminal_get_widget(view)));
+    if (terminal_char_width > 0) {
+        gtk_widget_set_size_request(scroller, (gint)(MIN_TERMINAL_COLUMNS * terminal_char_width), -1);
+    }
     gtk_box_pack_start(GTK_BOX(page), scroller, TRUE, TRUE, 0);
 
     /* These are borrowed child-widget pointers. Attaching them to the page
