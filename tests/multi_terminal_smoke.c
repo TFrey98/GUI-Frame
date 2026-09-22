@@ -105,6 +105,8 @@ static gboolean phase_d_verify_exit(gpointer user_data) {
     }
     send(survivor, "echo marker-4\n");
 
+    install_close_confirmation_answers();
+
     g_timeout_add(500, phase_e_finish, notebook);
     return G_SOURCE_REMOVE;
 }

@@ -277,6 +277,8 @@ int main(void) {
     write_fixture_file(bfile);
     write_fixture_file(tool_file);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(app);

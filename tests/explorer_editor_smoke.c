@@ -373,6 +373,8 @@ int main(void) {
     clear_workspace_root(&test.root);
     write_fixtures(&test.root);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(app);

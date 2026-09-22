@@ -259,6 +259,8 @@ int main(void) {
     snprintf(long_file, sizeof(long_file), "%s/%s", ws->canonical_path, LONG_NAME);
     write_fixture_file(long_file);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(app);

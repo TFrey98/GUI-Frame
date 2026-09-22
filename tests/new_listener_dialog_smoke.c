@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "app/app.h"
+#include "test_gtk_utils.h"
 
 #define POLL_INTERVAL_MS 200
 #define POLL_TIMEOUT_MS 3000
@@ -169,6 +170,8 @@ static gboolean run_scenario(gpointer user_data) {
     gtk_entry_set_text(GTK_ENTRY(name_entry), "SmokeTest");
     gtk_dialog_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
     CHECK(find_new_listener_dialog() == NULL, "dialog should have closed after a valid submission");
+
+    install_close_confirmation_answers();
 
     g_timeout_add(POLL_INTERVAL_MS, poll_for_running, test);
     return G_SOURCE_REMOVE;

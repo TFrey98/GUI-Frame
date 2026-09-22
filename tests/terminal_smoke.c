@@ -75,6 +75,8 @@ static gboolean send_command(gpointer user_data) {
     static const char command[] = "echo hello-from-workbench\n";
     terminal_send(view, command, strlen(command));
 
+    install_close_confirmation_answers();
+
     g_timeout_add(600, check_output, vte);
     return G_SOURCE_REMOVE;
 }

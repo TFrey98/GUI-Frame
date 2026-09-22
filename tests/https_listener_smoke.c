@@ -22,6 +22,7 @@
 #include <unistd.h>
 
 #include "app/app.h"
+#include "test_gtk_utils.h"
 
 #define STEP_INTERVAL_MS 100
 #define STEP_TIMEOUT_MS 3000
@@ -499,6 +500,8 @@ int main(void) {
     test.client_ctx = SSL_CTX_new(TLS_client_method());
     SSL_CTX_set_verify(test.client_ctx, SSL_VERIFY_NONE, NULL); /* trusting a self-signed test cert is expected here */
     test.app = app_create(0, NULL);
+
+    install_close_confirmation_answers();
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 

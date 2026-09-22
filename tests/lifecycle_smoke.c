@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 #include "app/app.h"
+#include "test_gtk_utils.h"
 
 #define ITERATIONS 5
 
@@ -26,6 +27,7 @@ static gboolean auto_close_window(gpointer user_data) {
 int main(void) {
     for (int i = 0; i < ITERATIONS; i++) {
         App *app = app_create(0, NULL);
+        install_close_confirmation_answers();
         g_timeout_add(150, auto_close_window, NULL);
 
         int status = app_run(app);

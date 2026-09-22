@@ -555,6 +555,8 @@ int main(void) {
     unlink(test.sentinel_new);
     unlink(test.sentinel_reuse);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(app);

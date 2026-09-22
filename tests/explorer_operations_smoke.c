@@ -27,6 +27,7 @@
 #include "app/app.h"
 #include "files/file_operations.h"
 #include "files/workspace_root.h"
+#include "test_gtk_utils.h"
 
 enum {
     EXPLORER_COL_ICON,
@@ -492,6 +493,8 @@ int main(void) {
     }
     test.root = *app_get_file_workspace_root(app);
     clear_workspace_root(&test.root);
+
+    install_close_confirmation_answers();
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 

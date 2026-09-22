@@ -334,6 +334,8 @@ int main(void) {
     TestState test = {0};
     App *app = app_create(0, NULL);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(app);

@@ -58,6 +58,7 @@ int main(void) {
 
     for (int i = 0; i < ITERATIONS; i++) {
         App *app = app_create(0, NULL);
+        install_close_confirmation_answers();
         g_timeout_add(200, exercise_layout, NULL);
 
         int status = app_run(app);

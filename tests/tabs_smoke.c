@@ -128,6 +128,7 @@ int main(void) {
     g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR);
 
     App *app = app_create(0, NULL);
+    install_close_confirmation_answers();
     g_timeout_add(200, exercise_tabs, NULL);
 
     int status = app_run(app);

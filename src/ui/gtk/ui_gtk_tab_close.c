@@ -100,6 +100,13 @@ static void close_operation_advance(CloseOperation *op) {
             gtk_dialog_add_button(GTK_DIALOG(dialog), "Close Tab", GTK_RESPONSE_ACCEPT);
             gtk_dialog_add_button(GTK_DIALOG(dialog), "Stop Listener", GTK_RESPONSE_YES);
             gtk_dialog_add_button(GTK_DIALOG(dialog), "Cancel", GTK_RESPONSE_CANCEL);
+            /* Tagged so it can be identified among toplevels. This dialog
+             * appears only when there is something to confirm, so it turns
+             * up at whatever point a running listener is closed rather than
+             * at a fixed step; matching on type alone is ambiguous once any
+             * other message dialog is open. Same convention as the Save As
+             * dialog's "workbench-save-as-dialog-state". */
+            g_object_set_data(G_OBJECT(dialog), "workbench-listener-close-dialog", GINT_TO_POINTER(1));
             g_signal_connect(dialog, "response", G_CALLBACK(on_close_operation_listener_response), op);
             gtk_widget_show_all(dialog);
             return;
@@ -113,6 +120,8 @@ static void close_operation_advance(CloseOperation *op) {
             gtk_dialog_add_button(GTK_DIALOG(dialog), "_Save", GTK_RESPONSE_YES);
             gtk_dialog_add_button(GTK_DIALOG(dialog), "_Discard", GTK_RESPONSE_NO);
             gtk_dialog_add_button(GTK_DIALOG(dialog), "_Cancel", GTK_RESPONSE_CANCEL);
+            /* Tagged for the same reason as the listener confirmation above. */
+            g_object_set_data(G_OBJECT(dialog), "workbench-editor-close-dialog", GINT_TO_POINTER(1));
             g_signal_connect(dialog, "response", G_CALLBACK(on_close_operation_editor_response), op);
             gtk_widget_show_all(dialog);
             return;

@@ -200,6 +200,8 @@ int main(void) {
         return 1;
     }
 
+    install_close_confirmation_answers();
+
     g_timeout_add(TICK_MS, drive, &test);
     int status = app_run(app);
     app_destroy(app);

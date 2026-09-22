@@ -737,6 +737,8 @@ int main(void) {
     test.client_fd = -1;
     test.app = app_create(0, NULL);
 
+    install_close_confirmation_answers();
+
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 
     int status = app_run(test.app);
