@@ -91,10 +91,20 @@ ctest --test-dir build
 `build/`, and turns the test suite off for the release build.
 
 ```sh
-./package.sh                # -> dist/workbench_0.1.0~beta_amd64.deb
+./package.sh                # -> dist/workbench_0.1.0~beta+<stamp>.g<sha>_amd64.deb
 ./package.sh 0.2.0          # version 0.2.0, still a ~beta package
 ./package.sh 1.0.0 ""       # a final (non-beta) 1.0.0 package
 ```
+
+Every pre-release build gets a unique version: the suffix is stamped with
+the UTC build time and the commit, e.g. `0.1.0~beta+202609221602.ga3da738`.
+This is not cosmetic. `apt install ./pkg.deb` is a **no-op** when the
+version already installed matches, so reusing one version string across
+rebuilds silently leaves the tester on the old binary — the package looks
+like it simply didn't take. The stamp guarantees each build outranks the
+last, and lets a tester's `dpkg -s workbench` be traced to a commit.
+Final releases (empty suffix) stay unstamped: `1.0.0` is just `1.0.0`,
+and already outranks every `1.0.0~beta+...` build.
 
 The package's `Depends` are computed by `dpkg-shlibdeps` from the linked
 binary rather than hand-maintained, so adding a library to
@@ -110,7 +120,7 @@ tracked in git — that directory is how testers get it:
 ```sh
 ./package.sh --publish
 git add -A release
-git commit -m "Release 0.1.0~beta"
+git commit -m "Release $(dpkg-deb -f release/*.deb Version)"
 git push
 ```
 
@@ -128,7 +138,7 @@ have the repo cloned — just pull:
 
 ```sh
 git pull
-sudo apt install ./release/workbench_0.1.0~beta_amd64.deb
+sudo apt install ./release/workbench_*_amd64.deb
 ```
 
 `apt` pulls in GTK3, VTE, SQLite3, and OpenSSL automatically — nothing

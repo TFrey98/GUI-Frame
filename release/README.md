@@ -33,9 +33,28 @@ sudo apt install ./release/workbench_*_amd64.deb
 
 ## Updating
 
+```sh
+git pull
+sudo apt install ./release/workbench_*_amd64.deb
+```
+
 Installing a newer package over an older one upgrades it in place. Your
 files, tools and captured terminal history live in
 `~/.local/share/workbench/` and are kept across upgrades.
+
+Each build has its own version (`0.1.0~beta+<build time>.g<commit>`), so
+an upgrade always registers. If `apt` ever reports the package is already
+the newest version but you expected a change, you can force it:
+
+```sh
+sudo apt install --reinstall ./release/workbench_*_amd64.deb
+```
+
+To check what you are actually running:
+
+```sh
+dpkg -s workbench | grep -i version
+```
 
 ## Uninstalling
 

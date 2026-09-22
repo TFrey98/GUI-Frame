@@ -38,6 +38,24 @@ BUILD_DIR="build-release"
 DIST_DIR="dist"
 RELEASE_DIR="release"
 
+# Every build a tester might install has to carry a version string no
+# tester has seen before. `apt install ./pkg.deb` is a no-op when the
+# installed version already matches, so shipping changed contents under a
+# reused version silently leaves the old binary in place and looks like
+# the package "didn't take". A UTC build stamp makes each pre-release
+# build strictly newer than the last, and the commit makes a tester's
+# `dpkg -s workbench` traceable back to exactly what they are running.
+#
+# A final release (empty suffix) is deliberately left unstamped: 1.0.0
+# should be 1.0.0, and it already outranks every 1.0.0~beta+... build.
+if [ -n "$SUFFIX" ]; then
+    BUILD_STAMP="$(date -u +%Y%m%d%H%M)"
+    COMMIT="$(git rev-parse --short HEAD 2>/dev/null || echo unknown)"
+    FULL_SUFFIX="${SUFFIX}+${BUILD_STAMP}.g${COMMIT}"
+else
+    FULL_SUFFIX=""
+fi
+
 require() {
     command -v "$1" >/dev/null 2>&1 || {
         echo "error: '$1' is required but not installed." >&2
@@ -59,7 +77,7 @@ cmake -B "$BUILD_DIR" -S . \
     -DCMAKE_BUILD_TYPE=Release \
     -DWORKBENCH_BUILD_TESTS=OFF \
     -DWORKBENCH_VERSION="$VERSION" \
-    -DWORKBENCH_VERSION_SUFFIX="$SUFFIX" \
+    -DWORKBENCH_VERSION_SUFFIX="$FULL_SUFFIX" \
     >/dev/null
 
 echo "==> Building"
@@ -79,6 +97,12 @@ echo
 echo "Depends: $(dpkg-deb -f "$DEB" Depends)"
 
 if [ "$PUBLISH" -eq 1 ]; then
+    if [ -n "$(git status --porcelain -- . ":(exclude)$RELEASE_DIR" 2>/dev/null)" ]; then
+        echo
+        echo "warning: publishing from a dirty working tree - the g${COMMIT:-?}" >&2
+        echo "         in this package's version does not fully describe it." >&2
+    fi
+
     # Exactly one .deb is ever tracked: drop any previous version first, so
     # the working tree never accumulates stale packages and there is no
     # ambiguity about which file testers should take.
