@@ -200,12 +200,19 @@ static GtkWidget *build_workbench_layout(GtkBackend *backend) {
     backend->next_terminal_number = 2;
 
     GtkWidget *hpaned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-    /* shrink=TRUE on the sidebar: GtkPaned's "shrink" child property is
-     * what decides whether the handle may be dragged past a child's
-     * minimum size request. With it FALSE the explorer's contents set a
-     * floor the user could not drag through; with it TRUE the panel can
-     * always be made narrower and its contents simply clip. */
-    gtk_paned_pack1(GTK_PANED(hpaned), sidebar, FALSE, TRUE);
+    /* shrink stays FALSE: GtkPaned's "shrink" child property decides
+     * whether the handle may pass a child's minimum size request, and
+     * allowing that does not clip the child - GTK still allocates it its
+     * minimum, so it overlaps and draws over its neighbour, corrupting
+     * the terminal's rendering. FALSE gives the sidebar a hard floor and
+     * keeps its toolbar and tree inside the panel.
+     *
+     * That floor is only sane because the explorer's minimum width no
+     * longer tracks its contents (see build_explorer_sidebar): it is the
+     * toolbar row's width, a constant, not the longest filename on
+     * screen. Hiding the panel entirely is the Sidebar button's job, not
+     * something to reach by dragging the handle to nothing. */
+    gtk_paned_pack1(GTK_PANED(hpaned), sidebar, FALSE, FALSE);
     gtk_paned_pack2(GTK_PANED(hpaned), backend->notebook, TRUE, FALSE);
     gtk_paned_set_position(GTK_PANED(hpaned), 220);
 

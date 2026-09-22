@@ -10,9 +10,13 @@
  * undo either.
  *
  * What should hold instead: the panel's *natural* width may follow its
- * contents (so it still auto-fits), but its *minimum* must not, and the
- * paned handle must be movable to any position regardless of what is on
- * screen - clipping the text is the acceptable outcome.
+ * contents (so it still auto-fits), but its *minimum* must not - that
+ * minimum is the toolbar row, a constant, and long names simply clip.
+ *
+ * The panel still keeps that minimum as a hard floor. Letting the handle
+ * past it (GtkPaned shrink=TRUE) does not clip the panel: GTK allocates
+ * it its minimum anyway, so it overlaps and draws over the terminal.
+ * Hiding the panel entirely is the Sidebar button's job.
  */
 #include <dirent.h>
 #include <gtk/gtk.h>
@@ -37,10 +41,6 @@
 #define LONG_NAME \
     "a_really_very_extremely_long_file_name_that_should_never_be_allowed_to" \
     "_set_the_minimum_width_of_the_explorer_panel_0123456789.txt"
-
-/* Narrower than the long name renders, and narrower than the old 240px
- * floor, so reaching it proves both are gone. */
-#define NARROW_POSITION 60
 
 typedef struct TestState {
     int elapsed_ms;
@@ -181,26 +181,40 @@ static gboolean drive(gpointer data) {
         return G_SOURCE_REMOVE;
     }
 
-    /* 2. GtkPaned must be willing to go past that minimum. */
-    gboolean shrink = FALSE;
+    /* 2. The panel must keep a hard floor. shrink=TRUE does not clip a
+     *    child that is dragged past its minimum - GTK still allocates it
+     *    the minimum, so it overlaps its neighbour and draws over the
+     *    terminal. The explorer's toolbar and tree have to stay inside
+     *    the panel; hiding it altogether is the Sidebar button's job. */
+    gboolean shrink = TRUE;
     gtk_container_child_get(GTK_CONTAINER(paned), sidebar, "shrink", &shrink, NULL);
-    if (!shrink) {
-        fail(test, "the sidebar's GtkPaned shrink child property is FALSE - the handle cannot be "
-                   "dragged past the panel's minimum width");
+    if (shrink) {
+        fail(test, "the sidebar's GtkPaned shrink child property is TRUE - the handle can be dragged "
+                   "past the panel's minimum, which overlaps the panel onto the terminal instead of "
+                   "clipping it");
         return G_SOURCE_REMOVE;
     }
 
-    /* 3. The observable behaviour: a narrow position actually sticks,
-     *    rather than being clamped back up to the contents' width. */
-    gtk_paned_set_position(GTK_PANED(paned), NARROW_POSITION);
+    /* 3. The observable half of that floor: dragging the handle to
+     *    nothing must come to rest at the panel's minimum, not at zero.
+     *
+     *    GtkPaned only clamps the position during size-allocate, so
+     *    reading it straight back after set_position() returns the raw
+     *    request. gtk_container_check_resize() forces that allocation
+     *    synchronously; waiting for one to happen on its own is what made
+     *    an earlier version of this test intermittent. */
+    gtk_paned_set_position(GTK_PANED(paned), 0);
     gtk_container_check_resize(GTK_CONTAINER(paned));
+    while (gtk_events_pending()) {
+        gtk_main_iteration();
+    }
     gint position = gtk_paned_get_position(GTK_PANED(paned));
-    if (position != NARROW_POSITION) {
+    if (position < minimum) {
         char msg[256];
         snprintf(msg, sizeof(msg),
-                 "paned position was clamped from %d to %d - the panel cannot be narrowed past its "
-                 "contents",
-                 NARROW_POSITION, position);
+                 "paned position settled at %d, below the panel's %dpx minimum - the explorer's "
+                 "contents are being pushed outside the panel",
+                 position, minimum);
         fail(test, msg);
         return G_SOURCE_REMOVE;
     }
@@ -263,6 +277,6 @@ int main(void) {
     }
 
     g_print("explorer_sidebar_shrink_smoke: a long filename drives the sidebar's natural width but "
-            "not its minimum, and the paned handle moves freely past it\n");
+            "not its minimum, and the panel keeps a hard floor at that minimum\n");
     return 0;
 }
