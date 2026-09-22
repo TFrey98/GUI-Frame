@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 
+#include "../core/app_paths.h"
 #include "../core/workspace.h"
 #include "../db/database.h"
 #include "../listeners/listener_system.h"
@@ -33,10 +34,16 @@ App *app_create(int argc, char **argv) {
         return NULL;
     }
 
-    /* A failed open just means app->db_open stays false; the rest of the
+    /* Resolved against the data dir rather than left relative to the cwd:
+     * a desktop-launched or packaged build starts in $HOME (or /), so a
+     * bare "workbench.db" would land somewhere different on every launch.
+     *
+     * A failed open just means app->db_open stays false; the rest of the
      * app is expected to run fine with persistence unavailable, so this
      * isn't treated as a fatal error. */
-    app->db_open = (database_open("workbench.db") == 0);
+    char db_path[4096];
+    app->db_open = app_paths_data_file("workbench.db", db_path, sizeof(db_path)) &&
+                   database_open(db_path) == 0;
     if (app->db_open) {
         database_init_schema();
     }

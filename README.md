@@ -40,7 +40,8 @@ workbench/
 │   ├── app/               # Application lifecycle (App create/run/destroy)
 │   ├── core/               # Platform-agnostic domain logic: Workspace/Tab,
 │   │                        # TerminalSession, LineAccumulator (input
-│   │                        # capture), AnsiStripper (output capture)
+│   │                        # capture), AnsiStripper (output capture),
+│   │                        # AppPaths (where writable state lives)
 │   ├── db/                 # SQLite persistence (schema, capture, export)
 │   ├── files/               # Workspace root, file tree/ops/search/watch,
 │   │                         # editor document model
@@ -53,7 +54,9 @@ workbench/
 │   └── ui/
 │       ├── workbench.c          # Platform-neutral seam
 │       └── gtk/                  # GTK+VTE backend 
-├── tests/                 # ~49 unit/integration/GTK-driven smoke tests
+├── packaging/             # .desktop entry, icons, Debian maintainer scripts
+├── package.sh             # one-command release build -> dist/*.deb
+├── tests/                 # ~53 unit/integration/GTK-driven smoke tests
 └── toolkit/                # Auto-created next to the built binary; its
                              # top-level contents (not subfolders) are
                              # indexed at startup and shown in the sidebar
@@ -65,6 +68,8 @@ Requires GTK3, VTE 2.91, SQLite3, and OpenSSL development packages (used
 for HTTPS listeners).
 
 ```sh
+sudo apt install build-essential cmake pkg-config \
+    libgtk-3-dev libvte-2.91-dev libsqlite3-dev libssl-dev
 cmake -B build -S .
 cmake --build build
 ./build/workbench
@@ -76,6 +81,63 @@ cmake --build build
 cmake --build build
 ctest --test-dir build
 ```
+
+## Packaging a beta build
+
+`package.sh` produces a single `.deb` to hand to testers. It builds into
+`build-release/` so it never disturbs the incremental Debug tree in
+`build/`, and turns the test suite off for the release build.
+
+```sh
+./package.sh                # -> dist/workbench_0.1.0~beta_amd64.deb
+./package.sh 0.2.0          # version 0.2.0, still a ~beta package
+./package.sh 1.0.0 ""       # a final (non-beta) 1.0.0 package
+```
+
+The package's `Depends` are computed by `dpkg-shlibdeps` from the linked
+binary rather than hand-maintained, so adding a library to
+`CMakeLists.txt` automatically shows up in the next package.
+
+The `~beta` suffix sorts *before* the plain version under dpkg's version
+ordering, so a tester running `0.1.0~beta` is correctly upgraded by a
+later `0.1.0`.
+
+### What testers do
+
+Send them the one `.deb` file. On Ubuntu/Debian (including WSL2 Ubuntu):
+
+```sh
+sudo apt install ./workbench_0.1.0~beta_amd64.deb
+```
+
+`apt` pulls in GTK3, VTE, SQLite3, and OpenSSL automatically — nothing
+else to install. **Workbench** then appears in the applications menu, or
+runs as `workbench` from a shell.
+
+To send a new beta, just send the new `.deb`; installing it over the old
+one upgrades in place. To uninstall: `sudo apt remove workbench`.
+
+## Where data is stored
+
+`files/`, `toolkit/`, and `workbench.db` live next to the executable
+whenever that directory is writable — so a development build keeps
+everything in `build/`, exactly as before, and the test suite resolves
+the same roots it always has.
+
+An installed binary lives in a read-only `/usr/bin`, so it falls back to
+the per-user XDG data directory instead, created on first launch:
+
+```
+~/.local/share/workbench/
+├── files/          # the sandboxed file-explorer workspace root
+├── toolkit/        # indexed at startup, shown in the sidebar
+└── workbench.db    # captured terminal activity
+```
+
+Set `XDG_DATA_HOME` to relocate that. `sudo apt remove workbench` leaves
+it in place — testers keep their data across beta upgrades, and can wipe
+it by deleting the directory. The resolution order lives in
+`src/core/app_paths.c`.
 
 ## Running on Windows (Beta)
 
@@ -113,6 +175,14 @@ on the Windows desktop with no code changes required.
    cmake -B build -S .
    cmake --build build
    ./build/workbench
+   ```
+
+   Testers who were sent a `.deb` skip steps 2 and 3 and just install it
+   inside the WSL shell — `apt` pulls the runtime libraries in:
+
+   ```sh
+   sudo apt install ./workbench_0.1.0~beta_amd64.deb
+   workbench
    ```
 
 The window will appear on the Windows desktop via WSLg automatically —

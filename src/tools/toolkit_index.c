@@ -1,5 +1,7 @@
 #include "toolkit_index.h"
 
+#include "core/app_paths.h"
+
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -67,35 +69,21 @@ int toolkit_scan_directory(const char *dir_path, ToolkitEntry *out, int max_entr
     return count;
 }
 
-/* Resolves the directory containing the running executable via
- * /proc/self/exe, so toolkit/ is found next to the binary regardless of
- * the cwd the app was launched from - matching where CMake's POST_BUILD
- * step creates it. */
-static char *resolve_exe_relative_toolkit_dir(void) {
-    char exe_path[4096];
-    ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
-    if (len <= 0) {
+/* Resolves <data_dir>/toolkit, creating it if missing. The data dir is
+ * the exe dir for a development build - matching where CMake's POST_BUILD
+ * step creates it - and the per-user XDG data dir for an installed one.
+ * See app_paths.h. Returned string is owned by the caller. */
+static char *resolve_toolkit_dir(void) {
+    char dir[4096];
+    if (!app_paths_data_subdir("toolkit", dir, sizeof(dir))) {
         return NULL;
     }
-    exe_path[len] = '\0';
-
-    char *last_slash = strrchr(exe_path, '/');
-    if (!last_slash) {
-        return NULL;
-    }
-    *last_slash = '\0';
-
-    char *dir = malloc(strlen(exe_path) + strlen("/toolkit") + 1);
-    sprintf(dir, "%s/toolkit", exe_path);
-
-    mkdir(dir, 0755);
-
-    return dir;
+    return strdup(dir);
 }
 
 void toolkit_index_init(void) {
     g_entry_count = 0;
-    g_toolkit_dir = resolve_exe_relative_toolkit_dir();
+    g_toolkit_dir = resolve_toolkit_dir();
     toolkit_index_rescan();
 }
 
