@@ -134,28 +134,3 @@ bool app_paths_data_subdir(const char *name, char *out, size_t out_size) {
 bool app_paths_data_file(const char *name, char *out, size_t out_size) {
     return join_data_path(name, out, out_size);
 }
-
-bool app_paths_rename_legacy_subdir(const char *legacy_name, const char *name) {
-    char legacy_path[4096];
-    char new_path[4096];
-
-    if (!join_data_path(legacy_name, legacy_path, sizeof(legacy_path)) ||
-        !join_data_path(name, new_path, sizeof(new_path))) {
-        return false;
-    }
-
-    struct stat legacy_st;
-    if (stat(legacy_path, &legacy_st) != 0 || !S_ISDIR(legacy_st.st_mode)) {
-        return false;
-    }
-
-    /* Clear the way only if the destination is an empty directory -
-     * rmdir() fails with ENOTEMPTY otherwise, leaving real content
-     * untouched and the migration skipped. */
-    struct stat new_st;
-    if (stat(new_path, &new_st) == 0 && rmdir(new_path) != 0) {
-        return false;
-    }
-
-    return rename(legacy_path, new_path) == 0;
-}
