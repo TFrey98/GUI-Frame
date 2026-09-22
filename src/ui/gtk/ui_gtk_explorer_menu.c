@@ -136,7 +136,7 @@ static void on_explorer_menu_delete(GtkMenuItem *item, gpointer user_data) {
         char resolved[4096];
         bool executable = false, read_only = true;
         if (relative_path && workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
-            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+            explorer_tools_file_flags(resolved, &executable, &read_only);
         }
         needs_confirm = executable;
     }
@@ -238,7 +238,7 @@ static void on_explorer_menu_open_as_text(GtkMenuItem *item, gpointer user_data)
         char resolved[4096];
         bool executable = false, read_only = true;
         if (workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
-            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+            explorer_tools_file_flags(resolved, &executable, &read_only);
         }
         open_or_focus_file_tab(backend, root, relative_path, executable, read_only);
     }
@@ -355,21 +355,21 @@ static void on_explorer_menu_paste(GtkMenuItem *item, gpointer user_data) {
 }
 /* --- end Explorer Cut/Copy/Paste ------------------------------------------ */
 
-/* Builds a menu for either source (a Toolkit row previously got none -
- * full parity with TOOLBOX, requested directly by the user). A folder
+/* Builds a menu for either source (a Tools row previously got none -
+ * full parity with Files, requested directly by the user). A folder
  * gets New File/New Folder/Rename/Cut/Copy/Delete/Paste/Refresh/
  * Properties; a file gets Rename/Cut/Copy/Delete/Properties; the two
  * permanent roots never get Rename/Cut/Copy/Delete ("the root workbench
- * directory cannot be renamed or deleted") - TOOLBOX's/Toolkit's own
+ * directory cannot be renamed or deleted") - Files's/Tools's own
  * root menu ends up New File/New Folder/Paste/Refresh/Properties.
  * Cut/Copy apply to any non-root row and Paste applies to any folder
  * (sensitive only when the clipboard isn't empty) - both funnel into
  * perform_explorer_paste()/explorer_set_clipboard() in
  * ui_gtk_explorer_transfer.c. Terminal actions add: a folder gets
  * Open in Integrated Terminal; a script/executable (node->executable
- * for FILES - already false for every directory per file_tree.c's own
- * scan - or explorer_toolkit_file_flags() for Toolkit, since
- * ToolkitEntry tracks neither bit) gets Open as Text (only when
+ * for Files - already false for every directory per file_tree.c's own
+ * scan - or explorer_tools_file_flags() for Tools, since
+ * ToolsIndexEntry tracks neither bit) gets Open as Text (only when
  * file_classify() also agrees it's text)/Run in Terminal/Run with
  * Arguments...; an ordinary file gets Open in Terminal Directory;
  * every row gets Copy Path/Copy Relative Path. */
@@ -400,7 +400,7 @@ void popup_explorer_context_menu(GtkBackend *backend, GtkWidget *tree_view, GtkT
         char resolved_for_exec[4096];
         bool executable = false, read_only = true;
         if (workspace_root_resolve_path(root, relative_path, resolved_for_exec, sizeof(resolved_for_exec))) {
-            explorer_toolkit_file_flags(resolved_for_exec, &executable, &read_only);
+            explorer_tools_file_flags(resolved_for_exec, &executable, &read_only);
         }
         is_executable = executable;
     }

@@ -11,7 +11,7 @@ typedef struct Workbench Workbench;
 /* Workbench is the platform-neutral seam between application services and
  * the native UI. All four arguments are borrowed and must outlive it. */
 Workbench *workbench_create(Workspace *workspace, ListenerSystem *listener_system,
-                             const WorkspaceRoot *file_workspace_root, const WorkspaceRoot *toolkit_workspace_root);
+                             const WorkspaceRoot *file_workspace_root, const WorkspaceRoot *tools_workspace_root);
 void workbench_destroy(Workbench *workbench);
 
 /* Blocks until the UI quits; returns a process exit status. */
@@ -20,6 +20,6 @@ int workbench_run(Workbench *workbench, int argc, char **argv);
 Workspace *workbench_get_workspace(const Workbench *workbench);
 ListenerSystem *workbench_get_listener_system(const Workbench *workbench);
 const WorkspaceRoot *workbench_get_file_workspace_root(const Workbench *workbench);
-const WorkspaceRoot *workbench_get_toolkit_workspace_root(const Workbench *workbench);
+const WorkspaceRoot *workbench_get_tools_workspace_root(const Workbench *workbench);
 
 #endif /* WORKBENCH_WORKBENCH_H */

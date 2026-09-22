@@ -186,8 +186,8 @@ static gboolean drive(gpointer user_data) {
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
 
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
@@ -195,7 +195,7 @@ static gboolean drive(gpointer user_data) {
      * right title and content. */
     GtkTreeIter text_iter;
     if (!find_child_by_name(model, &workbench_iter, "notes.txt", &text_iter)) {
-        fail(test, "'notes.txt' row not found under TOOLBOX");
+        fail(test, "'notes.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &text_iter);
@@ -229,7 +229,7 @@ static gboolean drive(gpointer user_data) {
      * garbled editor, with correct metadata. */
     GtkTreeIter binary_iter;
     if (!find_child_by_name(model, &workbench_iter, "data.bin", &binary_iter)) {
-        fail(test, "'data.bin' row not found under TOOLBOX");
+        fail(test, "'data.bin' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &binary_iter);
@@ -253,7 +253,7 @@ static gboolean drive(gpointer user_data) {
     /* A directory row still just expands/collapses - no tab opens. */
     GtkTreeIter dir_iter;
     if (!find_child_by_name(model, &workbench_iter, "subdir", &dir_iter)) {
-        fail(test, "'subdir' row not found under TOOLBOX");
+        fail(test, "'subdir' row not found under Files");
         goto done;
     }
     int editor_before = tabs_of_type(notebook, TAB_TYPE_EDITOR, NULL, 0);
@@ -279,7 +279,7 @@ static gboolean drive(gpointer user_data) {
      * read-only indicator, with its GtkTextView non-editable. */
     GtkTreeIter readonly_iter;
     if (!find_child_by_name(model, &workbench_iter, "locked.txt", &readonly_iter)) {
-        fail(test, "'locked.txt' row not found under TOOLBOX");
+        fail(test, "'locked.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &readonly_iter);
@@ -321,7 +321,7 @@ done:
 /* Every GTK smoke test binary lives in the same build/tests/ directory,
  * so workspace_root_init()'s exe-relative resolution finds the *same*
  * physical files/ directory for all of them - clearing any pre-existing
- * top-level entries keeps this test's TOOLBOX-child assertions correct
+ * top-level entries keeps this test's Files-child assertions correct
  * regardless of ctest run order, same precaution
  * explorer_operations_smoke.c already established. */
 static void clear_workspace_root(const WorkspaceRoot *root) {

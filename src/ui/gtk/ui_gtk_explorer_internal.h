@@ -25,7 +25,7 @@ enum {
     EXPLORER_COL_IS_DIR,
     EXPLORER_COL_LOADED,
     EXPLORER_COL_SOURCE,
-    EXPLORER_COL_NODE_ID, /* FileNodeId - FILES rows only, unused for TOOLKIT rows */
+    EXPLORER_COL_NODE_ID, /* FileNodeId - Files rows only, unused for Tools rows */
     EXPLORER_COL_COUNT
 };
 
@@ -62,10 +62,10 @@ void refresh_row_preserving_expansion(GtkBackend *backend, GtkTreeView *tree_vie
  * the same logic works for either source unchanged. */
 const WorkspaceRoot *explorer_root_for_source(GtkBackend *backend, int source);
 /* FileTreeNode already caches executable/read_only (lstat at scan
- * time); ToolkitEntry has neither field. Computes both fresh via
+ * time); ToolsIndexEntry has neither field. Computes both fresh via
  * stat()+access(W_OK) - identical logic to file_tree.c's own
- * classify_entry(), just not cached anywhere for Toolkit. */
-void explorer_toolkit_file_flags(const char *absolute_path, bool *out_executable, bool *out_read_only);
+ * classify_entry(), just not cached anywhere for Tools. */
+void explorer_tools_file_flags(const char *absolute_path, bool *out_executable, bool *out_read_only);
 /* Finds the GtkTreeIter under scope (searched recursively, matching
  * each row's own EXPLORER_COL_PATH directly) whose root-relative path
  * equals relative_path - "" means scope itself. Only ever needs to
@@ -78,8 +78,8 @@ gboolean find_dir_iter_by_relative_path(GtkTreeModel *model, GtkTreeIter *scope,
  * refresh_row_preserving_expansion (this file) and
  * ui_gtk_explorer_navigation.c's reveal_in_explorer(). */
 gboolean explorer_find_child_by_name(GtkTreeModel *model, GtkTreeIter *parent, const char *name, GtkTreeIter *out);
-/* The merged explorer_store has exactly two top-level rows (TOOLBOX,
- * Toolkit); finds the one matching source - used by
+/* The merged explorer_store has exactly two top-level rows (Files,
+ * Tools); finds the one matching source - used by
  * ui_gtk_file_watch.c, ui_gtk_explorer_transfer.c, and
  * ui_gtk_explorer_navigation.c. */
 gboolean explorer_permanent_root_iter(GtkTreeStore *store, int source, GtkTreeIter *out);
@@ -96,10 +96,10 @@ void start_new_entry(GtkBackend *backend, GtkTreeIter *parent_iter, gboolean is_
 /* Called from load_row_children() (ui_gtk_file_tree.c) right after a
  * successful scan, for either source - a no-op unless source is
  * EXPLORER_SOURCE_FILES (see this function's own definition for why
- * Toolkit watching is deliberately out of scope). */
+ * Tools watching is deliberately out of scope). */
 void register_watch_for_loaded_row(GtkBackend *backend, GtkTreeStore *store, GtkTreeIter *iter, int source);
 /* Applies one FileWatchEvent (drained from backend->file_watcher/
- * toolkit_watcher, source picking which) to the explorer tree and any
+ * tools_watcher, source picking which) to the explorer tree and any
  * open editor tab - called from ui_gtk_window.c's on_tick. */
 void apply_file_watch_event(GtkBackend *backend, int source, const FileWatchEvent *event);
 

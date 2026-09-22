@@ -199,8 +199,8 @@ static gboolean drive(gpointer user_data) {
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
 
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
@@ -208,7 +208,7 @@ static gboolean drive(gpointer user_data) {
      * Save/Revert. */
     GtkTreeIter alpha_iter;
     if (!find_child_by_name(model, &workbench_iter, "alpha.txt", &alpha_iter)) {
-        fail(test, "'alpha.txt' row not found under TOOLBOX");
+        fail(test, "'alpha.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &alpha_iter);
@@ -319,7 +319,7 @@ static gboolean drive(gpointer user_data) {
      * non-writable parent directory - reports exactly the failing one. */
     GtkTreeIter beta_iter;
     if (!find_child_by_name(model, &workbench_iter, "beta.txt", &beta_iter)) {
-        fail(test, "'beta.txt' row not found under TOOLBOX");
+        fail(test, "'beta.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &beta_iter);
@@ -332,7 +332,7 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeIter lockeddir_iter;
     if (!find_child_by_name(model, &workbench_iter, "lockeddir", &lockeddir_iter)) {
-        fail(test, "'lockeddir' row not found under TOOLBOX");
+        fail(test, "'lockeddir' row not found under Files");
         goto done;
     }
     GtkTreePath *lockeddir_path_view = gtk_tree_model_get_path(model, &lockeddir_iter);

@@ -1,5 +1,5 @@
 /*
- * Proves toolkit_scan_directory only indexes the immediate contents of a
+ * Proves tools_scan_directory only indexes the immediate contents of a
  * directory - a nested subfolder is recorded as a single entry, but its
  * own contents are never read or surfaced.
  */
@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "tools/toolkit_index.h"
+#include "tools/tools_index.h"
 
 static void write_file(const char *path) {
     FILE *f = fopen(path, "w");
@@ -19,9 +19,9 @@ static void write_file(const char *path) {
 }
 
 int main(void) {
-    char root[] = "/tmp/toolkit_index_test_XXXXXX";
+    char root[] = "/tmp/tools_index_test_XXXXXX";
     if (!mkdtemp(root)) {
-        fprintf(stderr, "toolkit_index_test: mkdtemp failed\n");
+        fprintf(stderr, "tools_index_test: mkdtemp failed\n");
         return 1;
     }
 
@@ -36,25 +36,25 @@ int main(void) {
     mkdir(subdir, 0755);
     write_file(nested);
 
-    ToolkitEntry entries[16];
-    int count = toolkit_scan_directory(root, entries, 16);
+    ToolsIndexEntry entries[16];
+    int count = tools_scan_directory(root, entries, 16);
 
     int status = 0;
 
     if (count != 3) {
-        fprintf(stderr, "toolkit_index_test: expected 3 entries, got %d (nested file must not be surfaced)\n", count);
+        fprintf(stderr, "tools_index_test: expected 3 entries, got %d (nested file must not be surfaced)\n", count);
         status = 1;
     } else {
         if (!entries[0].is_dir || strcmp(entries[0].name, "sub") != 0) {
-            fprintf(stderr, "toolkit_index_test: expected 'sub' directory sorted first\n");
+            fprintf(stderr, "tools_index_test: expected 'sub' directory sorted first\n");
             status = 1;
         }
         if (entries[1].is_dir || strcmp(entries[1].name, "a.txt") != 0) {
-            fprintf(stderr, "toolkit_index_test: expected 'a.txt' as second entry\n");
+            fprintf(stderr, "tools_index_test: expected 'a.txt' as second entry\n");
             status = 1;
         }
         if (entries[2].is_dir || strcmp(entries[2].name, "b.txt") != 0) {
-            fprintf(stderr, "toolkit_index_test: expected 'b.txt' as third entry\n");
+            fprintf(stderr, "tools_index_test: expected 'b.txt' as third entry\n");
             status = 1;
         }
     }
@@ -71,7 +71,7 @@ int main(void) {
     rmdir(root);
 
     if (status == 0) {
-        printf("toolkit_index_test: non-recursive single-level scan verified\n");
+        printf("tools_index_test: non-recursive single-level scan verified\n");
     }
     return status;
 }

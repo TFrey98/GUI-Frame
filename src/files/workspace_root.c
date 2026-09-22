@@ -1,5 +1,7 @@
 #include "workspace_root.h"
 
+#include "core/app_paths.h"
+
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,35 +9,13 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-/* Resolves <exe_dir>/files via /proc/self/exe (same approach as
- * toolkit_index.c's resolve_exe_relative_toolkit_dir()), creating it if
- * missing. Named "files" rather than "workbench" - the executable itself
- * is named "workbench", so a same-named sibling directory would collide
- * with it on every rebuild. */
-static bool resolve_exe_relative_workbench_dir(char *dir_out, size_t dir_out_size) {
-    char exe_path[4096];
-    ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
-    if (len <= 0) {
-        return false;
-    }
-    exe_path[len] = '\0';
-
-    char *last_slash = strrchr(exe_path, '/');
-    if (!last_slash) {
-        return false;
-    }
-    *last_slash = '\0';
-
-    int written = snprintf(dir_out, dir_out_size, "%s/files", exe_path);
-    if (written < 0 || (size_t)written >= dir_out_size) {
-        return false;
-    }
-
-    if (mkdir(dir_out, 0755) != 0 && errno != EEXIST) {
-        return false;
-    }
-
-    return true;
+/* Resolves <data_dir>/files, creating it if missing. The data dir is
+ * the exe dir for a development build and the per-user XDG data dir for
+ * an installed one - see app_paths.h. Named "files" rather than
+ * "workbench" - the executable itself is named "workbench", so a
+ * same-named sibling directory would collide with it on every rebuild. */
+static bool resolve_workbench_dir(char *dir_out, size_t dir_out_size) {
+    return app_paths_data_subdir("files", dir_out, dir_out_size);
 }
 
 /* Shared by workspace_root_init() and workspace_root_init_at() - realpath()s
@@ -56,7 +36,7 @@ static bool populate_from_dir(WorkspaceRoot *out, const char *dir) {
 
 bool workspace_root_init(WorkspaceRoot *out) {
     char dir[4096];
-    if (!resolve_exe_relative_workbench_dir(dir, sizeof(dir))) {
+    if (!resolve_workbench_dir(dir, sizeof(dir))) {
         return false;
     }
     return populate_from_dir(out, dir);

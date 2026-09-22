@@ -100,7 +100,7 @@ static char **dup_strv(char *const *src, size_t count) {
 void open_terminal_at(GtkBackend *backend, const WorkspaceRoot *root, const char *relative_directory) {
     char resolved[4096];
     /* An empty relative_directory means the workspace root itself (e.g.
-     * a file with no parent besides TOOLBOX) - workspace_root_resolve_path()
+     * a file with no parent besides Files) - workspace_root_resolve_path()
      * rejects an empty string outright, same special case file_tree.c's
      * own root handling already established. */
     if (!relative_directory || relative_directory[0] == '\0') {
@@ -159,12 +159,12 @@ void run_command_in_new_terminal(GtkBackend *backend, const TerminalLaunchReques
 
     /* Opt-in bottom-panel tab: a sibling "<executable>.manifest.json" is
      * only ever found (and only ever resolves its data_file) for a
-     * script that actually lives under the toolkit root - see
+     * script that actually lives under the tools root - see
      * tool_panel_manifest_load's own containment check - so this is a
      * silent no-op for every other kind of "Run in Terminal" launch. */
     ToolPanelManifest manifest;
-    const WorkspaceRoot *toolkit_root = workbench_get_toolkit_workspace_root(backend->workbench);
-    if (tool_panel_manifest_load(toolkit_root, request->executable, &manifest)) {
+    const WorkspaceRoot *tools_root = workbench_get_tools_workspace_root(backend->workbench);
+    if (tool_panel_manifest_load(tools_root, request->executable, &manifest)) {
         open_tool_panel_tab_for_launch(backend, tab->id, &manifest);
     }
 }

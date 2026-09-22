@@ -17,7 +17,7 @@
 #define SEARCH_MAX_MATCHES 500
 
 enum {
-    SEARCH_COL_DISPLAY_PATH, /* "TOOLBOX/relative_path" or "Toolkit/relative_path" */
+    SEARCH_COL_DISPLAY_PATH, /* "Files/relative_path" or "Tools/relative_path" */
     SEARCH_COL_SOURCE,
     SEARCH_COL_PATH,
     SEARCH_COL_IS_DIR,
@@ -46,8 +46,8 @@ static void run_search(SearchContext *ctx) {
     }
     gboolean case_sensitive = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(ctx->match_case));
 
-    static const int sources[] = {EXPLORER_SOURCE_FILES, EXPLORER_SOURCE_TOOLKIT};
-    static const char *const labels[] = {"TOOLBOX", "Toolkit"};
+    static const int sources[] = {EXPLORER_SOURCE_FILES, EXPLORER_SOURCE_TOOLS};
+    static const char *const labels[] = {"Files", "Tools"};
 
     int total = 0;
     FileSearchMatch *matches = g_new(FileSearchMatch, SEARCH_MAX_MATCHES);
@@ -114,14 +114,14 @@ static void on_search_result_activated(GtkTreeView *tree_view, GtkTreePath *path
         const WorkspaceRoot *root = explorer_root_for_source(backend, source);
         /* Search results never come from a pre-loaded FileTreeNode (the
          * scan walks the real filesystem directly, not FileTree's lazy
-         * registry) - explorer_toolkit_file_flags() is the general-
-         * purpose stat-based flag helper every Toolkit row already uses
+         * registry) - explorer_tools_file_flags() is the general-
+         * purpose stat-based flag helper every Tools row already uses
          * for the exact same reason, and works identically for either
          * source. */
         char resolved[4096];
         bool executable = false, read_only = true;
         if (workspace_root_resolve_path(root, relative_path, resolved, sizeof(resolved))) {
-            explorer_toolkit_file_flags(resolved, &executable, &read_only);
+            explorer_tools_file_flags(resolved, &executable, &read_only);
         }
         open_or_focus_file_tab(backend, root, relative_path, executable, read_only);
     }

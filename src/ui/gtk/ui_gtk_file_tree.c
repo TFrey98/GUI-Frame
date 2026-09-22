@@ -8,8 +8,8 @@
 /* --- Explorer tree core --------------------------------------------------
  * Tree-store population, lazy loading, and refresh for the merged
  * explorer sidebar - two independent sources under permanent, always-
- * present root rows: "TOOLBOX" (FileTree, backed by the WorkspaceRoot's
- * files/ directory) and "Toolkit" (toolkit_index's toolkit/ directory).
+ * present root rows: "Files" (FileTree, backed by the WorkspaceRoot's
+ * files/ directory) and "Tools" (tools_index's tools/ directory).
  * Widget construction/inline editing lives in ui_gtk_explorer_sidebar.c;
  * watch registration/application in ui_gtk_file_watch.c; Cut/Copy/Paste/
  * drag-and-drop in ui_gtk_explorer_transfer.c; Reveal in Explorer in
@@ -21,14 +21,14 @@
  * so the exact same logic (menus, create/rename/delete, open-as-text,
  * terminal actions, copy path) works for either source unchanged. */
 const WorkspaceRoot *explorer_root_for_source(GtkBackend *backend, int source) {
-    return source == EXPLORER_SOURCE_TOOLKIT ? workbench_get_toolkit_workspace_root(backend->workbench)
+    return source == EXPLORER_SOURCE_TOOLS ? workbench_get_tools_workspace_root(backend->workbench)
                                               : workbench_get_file_workspace_root(backend->workbench);
 }
 
 /* FileTreeNode already caches executable/read_only (lstat at scan
- * time, see file_tree.c's classify_entry()); ToolkitEntry has neither
- * field. Computes both fresh, identical logic, for a Toolkit row. */
-void explorer_toolkit_file_flags(const char *absolute_path, bool *out_executable, bool *out_read_only) {
+ * time, see file_tree.c's classify_entry()); ToolsIndexEntry has neither
+ * field. Computes both fresh, identical logic, for a Tools row. */
+void explorer_tools_file_flags(const char *absolute_path, bool *out_executable, bool *out_read_only) {
     struct stat st;
     if (stat(absolute_path, &st) == 0) {
         *out_executable = (st.st_mode & S_IXUSR) != 0;
@@ -79,33 +79,33 @@ static void add_files_tree_entry(GtkTreeStore *store, GtkTreeIter *parent, const
     }
 }
 
-/* Strips toolkit_root's own canonical_path prefix (+1 for the '/') from
- * an absolute path, so Toolkit rows store a root-relative path just
- * like FILES rows do - every safety primitive downstream
+/* Strips tools_root's own canonical_path prefix (+1 for the '/') from
+ * an absolute path, so Tools rows store a root-relative path just
+ * like Files rows do - every safety primitive downstream
  * (workspace_root_resolve_path, file_operations, editor_document_open)
- * requires a relative path, and ToolkitEntry only ever hands back
+ * requires a relative path, and ToolsIndexEntry only ever hands back
  * absolute ones. */
-static const char *toolkit_relative_from_absolute(const WorkspaceRoot *toolkit_root, const char *absolute_path) {
-    size_t root_len = strlen(toolkit_root->canonical_path);
-    if (strncmp(absolute_path, toolkit_root->canonical_path, root_len) != 0) {
-        return absolute_path; /* shouldn't happen - toolkit_scan_directory() never escapes its own dir */
+static const char *tools_relative_from_absolute(const WorkspaceRoot *tools_root, const char *absolute_path) {
+    size_t root_len = strlen(tools_root->canonical_path);
+    if (strncmp(absolute_path, tools_root->canonical_path, root_len) != 0) {
+        return absolute_path; /* shouldn't happen - tools_scan_directory() never escapes its own dir */
     }
     const char *rest = absolute_path + root_len;
     return *rest == '/' ? rest + 1 : rest;
 }
 
-/* Same shape as add_files_tree_entry, for a Toolkit-sourced row. */
-static void add_toolkit_tree_row(const WorkspaceRoot *toolkit_root, GtkTreeStore *store, GtkTreeIter *parent,
-                                  const ToolkitEntry *entry) {
+/* Same shape as add_files_tree_entry, for a Tools-sourced row. */
+static void add_tools_tree_row(const WorkspaceRoot *tools_root, GtkTreeStore *store, GtkTreeIter *parent,
+                                  const ToolsIndexEntry *entry) {
     GtkTreeIter iter;
     gtk_tree_store_append(store, &iter, parent);
     gtk_tree_store_set(store, &iter,
         EXPLORER_COL_ICON, entry->is_dir ? "folder" : "text-x-generic",
         EXPLORER_COL_NAME, entry->name,
-        EXPLORER_COL_PATH, toolkit_relative_from_absolute(toolkit_root, entry->path),
+        EXPLORER_COL_PATH, tools_relative_from_absolute(tools_root, entry->path),
         EXPLORER_COL_IS_DIR, entry->is_dir,
         EXPLORER_COL_LOADED, FALSE,
-        EXPLORER_COL_SOURCE, EXPLORER_SOURCE_TOOLKIT,
+        EXPLORER_COL_SOURCE, EXPLORER_SOURCE_TOOLS,
         EXPLORER_COL_NODE_ID, (guint64)0,
         -1);
 
@@ -117,8 +117,8 @@ static void add_toolkit_tree_row(const WorkspaceRoot *toolkit_root, GtkTreeStore
 }
 
 /* (Re)loads iter's children from whichever source it belongs to -
- * FILES via file_tree_load_children()/file_tree_get_child_at(),
- * TOOLKIT via the same toolkit_scan_directory() call the sidebar always
+ * Files via file_tree_load_children()/file_tree_get_child_at(),
+ * Tools via the same tools_scan_directory() call the sidebar always
  * used. Safe to call whether iter currently holds a lazy placeholder
  * (first expansion) or a full previous listing (refresh/re-expansion):
  * new rows are appended *before* the old ones are removed, so the row's
@@ -140,29 +140,29 @@ void load_row_children(GtkBackend *backend, GtkTreeStore *store, GtkTreeIter *it
             add_files_tree_entry(store, iter, child);
         }
     } else {
-        const WorkspaceRoot *toolkit_root = workbench_get_toolkit_workspace_root(backend->workbench);
+        const WorkspaceRoot *tools_root = workbench_get_tools_workspace_root(backend->workbench);
         gchar *relative_path = NULL;
         gtk_tree_model_get(GTK_TREE_MODEL(store), iter, EXPLORER_COL_PATH, &relative_path, -1);
 
         /* EXPLORER_COL_PATH is root-relative (empty string means the
-         * Toolkit root itself) - toolkit_scan_directory() still needs a
+         * Tools root itself) - tools_scan_directory() still needs a
          * real absolute directory, same empty-string-means-root special
          * case open_terminal_at() already established since
          * workspace_root_resolve_path() rejects an empty string outright. */
         char resolved[4096];
         const char *absolute_dir = NULL;
         if (relative_path && relative_path[0] == '\0') {
-            absolute_dir = toolkit_root->canonical_path;
-        } else if (relative_path && workspace_root_resolve_path(toolkit_root, relative_path, resolved,
+            absolute_dir = tools_root->canonical_path;
+        } else if (relative_path && workspace_root_resolve_path(tools_root, relative_path, resolved,
                                                                   sizeof(resolved))) {
             absolute_dir = resolved;
         }
 
         if (absolute_dir) {
-            ToolkitEntry entries[TOOLKIT_INDEX_MAX_ENTRIES];
-            int n = toolkit_scan_directory(absolute_dir, entries, TOOLKIT_INDEX_MAX_ENTRIES);
+            ToolsIndexEntry entries[TOOLS_INDEX_MAX_ENTRIES];
+            int n = tools_scan_directory(absolute_dir, entries, TOOLS_INDEX_MAX_ENTRIES);
             for (int i = 0; i < n; i++) {
-                add_toolkit_tree_row(toolkit_root, store, iter, &entries[i]);
+                add_tools_tree_row(tools_root, store, iter, &entries[i]);
                 free(entries[i].name);
                 free(entries[i].path);
             }
@@ -281,8 +281,8 @@ void relative_path_dirname(const char *relative_path, char *out, size_t out_size
     out[len] = '\0';
 }
 
-/* The merged explorer_store has exactly two top-level rows (TOOLBOX,
- * Toolkit); this finds the one matching source. Promoted (non-static) -
+/* The merged explorer_store has exactly two top-level rows (Files,
+ * Tools); this finds the one matching source. Promoted (non-static) -
  * used by ui_gtk_file_watch.c, ui_gtk_explorer_transfer.c, and
  * ui_gtk_explorer_navigation.c. */
 gboolean explorer_permanent_root_iter(GtkTreeStore *store, int source, GtkTreeIter *out) {

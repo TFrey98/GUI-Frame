@@ -11,7 +11,7 @@
 /* Generalizes a same-root rename to a possibly cross-root move -
  * old_root/new_root are the same pointer for a plain rename
  * (editor_handle_external_rename below), different pointers for a
- * Cut+Paste or drag-and-drop that crosses FILES/Toolkit. A no-op if
+ * Cut+Paste or drag-and-drop that crosses Files/Tools. A no-op if
  * old_relative_path (under old_root) has no open editor/binary-info
  * tab. */
 void editor_handle_external_move(GtkBackend *backend, const WorkspaceRoot *old_root, const char *old_relative_path,

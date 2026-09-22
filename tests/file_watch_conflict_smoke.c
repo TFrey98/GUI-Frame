@@ -226,8 +226,8 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
@@ -240,7 +240,7 @@ static gboolean drive(gpointer user_data) {
                                     "edited_compare.txt", "deleted_open.txt", "saved_no_conflict.txt"};
             for (size_t i = 0; i < sizeof(names) / sizeof(names[0]); i++) {
                 if (!open_tab(tree_view, model, &workbench_iter, names[i])) {
-                    fail(test, "a fixture row was missing under TOOLBOX at startup");
+                    fail(test, "a fixture row was missing under Files at startup");
                     goto done;
                 }
             }

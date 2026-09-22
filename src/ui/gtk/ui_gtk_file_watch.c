@@ -18,11 +18,11 @@
  * been loaded - mirrors FileTree's own "lazy, only what's been
  * expanded" scope exactly: a directory never expanded is never watched.
  * iter's own EXPLORER_COL_PATH is already the directory's root-relative
- * path (both add_files_tree_entry/add_toolkit_tree_row and the two
+ * path (both add_files_tree_entry/add_tools_tree_row and the two
  * permanent root rows store it that way), so no extra id resolution is
  * needed here.
  *
- * FILES only, deliberately - registering the Toolkit root too surfaced a
+ * Files only, deliberately - registering the Tools root too surfaced a
  * real, reproducible crash: ExplorerMenuContext (ui_gtk_explorer_menu.c)
  * holds a raw GtkTreeIter across a popup menu's lifetime on the
  * documented assumption that "nothing but user actions ever mutates
@@ -34,13 +34,13 @@
  * a nested main-loop pump a later, unrelated action triggers
  * (gtk_clipboard_wait_for_text(), a dialog, etc.) - invalidating any
  * GtkTreeIter still pointing at one of those now-removed rows.
- * toolkit_interaction_smoke.c reproduced this ~70% of the time once the
- * Toolkit root was watched. Fixing this properly means auditing every
+ * tools_interaction_smoke.c reproduced this ~70% of the time once the
+ * Tools root was watched. Fixing this properly means auditing every
  * raw-iterator holder against async mutation (ExplorerMenuContext chief
- * among them) - out of this step's scope, so watching stays FILES-only
- * here, matching this step's own test-scope boundary; Toolkit watching
+ * among them) - out of this step's scope, so watching stays Files-only
+ * here, matching this step's own test-scope boundary; Tools watching
  * (and that audit) is deferred to a later, explicitly-requested pass,
- * the same way Toolkit Sidebar Parity itself was. */
+ * the same way Tools Sidebar Parity itself was. */
 void register_watch_for_loaded_row(GtkBackend *backend, GtkTreeStore *store, GtkTreeIter *iter, int source) {
     if (source != EXPLORER_SOURCE_FILES) {
         return;

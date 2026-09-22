@@ -285,15 +285,15 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
     /* --- Close with Save/Discard/Cancel --- */
     GtkTreeIter doc1_iter;
     if (!find_child_by_name(model, &workbench_iter, "doc1.txt", &doc1_iter)) {
-        fail(test, "'doc1.txt' row not found under TOOLBOX");
+        fail(test, "'doc1.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &doc1_iter);
@@ -370,7 +370,7 @@ static gboolean drive(gpointer user_data) {
     GtkTreeIter doc2_iter, doc3_iter;
     if (!find_child_by_name(model, &workbench_iter, "doc2.txt", &doc2_iter) ||
         !find_child_by_name(model, &workbench_iter, "doc3.txt", &doc3_iter)) {
-        fail(test, "'doc2.txt'/'doc3.txt' rows not found under TOOLBOX");
+        fail(test, "'doc2.txt'/'doc3.txt' rows not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &doc2_iter);
@@ -417,7 +417,7 @@ static gboolean drive(gpointer user_data) {
     /* --- Renaming an open file keeps the tab targeting the new path --- */
     GtkTreeIter renameme_iter;
     if (!find_child_by_name(model, &workbench_iter, "renameme.txt", &renameme_iter)) {
-        fail(test, "'renameme.txt' row not found under TOOLBOX");
+        fail(test, "'renameme.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &renameme_iter);
@@ -469,7 +469,7 @@ static gboolean drive(gpointer user_data) {
     /* --- Quitting with a modified tab open --- */
     GtkTreeIter quittest_iter;
     if (!find_child_by_name(model, &workbench_iter, "quittest.txt", &quittest_iter)) {
-        fail(test, "'quittest.txt' row not found under TOOLBOX");
+        fail(test, "'quittest.txt' row not found under Files");
         goto done;
     }
     activate_row(tree_view, model, &quittest_iter);

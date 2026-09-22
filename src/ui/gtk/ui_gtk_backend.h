@@ -29,7 +29,7 @@
 #include "listeners/listener_system.h"
 #include "listeners/object_predicates.h"
 #include "tools/tool_panel_manifest.h"
-#include "tools/toolkit_index.h"
+#include "tools/tools_index.h"
 #include "ui/workbench.h"
 #include "terminal_vte.h"
 
@@ -86,7 +86,7 @@ typedef struct ToolPanelTab {
     uint64_t terminal_tab_id;
     char *title;
     char data_file_absolute_path[4096];
-    char data_file_toolkit_relative_path[4096]; /* matches FileWatchEvent.new_relative_path */
+    char data_file_tools_relative_path[4096]; /* matches FileWatchEvent.new_relative_path */
     ToolPanelColumn columns[TOOL_PANEL_MANIFEST_MAX_COLUMNS];
     int column_count;
     GtkListStore *store;
@@ -98,7 +98,7 @@ typedef struct ToolPanelTab {
  * selection tree (nothing anywhere lets a user select more than one row
  * at once). Cut/Copy (ui_gtk_explorer_menu.c) set this via
  * explorer_set_clipboard(); Paste (either trigger) reads it. `source`
- * holds an EXPLORER_SOURCE_FILES/TOOLKIT value (declared below, both
+ * holds an EXPLORER_SOURCE_FILES/TOOLS value (declared below, both
  * are plain ints, no ordering dependency). Embedded by value in
  * GtkBackend below, so it must be fully defined before it. */
 typedef enum ExplorerClipboardMode {
@@ -109,7 +109,7 @@ typedef enum ExplorerClipboardMode {
 
 typedef struct ExplorerClipboard {
     ExplorerClipboardMode mode;
-    int source; /* EXPLORER_SOURCE_FILES/TOOLKIT - which root relative_path is against */
+    int source; /* EXPLORER_SOURCE_FILES/TOOLS - which root relative_path is against */
     char relative_path[4096];
 } ExplorerClipboard;
 
@@ -131,8 +131,8 @@ typedef struct GtkBackend {
     GtkWidget *bottom_panel_notebook; /* the bottom panel itself; page 0 is always the built-in Objects tab */
     GPtrArray *tool_panel_tabs;       /* ToolPanelTab*, see ui_gtk_tool_panel.c */
     guint tick_source_id;
-    FileTree *file_tree;             /* backs the "TOOLBOX" root in the merged explorer sidebar */
-    GtkTreeStore *explorer_store;    /* merged explorer sidebar: TOOLBOX (files/) + Toolkit (toolkit/) */
+    FileTree *file_tree;             /* backs the "Files" root in the merged explorer sidebar */
+    GtkTreeStore *explorer_store;    /* merged explorer sidebar: Files (files/) + Tools (tools/) */
     GtkWidget *explorer_tree_view;
     GtkCellRenderer *explorer_name_renderer;
     GtkTreeRowReference *explorer_editing_row; /* the row currently in inline create/rename, if any */
@@ -147,8 +147,8 @@ typedef struct GtkBackend {
     int explorer_drag_source;
     char explorer_drag_relative_path[4096];
 
-    FileWatcher *file_watcher;     /* watches directories loaded under the TOOLBOX (files/) root */
-    FileWatcher *toolkit_watcher;  /* watches directories loaded under the Toolkit (toolkit/) root */
+    FileWatcher *file_watcher;     /* watches directories loaded under the Files (files/) root */
+    FileWatcher *tools_watcher;  /* watches directories loaded under the Tools (tools/) root */
 
     GtkCssProvider *css_provider; /* app-wide dark/light stylesheet, see ui_gtk_theme.c */
     gboolean dark_mode;           /* current toggle state; new terminals/pages read this to match */
@@ -186,7 +186,7 @@ typedef enum ObjectPanelKind {
  * here rather than ui_gtk_explorer_internal.h. */
 enum {
     EXPLORER_SOURCE_FILES,
-    EXPLORER_SOURCE_TOOLKIT
+    EXPLORER_SOURCE_TOOLS
 };
 
 /* --- ui_gtk_window.c ----------------------------------------------------- */
@@ -257,7 +257,7 @@ gboolean on_object_panel_popup_menu(GtkWidget *tree_view, gpointer user_data);
 void open_tool_panel_tab_for_launch(GtkBackend *backend, uint64_t terminal_tab_id,
                                      const ToolPanelManifest *manifest);
 /* Called from on_tick for every FileWatchEvent drained from
- * backend->toolkit_watcher; re-reads and resyncs whichever tool panel
+ * backend->tools_watcher; re-reads and resyncs whichever tool panel
  * tab (if any) the event's path belongs to. A no-op if no active tab's
  * data file matches. */
 void tool_panel_handle_watch_event(GtkBackend *backend, const FileWatchEvent *event);

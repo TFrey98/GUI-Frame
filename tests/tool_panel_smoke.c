@@ -1,7 +1,7 @@
 /*
  * Exercises the manifest-driven bottom-panel tab end-to-end in the real
  * app: a fixture tool (a script + a sibling *.manifest.json under
- * toolkit/) launched via the real "Run in Terminal" context-menu action
+ * tools/) launched via the real "Run in Terminal" context-menu action
  * gets its own bottom-panel tab, rows appear as the script appends
  * JSON-Lines to its declared data_file (driven by the real FileWatcher,
  * not a manual refresh), and the tab is marked "(stopped)" once the
@@ -47,7 +47,7 @@ typedef struct TestState {
     int step_elapsed_ms;
     gboolean failed;
     gboolean done;
-    WorkspaceRoot toolkit_root;
+    WorkspaceRoot tools_root;
 } TestState;
 
 static GtkWidget *find_by_data_key(GtkWidget *widget, const char *key) {
@@ -229,13 +229,13 @@ static gboolean drive(gpointer user_data) {
                     break;
                 }
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter workbench_iter, toolkit_iter;
+                GtkTreeIter workbench_iter, tools_iter;
                 if (!gtk_tree_model_get_iter_first(model, &workbench_iter) ||
-                    !row_name_is(model, &workbench_iter, "TOOLBOX")) {
+                    !row_name_is(model, &workbench_iter, "Files")) {
                     break;
                 }
-                toolkit_iter = workbench_iter;
-                if (!gtk_tree_model_iter_next(model, &toolkit_iter) || !row_name_is(model, &toolkit_iter, "Toolkit")) {
+                tools_iter = workbench_iter;
+                if (!gtk_tree_model_iter_next(model, &tools_iter) || !row_name_is(model, &tools_iter, "Tools")) {
                     break;
                 }
                 if (gtk_notebook_get_n_pages(GTK_NOTEBOOK(bottom_panel)) != 1) {
@@ -249,12 +249,12 @@ static gboolean drive(gpointer user_data) {
 
             case STEP_RUN_TOOL: {
                 GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
-                GtkTreeIter workbench_iter, toolkit_iter, script_iter;
+                GtkTreeIter workbench_iter, tools_iter, script_iter;
                 gtk_tree_model_get_iter_first(model, &workbench_iter);
-                toolkit_iter = workbench_iter;
-                gtk_tree_model_iter_next(model, &toolkit_iter);
-                if (!find_child_by_name(model, &toolkit_iter, "scan.sh", &script_iter)) {
-                    fail(test, "'scan.sh' row not found under Toolkit");
+                tools_iter = workbench_iter;
+                gtk_tree_model_iter_next(model, &tools_iter);
+                if (!find_child_by_name(model, &tools_iter, "scan.sh", &script_iter)) {
+                    fail(test, "'scan.sh' row not found under Tools");
                     return G_SOURCE_REMOVE;
                 }
                 GtkWidget *menu = open_menu_for_row(tree_view, model, &script_iter);
@@ -324,10 +324,10 @@ static gboolean drive(gpointer user_data) {
 }
 
 /* Every GTK smoke test binary lives in the same build/tests/ directory,
- * so toolkit_index's exe-relative resolution finds the same physical
- * toolkit/ directory for all of them - clearing any pre-existing
+ * so tools_index's exe-relative resolution finds the same physical
+ * tools/ directory for all of them - clearing any pre-existing
  * top-level entries keeps this test's assertions correct regardless of
- * ctest run order, same precaution toolkit_interaction_smoke.c already
+ * ctest run order, same precaution tools_interaction_smoke.c already
  * established. */
 static void clear_workspace_root(const WorkspaceRoot *root) {
     DIR *dir = opendir(root->canonical_path);
@@ -344,7 +344,7 @@ static void clear_workspace_root(const WorkspaceRoot *root) {
     closedir(dir);
 }
 
-static void write_fixtures(const WorkspaceRoot *toolkit_root) {
+static void write_fixtures(const WorkspaceRoot *tools_root) {
     char path[4400];
 
     /* Each redirection is its own open+write+close, so the FileWatcher's
@@ -352,7 +352,7 @@ static void write_fixtures(const WorkspaceRoot *toolkit_root) {
      * row - proving the tab updates live rather than only once at the
      * end. No trailing sleep, so the process (and therefore its
      * TerminalSession) exits promptly once both lines are written. */
-    snprintf(path, sizeof(path), "%s/scan.sh", toolkit_root->canonical_path);
+    snprintf(path, sizeof(path), "%s/scan.sh", tools_root->canonical_path);
     const char *script = "#!/bin/sh\n"
                           "DIR=\"$(dirname \"$0\")\"\n"
                           "echo '{\"host\": \"10.0.0.1\", \"port\": \"22\"}' >> \"$DIR/scan.out.jsonl\"\n"
@@ -361,7 +361,7 @@ static void write_fixtures(const WorkspaceRoot *toolkit_root) {
     write_file_bytes(path, script, strlen(script));
     chmod(path, 0755);
 
-    snprintf(path, sizeof(path), "%s/scan.sh.manifest.json", toolkit_root->canonical_path);
+    snprintf(path, sizeof(path), "%s/scan.sh.manifest.json", tools_root->canonical_path);
     const char *manifest = "{ \"panel\": { \"title\": \"Scan Results\", \"data_file\": \"scan.out.jsonl\", "
                             "\"columns\": [ {\"key\": \"host\", \"label\": \"Host\"}, "
                             "{\"key\": \"port\", \"label\": \"Port\"} ] } }";
@@ -377,9 +377,9 @@ int main(void) {
         fprintf(stderr, "tool_panel_smoke: app_create failed\n");
         return 1;
     }
-    test.toolkit_root = *app_get_toolkit_workspace_root(app);
-    clear_workspace_root(&test.toolkit_root);
-    write_fixtures(&test.toolkit_root);
+    test.tools_root = *app_get_tools_workspace_root(app);
+    clear_workspace_root(&test.tools_root);
+    write_fixtures(&test.tools_root);
 
     g_timeout_add(STEP_INTERVAL_MS, drive, &test);
 

@@ -2,7 +2,7 @@
  * Exercises Step 2's checkpoint end-to-end in the real app: toolbar
  * New Folder, a folder's context-menu New File, Rename, guarded Delete
  * (immediate for an ordinary file, confirmed for a non-empty folder),
- * Refresh preserving an expanded folder's state, and that the TOOLBOX
+ * Refresh preserving an expanded folder's state, and that the Files
  * root's own context menu never offers Rename/Delete.
  *
  * Commits an inline create/rename by emitting the name cell renderer's
@@ -221,12 +221,12 @@ static gboolean drive(gpointer user_data) {
     char path_buf[4400];
 
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
-    /* Toolbar New Folder, nothing selected -> targets TOOLBOX. */
+    /* Toolbar New Folder, nothing selected -> targets Files. */
     GtkWidget *new_folder_button = find_by_data_key(GTK_WIDGET(window), "workbench-explorer-new-folder-button");
     if (!new_folder_button) {
         fail(test, "New Folder toolbar button not found");
@@ -235,7 +235,7 @@ static gboolean drive(gpointer user_data) {
     gtk_button_clicked(GTK_BUTTON(new_folder_button));
     GtkTreeIter pending;
     if (!find_pending_child(model, &workbench_iter, &pending)) {
-        fail(test, "no pending blank row appeared under TOOLBOX after New Folder");
+        fail(test, "no pending blank row appeared under Files after New Folder");
         goto done;
     }
     commit_row(tree_view, model, &pending, "newfolder");
@@ -246,7 +246,7 @@ static gboolean drive(gpointer user_data) {
     }
     GtkTreeIter newfolder_iter;
     if (!find_child_by_name(model, &workbench_iter, "newfolder", &newfolder_iter)) {
-        fail(test, "'newfolder' row not found under TOOLBOX");
+        fail(test, "'newfolder' row not found under Files");
         goto done;
     }
 
@@ -359,12 +359,12 @@ static gboolean drive(gpointer user_data) {
     }
 
     /* Refresh preserves an already-expanded folder's state. Toolbar New
-     * Folder again, nothing selected -> targets TOOLBOX. Explicitly
+     * Folder again, nothing selected -> targets Files. Explicitly
      * cleared rather than just assumed: removing newfolder above (its
-     * own parent TOOLBOX's last remaining child at that point) can
-     * leave GTK's own tree selection auto-advanced onto TOOLBOX's next
-     * sibling - "Toolkit" - which is now a legitimate New Folder target
-     * in its own right (full parity with TOOLBOX), so this step must
+     * own parent Files's last remaining child at that point) can
+     * leave GTK's own tree selection auto-advanced onto Files's next
+     * sibling - "Tools" - which is now a legitimate New Folder target
+     * in its own right (full parity with Files), so this step must
      * guarantee its own "nothing selected" precondition rather than
      * merely hope for it. */
     gtk_tree_selection_unselect_all(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view)));
@@ -375,13 +375,13 @@ static gboolean drive(gpointer user_data) {
     }
     gtk_button_clicked(GTK_BUTTON(new_folder_button2));
     if (!find_pending_child(model, &workbench_iter, &pending)) {
-        fail(test, "no pending blank row appeared under TOOLBOX for expandedfolder");
+        fail(test, "no pending blank row appeared under Files for expandedfolder");
         goto done;
     }
     commit_row(tree_view, model, &pending, "expandedfolder");
     GtkTreeIter expanded_folder_iter;
     if (!find_child_by_name(model, &workbench_iter, "expandedfolder", &expanded_folder_iter)) {
-        fail(test, "'expandedfolder' row not found under TOOLBOX");
+        fail(test, "'expandedfolder' row not found under Files");
         goto done;
     }
     menu = open_menu_for_row(tree_view, model, &expanded_folder_iter);
@@ -430,19 +430,19 @@ static gboolean drive(gpointer user_data) {
         goto done;
     }
 
-    /* The TOOLBOX root never offers Rename/Delete. */
+    /* The Files root never offers Rename/Delete. */
     menu = open_menu_for_row(tree_view, model, &workbench_iter);
     if (!menu) {
-        fail(test, "TOOLBOX root context menu did not appear");
+        fail(test, "Files root context menu did not appear");
         goto done;
     }
     if (find_menu_item(menu, "Rename") || find_menu_item(menu, "Delete")) {
-        fail(test, "TOOLBOX root's context menu must not offer Rename/Delete");
+        fail(test, "Files root's context menu must not offer Rename/Delete");
         goto done;
     }
     if (!find_menu_item(menu, "New File") || !find_menu_item(menu, "New Folder") ||
         !find_menu_item(menu, "Refresh") || !find_menu_item(menu, "Properties")) {
-        fail(test, "TOOLBOX root's context menu should offer New File/New Folder/Refresh/Properties");
+        fail(test, "Files root's context menu should offer New File/New Folder/Refresh/Properties");
         goto done;
     }
     /* Every earlier menu in this test was dismissed by activating one of
@@ -465,7 +465,7 @@ done:
  * physical files/ directory for all of them - ctest runs them back to
  * back with no cleanup in between. Clearing any pre-existing top-level
  * entries here (left over from an earlier test's own fixtures) keeps
- * this test's TOOLBOX-child assertions correct regardless of run order. */
+ * this test's Files-child assertions correct regardless of run order. */
 static void clear_workspace_root(const WorkspaceRoot *root) {
     DIR *dir = opendir(root->canonical_path);
     if (!dir) {
@@ -511,6 +511,6 @@ int main(void) {
     }
 
     g_print("explorer_operations_smoke: toolbar create, context-menu create/rename/delete (immediate and "
-            "confirmed), refresh-preserves-expansion, and the TOOLBOX root's restricted menu all verified\n");
+            "confirmed), refresh-preserves-expansion, and the Files root's restricted menu all verified\n");
     return 0;
 }

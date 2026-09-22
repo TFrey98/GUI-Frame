@@ -3,11 +3,11 @@
  * deleted, and renamed directly by this test process (simulating an
  * external terminal or editor touching files/ from outside the app -
  * never through file_operations.c or the explorer UI) is reflected in
- * the TOOLBOX tree with no manual Refresh click, driven entirely by
+ * the Files tree with no manual Refresh click, driven entirely by
  * on_tick's own 100ms drain of backend->file_watcher. Watching is
- * FILES-only this step (see ui_gtk_file_tree.c's
+ * Files-only this step (see ui_gtk_file_tree.c's
  * register_watch_for_loaded_row comment), so this test only exercises
- * the TOOLBOX root, which is already expanded/watched from startup.
+ * the Files root, which is already expanded/watched from startup.
  */
 #include <dirent.h>
 #include <gtk/gtk.h>
@@ -133,8 +133,8 @@ static gboolean drive(gpointer user_data) {
 
     GtkTreeModel *model = gtk_tree_view_get_model(GTK_TREE_VIEW(tree_view));
     GtkTreeIter workbench_iter;
-    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "TOOLBOX")) {
-        fail(test, "expected TOOLBOX as the first top-level row");
+    if (!gtk_tree_model_get_iter_first(model, &workbench_iter) || !row_name_is(model, &workbench_iter, "Files")) {
+        fail(test, "expected Files as the first top-level row");
         goto done;
     }
 
@@ -159,7 +159,7 @@ static gboolean drive(gpointer user_data) {
                 test->stage = STAGE_DELETE_TRIGGER;
                 test->elapsed_ms = 0;
             } else if (test->elapsed_ms >= STEP_TIMEOUT_MS) {
-                fail(test, "externally created 'external.txt' never appeared under TOOLBOX without a manual refresh");
+                fail(test, "externally created 'external.txt' never appeared under Files without a manual refresh");
                 goto done;
             }
             return G_SOURCE_CONTINUE;

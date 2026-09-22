@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Workbench
+GenericName=Listener and Terminal Workbench
+Comment=Run and observe network listeners and local terminals side by side
+Exec=workbench
+Icon=dev.workbench.app
+Terminal=false
+Categories=Development;TerminalEmulator;
+Keywords=terminal;shell;listener;tcp;http;https;pty;
+StartupNotify=true
+StartupWMClass=dev.workbench.app

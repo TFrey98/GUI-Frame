@@ -1,4 +1,6 @@
-#include "toolkit_index.h"
+#include "tools_index.h"
+
+#include "core/app_paths.h"
 
 #include <dirent.h>
 #include <stdio.h>
@@ -7,12 +9,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-/* Single global root-level index, sized to TOOLKIT_INDEX_MAX_ENTRIES - the
- * sidebar only ever needs one; per-directory scans (toolkit_scan_directory)
+/* Single global root-level index, sized to TOOLS_INDEX_MAX_ENTRIES - the
+ * sidebar only ever needs one; per-directory scans (tools_scan_directory)
  * write into caller-provided buffers instead of this global state. */
-static ToolkitEntry g_entries[TOOLKIT_INDEX_MAX_ENTRIES];
+static ToolsIndexEntry g_entries[TOOLS_INDEX_MAX_ENTRIES];
 static int g_entry_count = 0;
-static char *g_toolkit_dir = NULL;
+static char *g_tools_dir = NULL;
 
 static void free_entries(void) {
     for (int i = 0; i < g_entry_count; i++) {
@@ -27,15 +29,15 @@ static void free_entries(void) {
 /* Directories sort before files (matches most file-tree UIs), then
  * alphabetically within each group. */
 static int compare_entries(const void *a, const void *b) {
-    const ToolkitEntry *ea = a;
-    const ToolkitEntry *eb = b;
+    const ToolsIndexEntry *ea = a;
+    const ToolsIndexEntry *eb = b;
     if (ea->is_dir != eb->is_dir) {
         return ea->is_dir ? -1 : 1;
     }
     return strcmp(ea->name, eb->name);
 }
 
-int toolkit_scan_directory(const char *dir_path, ToolkitEntry *out, int max_entries) {
+int tools_scan_directory(const char *dir_path, ToolsIndexEntry *out, int max_entries) {
     DIR *dir = opendir(dir_path);
     if (!dir) {
         return -1;
@@ -63,69 +65,62 @@ int toolkit_scan_directory(const char *dir_path, ToolkitEntry *out, int max_entr
     }
     closedir(dir);
 
-    qsort(out, count, sizeof(ToolkitEntry), compare_entries);
+    qsort(out, count, sizeof(ToolsIndexEntry), compare_entries);
     return count;
 }
 
-/* Resolves the directory containing the running executable via
- * /proc/self/exe, so toolkit/ is found next to the binary regardless of
- * the cwd the app was launched from - matching where CMake's POST_BUILD
- * step creates it. */
-static char *resolve_exe_relative_toolkit_dir(void) {
-    char exe_path[4096];
-    ssize_t len = readlink("/proc/self/exe", exe_path, sizeof(exe_path) - 1);
-    if (len <= 0) {
+/* Resolves <data_dir>/tools, creating it if missing. The data dir is the
+ * exe dir for a development build - matching where CMake's POST_BUILD
+ * step creates it - and the per-user XDG data dir for an installed one.
+ * See app_paths.h. Returned string is owned by the caller.
+ *
+ * The directory was called "toolkit" up to 0.1.0~beta, when it was too
+ * easily confused with the sidebar's other root; anyone carrying one
+ * forward gets it renamed in place on first launch rather than silently
+ * losing access to its contents. */
+static char *resolve_tools_dir(void) {
+    app_paths_rename_legacy_subdir("toolkit", "tools");
+
+    char dir[4096];
+    if (!app_paths_data_subdir("tools", dir, sizeof(dir))) {
         return NULL;
     }
-    exe_path[len] = '\0';
-
-    char *last_slash = strrchr(exe_path, '/');
-    if (!last_slash) {
-        return NULL;
-    }
-    *last_slash = '\0';
-
-    char *dir = malloc(strlen(exe_path) + strlen("/toolkit") + 1);
-    sprintf(dir, "%s/toolkit", exe_path);
-
-    mkdir(dir, 0755);
-
-    return dir;
+    return strdup(dir);
 }
 
-void toolkit_index_init(void) {
+void tools_index_init(void) {
     g_entry_count = 0;
-    g_toolkit_dir = resolve_exe_relative_toolkit_dir();
-    toolkit_index_rescan();
+    g_tools_dir = resolve_tools_dir();
+    tools_index_rescan();
 }
 
-void toolkit_index_shutdown(void) {
+void tools_index_shutdown(void) {
     free_entries();
-    free(g_toolkit_dir);
-    g_toolkit_dir = NULL;
+    free(g_tools_dir);
+    g_tools_dir = NULL;
 }
 
-int toolkit_index_rescan(void) {
-    if (!g_toolkit_dir) {
+int tools_index_rescan(void) {
+    if (!g_tools_dir) {
         return -1;
     }
     free_entries();
-    int count = toolkit_scan_directory(g_toolkit_dir, g_entries, TOOLKIT_INDEX_MAX_ENTRIES);
+    int count = tools_scan_directory(g_tools_dir, g_entries, TOOLS_INDEX_MAX_ENTRIES);
     g_entry_count = count < 0 ? 0 : count;
     return count;
 }
 
-int toolkit_index_count(void) {
+int tools_index_count(void) {
     return g_entry_count;
 }
 
-const ToolkitEntry *toolkit_index_get(int index) {
+const ToolsIndexEntry *tools_index_get(int index) {
     if (index < 0 || index >= g_entry_count) {
         return NULL;
     }
     return &g_entries[index];
 }
 
-const char *toolkit_index_dir(void) {
-    return g_toolkit_dir;
+const char *tools_index_dir(void) {
+    return g_tools_dir;
 }

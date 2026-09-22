@@ -95,7 +95,7 @@ typedef struct ScanEntry {
 } ScanEntry;
 
 /* Directories first, then alphabetical within each group - same
- * ordering toolkit_index.c's compare_entries() already establishes. */
+ * ordering tools_index.c's compare_entries() already establishes. */
 static int compare_scan_entries(const void *a, const void *b) {
     const ScanEntry *ea = a;
     const ScanEntry *eb = b;

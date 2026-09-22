@@ -5,7 +5,7 @@
 
 typedef struct Workspace Workspace;
 
-/* Toolkit-independent tab model for one application window. Workspace owns
+/* GUI-tools-independent tab model for one application window. Workspace owns
  * every Tab added to it; the GTK notebook is a view over this collection. */
 
 Workspace *workspace_create(void);
